@@ -1,0 +1,137 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "flaticon";
+  src: url("./flaticon.ttf?b85ac54b24fb081aa0e91da353d21c11") format("truetype"), url("./flaticon.woff?b85ac54b24fb081aa0e91da353d21c11") format("woff"), url("./flaticon.woff2?b85ac54b24fb081aa0e91da353d21c11") format("woff2"), url("./flaticon.eot?b85ac54b24fb081aa0e91da353d21c11#iefix") format("embedded-opentype"), url("./flaticon.svg?b85ac54b24fb081aa0e91da353d21c11#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-cleaner:before {
+  content: "";
+}
+
+.flaticon-car-service:before {
+  content: "";
+}
+
+.flaticon-toothbrush:before {
+  content: "";
+}
+
+.flaticon-vacuum:before {
+  content: "";
+}
+
+.flaticon-cleaning:before {
+  content: "";
+}
+
+.flaticon-cleaning-1:before {
+  content: "";
+}
+
+.flaticon-house-cleaning:before {
+  content: "";
+}
+
+.flaticon-washing-machine:before {
+  content: "";
+}
+
+.flaticon-call:before {
+  content: "";
+}
+
+.flaticon-communicate:before {
+  content: "";
+}
+
+.flaticon-mail:before {
+  content: "";
+}
+
+.flaticon-earth-globe:before {
+  content: "";
+}
+
+.flaticon-bullhorn:before {
+  content: "";
+}
+
+.flaticon-channel:before {
+  content: "";
+}
+
+.flaticon-pin:before {
+  content: "";
+}
+
+.flaticon-call-center:before {
+  content: "";
+}
+
+.flaticon-customer-support:before {
+  content: "";
+}
+
+.flaticon-support:before {
+  content: "";
+}
+
+.flaticon-brush:before {
+  content: "";
+}
+
+.flaticon-brush-1:before {
+  content: "";
+}
+
+.flaticon-window-cleaner:before {
+  content: "";
+}
+
+.flaticon-window-cleaner-1:before {
+  content: "";
+}
+
+.flaticon-checklist:before {
+  content: "";
+}
+
+.flaticon-review:before {
+  content: "";
+}
+
+.flaticon-certification:before {
+  content: "";
+}
+
+.flaticon-trophy:before {
+  content: "";
+}
+
+.flaticon-podium:before {
+  content: "";
+}
+
+.flaticon-medical-protection:before {
+  content: "";
+}
+
+.flaticon-glass:before {
+  content: "";
+}
+
+.flaticon-medal:before {
+  content: "";
+}
+/*# sourceMappingURL=flaticon.css.map */
