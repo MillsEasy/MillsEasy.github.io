@@ -1,0 +1,71 @@
+.take-action {
+    background: $main-clr;
+    padding: 150px 0;
+
+
+    .overlay-color {
+        opacity: .9 !important;
+
+    }
+
+
+
+
+    .cta-link {
+        background-color: transparent;
+        border-color: $white-clr;
+        color: $white-clr;
+
+        &:hover {
+            background-color: $main-clr;
+            border-color: $main-clr;
+            color: $white-clr;
+        }
+    }
+
+}
+
+.subscribe {
+    .overlay-color {
+        opacity: .75 !important;
+    }
+
+
+    .section-heading {
+        .section-title {
+            color: $grey-clr;
+        }
+
+        .section-subtitle {
+            color: $grey-clr;
+        }
+
+        .line {
+            background-color: $white-clr;
+        }
+
+
+    }
+
+    .sec-heading {
+        .title {
+            color: $grey-clr;
+        }
+
+        .subtitle {
+            color: $grey-clr;
+        }
+
+        .bottom-line {
+            background-color: $white-clr;
+        }
+    }
+
+    .subscribe-btn {
+        &:hover {
+            background: transparent;
+            color: $white-clr;
+            border-color: $white-clr;
+        }
+    }
+}

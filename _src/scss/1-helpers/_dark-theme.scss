@@ -1,0 +1,135 @@
+body {
+  &.dark-theme {
+    color: $white-clr;
+    background: $dark-blue-clr;
+
+    //Globals
+
+    .section-shape-divider-bottom {
+      svg {
+        path {
+          fill: $dark-blue-clr;
+        }
+      }
+    }
+
+    .ma-tabs {
+      .switch {
+        .switch-btns-list {
+          .switch-btn {
+            color: rgba($white-clr-rgb, 0.75) !important;
+            border-color: rgba($white-clr-rgb, 0.25) !important;
+          }
+        }
+      }
+    }
+
+    // nice select  dark-theme rules
+    .nice-select {
+      background: $dark-blue-clr;
+      color: $white-clr;
+
+      &:after {
+        border-color: $white-clr;
+      }
+
+      .current {
+        color: $white-clr;
+      }
+
+      .list {
+        background: $dark-blue-clr;
+        color: $white-clr;
+      }
+
+      .option:hover,
+      .option.focus,
+      .option.selected.focus {
+        color: $white-clr;
+      }
+    }
+
+    //benefits
+
+    //blog
+
+    //Custom Form
+
+    .custom-form-area {
+      input[type="email"],
+      input[type="text"],
+      input[type="password"],
+      input[type="url"],
+      input[type="search"],
+      input[type="number"],
+      select,
+      textarea {
+        border: 1px solid rgba($white-clr-rgb, 0.25);
+        background: $dark-blue-clr;
+        color: $white-clr;
+      }
+    }
+
+    //FAQ
+    .faq {
+      /*Start FAQ-Accordion Rules*/
+      .faq-accordion {
+        // margin-bottom: 3rem;
+
+        .card-header {
+          border-bottom: 2px solid $white-clr;
+
+          .faq-btn {
+            color: $white-clr;
+          }
+        }
+
+        .card-body {
+          .faq-answer {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: $white-clr;
+          }
+        }
+      }
+
+      /*End FAQ-Accordion Rules*/
+      //
+    }
+
+    // our-team
+
+    .team-member {
+      .profile {
+        background-color: $semi-dark-blue-clr;
+      }
+    }
+
+    //services
+
+    //Portfolio
+
+    //Pricing
+
+    //project Details
+
+    //about section
+    .about {
+      .cta-area .signature .signature-img {
+        background-image: url("../assets/images/about/signature-light.png");
+      }
+
+      .about-stats {
+        &.stats-cards {
+          .stat-box {
+            background: $semi-dark-blue-clr;
+          }
+        }
+      }
+    }
+
+    //My-Account
+
+    //Shop
+  }
+}

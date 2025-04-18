@@ -1,0 +1,260 @@
+.page-header .navbar-menu-wrapper:after {
+    display: none;
+}
+
+.demos-hero-section {
+    background-color: $semi-dark-blue-clr;
+    padding-top: 60px;
+    padding-bottom: 0;
+    height: 100vh;
+
+    .overlay-linear-gradient {
+        opacity: .65 !important;
+    }
+
+    .overlay-color {
+        opacity: .9 !important;
+        background: $dark-blue-clr !important;
+    }
+
+    .hero-text-area {
+        padding-top: 2rem;
+        margin-bottom: 3rem;
+
+        .hero-title {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 600;
+        }
+
+        .theme-name {
+            font-size: 5rem;
+            font-weight: 900;
+
+            @include screen-md {
+                font-size: 3.5rem;
+
+            }
+
+
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-#{$start-direction}: auto;
+            margin-#{$end-direction}: auto;
+
+        }
+
+
+    }
+
+    .demo-hero-image {
+        padding-top: 1.5rem;
+        max-height: 6500px;
+
+
+    }
+
+}
+
+
+
+.theme-name {
+
+    overflow: hidden;
+    text-transform: capitalize;
+    transition: all .3s ease-in-out;
+    font-size: 3rem;
+    font-weight: 700;
+    color: $grey-clr;
+
+    @include screen-md {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+}
+
+
+
+
+.hero-theme-logo>img {
+    margin-bottom: 0;
+
+    @include screen-md {
+
+        max-width: 10rem;
+        max-height: 10rem;
+    }
+}
+
+
+
+
+
+
+.demos {
+    background-color: $semi-dark-blue-clr;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 125px;
+        padding: 2rem;
+        border: 4px solid $main-clr;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    .section-heading {
+        .section-title {
+            color: $white-clr !important;
+
+
+        }
+
+    }
+
+
+    .demo {
+        position: relative;
+        margin-bottom: 2rem;
+        width: 100%;
+        // max-height: 450px;
+        overflow: hidden;
+        display: block;
+        position: relative;
+        z-index: 0;
+        border: 1px solid rgba($main-clr-rgb, .5);
+        @include ma-transition();
+
+
+
+
+        .overlay-color {
+            opacity: .05;
+            background-color: $white-clr;
+            z-index: 1;
+
+
+        }
+
+        &:hover {
+            transform: translateY(-10px);
+
+            .overlay-color {
+                background-color: $dark-blue-clr;
+                opacity: .75;
+            }
+
+            .demo-links {
+                top: 50%;
+                transform: translate(-50%, -50%);
+                visibility: visible;
+                opacity: 1;
+            }
+
+            .demo-name {
+                background-color: $main-clr;
+            }
+        }
+
+        .note {
+            position: absolute;
+            top: 0;
+            #{$end-direction}: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            padding: .5rem 1rem;
+            background-color: $white-clr;
+            color: $main-clr;
+            transform: translateY(50%);
+            text-transform: lowercase;
+            z-index: 2;
+            @include ma-transition;
+        }
+
+        .bg-img {
+            position: relative;
+        }
+
+        .demo-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .demo-links {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            #{$start-direction}: 50%;
+            transform: translate(-50%, 0);
+            visibility: hidden;
+            opacity: 0;
+            z-index: 3;
+            @include ma-transition;
+
+            .demo-link {
+                padding: .5rem 1rem;
+                color: $white-clr;
+                background: transparent;
+                border-color: $white-clr;
+
+                &:hover {
+                    color: $main-clr;
+                    background: $white-clr;
+                    border-color: $white-clr;
+                }
+
+
+
+
+
+                &:first-child {
+                    margin-bottom: 1rem;
+
+                    color: $white-clr;
+                    background: $main-clr;
+                    border-color: $main-clr;
+
+                    &:hover {
+                        color: $main-clr;
+                        background: $white-clr;
+                        border-color: $white-clr;
+                    }
+                }
+            }
+        }
+
+        .demo-name {
+            position: relative;
+            text-align: center;
+            text-transform: capitalize;
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: $white-clr;
+            background-color: $dark-blue-clr;
+            margin: 0;
+            @include ma-transition;
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+}

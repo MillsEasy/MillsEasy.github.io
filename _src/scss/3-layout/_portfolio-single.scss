@@ -1,0 +1,169 @@
+.portfolio-single {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    .project-heading {
+        margin-bottom: 2rem;
+
+        .project-title {
+            font-size: 4rem;
+            font-weight: 800;
+
+            text-transform: capitalize;
+            margin-bottom: 1.5rem;
+
+            @include screen-md {
+                font-size: 2.25rem;
+
+            }
+        }
+
+    }
+
+
+    .featured-area {
+        margin-bottom: 3rem;
+    }
+
+    .project-featured-img {
+        max-height: 450px;
+        overflow: hidden;
+
+        .featured-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+
+        }
+    }
+
+
+    .info-area {
+        margin-bottom: 1rem;
+
+
+        .project-info {
+            padding: 1rem 0;
+
+            @include screen-lg {
+                margin-bottom: 0;
+            }
+
+            .info {
+                margin-bottom: 2rem;
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    display: inline-block;
+                    margin-#{$end-direction}: .25rem;
+
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    text-transform: capitalize;
+                    color: $main-clr;
+                    margin-bottom: .75rem;
+
+                }
+
+                .detail {
+                    display: inline-block;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    text-transform: capitalize;
+                    margin-bottom: 0;
+                    opacity: .75;
+                }
+
+                .sc-item {
+
+                    .sc-icon {
+                        color: inherit;
+                        opacity: .75;
+                    }
+                }
+            }
+
+        }
+    }
+
+    .main-area {
+        .sub-heading {
+            text-transform: capitalize;
+
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+
+            @include screen-md {
+                font-size: 1.75rem;
+                font-weight: 700;
+            }
+        }
+
+        .project-text {
+            position: relative;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            opacity: .75;
+
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            padding-#{$start-direction}: 0;
+            margin-bottom: 2rem;
+
+            .list-item {
+                padding: .5rem 1.5rem;
+                padding-#{$start-direction}: 0;
+                position: relative;
+                text-transform: capitalize;
+                font-weight: 600;
+                font-size: 1.1rem;
+                opacity: .75;
+                display: flex;
+                align-items: baseline;
+
+                .icon {
+                    color: $main-clr;
+                    margin-#{$end-direction}: .5rem;
+                    font-size: .85rem;
+                }
+
+            }
+        }
+
+        .project-video {
+            min-height: 450px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            padding: 8rem 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include screen-md {
+                padding: 6rem 0;
+                min-height: 300px;
+
+            }
+
+        }
+
+        .result-img {
+            display: block;
+            margin: 0 auto;
+        }
+
+    }
+
+}
