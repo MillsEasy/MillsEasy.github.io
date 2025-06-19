@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MapleStar | Home</title>
+		<style>
+        .notice-bar {
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+		</style>
+    <!-- fav icon -->
+    <link rel="icon" href="assets/images/fav-icon/fav-icon.png">
+    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/vendors/bootstrap.min.css">
+    
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="css/vendors/jquery.fancybox.min.css">
+    
+    <!-- animate.css file -->
+    <link rel="stylesheet" href="css/vendors/animate.css">
+    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="css/vendors/swiper-bundle.min.css">
+    
+    <!-- Splitting -->
+    <link rel="stylesheet" href="css/vendors/splitting.css">
+    
+    <!-- Splitting-cells -->
+    <link rel="stylesheet" href="css/vendors/splitting-cells.css">
+    
+    <!-- flaticon -->
+    <link rel="stylesheet" href="css/vendors/flaticon/font//flaticon.css">
+    
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="css/vendors/all.min.css">
+    
+    <!-- bootstrap icons -->
+    <link rel="stylesheet" href="css/vendors/bootstrap-icons-1.5.0/bootstrap-icons.css">
+    
+    <!-- Font Family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700;800;900&amp;display=swap">
+    
+    <!-- main-LTR -->
+    <link rel="stylesheet" href="css/main-LTR.css">
+  </head>
+  <body class="rounded-btns">
+    <!--Start Page Header-->
+    <header class="header-2" id="page-header">
+      <div class="header-search-box">
+        <div class="close-search"></div>
+        <form class="nav-search search-form" role="search" method="get" action="#">
+          <div class="search-wrapper"> 
+            <label class="search-lbl">Search：</label>
+            <input class="search-input" type="search" placeholder="Search：" name="searchInput" autofocus="autofocus"/>
+            <button class="search-btn" type="submit"><i class="bi bi-search icon"></i></button>
+          </div>
+        </form>
+      </div>
+      <!--== top bar-->
+      <!--== bottom bar-->
+      <div class="bar-bottom">
+        <div class="container">
+          <nav class="menu-navbar">
+            <div class="header-logo"><a class="logo-link" href="index.html"><img class="logo-img light-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/><img class="logo-img  dark-logo" loading="lazy" src="assets/images/logo/logo-dark.png" alt="logo"/></a></div>
+            <div class="links menu-wrapper ">
+              <ul class="list-js links-list">
+                <li class="menu-item has-sub-menu"><a class="menu-link active" href="index.html">Home<i class="bi bi-chevron-down down-Arrow-icon"></i></a>
+                </li>
+                <li class="menu-item has-sub-menu"><a class="menu-link" href="faq.html">FAQ<i class="bi bi-chevron-down down-Arrow-icon"></i></a>			
+                </li>
+				<li class="menu-item has-sub-menu"><a class="menu-link" href="blogindex.html">Blog<i class="bi bi-chevron-down down-Arrow-icon"></i></a>
+                </li>
+                <li class="menu-item has-sub-menu"><a class="menu-link" href="#0">Others<i class="bi bi-chevron-down down-Arrow-icon"></i></a>
+                  <ul class="sub-menu">
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link" href="sign-in.html">Sign-in</a></li>
+                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link" href="sign-up.html">Sign-up</a></li>
+                  </ul>
+                </li>
+                <li class="menu-item"><a class="menu-link" href="contact-us.html">Contact Admin</a></li>
+              </ul>
+            </div>
+            <div class="controls-box">
+              <div class="control header-search-btn"><i class="bi bi-search icon"></i></div>
+              <div class="control info-toggler"><span> </span><span> </span><span></span></div>
+              <div class="control menu-toggler"><span></span><span></span><span></span></div>
+            </div>
+          </nav>
+        </div>
+      </div>
+	  <div class="notice-bar">Notice: Website maintenance ended on 2025/6/15</div>
+    </header>
+    <!--End Page Header-->
+    <!-- Start Page hero-->
+    <section class="page-hero hero-swiper-slider slider-fade d-flex align-items-center" id="page-hero">
+      <!--Start Swiper JS slider-->
+      <div class="slider swiper-container">
+        <div class="swiper-wrapper">
+          <!--first slider-->
+          <div class="swiper-slide"> 
+            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-4.jpg">
+              <div class="overlay-color"></div>
+            </div>
+            <div class="container"> 
+              <div class="hero-text-area">
+                <div class="row">
+                  <div class="col-12 col-lg-10">
+                    <div class="pre-title">Welcome</div>
+                  </div>
+                  <div class="col-12 col-sm-8 col-lg-10">
+                    <h1 class="slide-title" data-splitting="chars"><span class="first-word hollow-text">MapleStar</span> is a small static website, welcome to <span class="featured-text">visit!</span></h1>
+                  </div>
+                  <div class="col-10 col-sm-8 col-lg-6">
+                    <p class="slide-subtitle">
+                      This website is created by NorthAusleyMaple, initially launched in November 2024. It's a small static website offering various interesting knowledge.
+                    </p>
+                  </div>
+                  <div class="col-12">
+                    <div class="cta-links-area"><a class="btn-solid cta-link cta-link-primary" href="blogindex.html">Go to Blog</a><a class="btn-outline cta-link" href="mcindex.html">Online MC</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--second slider-->
+          <div class="swiper-slide"> 
+            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-5.jpg">
+              <div class="overlay-color"></div>
+            </div>
+            <div class="container">
+              <div class="hero-text-area">
+                <div class="row">
+                  <div class="col-12 col-lg-10">
+                    <div class="pre-title">Welcome</div>
+                  </div>
+                  <div class="col-12 col-sm-8 col-lg-10">
+                    <h1 class="slide-title" data-splitting="chars"><span class="first-word hollow-text">Want</span> to know the <span class="featured-text">history</span> of this website?</h1>
+                  </div>
+                  <div class="col-10 col-sm-8 col-lg-6">
+                    <p class="slide-subtitle">
+                      Visit the blog to learn more! 
+                    </p>
+                  </div>
+                  <div class="col-12">
+                    <div class="cta-links-area"><a class="btn-solid cta-link cta-link-primary" href="blogindex.html">Go to Blog</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--third slider-->
+          <div class="swiper-slide"> 
+            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-1.jpg">
+              <div class="overlay-color"></div>
+            </div>
+            <div class="container">
+              <div class="hero-text-area">
+                <div class="row">
+                  <div class="col-12 col-lg-10">
+                    <div class="pre-title">Update Content</div>
+                  </div>
+                  <div class="col-12 col-sm-8 col-lg-10">
+                    <h1 class="slide-title" data-splitting="chars"><span class="first-word hollow-text">2025/4/19</span> Updated with many <span class="featured-text">new features, redesigned!</span></h1>
+                  </div>
+                  <div class="col-10 col-sm-8 col-lg-6">
+                    <p class="slide-subtitle">
+                      Visit the blog to learn more! You can also visit the author's Bilibili.
+                    </p>
+                  </div>
+                  <div class="col-12">                        
+                    <div class="cta-links-area"><a class="btn-solid cta-link cta-link-primary" href="blogindex.html">Go to Blog</a><a class="btn-outline cta-link" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">Author's Bilibili</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slides-state v-align">
+          <div class="slide-num curent-slide"></div>
+          <!--Add Pagination-->
+          <div class="swiper-pagination"></div>
+          <div class="slide-num slides-count"></div>
+        </div>
+      </div>
+    </section>
+    <!-- End Page hero-->
+	<!-- Start RP Section-->
+	<div id="rp-checker-container" style="position:relative">
+	<style>
+		#rp-checker-container {
+			--rp-text-color: #333;
+			--rp-bg-color: #fff;
+			--rp-close-bg: rgba(255,255,255,0.8);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			#rp-checker-container {
+				--rp-text-color: #eee;
+				--rp-bg-color: #2d2d2d;
+				--rp-close-bg: rgba(45,45,45,0.8);
+			}
+		}
+
+		/* Basic styles */
+		#rp-checker-container .rp-close-btn {
+			position: absolute;
+			right: 20px;
+			top: 15px;
+			cursor: pointer;
+			font-size: 24px;
+			color: var(--rp-text-color);
+			transition: all .3s;
+			z-index: 1000;
+			line-height: 1;
+			background: var(--rp-close-bg);
+			padding: 0 8px;
+			border-radius: 50%;
+			border: 1px solid rgba(0,0,0,0.1);
+		}
+	
+		#rp-checker-container .rp-close-btn:hover {
+			color: #e74c3c;
+			background: var(--rp-bg-color);
+			border-color: rgba(0,0,0,0.2);
+		}
+
+		#rp-checker-container .container {
+			text-align: center;
+			padding: 30px;
+			background: var(--rp-bg-color);
+			border-radius: 15px;
+			box-shadow: 0 10px 30px rgba(0,0,0,.1);
+			color: var(--rp-text-color);
+			position: relative;
+			overflow: hidden;
+		}
+	
+		#rp-checker-container h1 {
+			margin-bottom: 30px;
+			color: inherit;
+		}
+
+		#rp-checker-container h2,
+		#rp-checker-container h5,
+		#rp-checker-container h7 {
+			color: inherit;
+			margin: 15px 0;
+		}
+
+		#rp-checker-container #rpValue {
+			font-size: 80px;
+			font-weight: 700;
+			text-shadow: 2px 2px 4px rgba(0,0,0,.2);
+			margin: 20px 0;
+			transition: all .5s;
+		}
+
+		#rp-checker-container button {
+			padding: 15px 40px;
+			font-size: 20px;
+			background: linear-gradient(45deg, #3498db, #2980b9);
+			color: #fff;
+			border: 0;
+			border-radius: 25px;
+			cursor: pointer;
+			transition: transform .5s;
+			margin-top: 20px;
+		}
+
+		#rp-checker-container button:hover {
+			transform: scale(1.05);
+			box-shadow: 0 5px 15px rgba(52,152,219,.4);
+		}
+
+		#rp-checker-container .progress-bar {
+			width: 300px;
+			height: 20px;
+			background: rgba(0,0,0,0.1);
+			border-radius: 10px;
+			margin: 20px auto;
+			overflow: hidden;
+		}
+
+		#rp-checker-container .progress {
+			width: 0%;
+			height: 100%;
+			transition: width 1s ease-in-out;
+		}
+	</style>
+
+	<div class="rp-close-btn" title="Close">Close ×</div>
+	<div class="container">
+		<h1></h1>
+		<h2>🔮RP Checker Beta (For Entertainment Only)</h2>
+		<h5>(Note: This feature is in beta testing. Future versions may or may not retain it. Please do not rely heavily on this feature!)</h5>
+		<h7>[Close button on the right][Once closed, cannot be restored. Refresh the site to use again]</h7>
+		<div id="rpValue">--</div>
+		<div class="progress-bar">
+			<div class="progress" id="progress"></div>
+		</div>
+		<button>——Click to Check RP😊——</button>
+	</div>
+
+	<script>
+	(function(){
+		const container = document.querySelector("#rp-checker-container");
+		const closeBtn = container.querySelector(".rp-close-btn");
+    
+		// Close functionality
+		closeBtn.addEventListener("click", function(){
+			container.style.opacity = "0";
+			setTimeout(() => {
+				container.style.display = "none";
+			}, 300);
+		});
+
+		// RP check function
+		function generateRP() {
+			const finalValue = Math.floor(Math.random() * 101);
+			const rpValue = container.querySelector("#rpValue");
+			const progress = container.querySelector("#progress");
+        
+			let current = 0;
+			const animate = setInterval(() => {
+				current++;
+				rpValue.textContent = current;
+				progress.style.width = current + "%";
+            
+				// Dynamic color
+				const color = current <= 30 ? "#e74c3c" :
+							current <= 60 ? "#f1c40f" : 
+							"#2ecc71";
+            
+				rpValue.style.color = color;
+				progress.style.background = `linear-gradient(90deg, ${color}, ${color})`;
+            
+				if(current >= finalValue) {
+					clearInterval(animate);
+					showResult(finalValue);
+				}
+			}, 20);
+		}
+	
+		function showResult(value) {
+			const results = [
+				{ min: 0, max: 20, text: "Recommend reincarnation (sad) 🚑", emoji: "💀" },
+				{ min: 21, max: 40, text: "Not a good day to go out 🫠", emoji: "😭" },
+				{ min: 41, max: 60, text: "Average level 😐", emoji: "😐" },
+				{ min: 61, max: 80, text: "Good RP 😊", emoji: "👍" },
+				{ min: 81, max: 100, text: "Chosen one! 🎉", emoji: "🎉" }
+			];
+			
+			const result = results.find(r => value >= r.min && value <= r.max);
+			rpValue.innerHTML = `${value}<div style="font-size:20px;margin-top:10px">${result.emoji} ${result.text}</div>`;
+		}
+
+		container.querySelector("button").addEventListener("click", generateRP);
+	})();
+	</script>
+	</div>
+	<!-- End RP Section-->
+    <!-- Start services Section-->
+    <section class="services-boxed services-off-grid mega-section" id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-4 align-self-center">
+            <div class="sec-heading light-title mb-4">
+              <div class="content-area"><span class="pre-title wow fadeInUp" data-wow-delay=".2s">About this website</span>
+                <h2 class="title wow fadeInUp" data-wow-delay=".4s">Did you know?</h2>
+              </div>
+            </div>
+            <!--Start .see-more-area-->
+            <div class="see-more-area d-none d-lg-flex justify-content-start wow fadeInUp" data-wow-delay="0.5s"><a class="btn-solid" href="blogindex.html">Visit Blog to Learn More</a></div>
+            <!--End Of .see-more-area-->
+          </div>
+          <div class="col-12 col-lg-8">
+            <div Class="row">
+              <div class="col-12 col-md-6 mt-md-5">
+                <div class="row gx-4 gy-4 services-row">
+                  <div class="col-12 mx-auto">
+                    <!--Start First service box-->
+                    <div class="service-box wow fadeInUp featured" data-wow-offset="0" data-wow-delay=".2s" data-tilt="data-tilt">  
+                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">1</span>
+                      <div class="service-content">
+                        <h3 class="service-title">Why is the domain name different from the website name?</h3>
+                        <p class="service-text">
+                          Because the website has been redesigned!
+                        </p>
+                      </div><a class="read-more" href="faq.html">Visit FAQ to Learn More<i class="bi bi-arrow-right icon"></i></a>
+                    </div>
+                    <!-- End First service box-->
+                  </div>
+                  <div class="col-12 mx-auto">
+                    <!--Start Second service box-->
+                    <div class="service-box wow fadeInUp" data-wow-offset="0" data-wow-delay=".6s" data-tilt="data-tilt">  
+                      <div class="service-icon"><i class="flaticon-house-cleaning font-icon"></i></div><span class="service-num hollow-text">2</span>
+                      <div class="service-content">
+                        <h3 class="service-title">Notice:</h3>
+                        <p class="service-text">
+                          The website author is a student, so website features might be limited. If you want to urge updates, please visit the author's Bilibili.
+                        </p>
+                      </div><a class="read-more" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">Author's Bilibili<i class="bi bi-arrow-right icon"></i></a>
+                    </div>
+                    <!-- End Second service box-->
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row gx-4 gy-4 services-row"> 
+                  <div class="col-12 mx-auto">
+                    <!--Start Third service box-->
+                    <div class="service-box wow fadeInUp" data-wow-offset="0" data-wow-delay=".4s" data-tilt="data-tilt">  
+                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">3</span>
+                      <div class="service-content">
+                        <h3 class="service-title">Brand New Website</h3>
+                        <p class="service-text">
+                          The author has refactored the website code, added more features. Once again, welcome to visit!
+                        </p>
+                      </div><a class="read-more" href="blogindex.html">Visit Blog to Learn More<i class="bi bi-arrow-right icon"></i></a>
+                    </div>
+                    <!-- End Third service box-->
+                  </div>
+                  <div class="col-12 mx-auto">
+                    <!--Start fourth service box-->
+                    <div class="service-box wow fadeInUp" data-wow-offset="0" data-wow-delay=".2s" data-tilt="data-tilt">  
+                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">4</span>
+                      <div class="service-content">
+                        <h3 class="service-title">Want to communicate with the admin?</h3>
+                        <p class="service-text">
+                          Send a private message on Bilibili, the author will provide WeChat ID. Please do so if you have suggestions or other questions.
+                        </p>
+                      </div><a class="read-more" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">Author's Bilibili<i class="bi bi-arrow-right icon"></i></a>
+                    </div>
+                    <!-- End fourth service box -->
+                  </div>
+                </div>
+                <!--Start .see-more-area-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End Of .see-more-area -->
+      </div>
+    </section>
+    <!-- End services Section-->
+	
+    <!-- Start blog Section-->
+    <section class="blog blog-home mega-section" id="blog">
+      <div class="container">
+        <div class="sec-heading">
+          <div class="content-area"><span class="pre-title wow fadeInUp" data-wow-delay=".2s">Blog | Blogs</span>
+            <h2 class="title wow fadeInUp" data-wow-delay=".4s">Latest <span class='hollow-text'>Posts</span></h2>
+          </div>
+          <div class="cta-area wow fadeInUp" data-wow-delay=".8s"><a class="cta-btn btn-solid" href="blog-home.html">View All Blogs<i class="bi bi-arrow-right icon"></i></a></div>
+        </div>
+        <div class="row">
+          <div class="col-12"> 
+            <div class="posts-grid">
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  <div class="post-box">     <a class="post-link" href="blogindex.html"> 
+                      <div class="post-img-wrapper">
+                        <div class="overlay-color"></div><img class="parallax-img post-img" loading="lazy" src="assets/images/blog/post-images/update.gif" alt=""/>
+                      </div></a>
+                    <div class="post-summary">
+                      <h4 class="post-date"><span class="day">19</span>Apr, 2025</h4>
+                      <div class="post-info"><a class="info post-cat" href="#"> <i class="bi bi-bookmark icon"></i>#</a><a class="info post-author" href="#"> <i class="bi bi-person icon"></i>Admin</a></div>
+                      <div class="post-text"><a class="post-link" href="blogindex.html"> 
+                          <h2 class="post-title">Website Update History</h2></a>
+                        <p class="post-excerpt">Did the website have an early 1.0 version? Read the blog to learn more.</p><a class="read-more" href="blogindex.html">Go to Blog<i class="bi bi-arrow-right icon"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+				<div class="col-12 col-lg-4">         
+                  <div class="post-box"></div>
+                  <div class="post-box">     <a class="post-link" href="blog-LockA.html"> 
+                      <div class="post-img-wrapper">
+                        <div class="overlay-color"></div><img class="parallax-img post-img" loading="lazy" src="assets/images/blog/post-images/2.jpg" alt=""/>
+                      </div></a>
+                    <div class="post-summary">
+                      <h4 class="post-date"><span class="day">19</span>Apr, 2025</h4>
+                      <div class="post-info"><a class="info post-cat" href="#"> <i class="bi bi-bookmark icon"></i>#</a><a class="info post-author" href="#"> <i class="bi bi-person icon"></i>Admin</a></div>
+                      <div class="post-text"><a class="post-link" href="blogindex.html"> 
+                          <h2 class="post-title">Virtual Country History (Requires credentials to view)</h2></a>
+                        <p class="post-excerpt">[This content has been encrypted]</p><a class="read-more" href="blogindex.html">Go to Blog<i class="bi bi-arrow-right icon"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End blog Section-->
+    <!-- Start take-action Section-->
+    <section class="take-action mega-section has-dark-bg" id="take-action">
+      <div class="overlay-photo-image-bg parallax" data-bg-img="assets/images/sections-bg-images/take-action.jpg" data-bg-opacity="1"></div>
+      <div class="overlay-color"></div>
+      <div class="cta-wrapper">
+        <div class="container">
+          <div class="sec-heading centered">
+            <div class="content-area"><span class="pre-title wow fadeInUp" data-wow-delay=".2s">Want to communicate with the admin?</span>
+              <h2 class="title wow fadeInUp" data-wow-delay=".4s">Find Admin on <span class='hollow-text'>Bilibili</span></h2>
+              <p class="subtitle wow fadeInUp" data-wow-delay=".6s">Send a private message on Bilibili, the author will provide WeChat ID. Please do so if you have suggestions or other questions.</p>
+            </div>
+          </div>
+          <!--Start .see-more-area-->
+          <div class="see-more-area wow fadeInUp" data-wow-delay="0.8s"><a class="btn-solid cta-link" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">Author's Bilibili</a></div>
+          <!--End Of .see-more-area-->
+        </div>
+      </div>
+    </section>
+    <!-- End take-action Section-->
+    <!-- Start page-footer Section-->
+    <footer class="page-footer dark-color-footer" id="page-footer">
+      <div class="overlay-photo-image-bg" data-bg-img="assets/images/sections-bg-images/pattern-bg.jpg" data-bg-opacity=".075"></div>
+      <div class="container">
+        <div class="row footer-cols">
+          <div class="col-12 col-md-8 col-lg-4 footer-col wow fadeInUp" data-wow-delay="0.3s"><img class="img-fluid footer-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/>
+            <div class="footer-col-content-wrapper">        
+              <p class="footer-text-about-us">
+                 All rights reserved by NorthAusleyMaple. Unauthorized copying of this website's source code in any form is prohibited!
+                 By NorthAusleyMaple. Website Version: 2.0
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2 footer-col wow fadeInUp" data-wow-delay="0.4s">
+            <h2 class="footer-col-title">Others</h2>
+            <div class="footer-col-content-wrapper">
+              <ul class="footer-menu">
+                <li class="footer-menu-item"><i class="bi bi-arrow-right icon"></i><a class="footer-menu-link" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">Bilibili</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-2 footer-col wow fadeInUp" data-wow-delay=".7s">
+            <h2 class="footer-col-title">Quick Access:</h2>
+            <div class="footer-col-content-wrapper">
+              <ul class="footer-menu">
+                <li class="footer-menu-item"><i class="bi bi-arrow-right icon"></i><a class="footer-menu-link" href="index.html">Home</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-md-8 col-lg-4 footer-col wow fadeInUp" data-wow-delay=".9s">
+            <h2 class="footer-col-title">Admin Information</h2>
+            <div class="footer-col-content-wrapper">       
+              <div class="contact-info-card"><i class="bi bi-envelope icon"></i><a class="text-lowercase info" href="millseasy-github-io.pages.dev">northausleymaple@163.com</a></div>
+              <div class="contact-info-card"><i class="bi bi-globe icon"></i><a class="text-lowercase info" href="index.html">millseasy-github-io.pages.dev</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyrights">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <p class="creadits">&copy; 2025 All rights reserved by NorthAusleyMaple. Unauthorized copying of this website's source code in any form is prohibited!
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End page-footer Section-->
+    <!-- Start loading-screen Component-->
+    <div class="loading-screen" id="loading-screen"><span class="bar top-bar"></span><span class="bar down-bar"></span><span class="progress-line"></span><span class="loading-counter"> Loading... </span></div>
+    <!-- End loading-screen Component-->
+    <!-- Start back-to-top Component-->
+    <div class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up icon"></i>
+    </div>
+    <!-- End back-to-top Component-->
+    <!-- Start back-to-top Component-->
+    <div class="mode-switcher">
+      <div class="switch-inner go-light" title="Switch to Light Mode"><i class="bi bi-sun-fill icon"></i></div>
+      <div class="switch-inner go-dark" title="Switch to Dark Mode"><i class="bi bi-moon-stars icon"></i></div>
+    </div>
+    <!-- End back-to-top Component-->   
+        
+    <!-- JQuery -->
+    <script src="js/vendors/jquery-3.4.1.min.js"></script>
+    
+    <!-- bootstrap -->
+    <script src="js/vendors/bootstrap.bundle.min.js"></script>
+    
+    <!-- fancybox -->
+    <script src="js/vendors/jquery.fancybox.min.js"></script>
+    
+    <!-- countTo -->
+    <script src="js/vendors/jquery.countTo.js"></script>
+    
+    <!-- wow -->
+    <script src="js/vendors/wow.min.js"></script>
+    
+    <!-- swiper -->
+    <script src="js/vendors/swiper-bundle.min.js"></script>
+    
+    <!-- Splitting -->
+    <script src="js/vendors/splitting.min.js"></script>
+    
+    <!-- SimpleParallax -->
+    <script src="js/vendors/simpleParallax.min.js"></script>
+    
+    <!-- isotope -->
+    <script src="js/vendors/isotope-min.js"></script>
+    
+    <!-- ajaxchimp -->
+    <script src="js/vendors/jquery.ajaxchimp.min.js"></script>
+    
+    <!-- Vanilla-tilt -->
+    <script src="js/vendors/vanilla-tilt.min.js"></script>
+    
+    <!-- main -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
