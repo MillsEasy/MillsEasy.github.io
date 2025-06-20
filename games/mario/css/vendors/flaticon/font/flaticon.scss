@@ -1,0 +1,145 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?b85ac54b24fb081aa0e91da353d21c11") format("truetype"),
+url("./flaticon.woff?b85ac54b24fb081aa0e91da353d21c11") format("woff"),
+url("./flaticon.woff2?b85ac54b24fb081aa0e91da353d21c11") format("woff2"),
+url("./flaticon.eot?b85ac54b24fb081aa0e91da353d21c11#iefix") format("embedded-opentype"),
+url("./flaticon.svg?b85ac54b24fb081aa0e91da353d21c11#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "cleaner": "\f101",
+    "car-service": "\f102",
+    "toothbrush": "\f103",
+    "vacuum": "\f104",
+    "cleaning": "\f105",
+    "cleaning-1": "\f106",
+    "house-cleaning": "\f107",
+    "washing-machine": "\f108",
+    "call": "\f109",
+    "communicate": "\f10a",
+    "mail": "\f10b",
+    "earth-globe": "\f10c",
+    "bullhorn": "\f10d",
+    "channel": "\f10e",
+    "pin": "\f10f",
+    "call-center": "\f110",
+    "customer-support": "\f111",
+    "support": "\f112",
+    "brush": "\f113",
+    "brush-1": "\f114",
+    "window-cleaner": "\f115",
+    "window-cleaner-1": "\f116",
+    "checklist": "\f117",
+    "review": "\f118",
+    "certification": "\f119",
+    "trophy": "\f11a",
+    "podium": "\f11b",
+    "medical-protection": "\f11c",
+    "glass": "\f11d",
+    "medal": "\f11e",
+);
+
+.flaticon-cleaner:before {
+    content: map-get($flaticon-map, "cleaner");
+}
+.flaticon-car-service:before {
+    content: map-get($flaticon-map, "car-service");
+}
+.flaticon-toothbrush:before {
+    content: map-get($flaticon-map, "toothbrush");
+}
+.flaticon-vacuum:before {
+    content: map-get($flaticon-map, "vacuum");
+}
+.flaticon-cleaning:before {
+    content: map-get($flaticon-map, "cleaning");
+}
+.flaticon-cleaning-1:before {
+    content: map-get($flaticon-map, "cleaning-1");
+}
+.flaticon-house-cleaning:before {
+    content: map-get($flaticon-map, "house-cleaning");
+}
+.flaticon-washing-machine:before {
+    content: map-get($flaticon-map, "washing-machine");
+}
+.flaticon-call:before {
+    content: map-get($flaticon-map, "call");
+}
+.flaticon-communicate:before {
+    content: map-get($flaticon-map, "communicate");
+}
+.flaticon-mail:before {
+    content: map-get($flaticon-map, "mail");
+}
+.flaticon-earth-globe:before {
+    content: map-get($flaticon-map, "earth-globe");
+}
+.flaticon-bullhorn:before {
+    content: map-get($flaticon-map, "bullhorn");
+}
+.flaticon-channel:before {
+    content: map-get($flaticon-map, "channel");
+}
+.flaticon-pin:before {
+    content: map-get($flaticon-map, "pin");
+}
+.flaticon-call-center:before {
+    content: map-get($flaticon-map, "call-center");
+}
+.flaticon-customer-support:before {
+    content: map-get($flaticon-map, "customer-support");
+}
+.flaticon-support:before {
+    content: map-get($flaticon-map, "support");
+}
+.flaticon-brush:before {
+    content: map-get($flaticon-map, "brush");
+}
+.flaticon-brush-1:before {
+    content: map-get($flaticon-map, "brush-1");
+}
+.flaticon-window-cleaner:before {
+    content: map-get($flaticon-map, "window-cleaner");
+}
+.flaticon-window-cleaner-1:before {
+    content: map-get($flaticon-map, "window-cleaner-1");
+}
+.flaticon-checklist:before {
+    content: map-get($flaticon-map, "checklist");
+}
+.flaticon-review:before {
+    content: map-get($flaticon-map, "review");
+}
+.flaticon-certification:before {
+    content: map-get($flaticon-map, "certification");
+}
+.flaticon-trophy:before {
+    content: map-get($flaticon-map, "trophy");
+}
+.flaticon-podium:before {
+    content: map-get($flaticon-map, "podium");
+}
+.flaticon-medical-protection:before {
+    content: map-get($flaticon-map, "medical-protection");
+}
+.flaticon-glass:before {
+    content: map-get($flaticon-map, "glass");
+}
+.flaticon-medal:before {
+    content: map-get($flaticon-map, "medal");
+}

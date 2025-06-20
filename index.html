@@ -21,7 +21,177 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+
+
+        /* 基础重置 - 确保不影响全局样式 */
+        #mnt-modal-container * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        /* 弹窗容器 - 独立作用域 */
+        #mnt-modal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            line-height: 1.5;
+        }
+        
+        /* 遮罩层 */
+        .mnt-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 1;
+            animation: mnt-fadeIn 0.5s ease-out;
+        }
+        
+        /* 弹窗主体 */
+        .mnt-modal {
+            position: relative;
+            background: #fff;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            padding: 50px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            animation: mnt-slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        
+        /* 顶部装饰条 */
+        .mnt-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ff9e7d, #ffca7b);
+        }
+        
+        /* 关闭按钮 */
+        .mnt-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .mnt-close-btn:hover {
+            color: #e74c3c;
+            transform: rotate(90deg);
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        
+        /* 标题样式 */
+        .mnt-modal-title {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        /* 内容样式 */
+        .mnt-modal-content {
+            color: #555;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .mnt-modal-content p {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        /* 按钮样式 */
+        .mnt-continue-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 24px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .mnt-continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        /* 动画效果 */
+        @keyframes mnt-fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes mnt-slideIn {
+            from { 
+                transform: translateY(50px);
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1; 
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 600px) {
+            .mnt-modal {
+                padding: 30px 20px;
+            }
+            
+            .mnt-modal-icon i {
+                font-size: 48px;
+                width: 80px;
+                height: 80px;
+            }
+            
+            .mnt-modal-title {
+                font-size: 24px;
+            }
+            
+            .mnt-modal-content p {
+                font-size: 16px;
+            }
+        }
 		</style>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <!-- fav icon -->
         <link rel="icon" href="assets/images/fav-icon/fav-icon.png">
         
@@ -57,6 +227,10 @@
         
         <!-- main-LTR -->
         <link rel="stylesheet" href="css/main-LTR.css">
+		
+		<!-- Notes -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+		
   </head>
   <body class="   rounded-btns ">
     <!--Start Page Header-->
@@ -102,10 +276,58 @@
           </nav>
         </div>
       </div>
-	  <div class="notice-bar">警告：网站已于 2025/6/15 停止维护</div>
+	  <div class="notice-bar">提示：网站将于 2025/7/15 停止维护</div>
     </header>
     <!--End Page Header-->
-    <!-- Start  Page hero-->
+    <!-- Start  Page-->
+	<div id="mnt-modal-container">
+        <div class="mnt-modal-overlay"></div>
+        <div class="mnt-modal">
+            <span class="mnt-close-btn"></span>
+            <h2 class="mnt-modal-title">网站停止维护公告</h2>
+            <div class="mnt-modal-content">
+                <p>尊敬的访客：</p>
+                <p>我们很遗憾地通知您，本网站将于2025年7月15日正式停止维护。</p>
+                <p>您仍然可以浏览所有现有内容，但网站将不再更新（可能），所有功能仍然可以使用。</p>
+                <p>感谢您一直以来的支持与理解！</p>
+            </div>
+            <button class="mnt-continue-btn"> 了解（继续访问） </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('mnt-modal-container');
+            const closeBtn = container.querySelector('.mnt-close-btn');
+            const continueBtn = container.querySelector('.mnt-continue-btn');
+            const overlay = container.querySelector('.mnt-modal-overlay');
+            
+            // 检查是否已经关闭过弹窗
+
+            // 关闭弹窗功能
+            function closeModal() {
+                // 添加消失动画
+                container.style.opacity = '0';
+                container.style.pointerEvents = 'none';
+                
+                // 设置动画结束后隐藏
+                setTimeout(() => {
+                    container.style.display = 'none';
+                }, 500);
+                
+                // 记住用户关闭状态
+                localStorage.setItem('mntModalClosed', 'true');
+            }
+            
+            // 事件监听
+            closeBtn.addEventListener('click', closeModal);
+            continueBtn.addEventListener('click', closeModal);
+            
+            // 点击遮罩层也可以关闭
+            overlay.addEventListener('click', closeModal);
+        });
+    </script>
+	
     <section class="page-hero hero-swiper-slider slider-fade  d-flex align-items-center" id="page-hero">
       <!--Start  Swiper JS slider-->
       <div class="slider swiper-container">
@@ -132,7 +354,7 @@
                     </p>
                   </div>
                   <div class="col-12   ">
-                    <div class="cta-links-area"><a class=" btn-solid cta-link cta-link-primary  " href="blogindex.html">前往博客</a><a class=" btn-outline cta-link  " href="mcindex.html">在线MC</a></div>
+                    <div class="cta-links-area"><a class=" btn-solid cta-link cta-link-primary  " href="millseasy-github-io.pages.dev/games/mario/index.html">前往马里奥游戏【新】</a><a class=" btn-outline cta-link  " href="mcindex.html">在线MC【暂停服务】</a></div>
                   </div>
                 </div>
               </div>
@@ -150,17 +372,16 @@
                     <div class="pre-title">欢迎             </div>
                   </div>
                   <div class="col-12  col-sm-8 col-lg-10   ">
-                    <h1 class="slide-title  " data-splitting="chars"><span class="first-word hollow-text"> 想 </span> 了解本网站的 <span class="featured-text"> 历史？ </span></h1>
+                    <h1 class="slide-title  " data-splitting="chars"><span class="first-word hollow-text"> 新的 </span> 游戏 <span class="featured-text"> 上架？ </span></h1>
                   </div>
                   <div class="col-10 col-sm-8  col-lg-6   ">
                     <p class="slide-subtitle ">
-                      前往博客以了解更多！ 
+                      前往以了解更多！ 
                       
                     </p>
                   </div>
                   <div class="col-12   ">
-                    <div class="cta-links-area "><a class=" btn-solid cta-link  cta-link-primary  " href="blogindex.html">前往博客</a>
-                      
+                    <div class="cta-links-area "><a class=" btn-solid cta-link  cta-link-primary  " href="millseasy-github-io.pages.dev/games/mario/index.html">前往游玩</a>
                     </div>
                   </div>
                 </div>

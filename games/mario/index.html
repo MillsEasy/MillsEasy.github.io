@@ -1,30 +1,192 @@
-
-<!doctype html><html><head><title> 超级马里奥 </title><link rel="shortcut icon" href=favicon.png /><link rel=stylesheet type="text/css" href="VNkyVaVxUV.css"><script type="text/javascript" src="jquery.js"></script>
-<a class="text-lowercase  info" href="millseasy-github-io.pages.dev/">返回首页</a>
+<!doctype html>
+<html>
+<head>
+    <title>超级马里奥</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- fav icon -->
+    <link rel="icon" href="games/mario/images/fav-icon.png">
+        
+    <!-- bootstarp -->
+    <link rel="stylesheet" href="css/vendors/bootstrap.min.css">
+        
+    <!-- Fancybox -->
+    <link rel="stylesheet" href="css/vendors/jquery.fancybox.min.css">   
+    <!-- animate.css file -->
+    <link rel="stylesheet" href="css/vendors/animate.css">    
+    <!-- Swiper -->
+    <link rel="stylesheet" href="css/vendors/swiper-bundle.min.css">   
+    <!-- Splitting -->
+    <link rel="stylesheet" href="css/vendors/splitting.css">  
+    <!-- Splitting-cells -->
+    <link rel="stylesheet" href="css/vendors/splitting-cells.css">
+    <!-- flaticon -->
+    <link rel="stylesheet" href="css/vendors/flaticon/font//flaticon.css">
+    <!-- fontAwesome -->
+    <link rel="stylesheet" href="css/vendors/all.min.css">
+	<!-- bootstrap icons -->
+    <link rel="stylesheet" href="css/vendors/bootstrap-icons-1.5.0/bootstrap-icons.css">
+    <!-- Font Family -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700;800;900&amp;display=swap"> 
+    <!-- main-LTR -->
+    <link rel="stylesheet" href="css/main-LTR.css">
+	
+	<!-- main -->
+    <link rel="stylesheet" type="text/css" href="VNkyVaVxUV.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <style>
+        /* 添加触控按钮样式 */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            z-index: 100;
+            touch-action: none; /* 防止默认触摸行为 */
+        }
+        
+        .dpad {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 5px;
+        }
+        
+        .dpad button {
+            width: 60px;
+            height: 60px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            user-select: none;
+            touch-action: none; /* 防止默认触摸行为 */
+        }
+        
+        .dpad .up { grid-column: 2; grid-row: 1; }
+        .dpad .left { grid-column: 1; grid-row: 2; }
+        .dpad .down { grid-column: 2; grid-row: 3; }
+        .dpad .right { grid-column: 3; grid-row: 2; }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .action-buttons button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,0,0,0.5);
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            user-select: none;
+            touch-action: none; /* 防止默认触摸行为 */
+        }
+        
+        button:active {
+            background: rgba(255,255,255,0.7);
+        }
+        
+        /* 防止移动设备上的滚动行为 */
+        body {
+            overflow: hidden;
+            touch-action: none;
+        }
+    </style>
 </head>
 <body>
-<h4>方向键：移动/跳跃  &nbsp;&nbsp;S键：进入&nbsp;&nbsp;A键：快跑/射击</h4>
-<h6><del>由于像素字体仅支持英文，无法进行翻译，所以只有英文版
-游戏默认以低画质运行，以贴合原版。<del/><br/></h6>
-<div class=spacing></div>
-<div class=main>
-<canvas id=canvas width=640 height=480>
-<p style="text-align: center;">糟糕！您的浏览器不支持HTML5Canvas（或者您的操作系统过于老旧，如WinXP），请尝试用Firefox、Chrome、Edge浏览器</p>
-</canvas>
-<div class=spacing></div>
-</div>
-<script src="wNGu2CtEMx.js"></script>
-<script src="QAuIByrkL.js"></script>
-<script>$(document).ready(function() { new Enjine.Application().Initialize(new Mario.LoadingState(), 320, 240) });</script>
-
-<div style="text-align:center;clear:both">
-</div>
-<b>&copy; 2025 北澳枫版权所有，未经允许禁止以任何形式盗取本网站的源代码！<b/><br/>
-<div style="width:700px;margin:10px auto 20px auto;padding:0 0 0 250px;overflow:hidden">
-</script>
-</div>
-<div class=bo>
-
-
+    <h4>方向键：移动/跳跃 &nbsp;&nbsp;S键：进入&nbsp;&nbsp;A键：快跑/射击</h4>
+    <h6>触控按钮已添加在屏幕底部</h6>
+    <div class="spacing"></div>
+    <div class="main">
+        <canvas id="canvas" width="640" height="480">
+            <p style="text-align: center;">糟糕！您的浏览器不支持HTML5 Canvas，请尝试用Firefox、Chrome、Edge浏览器</p>
+        </canvas>
+        <div class="spacing"></div>
+    </div>
+    
+    <!-- 添加触控按钮 -->
+    <div class="controls">
+        <div class="dpad">
+            <button class="up">↑</button>
+            <button class="left">←</button>
+            <button class="down">↓</button>
+            <button class="right">→</button>
+        </div>
+        <div class="action-buttons">
+            <button class="btn-a">A</button>
+            <button class="btn-s">S</button>
+        </div>
+    </div>
+    
+    <script src="wNGu2CtEMx.js"></script>
+    <script src="QAuIByrkL.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 初始化游戏
+            new Enjine.Application().Initialize(new Mario.LoadingState(), 320, 240);
+            
+            // 确保Enjine.KeyboardInput已初始化
+            if (!Enjine.KeyboardInput.Pressed) {
+                Enjine.KeyboardInput.Pressed = [];
+            }
+            
+            // 添加触控按钮事件监听
+            const keyMap = {
+                'up': Enjine.Keys.Up,
+                'down': Enjine.Keys.Down,
+                'left': Enjine.Keys.Left,
+                'right': Enjine.Keys.Right,
+                'btn-a': Enjine.Keys.A,
+                'btn-s': Enjine.Keys.S
+            };
+            
+            // 处理按钮按下事件
+            function handleButtonDown(e) {
+                e.preventDefault();
+                const className = $(this).attr('class');
+                const key = keyMap[className];
+                
+                if (key !== undefined) {
+                    Enjine.KeyboardInput.Pressed[key] = true;
+                    console.log("按下按钮:", className, "键码:", key);
+                }
+                return false;
+            }
+            
+            // 处理按钮释放事件
+            function handleButtonUp(e) {
+                e.preventDefault();
+                const className = $(this).attr('class');
+                const key = keyMap[className];
+                
+                if (key !== undefined) {
+                    Enjine.KeyboardInput.Pressed[key] = false;
+                    console.log("释放按钮:", className, "键码:", key);
+                }
+                return false;
+            }
+            
+            // 绑定所有按钮的事件
+            $('.controls button').each(function() {
+                this.addEventListener('touchstart', handleButtonDown, {passive: false});
+                this.addEventListener('touchend', handleButtonUp, {passive: false});
+                this.addEventListener('mousedown', handleButtonDown);
+                this.addEventListener('mouseup', handleButtonUp);
+            });
+            
+            // 防止整个文档的触摸事件
+            document.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+            }, {passive: false});
+        });
+    </script>
+    
+    <div style="text-align:center;clear:both">
+        <b>&copy; 2025 北澳枫版权所有，未经允许禁止以任何形式盗取本网站的源代码！</b><br/>
+    </div>
 </body>
 </html>
