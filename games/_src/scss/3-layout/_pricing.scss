@@ -1,0 +1,145 @@
+%pricing {
+  overflow: hidden;
+  position: relative;
+
+  .price-plan {
+    &:not(:last-of-type) {
+      @include screen-md {
+        margin-bottom: 3rem;
+      }
+    }
+  }
+
+  .plan {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba($main-clr-rgb, 0.35);
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 2rem 2.5rem;
+    text-transform: capitalize;
+    @include ma-transition(all, 0.3s);
+    @include ma-box-shadow(1, 1, 10, 0, rgba($dark-blue-clr-rgb, 0.15));
+
+    .ribbon {
+      display: inline-block;
+      padding: 0.25rem 5rem;
+      color: $white-clr;
+      background-color: $main-clr;
+      top: 3rem;
+      #{$end-direction}: -4rem;
+      #{$start-direction}: auto;
+      position: absolute;
+      font-weight: 800;
+      font-size: 0.85rem;
+      transform: rotate($x-axe-direction * 45deg);
+    }
+  }
+
+  .plan-head {
+    position: relative;
+    border-bottom: 1px solid rgba($main-clr-rgb, 0.25);
+
+    .plan-icon {
+      display: block;
+      font-size: 4rem;
+      line-height: 1;
+      color: $secondary-clr;
+    }
+
+    .plane-name {
+      font-weight: 800;
+      font-size: 1.35rem;
+      margin: 0;
+      margin-bottom: 1.25rem;
+      border-#{$start-direction}: 0.25rem solid $secondary-clr;
+      padding-#{$start-direction}: 1rem;
+    }
+
+    .plan-price {
+      position: relative;
+      display: inline-block;
+
+      font-size: 4rem;
+      font-weight: 700;
+      margin: 0;
+      margin-bottom: 1.5rem;
+      padding: 0;
+      line-height: 1;
+
+      .plan-currency {
+        position: absolute;
+        font-size: 1.5rem;
+        font-weight: 500;
+        top: 1rem;
+        #{$start-direction}: -1rem;
+        line-height: 0;
+        vertical-align: baseline;
+        display: inline-block;
+        color: $main-clr;
+      }
+
+      .per {
+        font-size: 1rem;
+        font-weight: 900;
+        font-style: italic;
+        opacity: 0.75;
+        color: $main-clr;
+        padding: 0.25rem;
+      }
+    }
+
+    .plan-desc {
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+  }
+
+  .plan-list {
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+
+    .plan-feat {
+      position: relative;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .feat-icon {
+        color: $secondary-clr;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .plan-cta {
+    .cta-btn {
+      width: 100%;
+    }
+  }
+}
+
+.pricing {
+  @extend %pricing;
+
+  &.dark-cards {
+    .plan {
+      background: $semi-dark-blue-clr !important;
+    }
+
+    .plane-name,
+    .plan-price {
+      color: $white-clr;
+    }
+
+    .plan-list {
+      .plan-feat {
+        color: $white-clr;
+      }
+    }
+  }
+}

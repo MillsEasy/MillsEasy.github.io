@@ -1,0 +1,153 @@
+.stats {
+  position: relative;
+  z-index: 0;
+  color: $white-clr;
+
+  .overlay-color {
+    opacity: 0.85;
+  }
+
+  .section-heading {
+    .line-solid-color {
+      background: $white-clr;
+    }
+  }
+
+  .stat-box {
+    .stat-box-inner {
+      border-#{$end-direction}: 1px dashed rgba($white-clr-rgb, 0.5);
+
+      @include screen-md {
+        border-#{$end-direction}: none;
+      }
+    }
+
+    &:last-of-type {
+      .stat-box-inner {
+        border-#{$end-direction}: none;
+      }
+    }
+  }
+
+  .stat-box-inner {
+    color: $white-clr;
+    text-align: center;
+    margin-bottom: 4rem;
+
+    .stat-icon {
+      font-size: 4rem;
+      display: block;
+
+      @include screen-sm {
+        font-size: 2rem;
+      }
+    }
+
+    .stat-num {
+      display: block;
+      font-size: 3rem;
+      line-height: 1;
+      font-weight: 800;
+      line-height: 1.6;
+      margin-bottom: 0;
+
+      @include screen-sm {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+    }
+
+    .stat-desc {
+      font-size: 1rem;
+      display: block;
+      text-transform: capitalize;
+
+      @include screen-sm {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  &.shifted-up {
+    overflow: visible;
+    padding: 0;
+
+    .stats-inner {
+      position: relative;
+      overflow: hidden;
+      margin-top: -115px;
+      background: $main-clr;
+      padding-top: 4rem;
+      border-radius: 0.5rem;
+      z-index: 0;
+    }
+  }
+
+  &.shifted-down {
+    overflow: visible;
+    padding: 0;
+
+    .stats-inner {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: -115px;
+      background: $main-clr;
+      padding-top: 4rem;
+      border-radius: 0.5rem;
+      z-index: 0;
+    }
+  }
+
+  &.is-light {
+    .stats-inner {
+      background: $white-clr;
+    }
+
+    .stat-box-inner {
+      .stat-icon {
+        color: $main-clr;
+      }
+
+      .stat-num,
+      .stat-desc {
+        color: $semi-dark-blue-clr;
+      }
+    }
+  }
+
+  &.is-dark {
+    .stats-inner {
+      background: $semi-dark-blue-clr;
+    }
+
+    .stat-box-inner {
+      .stat-icon {
+        color: $secondary-clr;
+      }
+
+      .stat-num,
+      .stat-desc {
+        color: $white-clr;
+      }
+    }
+  }
+}
+
+/* This class used as top section
+ class when use the
+ stats as a part of this section */
+
+.has-shifted-down-stats {
+  overflow: visible;
+  margin-bottom: 220px;
+
+  .services-row {
+    margin-bottom: 5rem;
+  }
+
+  .shifted-down {
+    .stats-inner {
+      margin-bottom: -220px;
+    }
+  }
+}

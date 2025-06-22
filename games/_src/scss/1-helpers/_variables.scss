@@ -1,0 +1,89 @@
+// //
+// //font varibales
+// //
+@function hexToRgb($hexcode) {
+  @return #{red($hexcode), green($hexcode), blue($hexcode)};
+}
+$fonts: (
+  "main": "",
+);
+$colors: (
+  "main": #08bce9,
+  "accent": #0d1857,
+  "secondary": #e4a216,
+
+  "white": #fff,
+  "black": #121212,
+  "grey": #f1f1f1,
+  "semi-dark": #b8b8b8,
+  "dark-grey": #4d4d4d,
+  "extra-dark-grey": #202020,
+
+  "dark-blue": #060922,
+  "semi-dark-blue": #000531,
+
+  "danger": #fc0000,
+  "success": #217234,
+  "warning": #9b6a01,
+);
+:root {
+
+
+  /*Colors CSS Varibales*/
+  @each $key, $val in $colors {
+    /*================  #{$key}-color values */
+    --clr-#{$key}: #{$val};
+    --clr-#{$key}-rgb: #{hexToRgb($val)};
+  }
+
+  /*Font CSS Varibales*/
+  --ltr-main-font-f: "Lato", "sans-serif";
+  --rtl-main-font-f: "Tajawal", "sans-serif";
+}
+
+//colors varibales
+$white-clr: var(--clr-white);
+$white-clr-rgb: var(--clr-white-rgb);
+
+$black-clr: var(--clr-black);
+$black-clr-rgb: var(--clr-black-rgb);
+
+$grey-clr: var(--clr-grey);
+$grey-clr-rgb: var(--clr-grey-rgb);
+
+$semi-dark-clr: var(--clr-semi-dark);
+$semi-dark-clr-rgb: var(--clr-semi-dark-rgb);
+
+$dark-grey-clr: var(--clr-dark-grey);
+$dark-grey-clr-rgb: var(--clr-dark-grey-rgb);
+
+$extra-dark-grey-clr: var(--clr-extra-dark-grey);
+$extra-dark-grey-clr-rgb: var(--clr-extra-dark-grey-rgb);
+
+$dark-blue-clr: var(--clr-dark-blue);
+$dark-blue-clr-rgb: var(--clr-dark-blue-rgb);
+
+$semi-dark-blue-clr: var(--clr-semi-dark-blue);
+$semi-dark-blue-clr-rgb: var(--clr-semi-dark-blue-rgb);
+
+$danger-clr: var(--clr-danger);
+$danger-clr-rgb: var(--clr-danger-rgb);
+
+$success-clr: var(--clr-success);
+$success-clr-rgb: var(--clr-success-rgb);
+
+$warning-clr: var(--clr-warning);
+$warning-clr-rgb: var(--clr-warning-rgb);
+
+$main-clr: var(--clr-main);
+$main-clr-rgb: var(--clr-main-rgb);
+
+$accent-clr: var(--clr-accent);
+$accent-clr-rgb: var(--clr-accent-rgb);
+
+$secondary-clr: var(--clr-secondary);
+$secondary-clr-rgb: var(--clr-secondary-rgb);
+
+// Font Variables
+$fontMainLtr: var(--ltr-main-font-f);
+$fontMainRtl: var(--rtl-main-font-f);
