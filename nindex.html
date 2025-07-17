@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>主页 | 枫星MapleStar</title>
+    <title>Windows 7 Aero 风格 | 移动端优化</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            touch-action: manipulation; /* 优化移动端触摸体验 */
         }
         
         body {
             background: linear-gradient(135deg, #1a2980, #26d0ce);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -66,6 +67,7 @@
             cursor: move;
             position: relative;
             user-select: none;
+            -webkit-tap-highlight-color: transparent; /* 移除移动端点击高亮 */
         }
         
         /* 窗口图标 */
@@ -147,6 +149,7 @@
             padding: 20px;
             overflow-y: auto;
             color: white;
+            -webkit-overflow-scrolling: touch; /* iOS滚动优化 */
         }
         
         .content h1 {
@@ -207,6 +210,9 @@
         .taskbar-items {
             display: flex;
             gap: 5px;
+            flex: 1;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* iOS滚动优化 */
         }
         
         .taskbar-item {
@@ -224,6 +230,7 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            flex-shrink: 0;
         }
         
         .taskbar-item.active {
@@ -851,9 +858,60 @@
             height: 15px;
             cursor: se-resize;
         }
+        
+        /* 移动设备提示 */
+        .mobile-tip {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .aero-window {
+                width: 90% !important;
+                height: 60% !important;
+                min-width: 300px;
+                min-height: 300px;
+            }
+            
+            .desktop-icons {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .desktop-icon {
+                width: 70px;
+            }
+            
+            .start-menu {
+                width: 100%;
+                height: 70%;
+            }
+            
+            .mobile-tip {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 移动设备提示 -->
+    <div class="mobile-tip">提示：在移动设备上可以拖拽窗口标题栏移动窗口</div>
+    
     <!-- 桌面图标 -->
     <div class="desktop-icons">
         <div class="desktop-icon" id="computerIcon">
@@ -965,7 +1023,7 @@
             
             <!-- 设置内容 -->
             <div id="settingsContent" class="settings-content">
-                <h1>系统设置   *仍在制作</h1>
+                <h1>系统设置</h1>
                 
                 <div class="content-box">
                     <h2>个性化设置</h2>
@@ -1315,6 +1373,19 @@
             // 更新时间
             updateSystemTime();
             setInterval(updateSystemTime, 1000);
+            
+            // 如果是移动设备，显示提示
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                setTimeout(() => {
+                    document.querySelector('.mobile-tip').style.display = 'block';
+                    setTimeout(() => {
+                        document.querySelector('.mobile-tip').style.opacity = '0';
+                        setTimeout(() => {
+                            document.querySelector('.mobile-tip').style.display = 'none';
+                        }, 1000);
+                    }, 3000);
+                }, 2000);
+            }
         });
         
         // 更新窗口位置
@@ -1338,12 +1409,12 @@
             }
         }
         
-        // 窗口拖拽功能
+        // 窗口拖拽功能（支持触摸事件）
         function setupWindowDrag(windowObj) {
             let isDragging = false;
             let offsetX, offsetY;
             
-            windowObj.titleBar.addEventListener('mousedown', function(e) {
+            function startDrag(clientX, clientY) {
                 if (windowObj.isClosed) return;
                 
                 // 设置当前窗口为活动窗口
@@ -1358,23 +1429,20 @@
                     offsetX = rect.width / 2;
                     offsetY = 0;
                 } else {
-                    // 计算鼠标相对于窗口左上角的偏移
+                    // 计算相对于窗口左上角的偏移
                     const rect = windowObj.element.getBoundingClientRect();
-                    offsetX = e.clientX - rect.left;
-                    offsetY = e.clientY - rect.top;
+                    offsetX = clientX - rect.left;
+                    offsetY = clientY - rect.top;
                 }
                 
                 isDragging = true;
-                
-                // 防止文本选择
-                e.preventDefault();
-            });
+            }
             
-            document.addEventListener('mousemove', function(e) {
+            function doDrag(clientX, clientY) {
                 if (isDragging && !windowObj.isClosed) {
                     // 计算新位置
-                    let newX = e.clientX - offsetX;
-                    let newY = e.clientY - offsetY;
+                    let newX = clientX - offsetX;
+                    let newY = clientY - offsetY;
                     
                     // 限制在视窗范围内
                     const maxX = window.innerWidth - windowObj.element.offsetWidth;
@@ -1391,11 +1459,42 @@
                     // 保存当前位置
                     windowObj.position = { x: newX, y: newY };
                 }
+            }
+            
+            function endDrag() {
+                isDragging = false;
+            }
+            
+            // 鼠标事件监听
+            windowObj.titleBar.addEventListener('mousedown', function(e) {
+                startDrag(e.clientX, e.clientY);
+                e.preventDefault();
             });
             
-            document.addEventListener('mouseup', function() {
-                isDragging = false;
+            // 触摸事件监听
+            windowObj.titleBar.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    startDrag(e.touches[0].clientX, e.touches[0].clientY);
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            // 鼠标移动事件
+            document.addEventListener('mousemove', function(e) {
+                doDrag(e.clientX, e.clientY);
             });
+            
+            // 触摸移动事件
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length === 1) {
+                    doDrag(e.touches[0].clientX, e.touches[0].clientY);
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            // 结束拖拽事件
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
         }
         
         // 设置窗口调整大小功能
@@ -1406,25 +1505,43 @@
             const cornerHandle = win.querySelector('.resize-corner');
             
             function startResize(e, direction) {
+                let clientX, clientY;
+                
+                if (e.type.includes('touch')) {
+                    clientX = e.touches[0].clientX;
+                    clientY = e.touches[0].clientY;
+                } else {
+                    clientX = e.clientX;
+                    clientY = e.clientY;
+                }
+                
                 e.preventDefault();
                 setActiveWindow(windowObj);
                 
-                const startX = e.clientX;
-                const startY = e.clientY;
+                const startX = clientX;
+                const startY = clientY;
                 const startWidth = windowObj.size.width;
                 const startHeight = windowObj.size.height;
                 const startLeft = windowObj.position.x;
                 const startTop = windowObj.position.y;
                 
                 function doResize(e) {
+                    if (e.type.includes('touch')) {
+                        clientX = e.touches[0].clientX;
+                        clientY = e.touches[0].clientY;
+                    } else {
+                        clientX = e.clientX;
+                        clientY = e.clientY;
+                    }
+                    
                     if (direction === 'right' || direction === 'corner') {
-                        const newWidth = Math.max(400, startWidth + (e.clientX - startX));
+                        const newWidth = Math.max(400, startWidth + (clientX - startX));
                         windowObj.size.width = newWidth;
                         win.style.width = newWidth + 'px';
                     }
                     
                     if (direction === 'bottom' || direction === 'corner') {
-                        const newHeight = Math.max(300, startHeight + (e.clientY - startY));
+                        const newHeight = Math.max(300, startHeight + (clientY - startY));
                         windowObj.size.height = newHeight;
                         win.style.height = newHeight + 'px';
                     }
@@ -1442,16 +1559,26 @@
                 
                 function stopResize() {
                     document.removeEventListener('mousemove', doResize);
+                    document.removeEventListener('touchmove', doResize);
                     document.removeEventListener('mouseup', stopResize);
+                    document.removeEventListener('touchend', stopResize);
                 }
                 
                 document.addEventListener('mousemove', doResize);
+                document.addEventListener('touchmove', doResize, { passive: false });
                 document.addEventListener('mouseup', stopResize);
+                document.addEventListener('touchend', stopResize);
             }
             
+            // 鼠标事件监听
             rightHandle.addEventListener('mousedown', (e) => startResize(e, 'right'));
             bottomHandle.addEventListener('mousedown', (e) => startResize(e, 'bottom'));
             cornerHandle.addEventListener('mousedown', (e) => startResize(e, 'corner'));
+            
+            // 触摸事件监听
+            rightHandle.addEventListener('touchstart', (e) => startResize(e, 'right'), { passive: false });
+            bottomHandle.addEventListener('touchstart', (e) => startResize(e, 'bottom'), { passive: false });
+            cornerHandle.addEventListener('touchstart', (e) => startResize(e, 'corner'), { passive: false });
         }
         
         // 设置活动窗口
@@ -1726,14 +1853,6 @@
         document.getElementById('demoBtn').addEventListener('click', function() {
             alert('这是Windows 7 Aero风格的演示按钮！');
             windows.welcome.statusText.textContent = '演示按钮被点击';
-        });
-        
-        // 帮助中心的问题点击事件
-        document.querySelectorAll('.help-content > .content-box > div').forEach(item => {
-            item.addEventListener('click', function() {
-                const answer = this.querySelector('.answer');
-                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-            });
         });
         
         // 桌面图标点击事件
