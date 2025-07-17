@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页 | 枫星MapleStar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease;
+        }
+        
+        /* 窗口容器 */
+        .aero-window {
+            width: 700px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            z-index: 10;
+            min-width: 400px;
+            min-height: 300px;
+        }
+        
+        .aero-window.maximized {
+            width: calc(100% - 40px) !important;
+            height: calc(100% - 60px) !important;
+            top: 20px !important;
+            left: 20px !important;
+            transform: none !important;
+            border-radius: 0;
+        }
+        
+        /* 标题栏 */
+        .title-bar {
+            height: 32px;
+            background: linear-gradient(to bottom, #1a7cce, #0b5fa5);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 12px solid rgba(255, 255, 255, 0.2);
+            cursor: move;
+            position: relative;
+            user-select: none;
+        }
+        
+        /* 窗口图标 */
+        .window-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            background: #fff;
+            border-radius: 3px;
+        }
+        
+        /* 窗口标题 */
+        .window-title {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            flex-grow: 1;
+        }
+        
+        /* 窗口控制按钮 */
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .window-btn {
+            width: 28px;
+            height: 22px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .minimize-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .maximize-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .close-btn:hover {
+            background: #e81123;
+        }
+        
+        /* 菜单栏 */
+        .menu-bar {
+            height: 24px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            padding: 0 10px;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-item {
+            padding: 0 8px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 内容区域 */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            color: white;
+        }
+        
+        .content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        .content-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* 任务栏 */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+        
+        .start-btn {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(to bottom, #7cbe4d, #5b8e3a);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.2s;
+        }
+        
+        .start-btn:hover {
+            background: linear-gradient(to bottom, #8dd15a, #6aa142);
+        }
+        
+        .taskbar-items {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .taskbar-item {
+            width: 160px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        
+        .taskbar-item.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .taskbar-item.minimized {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .taskbar-item.closed {
+            opacity: 0.5;
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        .taskbar-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        /* 状态栏 */
+        .status-bar {
+            height: 22px;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 窗口阴影效果 */
+        .window-shadow {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* 水波纹效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            pointer-events: none;
+            animation: ripple 0.6s linear;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* 内容页样式 */
+        .home-content, .settings-content, .help-content, .personalize-content, .file-manager-content {
+            display: none;
+        }
+        
+        .active-content {
+            display: block;
+        }
+        
+        /* 按钮样式 */
+        .win-btn {
+            background: linear-gradient(to bottom, #3b7cbe, #2a5a9e);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        
+        .win-btn:hover {
+            background: linear-gradient(to bottom, #4a8dd0, #3169b8);
+        }
+        
+        /* 下拉菜单 */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 24px;
+            left: 0;
+            background: rgba(255, 255, 255, 0.9);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 12px;
+            text-decoration: none;
+            display: block;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background: #3b7cbe;
+            color: white;
+        }
+        
+        .menu-item:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* 窗口关闭状态 */
+        .window-closed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-size: 24px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .reopen-btn {
+            background: linear-gradient(to bottom, #3b7cbe, #2a5a9e);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+            margin-top: 20px;
+        }
+        
+        .reopen-btn:hover {
+            background: linear-gradient(to bottom, #4a8dd0, #3169b8);
+            transform: scale(1.05);
+        }
+        
+        /* 桌面图标 */
+        .desktop-icons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 2;
+        }
+        
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80px;
+            text-align: center;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 10px 5px;
+            border-radius: 5px;
+        }
+        
+        .desktop-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .icon-image {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        /* 窗口动画 */
+        .window-animate {
+            transition: all 0.3s ease;
+        }
+        
+        /* 开始菜单样式 */
+        .start-menu {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            width: 400px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            z-index: 2000;
+            overflow: hidden;
+            transform: translateY(110%);
+            transition: transform 0.3s ease;
+        }
+        
+        .start-menu.visible {
+            transform: translateY(0);
+        }
+        
+        .start-menu-header {
+            height: 70px;
+            background: linear-gradient(to right, #1a7cce, #0b5fa5);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .user-info .username {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .user-info .status {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .start-menu-search {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .start-menu-search input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .start-menu-programs {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .program-list {
+            width: 100%;
+            padding: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            overflow-y: auto;
+        }
+        
+        .program-item {
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        
+        .program-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .program-item i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .start-menu-footer {
+            height: 50px;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: flex-end;
+        }
+        
+        .shutdown-btn {
+            padding: 6px 15px;
+            background: linear-gradient(to bottom, #e81123, #c50f1e);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .shutdown-btn:hover {
+            background: linear-gradient(to bottom, #f44336, #d32f2f);
+        }
+        
+        /* 背景选择器 */
+        .bg-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .bg-thumb {
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .bg-thumb:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .bg-thumb.selected {
+            border-color: #3b7cbe;
+            box-shadow: 0 0 10px rgba(59, 124, 190, 0.5);
+        }
+        
+        /* 自定义上传 */
+        .custom-bg {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+        
+        /* 系统时间 */
+        .system-time {
+            position: absolute;
+            right: 10px;
+            bottom: 45px;
+            color: white;
+            font-size: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+            z-index: 1001;
+        }
+        
+        /* 开始菜单图标 */
+        .windows-icon {
+            font-size: 30px;
+            font-weight: bold;
+            background: linear-gradient(to bottom, #1a7cce, #0b5fa5);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+        
+        /* 文件管理器样式 */
+        .file-manager-container {
+            display: flex;
+            height: 100%;
+            gap: 10px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .sidebar-item {
+            padding: 8px 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar-item.active {
+            background: rgba(59, 124, 190, 0.5);
+        }
+        
+        .file-manager-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .toolbar {
+            display: flex;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .toolbar-btn {
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        
+        .toolbar-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .address-bar {
+            flex: 1;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .search-box {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        .file-list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+        
+        .file-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .file-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .file-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        .file-name {
+            font-size: 12px;
+            word-break: break-all;
+            max-height: 36px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        
+        .file-preview {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .file-preview.active {
+            display: block;
+        }
+        
+        .preview-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        /* 上下文菜单 */
+        .context-menu {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 3000;
+            display: none;
+            min-width: 180px;
+            overflow: hidden;
+        }
+        
+        .context-menu-item {
+            padding: 8px 15px;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .context-menu-item:hover {
+            background: #3b7cbe;
+            color: white;
+        }
+        
+        .context-menu-divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.1);
+            margin: 3px 0;
+        }
+        
+        /* 欢迎窗口初始位置 */
+        #welcomeWindow {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* 文件管理器窗口初始位置 */
+        #fileManagerWindow {
+            top: 60%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        
+        /* 窗口调整大小手柄 */
+        .resize-handle {
+            position: absolute;
+            background: transparent;
+            z-index: 30;
+        }
+        
+        .resize-right {
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            cursor: e-resize;
+        }
+        
+        .resize-bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            cursor: s-resize;
+        }
+        
+        .resize-corner {
+            right: 0;
+            bottom: 0;
+            width: 15px;
+            height: 15px;
+            cursor: se-resize;
+        }
+    </style>
+</head>
+<body>
+    <!-- 桌面图标 -->
+    <div class="desktop-icons">
+        <div class="desktop-icon" id="computerIcon">
+            <div class="icon-image">🖥️</div>
+            <span>计算机</span>
+        </div>
+        <div class="desktop-icon" id="documentsIcon">
+            <div class="icon-image">📂</div>
+            <span>文档</span>
+        </div>
+        <div class="desktop-icon" id="recycleBinIcon">
+            <div class="icon-image">🗑️</div>
+            <span>回收站</span>
+        </div>
+        <div class="desktop-icon" id="fileManagerIcon">
+            <div class="icon-image">📁</div>
+            <span>文件管理器</span>
+        </div>
+    </div>
+    
+    <!-- 欢迎窗口 -->
+    <div class="aero-window window-animate" id="welcomeWindow">
+        <!-- 窗口阴影 -->
+        <div class="window-shadow"></div>
+        
+        <!-- 窗口调整大小手柄 -->
+        <div class="resize-handle resize-right"></div>
+        <div class="resize-handle resize-bottom"></div>
+        <div class="resize-handle resize-corner"></div>
+        
+        <!-- 标题栏 -->
+        <div class="title-bar" id="welcomeTitleBar">
+            <div class="window-icon"></div>
+            <div class="window-title">欢迎</div>
+            <div class="window-controls">
+                <div class="window-btn minimize-btn">-</div>
+                <div class="window-btn maximize-btn">□</div>
+                <div class="window-btn close-btn">×</div>
+            </div>
+        </div>
+        
+        <!-- 菜单栏 -->
+        <div class="menu-bar">
+            <div class="menu-item" id="homeMenu">
+                首页
+                <div class="dropdown-content">
+                    <a href="#" id="homeLink">主页面</a>
+                    <a href="#">关于我们</a>
+                    <a href="#">联系方式</a>
+                </div>
+            </div>
+            <div class="menu-item" id="settingsMenu">
+                设置
+                <div class="dropdown-content">
+                    <a href="#" id="displayLink">显示设置</a>
+                </div>
+            </div>
+            <div class="menu-item" id="fileMenu">
+                文件
+                <div class="dropdown-content">
+                    <a href="#" id="fileManagerLink">文件管理器</a>
+                    <a href="#">新建文件夹</a>
+                    <a href="#">搜索文件</a>
+                </div>
+            </div>
+            <div class="menu-item" id="helpMenu">
+                帮助
+                <div class="dropdown-content">
+                    <a href="#" id="helpLink">帮助中心</a>
+                    <a href="#">在线支持</a>
+                    <a href="#">用户手册</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 首页内容 -->
+            <div id="homeContent" class="home-content active-content">
+                <h1>首页</h1>
+                
+                <div class="content-box">
+                    <p>Windows Aero 是 Microsoft Windows 7 中的视觉风格，以其透明玻璃效果、窗口动画和精致的用户界面而闻名。</p>
+                    <p>Aero 效果包括：</p>
+                    <ul style="padding-left: 20px; margin: 10px 0;">
+                        <li>半透明窗口标题栏</li>
+                        <li>精致的窗口动画</li>
+                        <li>任务栏缩略图预览</li>
+                        <li>Aero Peek（桌面预览）功能</li>
+                        <li>Aero Snap（窗口自动排列）功能</li>
+                    </ul>
+                </div>
+                
+                <div class="content-box">
+                    <p>此HTML实现使用了现代CSS特性：</p>
+                    <p>✓ <strong>backdrop-filter</strong> - 创建磨砂玻璃效果</p>
+                    <p>✓ <strong>RGBA颜色</strong> - 实现透明效果</p>
+                    <p>✓ <strong>渐变背景</strong> - 模拟Aero的立体感</p>
+                    <p>✓ <strong>阴影效果</strong> - 增强窗口深度感</p>
+                    
+                    <button class="win-btn" id="demoBtn">演示按钮</button>
+                </div>
+                
+                <div class="content-box">
+                    <p>您可以试试窗口的按钮：最大化 最小化 关闭，另外窗口是可以移动的</p>
+                    <p>使用移动端请在横屏模式下体验，否则可能会出现渲染问题</p>
+                </div>
+            </div>
+            
+            <!-- 设置内容 -->
+            <div id="settingsContent" class="settings-content">
+                <h1>系统设置   *仍在制作</h1>
+                
+                <div class="content-box">
+                    <h2>个性化设置</h2>
+                    <p>更改窗口颜色和外观：</p>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <div style="width: 40px; height: 40px; background: #1a7cce; border-radius: 4px; cursor: pointer;"></div>
+                        <div style="width: 40px; height: 40px; background: #7c1ace; border-radius: 4px; cursor: pointer;"></div>
+                        <div style="width: 40px; height: 40px; background: #ce1a1a; border-radius: 4px; cursor: pointer;"></div>
+                        <div style="width: 40px; height: 40px; background: #1ace7c; border-radius: 4px; cursor: pointer;"></div>
+                        <div style="width: 40px; height: 40px; background: #ce7c1a; border-radius: 4px; cursor: pointer;"></div>
+                    </div>
+                    
+                    <button class="win-btn" id="personalizeBtn" style="margin-top: 20px;">更改桌面背景</button>
+                </div>
+            </div>
+            
+            <!-- 帮助内容 -->
+            <div id="helpContent" class="help-content">
+                <h1>帮助与支持</h1>
+             
+                <div class="content-box">
+                    <h2>关于</h2>
+                    <p>北澳枫制作 | 枫星MapleStar 2025</p>
+                    
+                    <div style="margin-top: 15px; line-height: 1.8;">
+                        <p>北澳枫版权所有 | Github提供网页服务</p>
+                        <p>枫星MapleStar  版本：3.0</p>
+                    </div>
+                    
+                    <!-- 修改了此按钮，添加了跳转到B站的功能 -->
+                    <button class="win-btn" id="bilibiliBtn" style="margin-top: 15px;">跳转作者B站</button>
+                </div>
+            </div>
+            
+            <!-- 个性化内容 -->
+            <div id="personalizeContent" class="personalize-content">
+                <h1>个性化桌面背景</h1>
+                
+                <div class="content-box">
+                    <h2>选择预设背景</h2>
+                    
+                    <div class="bg-selector">
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1426604966848-d7adac402bff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                        <div class="bg-thumb" style="background-image: url(https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80);" data-bg="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"></div>
+                    </div>
+                </div>
+                
+                <div class="content-box custom-bg">
+                    <h2>使用自定义图片</h2>
+                    <p>上传您自己的图片作为桌面背景：</p>
+                    
+                    <input type="file" id="bgUpload" accept="image/*" style="margin-top: 10px;">
+                    <button class="win-btn" id="applyCustomBg" style="margin-top: 10px;">应用自定义背景</button>
+                </div>
+                
+                <button class="win-btn" id="backToSettingsBtn" style="margin-top: 10px;">返回设置</button>
+            </div>
+        </div>
+        
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div id="welcomeStatusText">就绪</div>
+        </div>
+    </div>
+    
+    <!-- 文件管理器窗口 -->
+    <div class="aero-window window-animate" id="fileManagerWindow">
+        <!-- 窗口阴影 -->
+        <div class="window-shadow"></div>
+        
+        <!-- 窗口调整大小手柄 -->
+        <div class="resize-handle resize-right"></div>
+        <div class="resize-handle resize-bottom"></div>
+        <div class="resize-handle resize-corner"></div>
+        
+        <!-- 标题栏 -->
+        <div class="title-bar" id="fileManagerTitleBar">
+            <div class="window-icon"></div>
+            <div class="window-title">文件管理器</div>
+            <div class="window-controls">
+                <div class="window-btn minimize-btn">-</div>
+                <div class="window-btn maximize-btn">□</div>
+                <div class="window-btn close-btn">×</div>
+            </div>
+        </div>
+        
+        <!-- 内容区域 -->
+        <div class="content">
+            <div id="fileManagerContent" class="file-manager-content active-content">
+                <h1>文件管理器</h1>
+                
+                <div class="file-manager-container">
+                    <div class="sidebar">
+                        <div class="sidebar-item active" data-path="/">
+                            <i>📁</i> 此电脑
+                        </div>
+                        <div class="sidebar-item" data-path="/documents">
+                            <i>📂</i> 文档
+                        </div>
+                        <div class="sidebar-item" data-path="/pictures">
+                            <i>🖼️</i> 图片
+                        </div>
+                        <div class="sidebar-item" data-path="/music">
+                            <i>🎵</i> 音乐
+                        </div>
+                        <div class="sidebar-item" data-path="/videos">
+                            <i>🎬</i> 视频
+                        </div>
+                        <div class="sidebar-item" data-path="/downloads">
+                            <i>📥</i> 下载
+                        </div>
+                        <div class="sidebar-item" data-path="/desktop">
+                            <i>🖥️</i> 桌面
+                        </div>
+                    </div>
+                    
+                    <div class="file-manager-main">
+                        <div class="toolbar">
+                            <button class="toolbar-btn" id="backBtn">
+                                <i>◀</i> 后退
+                            </button>
+                            <button class="toolbar-btn" id="forwardBtn">
+                                <i>▶</i> 前进
+                            </button>
+                            <button class="toolbar-btn" id="upBtn">
+                                <i>▲</i> 向上
+                            </button>
+                            <div class="address-bar" id="pathDisplay">此电脑</div>
+                            <input type="text" class="search-box" placeholder="搜索文件..." id="fileSearch">
+                        </div>
+                        
+                        <div class="file-list-container">
+                            <div class="file-list" id="fileList">
+                                <!-- 文件列表将通过JS动态生成 -->
+                            </div>
+                            
+                            <div class="file-preview" id="filePreview">
+                                <h3>文件预览</h3>
+                                <div class="preview-content" id="previewContent">
+                                    选择一个文件进行预览
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div id="fileManagerStatusText">就绪</div>
+        </div>
+    </div>
+    
+    <!-- 窗口关闭状态显示 -->
+    <div class="window-closed" id="closedMessage">
+        <div>窗口已关闭</div>
+        <div>点击下方按钮重新打开窗口</div>
+        <button class="reopen-btn" id="reopenBtn">重新打开窗口</button>
+    </div>
+    
+    <!-- 任务栏 -->
+    <div class="taskbar">
+        <div class="start-btn" id="startBtn">
+            <div class="windows-icon">♦</div>
+        </div>
+        <div class="taskbar-items">
+            <div class="taskbar-item active" id="welcomeWindowItem">欢迎</div>
+            <div class="taskbar-item minimized" id="fileManagerWindowItem">文件管理器</div>
+        </div>
+        <div class="system-time" id="systemTime">22:45:30</div>
+    </div>
+    
+    <!-- 开始菜单 -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-header">
+            <div class="windows-icon">U</div>
+            <div class="user-info">
+                <div class="username">User</div>
+                <div class="status">在线</div>
+            </div>
+        </div>
+        <div class="start-menu-search">
+            <input type="text" placeholder="搜索程序和文件">
+        </div>
+        <div class="start-menu-programs">
+            <div class="program-list">
+                <div class="program-item">
+                    <i>📁</i> 所有程序
+                </div>
+                <div class="program-item" id="startPersonalize">
+                    <i>🎨</i> 个性化
+                </div>
+                <div class="program-item" id="startDocuments">
+                    <i>📂</i> 文档
+                </div>
+                <div class="program-item" id="startPictures">
+                    <i>🖼️</i> 图片
+                </div>
+                <div class="program-item" id="startMusic">
+                    <i>🎵</i> 音乐
+                </div>
+                <div class="program-item" id="startComputer">
+                    <i>💻</i> 计算机
+                </div>
+                <div class="program-item" id="startControlPanel">
+                    <i>⚙️</i> 控制面板
+                </div>
+                <div class="program-item" id="startFileManager">
+                    <i>📁</i> 文件管理器
+                </div>
+                <div class="program-item" id="startDevices">
+                    <i>🖨️</i> 设备和打印机
+                </div>
+                <div class="program-item" id="startDefaultPrograms">
+                    <i>🔧</i> 默认程序
+                </div>
+                <div class="program-item" id="startHelp">
+                    <i>❓</i> 帮助和支持
+                </div>
+                <div class="program-item" id="startSearch">
+                    <i>🔍</i> 搜索
+                </div>
+                <div class="program-item" id="startRun">
+                    <i>▶️</i> 运行
+                </div>
+            </div>
+        </div>
+        <div class="start-menu-footer">
+            <div class="shutdown-btn" id="shutdownBtn">
+                <span>关机</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 上下文菜单 -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" id="openFile">打开</div>
+        <div class="context-menu-item" id="renameFile">重命名</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" id="deleteFile">删除</div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item" id="properties">属性</div>
+    </div>
+
+    <script>
+        // 创建水波纹效果
+        document.addEventListener('click', function(e) {
+            // 排除标题栏上的点击，避免影响拖拽
+            if (!e.target.closest('.title-bar') && !e.target.closest('.start-menu') && !e.target.closest('.context-menu') && !e.target.closest('.aero-window')) {
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                document.body.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+        });
+        
+        // 窗口对象
+        const windows = {
+            welcome: {
+                element: document.getElementById('welcomeWindow'),
+                titleBar: document.getElementById('welcomeTitleBar'),
+                statusText: document.getElementById('welcomeStatusText'),
+                taskbarItem: document.getElementById('welcomeWindowItem'),
+                isMaximized: false,
+                isMinimized: false,
+                isClosed: false,
+                position: { x: 0, y: 0 },
+                size: { width: 700, height: 500 },
+                originalSize: { width: 700, height: 500 },
+                originalPosition: { x: 0, y: 0 }
+            },
+            fileManager: {
+                element: document.getElementById('fileManagerWindow'),
+                titleBar: document.getElementById('fileManagerTitleBar'),
+                statusText: document.getElementById('fileManagerStatusText'),
+                taskbarItem: document.getElementById('fileManagerWindowItem'),
+                isMaximized: false,
+                isMinimized: true,
+                isClosed: false,
+                position: { x: 0, y: 0 },
+                size: { width: 700, height: 500 },
+                originalSize: { width: 700, height: 500 },
+                originalPosition: { x: 0, y: 0 }
+            }
+        };
+        
+        // 当前活动窗口
+        let activeWindow = windows.welcome;
+        
+        // 其他全局元素
+        const closedMessage = document.getElementById('closedMessage');
+        const reopenBtn = document.getElementById('reopenBtn');
+        const startBtn = document.getElementById('startBtn');
+        const startMenu = document.getElementById('startMenu');
+        const shutdownBtn = document.getElementById('shutdownBtn');
+        const systemTime = document.getElementById('systemTime');
+        const contextMenu = document.getElementById('contextMenu');
+        
+        // 更新系统时间
+        function updateSystemTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            systemTime.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+        
+        // 初始化窗口位置
+        window.addEventListener('load', () => {
+            // 欢迎窗口初始位置
+            windows.welcome.position = {
+                x: (window.innerWidth - windows.welcome.size.width) / 2,
+                y: (window.innerHeight - windows.welcome.size.height) / 2
+            };
+            
+            windows.welcome.originalPosition = {...windows.welcome.position};
+            
+            // 文件管理器窗口初始位置
+            windows.fileManager.position = {
+                x: (window.innerWidth - windows.fileManager.size.width) / 2 + 50,
+                y: (window.innerHeight - windows.fileManager.size.height) / 2 + 50
+            };
+            
+            windows.fileManager.originalPosition = {...windows.fileManager.position};
+            
+            // 更新窗口位置
+            updateWindowPosition(windows.welcome);
+            updateWindowPosition(windows.fileManager);
+            
+            // 初始化背景选择器
+            initBackgroundSelector();
+            
+            // 初始化文件管理器
+            initFileManager();
+            
+            // 更新时间
+            updateSystemTime();
+            setInterval(updateSystemTime, 1000);
+        });
+        
+        // 更新窗口位置
+        function updateWindowPosition(windowObj) {
+            const win = windowObj.element;
+            
+            if (windowObj.isMaximized) {
+                win.classList.add('maximized');
+                win.style.left = '20px';
+                win.style.top = '20px';
+                win.style.width = 'calc(100% - 40px)';
+                win.style.height = 'calc(100% - 60px)';
+                win.style.transform = 'none';
+            } else {
+                win.classList.remove('maximized');
+                win.style.left = windowObj.position.x + 'px';
+                win.style.top = windowObj.position.y + 'px';
+                win.style.width = windowObj.size.width + 'px';
+                win.style.height = windowObj.size.height + 'px';
+                win.style.transform = 'none';
+            }
+        }
+        
+        // 窗口拖拽功能
+        function setupWindowDrag(windowObj) {
+            let isDragging = false;
+            let offsetX, offsetY;
+            
+            windowObj.titleBar.addEventListener('mousedown', function(e) {
+                if (windowObj.isClosed) return;
+                
+                // 设置当前窗口为活动窗口
+                setActiveWindow(windowObj);
+                
+                if (windowObj.isMaximized) {
+                    // 如果最大化状态下拖动，先恢复窗口大小
+                    toggleMaximize(windowObj);
+                    
+                    // 更新鼠标位置为窗口中心
+                    const rect = windowObj.element.getBoundingClientRect();
+                    offsetX = rect.width / 2;
+                    offsetY = 0;
+                } else {
+                    // 计算鼠标相对于窗口左上角的偏移
+                    const rect = windowObj.element.getBoundingClientRect();
+                    offsetX = e.clientX - rect.left;
+                    offsetY = e.clientY - rect.top;
+                }
+                
+                isDragging = true;
+                
+                // 防止文本选择
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging && !windowObj.isClosed) {
+                    // 计算新位置
+                    let newX = e.clientX - offsetX;
+                    let newY = e.clientY - offsetY;
+                    
+                    // 限制在视窗范围内
+                    const maxX = window.innerWidth - windowObj.element.offsetWidth;
+                    const maxY = window.innerHeight - windowObj.element.offsetHeight;
+                    
+                    newX = Math.max(0, Math.min(newX, maxX));
+                    newY = Math.max(0, Math.min(newY, maxY));
+                    
+                    // 应用新位置
+                    windowObj.element.style.left = newX + 'px';
+                    windowObj.element.style.top = newY + 'px';
+                    windowObj.element.style.transform = 'none';
+                    
+                    // 保存当前位置
+                    windowObj.position = { x: newX, y: newY };
+                }
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+            });
+        }
+        
+        // 设置窗口调整大小功能
+        function setupWindowResize(windowObj) {
+            const win = windowObj.element;
+            const rightHandle = win.querySelector('.resize-right');
+            const bottomHandle = win.querySelector('.resize-bottom');
+            const cornerHandle = win.querySelector('.resize-corner');
+            
+            function startResize(e, direction) {
+                e.preventDefault();
+                setActiveWindow(windowObj);
+                
+                const startX = e.clientX;
+                const startY = e.clientY;
+                const startWidth = windowObj.size.width;
+                const startHeight = windowObj.size.height;
+                const startLeft = windowObj.position.x;
+                const startTop = windowObj.position.y;
+                
+                function doResize(e) {
+                    if (direction === 'right' || direction === 'corner') {
+                        const newWidth = Math.max(400, startWidth + (e.clientX - startX));
+                        windowObj.size.width = newWidth;
+                        win.style.width = newWidth + 'px';
+                    }
+                    
+                    if (direction === 'bottom' || direction === 'corner') {
+                        const newHeight = Math.max(300, startHeight + (e.clientY - startY));
+                        windowObj.size.height = newHeight;
+                        win.style.height = newHeight + 'px';
+                    }
+                    
+                    // 更新位置以防窗口超出屏幕
+                    const maxX = window.innerWidth - windowObj.size.width;
+                    const maxY = window.innerHeight - windowObj.size.height;
+                    
+                    windowObj.position.x = Math.max(0, Math.min(windowObj.position.x, maxX));
+                    windowObj.position.y = Math.max(0, Math.min(windowObj.position.y, maxY));
+                    
+                    win.style.left = windowObj.position.x + 'px';
+                    win.style.top = windowObj.position.y + 'px';
+                }
+                
+                function stopResize() {
+                    document.removeEventListener('mousemove', doResize);
+                    document.removeEventListener('mouseup', stopResize);
+                }
+                
+                document.addEventListener('mousemove', doResize);
+                document.addEventListener('mouseup', stopResize);
+            }
+            
+            rightHandle.addEventListener('mousedown', (e) => startResize(e, 'right'));
+            bottomHandle.addEventListener('mousedown', (e) => startResize(e, 'bottom'));
+            cornerHandle.addEventListener('mousedown', (e) => startResize(e, 'corner'));
+        }
+        
+        // 设置活动窗口
+        function setActiveWindow(windowObj) {
+            activeWindow = windowObj;
+            
+            // 更新任务栏状态
+            Object.values(windows).forEach(win => {
+                win.taskbarItem.classList.remove('active');
+            });
+            windowObj.taskbarItem.classList.add('active');
+            
+            // 确保窗口在顶部
+            Object.values(windows).forEach(win => {
+                win.element.style.zIndex = 10;
+            });
+            windowObj.element.style.zIndex = 20;
+        }
+        
+        // 开始菜单功能
+        startBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // 切换开始菜单显示状态
+            startMenu.classList.toggle('visible');
+        });
+        
+        // 点击其他地方关闭开始菜单
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.start-menu') && !e.target.closest('.start-btn')) {
+                startMenu.classList.remove('visible');
+            }
+        });
+        
+        // 关机按钮
+        shutdownBtn.addEventListener('click', function() {
+            alert('系统正在关机...');
+        });
+        
+        // 窗口控制按钮功能
+        function setupWindowControls(windowObj) {
+            const closeBtn = windowObj.titleBar.querySelector('.close-btn');
+            const minimizeBtn = windowObj.titleBar.querySelector('.minimize-btn');
+            const maximizeBtn = windowObj.titleBar.querySelector('.maximize-btn');
+            
+            closeBtn.addEventListener('click', () => {
+                closeWindow(windowObj);
+            });
+            
+            minimizeBtn.addEventListener('click', () => {
+                minimizeWindow(windowObj);
+            });
+            
+            maximizeBtn.addEventListener('click', () => {
+                toggleMaximize(windowObj);
+            });
+            
+            // 任务栏项点击事件
+            windowObj.taskbarItem.addEventListener('click', () => {
+                if (windowObj.isClosed) {
+                    reopenWindow(windowObj);
+                } else if (windowObj.isMinimized) {
+                    restoreWindow(windowObj);
+                } else {
+                    // 如果窗口已经是激活状态，则最小化
+                    if (activeWindow === windowObj) {
+                        minimizeWindow(windowObj);
+                    } else {
+                        restoreWindow(windowObj);
+                    }
+                }
+            });
+        }
+        
+        // 关闭窗口函数
+        function closeWindow(windowObj) {
+            // 保存当前状态
+            windowObj.isMaximized = windowObj.isMaximized;
+            windowObj.isMinimized = windowObj.isMinimized;
+            windowObj.isClosed = true;
+            
+            windowObj.element.style.transition = 'all 0.3s ease';
+            windowObj.element.style.transform = 'scale(0.8)';
+            windowObj.element.style.opacity = '0';
+            
+            setTimeout(() => {
+                windowObj.element.style.display = 'none';
+                windowObj.statusText.textContent = '窗口已关闭';
+                windowObj.isClosed = true;
+                windowObj.taskbarItem.classList.add('closed');
+                windowObj.taskbarItem.classList.remove('active', 'minimized');
+            }, 300);
+        }
+        
+        // 重新打开窗口函数
+        function reopenWindow(windowObj) {
+            windowObj.element.style.display = 'flex';
+            windowObj.element.style.opacity = '0';
+            windowObj.element.style.transform = 'scale(0.8)';
+            
+            // 恢复窗口状态
+            windowObj.isMinimized = false;
+            windowObj.isClosed = false;
+            
+            setTimeout(() => {
+                windowObj.element.style.transition = 'all 0.3s ease';
+                windowObj.element.style.transform = 'scale(1)';
+                windowObj.element.style.opacity = '1';
+                
+                // 更新窗口位置
+                updateWindowPosition(windowObj);
+                
+                setTimeout(() => {
+                    windowObj.element.style.transition = '';
+                    windowObj.taskbarItem.classList.remove('closed');
+                    windowObj.taskbarItem.classList.add('active');
+                    setActiveWindow(windowObj);
+                }, 300);
+            }, 10);
+        }
+        
+        // 最小化窗口函数
+        function minimizeWindow(windowObj) {
+            if (windowObj.isClosed) return;
+            
+            // 保存当前状态
+            windowObj.isMinimized = true;
+            
+            windowObj.element.style.transition = 'all 0.3s ease';
+            windowObj.element.style.transform = 'scale(0.8)';
+            windowObj.element.style.opacity = '0';
+            
+            setTimeout(() => {
+                windowObj.element.style.display = 'none';
+                windowObj.statusText.textContent = '窗口已最小化';
+                windowObj.isMinimized = true;
+                windowObj.taskbarItem.classList.add('minimized');
+                windowObj.taskbarItem.classList.remove('active');
+            }, 300);
+        }
+        
+        // 恢复窗口函数
+        function restoreWindow(windowObj) {
+            // 恢复窗口状态
+            windowObj.isMinimized = false;
+            
+            windowObj.element.style.display = 'flex';
+            windowObj.element.style.opacity = '0';
+            windowObj.element.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                windowObj.element.style.transition = 'all 0.3s ease';
+                windowObj.element.style.transform = 'scale(1)';
+                windowObj.element.style.opacity = '1';
+                
+                // 更新窗口位置
+                updateWindowPosition(windowObj);
+                
+                setTimeout(() => {
+                    windowObj.element.style.transition = '';
+                    windowObj.statusText.textContent = '就绪';
+                    windowObj.taskbarItem.classList.remove('minimized');
+                    windowObj.taskbarItem.classList.add('active');
+                    setActiveWindow(windowObj);
+                }, 300);
+            }, 10);
+        }
+        
+        // 切换最大化状态函数
+        function toggleMaximize(windowObj) {
+            if (windowObj.isClosed) return;
+            
+            // 保存原始尺寸和位置
+            if (!windowObj.isMaximized) {
+                windowObj.originalSize = { ...windowObj.size };
+                windowObj.originalPosition = { ...windowObj.position };
+            }
+            
+            windowObj.isMaximized = !windowObj.isMaximized;
+            
+            // 如果从最大化恢复，恢复原始尺寸和位置
+            if (!windowObj.isMaximized) {
+                windowObj.size = { ...windowObj.originalSize };
+                windowObj.position = { ...windowObj.originalPosition };
+            }
+            
+            // 更新窗口位置
+            updateWindowPosition(windowObj);
+            
+            const maximizeBtn = windowObj.titleBar.querySelector('.maximize-btn');
+            maximizeBtn.textContent = windowObj.isMaximized ? '❐' : '□';
+        }
+        
+        // 菜单功能
+        document.getElementById('homeLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            showContent('homeContent');
+            windows.welcome.statusText.textContent = '显示首页内容';
+        });
+        
+        document.getElementById('displayLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            showContent('settingsContent');
+            windows.welcome.statusText.textContent = '显示显示设置';
+        });
+        
+        document.getElementById('helpLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            showContent('helpContent');
+            windows.welcome.statusText.textContent = '显示帮助中心';
+        });
+        
+        // 文件管理器菜单项
+        document.getElementById('fileManagerLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            // 显示文件管理器窗口
+            restoreWindow(windows.fileManager);
+            windows.fileManager.statusText.textContent = '文件管理器';
+        });
+        
+        // 阻止菜单项点击事件冒泡
+        document.querySelectorAll('.dropdown-content a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+        
+        // 首页菜单项点击事件
+        document.getElementById('homeMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                showContent('homeContent');
+                windows.welcome.statusText.textContent = '显示首页内容';
+            }
+        });
+        
+        // 设置菜单项点击事件
+        document.getElementById('settingsMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                showContent('settingsContent');
+                windows.welcome.statusText.textContent = '显示系统设置';
+            }
+        });
+        
+        // 文件菜单项点击事件
+        document.getElementById('fileMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                // 显示文件管理器窗口
+                restoreWindow(windows.fileManager);
+                windows.fileManager.statusText.textContent = '文件管理器';
+            }
+        });
+        
+        // 帮助菜单项点击事件
+        document.getElementById('helpMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                showContent('helpContent');
+                windows.welcome.statusText.textContent = '显示帮助内容';
+            }
+        });
+        
+        // 显示内容函数
+        function showContent(contentId) {
+            // 隐藏所有内容
+            document.querySelectorAll('.home-content, .settings-content, .help-content, .personalize-content').forEach(el => {
+                el.classList.remove('active-content');
+            });
+            
+            // 显示请求的内容
+            document.getElementById(contentId).classList.add('active-content');
+        }
+        
+        // 演示按钮功能
+        document.getElementById('demoBtn').addEventListener('click', function() {
+            alert('这是Windows 7 Aero风格的演示按钮！');
+            windows.welcome.statusText.textContent = '演示按钮被点击';
+        });
+        
+        // 帮助中心的问题点击事件
+        document.querySelectorAll('.help-content > .content-box > div').forEach(item => {
+            item.addEventListener('click', function() {
+                const answer = this.querySelector('.answer');
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+        
+        // 桌面图标点击事件
+        document.getElementById('computerIcon').addEventListener('click', function() {
+            alert('计算机图标被点击！');
+        });
+        
+        document.getElementById('documentsIcon').addEventListener('click', function() {
+            alert('文档图标被点击！');
+        });
+        
+        document.getElementById('recycleBinIcon').addEventListener('click', function() {
+            alert('回收站图标被点击！');
+        });
+        
+        document.getElementById('fileManagerIcon').addEventListener('click', function() {
+            // 显示文件管理器窗口
+            restoreWindow(windows.fileManager);
+            windows.fileManager.statusText.textContent = '文件管理器';
+        });
+        
+        // 个性化设置按钮
+        document.getElementById('personalizeBtn').addEventListener('click', function() {
+            showContent('personalizeContent');
+            windows.welcome.statusText.textContent = '个性化设置';
+        });
+        
+        // 返回设置按钮
+        document.getElementById('backToSettingsBtn').addEventListener('click', function() {
+            showContent('settingsContent');
+        });
+        
+        // 开始菜单中的选项功能
+        document.getElementById('startPersonalize').addEventListener('click', function() {
+            // 确保窗口是打开的
+            restoreWindow(windows.welcome);
+            showContent('personalizeContent');
+            windows.welcome.statusText.textContent = '个性化设置';
+            startMenu.classList.remove('visible');
+        });
+        
+        // 开始菜单中的文件管理器选项
+        document.getElementById('startFileManager').addEventListener('click', function() {
+            // 显示文件管理器窗口
+            restoreWindow(windows.fileManager);
+            windows.fileManager.statusText.textContent = '文件管理器';
+            startMenu.classList.remove('visible');
+        });
+        
+        // 为其他开始菜单选项添加功能
+        const startMenuItems = [
+            'startDocuments', 'startPictures', 'startMusic', 
+            'startComputer', 'startControlPanel', 'startDevices',
+            'startDefaultPrograms', 'startHelp', 'startSearch', 'startRun'
+        ];
+        
+        startMenuItems.forEach(itemId => {
+            document.getElementById(itemId).addEventListener('click', function() {
+                alert(`"${this.textContent.trim()}" 功能已激活`);
+                startMenu.classList.remove('visible');
+            });
+        });
+        
+        // 背景选择器初始化
+        function initBackgroundSelector() {
+            const bgThumbs = document.querySelectorAll('.bg-thumb');
+            let selectedBg = null;
+            
+            bgThumbs.forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    // 移除之前的选择
+                    bgThumbs.forEach(t => t.classList.remove('selected'));
+                    
+                    // 选择当前
+                    this.classList.add('selected');
+                    selectedBg = this.dataset.bg;
+                    
+                    // 应用背景
+                    document.body.style.backgroundImage = `url(${selectedBg})`;
+                    windows.welcome.statusText.textContent = '桌面背景已更改';
+                });
+            });
+            
+            // 自定义背景上传
+            document.getElementById('applyCustomBg').addEventListener('click', function() {
+                const fileInput = document.getElementById('bgUpload');
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        document.body.style.backgroundImage = `url(${e.target.result})`;
+                        windows.welcome.statusText.textContent = '自定义桌面背景已应用';
+                    }
+                    
+                    reader.readAsDataURL(fileInput.files[0]);
+                } else {
+                    alert('请先选择一张图片');
+                }
+            });
+        }
+        
+        // 文件管理器功能实现
+        function initFileManager() {
+            const fileList = document.getElementById('fileList');
+            const pathDisplay = document.getElementById('pathDisplay');
+            const previewContent = document.getElementById('previewContent');
+            const filePreview = document.getElementById('filePreview');
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const backBtn = document.getElementById('backBtn');
+            const forwardBtn = document.getElementById('forwardBtn');
+            const upBtn = document.getElementById('upBtn');
+            const fileSearch = document.getElementById('fileSearch');
+            
+            // 模拟文件系统
+            const fileSystem = {
+                '/': {
+                    name: '此电脑',
+                    type: 'folder',
+                    children: [
+                        { name: '文档', type: 'folder', path: '/documents' },
+                        { name: '图片', type: 'folder', path: '/pictures' },
+                        { name: '音乐', type: 'folder', path: '/music' },
+                        { name: '视频', type: 'folder', path: '/videos' },
+                        { name: '下载', type: 'folder', path: '/downloads' },
+                        { name: '桌面', type: 'folder', path: '/desktop' },
+                        { name: '本地磁盘 (C:)', type: 'drive', size: '128 GB' },
+                        { name: '本地磁盘 (D:)', type: 'drive', size: '256 GB' }
+                    ]
+                },
+                '/documents': {
+                    name: '文档',
+                    type: 'folder',
+                    children: [
+                        { name: '报告.docx', type: 'doc', size: '128 KB', content: '这是文档报告的内容...' },
+                        { name: '财务.xlsx', type: 'xls', size: '256 KB', content: '这是电子表格的内容...' },
+                        { name: '简历.pdf', type: 'pdf', size: '512 KB', content: '这是PDF文件的内容...' },
+                        { name: '笔记.txt', type: 'txt', size: '2 KB', content: '这是文本文件的内容...' },
+                        { name: '项目', type: 'folder', path: '/documents/projects' }
+                    ]
+                },
+                '/documents/projects': {
+                    name: '项目',
+                    type: 'folder',
+                    children: [
+                        { name: '网站设计', type: 'folder', path: '/documents/projects/website' },
+                        { name: '移动应用', type: 'folder', path: '/documents/projects/mobile' },
+                        { name: '项目计划书.docx', type: 'doc', size: '256 KB', content: '项目计划书内容...' },
+                        { name: '预算.xlsx', type: 'xls', size: '128 KB', content: '预算内容...' }
+                    ]
+                },
+                '/pictures': {
+                    name: '图片',
+                    type: 'folder',
+                    children: [
+                        { name: '假期.jpg', type: 'jpg', size: '2.1 MB', preview: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' },
+                        { name: '家庭.png', type: 'png', size: '1.8 MB', preview: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' },
+                        { name: '截图.png', type: 'png', size: '850 KB', preview: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80' },
+                        { name: '壁纸', type: 'folder', path: '/pictures/wallpapers' }
+                    ]
+                },
+                '/music': {
+                    name: '音乐',
+                    type: 'folder',
+                    children: [
+                        { name: '歌曲1.mp3', type: 'mp3', size: '3.4 MB', content: '音乐文件预览不可用' },
+                        { name: '歌曲2.mp3', type: 'mp3', size: '4.2 MB', content: '音乐文件预览不可用' },
+                        { name: '专辑', type: 'folder', path: '/music/album' }
+                    ]
+                }
+            };
+            
+            let currentPath = '/';
+            let history = [];
+            let historyIndex = -1;
+            
+            // 渲染文件列表
+            function renderFileList(path) {
+                const folder = fileSystem[path];
+                if (!folder) return;
+                
+                pathDisplay.textContent = folder.name;
+                fileList.innerHTML = '';
+                
+                folder.children.forEach(item => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.dataset.name = item.name;
+                    fileItem.dataset.type = item.type;
+                    fileItem.dataset.path = item.path || '';
+                    
+                    let icon = '📄';
+                    if (item.type === 'folder') icon = '📁';
+                    if (item.type === 'drive') icon = '💽';
+                    if (item.type === 'doc') icon = '📝';
+                    if (item.type === 'xls') icon = '📊';
+                    if (item.type === 'pdf') icon = '📘';
+                    if (item.type === 'jpg' || item.type === 'png') icon = '🖼️';
+                    if (item.type === 'mp3') icon = '🎵';
+                    
+                    fileItem.innerHTML = `
+                        <div class="file-icon">${icon}</div>
+                        <div class="file-name">${item.name}</div>
+                    `;
+                    
+                    fileList.appendChild(fileItem);
+                    
+                    // 添加点击事件
+                    fileItem.addEventListener('click', (e) => {
+                        if (e.target.classList.contains('file-item') || e.target.closest('.file-item')) {
+                            if (item.type === 'folder' || item.type === 'drive') {
+                                navigateTo(item.path || path + '/' + item.name);
+                            } else {
+                                previewFile(item);
+                            }
+                        }
+                    });
+                    
+                    // 添加上下文菜单
+                    fileItem.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        showContextMenu(e, item);
+                    });
+                });
+            }
+            
+            // 导航到指定路径
+            function navigateTo(path) {
+                if (!fileSystem[path]) return;
+                
+                // 添加到历史记录
+                if (historyIndex < history.length - 1) {
+                    history = history.slice(0, historyIndex + 1);
+                }
+                history.push(path);
+                historyIndex++;
+                
+                currentPath = path;
+                renderFileList(path);
+                updateSidebar(path);
+                filePreview.classList.remove('active');
+            }
+            
+            // 更新侧边栏选中状态
+            function updateSidebar(path) {
+                sidebarItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.dataset.path === path) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+            
+            // 预览文件
+            function previewFile(file) {
+                filePreview.classList.add('active');
+                
+                let content = '';
+                if (file.type === 'folder') {
+                    content = '这是一个文件夹，无法预览内容';
+                } else if (file.preview) {
+                    content = `<img src="${file.preview}" style="max-width:100%; max-height:150px; display:block; margin:0 auto;">`;
+                } else if (file.content) {
+                    content = file.content;
+                } else {
+                    content = `文件类型: ${file.type}<br>大小: ${file.size}<br>无法预览此文件类型的内容`;
+                }
+                
+                previewContent.innerHTML = content;
+                windows.fileManager.statusText.textContent = `预览: ${file.name}`;
+            }
+            
+            // 显示上下文菜单
+            function showContextMenu(e, file) {
+                contextMenu.style.display = 'block';
+                contextMenu.style.left = e.pageX + 'px';
+                contextMenu.style.top = e.pageY + 'px';
+                
+                // 设置当前选中的文件
+                contextMenu.dataset.selectedFile = JSON.stringify(file);
+            }
+            
+            // 关闭上下文菜单
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.context-menu')) {
+                    contextMenu.style.display = 'none';
+                }
+            });
+            
+            // 上下文菜单功能
+            document.getElementById('openFile').addEventListener('click', () => {
+                const file = JSON.parse(contextMenu.dataset.selectedFile);
+                if (file.type === 'folder') {
+                    navigateTo(file.path || currentPath + '/' + file.name);
+                } else {
+                    previewFile(file);
+                }
+                contextMenu.style.display = 'none';
+            });
+            
+            document.getElementById('renameFile').addEventListener('click', () => {
+                const file = JSON.parse(contextMenu.dataset.selectedFile);
+                alert(`重命名文件: ${file.name}`);
+                contextMenu.style.display = 'none';
+            });
+            
+            document.getElementById('deleteFile').addEventListener('click', () => {
+                const file = JSON.parse(contextMenu.dataset.selectedFile);
+                if (confirm(`确定要删除 "${file.name}" 吗？`)) {
+                    alert(`文件 "${file.name}" 已删除`);
+                }
+                contextMenu.style.display = 'none';
+            });
+            
+            document.getElementById('properties').addEventListener('click', () => {
+                const file = JSON.parse(contextMenu.dataset.selectedFile);
+                alert(`文件属性:\n名称: ${file.name}\n类型: ${file.type}\n大小: ${file.size || '未知'}`);
+                contextMenu.style.display = 'none';
+            });
+            
+            // 侧边栏导航
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navigateTo(item.dataset.path);
+                });
+            });
+            
+            // 导航按钮
+            backBtn.addEventListener('click', () => {
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    currentPath = history[historyIndex];
+                    renderFileList(currentPath);
+                    updateSidebar(currentPath);
+                }
+            });
+            
+            forwardBtn.addEventListener('click', () => {
+                if (historyIndex < history.length - 1) {
+                    historyIndex++;
+                    currentPath = history[historyIndex];
+                    renderFileList(currentPath);
+                    updateSidebar(currentPath);
+                }
+            });
+            
+            upBtn.addEventListener('click', () => {
+                if (currentPath !== '/') {
+                    const paths = currentPath.split('/');
+                    paths.pop();
+                    const parentPath = paths.join('/') || '/';
+                    navigateTo(parentPath);
+                }
+            });
+            
+            // 文件搜索
+            fileSearch.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                if (!searchTerm) {
+                    renderFileList(currentPath);
+                    return;
+                }
+                
+                const folder = fileSystem[currentPath];
+                if (!folder) return;
+                
+                const filteredItems = folder.children.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm)
+                );
+                
+                fileList.innerHTML = '';
+                
+                filteredItems.forEach(item => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.dataset.name = item.name;
+                    fileItem.dataset.type = item.type;
+                    
+                    let icon = '📄';
+                    if (item.type === 'folder') icon = '📁';
+                    if (item.type === 'drive') icon = '💽';
+                    if (item.type === 'doc') icon = '📝';
+                    if (item.type === 'xls') icon = '📊';
+                    if (item.type === 'pdf') icon = '📘';
+                    if (item.type === 'jpg' || item.type === 'png') icon = '🖼️';
+                    if (item.type === 'mp3') icon = '🎵';
+                    
+                    fileItem.innerHTML = `
+                        <div class="file-icon">${icon}</div>
+                        <div class="file-name">${item.name}</div>
+                    `;
+                    
+                    fileList.appendChild(fileItem);
+                });
+            });
+            
+            // 初始化文件列表
+            renderFileList(currentPath);
+        }
+        
+        // 初始化窗口拖拽和控制
+        Object.values(windows).forEach(windowObj => {
+            setupWindowDrag(windowObj);
+            setupWindowControls(windowObj);
+            setupWindowResize(windowObj);
+        });
+        
+        // 设置初始活动窗口
+        setActiveWindow(windows.welcome);
+        
+        // 添加B站跳转功能
+        document.getElementById('bilibiliBtn').addEventListener('click', function() {
+            // 在新标签页中打开B站主页
+            window.open('https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0', '_blank');
+            // 更新状态栏文本
+            windows.welcome.statusText.textContent = '正在跳转至B站...';
+        });
+    </script>
+</body>
+</html>
