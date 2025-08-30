@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>群组加入导航</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-tab {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: #2575fc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .nav-tab.active:hover {
+            background: white;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .qq-header {
+            background: linear-gradient(135deg, #12c2e9, #c471ed);
+        }
+        
+        .wx-header {
+            background: linear-gradient(135deg, #7bcfa1, #42b983);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .qq-icon {
+            background: #12b7f5;
+        }
+        
+        .wx-icon {
+            background: #07c160;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-desc {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .group-list {
+            list-style: none;
+        }
+        
+        .group-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .group-item:last-child {
+            border-bottom: none;
+        }
+        
+        .group-name {
+            font-weight: 500;
+        }
+        
+        .group-members {
+            font-size: 13px;
+            color: #888;
+        }
+        
+        .join-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .qq-btn {
+            background: #12b7f5;
+            color: white;
+        }
+        
+        .qq-btn:hover {
+            background: #0e9ad4;
+        }
+        
+        .wx-btn {
+            background: #07c160;
+            color: white;
+        }
+        
+        .wx-btn:hover {
+            background: #06ae56;
+        }
+        
+        .instructions {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .instructions h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2575fc;
+            text-align: center;
+        }
+        
+        .instruction-steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-icon {
+            font-size: 40px;
+            color: #2575fc;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .instruction-steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-users"></i>
+            </div>
+            <h1>社群加入导航</h1>
+            <p class="subtitle">选择您想加入的群组类别，与志同道合的朋友一起交流学习</p>
+        </header>
+        <div class="categories">
+            <!-- QQ群卡片 -->
+            <div class="category-card">
+                <div class="card-header qq-header">
+                    <div class="card-icon qq-icon">
+                        <i class="fab fa-qq"></i>
+                    </div>
+                    <div class="card-title">QQ分区</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">点击下方加入按钮以前往</p>
+                    <ul class="group-list">
+                        <li class="group-item">
+                            <div>
+                                <div class="group-name">基沃托斯社区</div>
+                                <div class="group-members">14/500 人</div>
+                            </div>
+                            <a href="/join/qq/991774893" class="join-btn qq-btn">加入</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 微信群卡片 -->
+            <div class="category-card">
+                <div class="card-header wx-header">
+                    <div class="card-icon wx-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <div class="card-title">微信分区</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">点击下方加入按钮以前往</p>
+                    <ul class="group-list">
+                        <li class="group-item">
+                            <div>
+                                <div class="group-name">基沃托斯社区</div>
+                                <div class="group-members">229 人</div>
+                            </div>
+                            <a href="/join/wx/main-join" class="join-btn wx-btn">加入</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        <div class="instructions">
+            <h2>如何加入群组以及将您的群组放在列表上</h2>
+            <div class="instruction-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="step-title">1. 选择群组</div>
+                    <p class="step-desc">浏览上面的群组列表，找到您感兴趣的群组类别。</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <div class="step-title">2. 点击加入</div>
+                    <p class="step-desc">点击"加入"按钮，系统将引导您完成加群流程。</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="step-title">3. 开始交流</div>
+                    <p class="step-desc">加入群组后，您可以与群友一起交流学习。</p>
+                </div>
+				<div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="step-title">4. 联系站长</div>
+                    <p class="step-desc">您可以前往B站联系站长，将您的网站放至列表上。</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 枫星版权所有 | Github提供技术支持 | 更新时间: 2025-08-30</p>
+        </footer>
+    </div>
+
+
+</body>
+</html>
