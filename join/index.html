@@ -28,6 +28,53 @@
             max-width: 1200px;
         }
         
+        /* 警告公告样式 */
+        .warning-banner {
+            background: linear-gradient(135deg, #ff4b4b 0%, #ff0000 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .warning-banner i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .warning-content {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        /* 移动端滚动效果 */
+        @media (max-width: 768px) {
+            .warning-banner {
+                overflow: hidden;
+                white-space: nowrap;
+            }
+            
+            .warning-content {
+                display: inline-block;
+                padding-left: 100%;
+                animation: warning-scroll 15s linear infinite;
+            }
+            
+            @keyframes warning-scroll {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(-100%, 0);
+                }
+            }
+        }
+        
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -288,6 +335,15 @@
             <h1>社群加入导航</h1>
             <p class="subtitle">选择您想加入的群组类别。请不要向群内任何人提供您的个人财产！谨防诈骗！</p>
         </header>
+        
+        <!-- 警告公告 -->
+        <div class="warning-banner">
+            <div class="warning-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                本页面仅用于中转使用，请注意辨别，谨慎操作；不要向群内任何人提供您的个人财产！谨防诈骗！
+            </div>
+        </div>
+        
         <div class="categories">
             <!-- QQ群卡片 -->
             <div class="category-card">
@@ -321,7 +377,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-desc">点击下方加入按钮以前往</p>
-					<p class="card-desc">请勿向群内任何人提供您的个人财产！谨防诈骗！</p>
+                    <p class="card-desc">请勿向群内任何人提供您的个人财产！谨防诈骗！</p>
                     <ul class="group-list">
                         <li class="group-item">
                             <div>
@@ -330,14 +386,14 @@
                             </div>
                             <a href="/join/wx/main-join" class="join-btn wx-btn">加入</a>
                         </li>
-						<li class="group-item">
+                        <li class="group-item">
                             <div>
                                 <div class="group-name">未蓝群</div>
                                 <div class="group-members">暂无简介...</div>
                             </div>
                             <a href="/join/wx/834928" class="join-btn wx-btn">加入</a>
                         </li>
-						<li class="group-item">
+                        <li class="group-item">
                             <div>
                                 <div class="group-name">曹县粉丝群</div>
                                 <div class="group-members">（简介需要进入才可见）</div>
@@ -347,7 +403,8 @@
                     </ul>
                 </div>
             </div>
-            
+        </div>
+        
         <div class="instructions">
             <h2>如何加入群组以及将您的群组放在列表上</h2>
             <div class="instruction-steps">
@@ -372,7 +429,7 @@
                     <div class="step-title">3. 开始交流</div>
                     <p class="step-desc">加入群组后，您可以与群友一起交流学习。</p>
                 </div>
-				<div class="step">
+                <div class="step">
                     <div class="step-icon">
                         <i class="fas fa-comments"></i>
                     </div>
@@ -386,7 +443,5 @@
             <p>© 2025 枫星版权所有 | Github提供技术支持 | 更新时间: 2025-08-30</p>
         </footer>
     </div>
-
-
 </body>
 </html>
