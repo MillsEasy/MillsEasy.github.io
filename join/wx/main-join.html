@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加入我们的微信群</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #7bcfa1 0%, #42b983 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        header {
+            background: #07c160;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .left-panel {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .right-panel {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .info-box {
+            background: #f5fef9;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #07c160;
+        }
+        
+        .info-title {
+            font-size: 20px;
+            color: #07c160;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .group-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .group-detail {
+            display: flex;
+            padding: 12px 15px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            align-items: center;
+        }
+        
+        .detail-icon {
+            width: 30px;
+            color: #07c160;
+            font-size: 20px;
+        }
+        
+        .detail-content {
+            flex: 1;
+        }
+        
+        .detail-title {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        
+        .detail-value {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .steps {
+            margin: 30px 0;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: #07c160;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .qr-code {
+            width: 220px;
+            height: 220px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+        
+        .qr-code img {
+            max-width: 100%;
+        }
+        
+        .qr-placeholder {
+            color: #999;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .qr-note {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .wechat-id {
+            background: #f9f9f9;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .action {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .save-button {
+            display: inline-block;
+            background: #07c160;
+            color: white;
+            padding: 14px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(7, 193, 96, 0.3);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .save-button:hover {
+            background: #06ae56;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(7, 193, 96, 0.4);
+        }
+        
+        .note {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #888;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+            font-size: 15px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .info-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fab fa-weixin"></i>
+            </div>
+            <h1>欢迎加入基沃托斯社区</h1>
+            <p class="subtitle">与群员一起分享心得和经验</p>
+        </header>
+        
+        <div class="content">
+            <div class="left-panel">
+                <div class="info-box">
+                    <div class="info-title">
+                        <i class="fas fa-users"></i>
+                        <span>群组信息</span>
+                    </div>
+                    <div class="group-info">
+                        <div class="group-detail">
+                            <div class="detail-icon">
+                                <i class="fas fa-signature"></i>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-title">群名称</div>
+                                <div class="detail-value">基沃托斯社区</div>
+                            </div>
+                        </div>
+                        <div class="group-detail">
+                            <div class="detail-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-title">群成员</div>
+                                <div class="detail-value">229人</div>
+                            </div>
+                        </div>
+                        <div class="group-detail">
+                            <div class="detail-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="detail-content">
+                                <div class="detail-title">群主题</div>
+                                <div class="detail-value">蔚蓝档案——分享游戏攻略、美图等</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">保存下方的微信群二维码到手机相册</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">打开微信，点击右上角的"+"号，选择"扫一扫"</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">在扫一扫界面中选择"相册"，找到保存的二维码图片</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">识别二维码后点击"加入群聊"，等待管理员通过</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="qr-code">
+					<img src="code.jpg" alt="微信群二维码">
+                    
+                </div>
+                
+                <p class="qr-note">请使用微信扫描二维码加入群聊<br>二维码有效期至2025年9月6日</p>
+                
+                <div class="wechat-id">
+                    <i class="fas fa-id-card"></i> 群管理员微信号: **********
+                </div>
+                
+                <div class="action">
+                    <button class="save-button">
+                        <i class="fas fa-download"></i> 下载二维码
+                    </button>
+                </div>
+                
+                <p class="note">
+                    提示：如果二维码已过期，请添加群管理员微信<br>
+                    并备注"加群"，管理员会邀请您加入
+                </p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 枫星版权所有 | Github提供维护支持 | 本页面仅用于中转使用，请注意辨别，谨慎操作</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单的二维码保存功能模拟
+        document.querySelector('.save-button').addEventListener('click', function() {
+            alert('本站暂不支持该功能。手机端：长按图片保存至相册；电脑端：右键图片另存为');
+        });
+    </script>
+</body>
+</html>
