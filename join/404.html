@@ -1,186 +1,208 @@
 <!DOCTYPE html>
-<html lang="zxx">
-  <head> 
+<html lang="zh-CN">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> 枫星MapleStar   |   404——页面找不到了</title>
+    <title>页面未找到 - 404错误</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        <!-- fav icon -->
-        <link rel="icon" href="assets/images/fav-icon/fav-icon.png">
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #2d3748;
+        }
         
-        <!-- bootstarp -->
-        <link rel="stylesheet" href="css/vendors/bootstrap.min.css">
+        .container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            padding: 50px 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
         
-        <!-- animate.css file -->
-        <link rel="stylesheet" href="css/vendors/animate.css">
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            color: #4a5568;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
         
-        <!-- flaticon -->
-        <link rel="stylesheet" href="css/vendors/flaticon/font//flaticon.css">
+        .error-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2d3748;
+            font-weight: 600;
+        }
         
-        <!-- fontAwesome -->
-        <link rel="stylesheet" href="css/vendors/all.min.css">
+        .error-message {
+            font-size: 18px;
+            color: #718096;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         
-        <!-- bootstrap icons -->
-        <link rel="stylesheet" href="css/vendors/bootstrap-icons-1.5.0/bootstrap-icons.css">
+        .home-button {
+            display: inline-block;
+            padding: 16px 36px;
+            background: #4a5568;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: 2px solid #4a5568;
+        }
         
-        <!-- Font Family -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700;800;900&amp;display=swap">
+        .home-button:hover {
+            background: white;
+            color: #4a5568;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 85, 104, 0.2);
+        }
         
-        <!-- main-LTR -->
-        <link rel="stylesheet" href="css/main-LTR.css">
-  </head>
-  <body class="   rounded-btns ">
-    <!--Start Page Header-->
-    <header class="header-2 " id="page-header">
-      <div class="header-search-box">
-        <div class="close-search"></div>
-        <form class="nav-search search-form" role="search" method="get" action="#">
-          <div class="search-wrapper"> 
-            <label class="search-lbl">搜索：</label>
-            <input class="search-input" type="search" placeholder="搜索：" name="searchInput" autofocus="autofocus"/>
-            <button class="search-btn" type="submit"><i class="bi bi-search icon"></i></button>
-          </div>
-        </form>
-      </div>
-      <!--== top bar-->
-      <!--== bottom bar-->
-      <div class="bar-bottom">
-        <div class="container">
-          <nav class="menu-navbar">
-            <div class="header-logo"><a class="logo-link" href="index.html"><img class="logo-img light-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/><img class="logo-img  dark-logo" loading="lazy" src="assets/images/logo/logo-dark.png" alt="logo"/></a></div>
-            <div class="links menu-wrapper ">
-              <ul class="list-js links-list">
-                <li class="menu-item has-sub-menu"><a class="menu-link   " href="index.html">首页<class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-				
-                </li>
-                <li class="menu-item has-sub-menu"><a class="menu-link  " href="faq.html">FAQ<class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-				</li>
-				<li class="menu-item has-sub-menu"><a class="menu-link  " href="blogindex.html">博客<class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-                <li class="menu-item has-sub-menu"><a class="menu-link  " href="#0">其他功能<i class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-                  <ul class="sub-menu ">
-                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="sign-in.html">登录</a></li>
-                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="sign-up.html">注册</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item"><a class="menu-link  " href="/games/index.html">游戏</a></li>
-              </ul>
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .search-input:focus {
+            border-color: #4a5568;
+        }
+        
+        .search-button {
+            padding: 16px 24px;
+            background: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .search-button:hover {
+            background: #2d3748;
+        }
+        
+        .helpful-links {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .helpful-links h3 {
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .links a {
+            color: #4a5568;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .links a:hover {
+            color: #2d3748;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 100px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-message {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                border-radius: 8px;
+                margin-bottom: 10px;
+            }
+            
+            .search-button {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">页面未找到</h1>
+        <p class="error-message">抱歉，您访问的页面不存在。可能已被移除、更名或暂时不可用（QAQ）</p>
+        
+        <a href="/join/" class="home-button">返回引导</a>
+		
+		<div class="helpful-links">
+            <h3>快速链接</h3>
+            <div class="links">
+                <a href="/">网站首页</a>
+                <a href="/faq">FAQ</a>
             </div>
-            <div class="controls-box">
-              <div class="control header-search-btn"><i class="bi bi-search icon"></i></div>
-              <!--mini shoping cart-->
-              
-              <div class="control  info-toggler"><span> </span><span> </span><span></span></div>
-              <div class="control  menu-toggler"><span></span><span></span><span></span></div>
-            </div>
-          </nav>
         </div>
-      </div>
-      <!--End navbar-->
-    </header>
-    <!--End Page Header-->
-    <!-- Start  Page hero-->
-    <section class="page-hero err-404 d-flex align-items-center">
-      <div class="overlay-photo-image-bg " data-bg-img="assets/images/sections-bg-images/404.jpg" data-bg-opacity=".65"></div>
-      <div class="overlay-color"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-12   mx-auto">
-            <!--Start of .hero-text-area-->
-            <div class="err-text-area text-center  ">
-              <h1 class="err-title hollow-text wow   fadeInUp" data-wow-delay="0s">404 </h1>
-              <h2 class="err-subtitle wow  fadeInUp " data-wow-delay="0.2s">无法找到页面</h2>
-              <p class="err-text narrow-centerd-text wow  fadeInUp  " data-wow-delay="0.4s">
-                oops! 无法找到页面，您可能键入了错误的网址；或者该页面不存在
-                
-              </p>
-            </div>
-          </div>
-          <div class="col-12 col-md-10 col-lg-8 mx-auto text-center">
-            <div class="cta-links-area wow  fadeInUp " data-wow-delay=".8s"><a class=" btn-solid cta-link " href="index.html">返回首页</a></div>
-          </div>
-        </div>
-        <!--End of .hero-text-area -->
-      </div>
-    </section>
-    <!-- End  Page hero-->
-    <!-- Start  page-footer Section-->
-    <footer class="page-footer dark-color-footer" id="page-footer">
-      <div class="overlay-photo-image-bg" data-bg-img="assets/images/sections-bg-images/pattern-bg.jpg" data-bg-opacity=".075"></div>
-      <div class="container">
-        <div class="row footer-cols">
-          <div class="col-12 col-md-8 col-lg-4  footer-col wow fadeInUp " data-wow-delay="0.3s"><img class="img-fluid footer-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/>
-            <div class="footer-col-content-wrapper">        
-              <p class="footer-text-about-us ">
-                 北澳枫版权所有，未经允许禁止以任何形式盗取本网站的源代码！
-				 By NorthAusleyMaple. 网站版本:2.0
-                
-              </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-2  footer-col wow fadeInUp " data-wow-delay="0.4s">
-            <h2 class=" footer-col-title    ">其他</h2>
-            <div class="footer-col-content-wrapper">
-              <ul class="footer-menu ">
-                <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0"  target="_blank">BilBil</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-2 footer-col wow fadeInUp " data-wow-delay=".7s">
-            <h2 class=" footer-col-title    ">快速访问：</h2>
-            <div class="footer-col-content-wrapper">
-              <ul class="footer-menu">
-                <li class="footer-menu-item"><i class="bi bi-arrow-right icon "></i><a class="footer-menu-link" href="index.html">主页</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-12 col-md-8   col-lg-4 footer-col wow fadeInUp " data-wow-delay=".9s">
-            <h2 class=" footer-col-title    ">站长信息</h2>
-            <div class="footer-col-content-wrapper">       
-              <div class="contact-info-card"><i class="bi bi-envelope icon"></i><a class="text-lowercase  info" href="millseasy-github-io.pages.dev">northausleymaple@163.com</a></div>
-              <div class="contact-info-card"><i class="bi bi-globe icon"></i><a class="text-lowercase  info" href="index.html">millseasy-github-io.pages.dev</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="copyrights ">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <p class="creadits">&copy; 2025 北澳枫版权所有，未经允许禁止以任何形式盗取本网站的源代码！
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- End  page-footer Section-->
-    <!-- Start loading-screen Component-->
-    <div class="loading-screen" id="loading-screen"><span class="bar top-bar"></span><span class="bar down-bar"></span><span class="progress-line"></span><span class="loading-counter"> 加载中... </span></div>
-    <!-- End loading-screen Component-->
-    <!-- Start back-to-top Component-->
-    <div class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up icon "></i>
     </div>
-    <!-- End back-to-top Component-->
-    <!-- Start back-to-top Component-->
-    <div class="mode-switcher ">
-      <div class="switch-inner go-light " title="切换为白色模式 "><i class="bi bi-sun-fill icon "></i></div>
-      <div class="switch-inner go-dark" title="切换为黑色模式 "><i class="bi bi-moon-stars icon "></i></div>
-    </div>
-    <!-- End back-to-top Component-->   
-        
-        <!--     JQuery     -->
-        <script src="js/vendors/jquery-3.4.1.min.js"></script>
-        
-        <!--     bootstrap     -->
-        <script src="js/vendors/bootstrap.bundle.min.js"></script>
-        
-        <!--     wow     -->
-        <script src="js/vendors/wow.min.js"></script>
-        
-        <!--     main     -->
-        <script src="js/main.js"></script>
-  </body>
+
+    <script>
+        // 返回首页按钮
+        document.querySelector('.home-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('正在返回首页...');
+            // 实际应用中这里可以跳转到首页
+            // window.location.href = "/";
+        });
+    </script>
+</body>
 </html>
