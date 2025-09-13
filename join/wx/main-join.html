@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>加入我们的微信群</title>
+    <title>枫星MapleStar   |   加入我们的微信群</title>
+	<link rel="icon" href="/join/assets/images/fav-icon/fav-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -202,6 +203,11 @@
         .action {
             text-align: center;
             margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            align-items: center;
         }
         
         .save-button {
@@ -217,12 +223,36 @@
             box-shadow: 0 5px 15px rgba(7, 193, 96, 0.3);
             cursor: pointer;
             border: none;
+            width: 220px;
         }
         
         .save-button:hover {
             background: #06ae56;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(7, 193, 96, 0.4);
+        }
+        
+        /* 新增B站按钮样式 */
+        .bilibili-button {
+            display: inline-block;
+            background: #FB7299; /* B站粉色 */
+            color: white;
+            padding: 14px 35px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 114, 153, 0.3);
+            cursor: pointer;
+            border: none;
+            width: 220px;
+        }
+        
+        .bilibili-button:hover {
+            background: #e45c8a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(251, 114, 153, 0.4);
         }
         
         .note {
@@ -259,6 +289,11 @@
             .info-title {
                 font-size: 18px;
             }
+            
+            .save-button, .bilibili-button {
+                width: 100%;
+                max-width: 280px;
+            }
         }
     </style>
 </head>
@@ -286,7 +321,7 @@
                             </div>
                             <div class="detail-content">
                                 <div class="detail-title">群名称</div>
-                                <div class="detail-value">基沃托斯社区</div>
+                                <div class="detail-value">蔚蓝谐律交流社区</div>
                             </div>
                         </div>
                         <div class="group-detail">
@@ -327,16 +362,20 @@
                     
                 </div>
                 
-                <p class="qr-note">请使用微信扫描二维码加入群聊<br>二维码有效期至2025年9月6日</p>
+                <p class="qr-note">请使用微信扫描二维码加入群聊<br>二维码有效期至2025年9月6日【已失效】</p>
                 
                 <div class="wechat-id">
-                    <i class="fas fa-id-card"></i> 群管理员微信号: **********
+                    <i class="fas fa-id-card"></i> 群管理员微信号: 无
                 </div>
                 
                 <div class="action">
                     <button class="save-button">
                         <i class="fas fa-download"></i> 下载二维码
                     </button>
+                    <!-- 新增B站按钮 -->
+                    <a href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank" class="bilibili-button">
+                        <i class="fab fa-bilibili"></i> 前往B站以联系站长
+                    </a>
                 </div>
                 
                 <p class="note">
