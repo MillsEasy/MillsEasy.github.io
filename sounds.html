@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简洁音频播放器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* 全屏可视化容器 */
+        #fullscreen-visualizer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00b7ff, #4a77ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #aaa;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* 专辑封面区域 */
+        .album-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        
+        .album-art-container {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            aspect-ratio: 1/1;
+            z-index: 3;
+        }
+        
+        .album-art {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .music-info {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 420px;
+            z-index: 3;
+            transition: all 0.5s ease;
+        }
+        
+        .song-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .artist {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 500;
+            margin-bottom: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* 播放控制区域 - 整合进度条 */
+        .controls-section {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(30, 30, 40, 0.7);
+            border-radius: 25px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 3;
+            transition: all 0.5s ease;
+        }
+        
+        /* 进度条 */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin: 5px 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 30%;
+            background: linear-gradient(to right, #00b7ff, #4a77ff);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+        
+        /* 时间显示 */
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+        
+        /* 控制按钮 */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 10px;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .play-pause {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00b7ff, #4a77ff);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+        
+        .play-pause:hover {
+            background: linear-gradient(135deg, #0095d9, #3d69e0);
+            transform: scale(1.05);
+        }
+        
+        /* 音量控制 */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #01f7ff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(1, 247, 255, 0.5);
+        }
+        
+        /* 导入按钮 */
+        .import-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        /* 音频捕获按钮 */
+        .capture-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        /* 颜色选择按钮 */
+        .color-toggle {
+            position: fixed;
+            bottom: 140px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        /* 颜色选择面板 */
+        .color-panel {
+            position: fixed;
+            bottom: 200px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .color-panel.active {
+            display: flex;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.active {
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* 音频捕获面板 */
+        .capture-panel {
+            position: fixed;
+            bottom: 200px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s;
+            width: 180px;
+        }
+        
+        .capture-panel.active {
+            display: flex;
+        }
+        
+        .capture-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        .capture-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .capture-option.active {
+            background: rgba(0, 183, 255, 0.3);
+            border: 1px solid rgba(0, 183, 255, 0.5);
+        }
+        
+        /* 隐藏界面按钮 */
+        .interface-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .interface-toggle.hidden {
+            opacity: 0.3;
+        }
+        
+        /* 按钮悬停效果 */
+        .import-toggle:hover,
+        .capture-toggle:hover,
+        .color-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                max-width: 95%;
+            }
+            
+            .controls-section {
+                padding: 20px;
+            }
+            
+            .album-art-container {
+                max-width: 260px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .song-title {
+                font-size: 1.4rem;
+            }
+            
+            .controls-section {
+                padding: 15px;
+            }
+            
+            .play-pause {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .album-art-container {
+                max-width: 240px;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* 封面放大动画 */
+        @keyframes album-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .album-art-container {
+            animation: album-pulse 4s infinite ease-in-out;
+        }
+        
+        /* 界面隐藏时的状态 */
+        .interface-hidden header,
+        .interface-hidden .album-section,
+        .interface-hidden .controls-section,
+        .interface-hidden .import-toggle,
+        .interface-hidden .capture-toggle,
+        .interface-hidden .color-toggle,
+        .interface-hidden .color-panel,
+        .interface-hidden .capture-panel {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        
+        .interface-hidden .container {
+            gap: 0;
+        }
+        
+        /* 音频捕获状态指示 */
+        .capture-toggle.active {
+            background: rgba(255, 50, 50, 0.7);
+            animation: pulse 1s infinite;
+        }
+        
+        /* 信息提示 */
+        .info-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 信息提示 -->
+    <div class="info-message" id="infoMessage"></div>
+    
+    <!-- 全屏可视化区域 -->
+    <div id="fullscreen-visualizer">
+        <canvas id="visualizer"></canvas>
+    </div>
+    
+    <!-- 颜色选择面板 -->
+    <div class="color-panel" id="colorPanel">
+        <div class="color-option active" style="background-color: #00b7ff;" data-color="#00b7ff"></div>
+        <div class="color-option" style="background-color: #ff00b7;" data-color="#ff00b7"></div>
+        <div class="color-option" style="background-color: #b7ff00;" data-color="#b7ff00"></div>
+        <div class="color-option" style="background-color: #ffb700;" data-color="#ffb700"></div>
+        <div class="color-option" style="background-color: #b700ff;" data-color="#b700ff"></div>
+        <div class="color-option" style="background-color: #00ffb7;" data-color="#00ffb7"></div>
+    </div>
+    
+    <!-- 音频捕获面板 -->
+    <div class="capture-panel" id="capturePanel">
+        <button class="capture-option" id="systemAudioOption">
+            <i class="fas fa-desktop"></i>
+            <span>系统音频</span>
+        </button>
+        <button class="capture-option" id="microphoneOption">
+            <i class="fas fa-microphone"></i>
+            <span>麦克风</span>
+        </button>
+    </div>
+    
+    <!-- 颜色选择按钮 -->
+    <button class="color-toggle" id="colorToggle">
+        <i class="fas fa-palette"></i>
+    </button>
+    
+    <!-- 音频捕获按钮 -->
+    <button class="capture-toggle" id="captureToggle">
+        <i class="fas fa-microphone"></i>
+    </button>
+    
+    <!-- 导入按钮 -->
+    <button class="import-toggle" id="importToggle">
+        <i class="fas fa-file-import"></i>
+    </button>
+    
+    <!-- 隐藏界面按钮 -->
+    <button class="interface-toggle" id="interfaceToggle">
+        <i class="fas fa-eye"></i>
+    </button>
+    
+    <div class="container">
+        <header>
+            <h1>简洁音频播放器</h1>
+            <p class="subtitle">沉浸式音频体验</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- 专辑封面区域 -->
+            <div class="album-section">
+                <div class="album-art-container">
+                    <div class="album-art">
+                        <img id="albumArt" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z'/%3E%3C/svg%3E" alt="Album Art">
+                    </div>
+                </div>
+                
+                <div class="music-info">
+                    <div class="song-title" id="songTitle">暂无音乐</div>
+                    <div class="artist" id="artist">未知艺术家</div>
+                </div>
+            </div>
+            
+            <!-- 播放控制区域 - 整合进度条 -->
+            <div class="controls-section">
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="time-info">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">0:00</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="control-btn" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="control-btn play-pause" id="playPauseBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+                
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" min="0" max="1" step="0.01" value="0.7" class="volume-slider" id="volumeSlider">
+                    <i class="fas fa-volume-high"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐藏的文件输入 -->
+    <input type="file" id="fileInput" accept="audio/*" multiple style="display: none;">
+
+    <script>
+        // 获取DOM元素
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const songTitle = document.getElementById('songTitle');
+        const artist = document.getElementById('artist');
+        const fileInput = document.getElementById('fileInput');
+        const visualizer = document.getElementById('visualizer');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const albumArt = document.getElementById('albumArt');
+        const importToggle = document.getElementById('importToggle');
+        const fullscreenVisualizer = document.getElementById('fullscreen-visualizer');
+        const interfaceToggle = document.getElementById('interfaceToggle');
+        const container = document.querySelector('.container');
+        const captureToggle = document.getElementById('captureToggle');
+        const colorToggle = document.getElementById('colorToggle');
+        const colorPanel = document.getElementById('colorPanel');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const capturePanel = document.getElementById('capturePanel');
+        const systemAudioOption = document.getElementById('systemAudioOption');
+        const microphoneOption = document.getElementById('microphoneOption');
+        const infoMessage = document.getElementById('infoMessage');
+        
+        // 音频上下文和可视化
+        let audioContext;
+        let analyser;
+        let dataArray;
+        let canvasCtx;
+        let animationId;
+        let microphoneSource;
+        let isCapturing = false;
+        let captureMode = null; // 'system' 或 'microphone'
+        
+        // 播放状态
+        let isPlaying = false;
+        let currentSongIndex = 0;
+        let isInterfaceVisible = true;
+        
+        // 可视化颜色
+        let visualizerColor = '#00b7ff';
+        
+        // 音乐库 - 初始为空
+        const musicLibrary = [];
+        
+        // 音频元素
+        const audio = new Audio();
+        audio.volume = 0.7;
+        
+        // 初始化播放器
+        function initPlayer() {
+            initVisualizer();
+        }
+        
+        // 初始化可视化
+        function initVisualizer() {
+            // 创建音频上下文
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256; // 减少FFT大小以提高性能
+                
+                const source = audioContext.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+                
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                
+                // 设置Canvas
+                canvasCtx = visualizer.getContext('2d');
+                resizeVisualizer();
+                
+                // 监听窗口大小变化
+                window.addEventListener('resize', resizeVisualizer);
+            } catch (error) {
+                console.error('初始化音频上下文失败:', error);
+            }
+        }
+        
+        // 调整可视化尺寸
+        function resizeVisualizer() {
+            visualizer.width = window.innerWidth;
+            visualizer.height = window.innerHeight;
+        }
+        
+        // 可视化函数 - 优化版全屏效果
+        function visualize() {
+            if (!isPlaying && !isCapturing) return;
+            
+            animationId = requestAnimationFrame(visualize);
+            
+            analyser.getByteFrequencyData(dataArray);
+            
+            canvasCtx.clearRect(0, 0, visualizer.width, visualizer.height);
+            
+            // 创建更平滑的渐变背景
+            const gradient = canvasCtx.createLinearGradient(0, 0, 0, visualizer.height);
+            gradient.addColorStop(0, 'rgba(10, 10, 50, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(5, 5, 25, 0.9)');
+            gradient.addColorStop(1, 'rgba(0, 0, 10, 1)');
+            canvasCtx.fillStyle = gradient;
+            canvasCtx.fillRect(0, 0, visualizer.width, visualizer.height);
+            
+            // 中心圆形可视化
+            const centerX = visualizer.width / 2;
+            const centerY = visualizer.height / 2;
+            const maxRadius = Math.min(visualizer.width, visualizer.height) * 0.3;
+            
+            // 绘制频谱条形图
+            const barCount = 64;
+            const barWidth = (visualizer.width / barCount) * 0.8;
+            const barSpacing = (visualizer.width / barCount) * 0.2;
+            
+            for (let i = 0; i < barCount; i++) {
+                const barIndex = Math.floor((i / barCount) * dataArray.length);
+                const amplitude = dataArray[barIndex];
+                const barHeight = (amplitude / 255) * visualizer.height * 0.6;
+                
+                const x = i * (barWidth + barSpacing);
+                const y = visualizer.height - barHeight;
+                
+                // 使用选择的颜色创建条形渐变
+                const hslColor = hexToHSL(visualizerColor);
+                const barGradient = canvasCtx.createLinearGradient(0, y, 0, visualizer.height);
+                barGradient.addColorStop(0, `hsl(${hslColor.h}, 100%, 60%)`);
+                barGradient.addColorStop(1, `hsl(${hslColor.h + 20}, 100%, 30%)`);
+                
+                canvasCtx.fillStyle = barGradient;
+                canvasCtx.fillRect(x, y, barWidth, barHeight);
+                
+                // 添加条形顶部高光
+                canvasCtx.fillStyle = `rgba(255, 255, 255, ${0.3 + amplitude / 510})`;
+                canvasCtx.fillRect(x, y, barWidth, 2);
+            }
+            
+            // 添加中心脉冲效果
+            const pulseSize = maxRadius * 0.05 + (dataArray[10] / 255) * maxRadius * 0.15;
+            canvasCtx.beginPath();
+            canvasCtx.arc(centerX, centerY, pulseSize, 0, 2 * Math.PI);
+            
+            const pulseGradient = canvasCtx.createRadialGradient(
+                centerX, centerY, 0,
+                centerX, centerY, pulseSize
+            );
+            pulseGradient.addColorStop(0, `${visualizerColor}cc`);
+            pulseGradient.addColorStop(1, `${visualizerColor}00`);
+            
+            canvasCtx.fillStyle = pulseGradient;
+            canvasCtx.fill();
+        }
+        
+        // 十六进制颜色转HSL
+        function hexToHSL(hex) {
+            // 移除#号
+            hex = hex.replace(/^#/, '');
+            
+            // 解析RGB值
+            let r, g, b;
+            if (hex.length === 3) {
+                r = parseInt(hex[0] + hex[0], 16);
+                g = parseInt(hex[1] + hex[1], 16);
+                b = parseInt(hex[2] + hex[2], 16);
+            } else {
+                r = parseInt(hex.substring(0, 2), 16);
+                g = parseInt(hex.substring(2, 4), 16);
+                b = parseInt(hex.substring(4, 6), 16);
+            }
+            
+            // 转换为0-1范围
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            // 计算HSL
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0; // 灰色
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                
+                h /= 6;
+            }
+            
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+        
+        // 播放/暂停按钮
+        playPauseBtn.addEventListener('click', togglePlay);
+        
+        // 上一首
+        prevBtn.addEventListener('click', () => {
+            if (musicLibrary.length === 0) return;
+            currentSongIndex = (currentSongIndex - 1 + musicLibrary.length) % musicLibrary.length;
+            loadSong(currentSongIndex);
+            if (isPlaying) audio.play();
+        });
+        
+        // 下一首
+        nextBtn.addEventListener('click', () => {
+            if (musicLibrary.length === 0) return;
+            currentSongIndex = (currentSongIndex + 1) % musicLibrary.length;
+            loadSong(currentSongIndex);
+            if (isPlaying) audio.play();
+        });
+        
+        // 切换播放状态
+        function togglePlay() {
+            if (musicLibrary.length === 0) {
+                showMessage('请先导入音频文件');
+                return;
+            }
+            
+            if (audioContext === undefined) {
+                initVisualizer();
+            }
+            
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                audio.play().then(() => {
+                    visualize();
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playPauseBtn.classList.add('playing');
+                }).catch(error => {
+                    console.error('播放失败:', error);
+                    isPlaying = false;
+                });
+            } else {
+                audio.pause();
+                cancelAnimationFrame(animationId);
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playPauseBtn.classList.remove('playing');
+            }
+        }
+        
+        // 加载歌曲
+        function loadSong(index) {
+            // 确保索引在有效范围内
+            if (index < 0 || index >= musicLibrary.length) {
+                index = 0;
+            }
+            
+            const song = musicLibrary[index];
+            audio.src = song.src;
+            songTitle.textContent = song.title;
+            artist.textContent = song.artist;
+            totalTimeEl.textContent = formatTime(song.duration);
+            
+            // 设置专辑封面
+            if (albumArt) {
+                albumArt.src = song.cover;
+                albumArt.onerror = function() {
+                    // 如果封面加载失败，使用默认图标
+                    this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z'/%3E%3C/svg%3E";
+                };
+            }
+            
+            progressBar.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+            currentSongIndex = index;
+            
+            if (isPlaying) {
+                audio.play();
+            }
+        }
+        
+        // 更新时间
+        function updateTime() {
+            const currentTime = audio.currentTime;
+            const duration = audio.duration;
+            
+            // 更新进度条
+            if (duration && !isNaN(duration)) {
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                // 更新时间显示
+                currentTimeEl.textContent = formatTime(currentTime);
+            }
+        }
+        
+        // 设置进度条
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            
+            if (duration && !isNaN(duration)) {
+                audio.currentTime = (clickX / width) * duration;
+            }
+        }
+        
+        // 格式化时间
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "0:00";
+            
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' + sec : sec}`;
+        }
+        
+        // 音量控制
+        volumeSlider.addEventListener('input', function() {
+            audio.volume = this.value;
+        });
+        
+        // 导入按钮点击事件
+        importToggle.addEventListener('click', function() {
+            fileInput.click();
+        });
+        
+        // 文件上传处理
+        fileInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (!files.length) return;
+            
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('audio/')) {
+                    showMessage('请选择音频文件');
+                    continue;
+                }
+                
+                const objectURL = URL.createObjectURL(file);
+                
+                // 添加到音乐库
+                musicLibrary.push({
+                    title: file.name.replace(/\.[^/.]+$/, ""),
+                    artist: "未知艺术家",
+                    duration: 0, // 实际时长将在元数据加载后更新
+                    src: objectURL,
+                    cover: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55c-2.21 0-4 1.79-4 4s1.79 4 4 4s4-1.79 4-4V7h4V3h-6z'/%3E%3C/svg%3E"
+                });
+                
+                // 尝试获取音频时长
+                const tempAudio = new Audio();
+                tempAudio.src = objectURL;
+                tempAudio.addEventListener('loadedmetadata', function() {
+                    const index = musicLibrary.findIndex(song => song.src === objectURL);
+                    if (index !== -1) {
+                        musicLibrary[index].duration = tempAudio.duration;
+                        
+                        // 如果是第一首歌曲，自动加载
+                        if (musicLibrary.length === 1) {
+                            loadSong(0);
+                        }
+                    }
+                });
+            }
+            
+            // 重置文件输入
+            this.value = '';
+        });
+        
+        // 切换界面显示
+        interfaceToggle.addEventListener('click', function() {
+            isInterfaceVisible = !isInterfaceVisible;
+            
+            if (isInterfaceVisible) {
+                container.classList.remove('interface-hidden');
+                importToggle.style.display = 'flex';
+                captureToggle.style.display = 'flex';
+                colorToggle.style.display = 'flex';
+                this.innerHTML = '<i class="fas fa-eye"></i>';
+                this.classList.remove('hidden');
+            } else {
+                container.classList.add('interface-hidden');
+                importToggle.style.display = 'none';
+                captureToggle.style.display = 'none';
+                colorToggle.style.display = 'none';
+                colorPanel.classList.remove('active');
+                capturePanel.classList.remove('active');
+                this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                this.classList.add('hidden');
+            }
+        });
+        
+        // 音频捕获功能
+        captureToggle.addEventListener('click', function() {
+            capturePanel.classList.toggle('active');
+            // 关闭颜色面板
+            colorPanel.classList.remove('active');
+        });
+        
+        // 系统音频捕获
+        systemAudioOption.addEventListener('click', async function() {
+            if (isCapturing && captureMode === 'system') {
+                stopCapture();
+            } else {
+                try {
+                    // 停止其他捕获
+                    if (isCapturing) stopCapture();
+                    
+                    // 开始系统音频捕获
+                    await startSystemCapture();
+                } catch (error) {
+                    console.error('系统音频捕获失败:', error);
+                    showMessage('系统音频捕获需要用户交互后启动，请先点击播放按钮');
+                }
+            }
+        });
+        
+        // 麦克风捕获
+        microphoneOption.addEventListener('click', async function() {
+            if (isCapturing && captureMode === 'microphone') {
+                stopCapture();
+            } else {
+                try {
+                    // 停止其他捕获
+                    if (isCapturing) stopCapture();
+                    
+                    // 开始麦克风捕获
+                    await startMicrophoneCapture();
+                } catch (error) {
+                    console.error('无法访问麦克风:', error);
+                    showMessage('无法访问麦克风，请确保已授予权限');
+                }
+            }
+        });
+        
+        // 开始系统音频捕获
+        async function startSystemCapture() {
+            // 如果音频上下文未初始化，先初始化
+            if (!audioContext) {
+                initVisualizer();
+            }
+            
+            // 系统音频捕获实际上是通过播放音频来实现的
+            // 这里我们提示用户播放音频来触发系统音频捕获
+            if (!isPlaying && musicLibrary.length > 0) {
+                showMessage('请先播放音频以捕获系统音频');
+                return;
+            }
+            
+            // 更新状态
+            isCapturing = true;
+            captureMode = 'system';
+            captureToggle.classList.add('active');
+            captureToggle.innerHTML = '<i class="fas fa-desktop"></i>';
+            systemAudioOption.classList.add('active');
+            microphoneOption.classList.remove('active');
+            
+            // 关闭捕获面板
+            capturePanel.classList.remove('active');
+            
+            // 开始可视化
+            visualize();
+            
+            showMessage('系统音频捕获已开启');
+        }
+        
+        // 开始麦克风捕获
+        async function startMicrophoneCapture() {
+            // 如果音频上下文未初始化，先初始化
+            if (!audioContext) {
+                initVisualizer();
+            }
+            
+            // 请求麦克风权限
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            
+            // 创建麦克风源
+            microphoneSource = audioContext.createMediaStreamSource(stream);
+            
+            // 连接到分析器
+            microphoneSource.connect(analyser);
+            
+            // 更新状态
+            isCapturing = true;
+            captureMode = 'microphone';
+            captureToggle.classList.add('active');
+            captureToggle.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+            microphoneOption.classList.add('active');
+            systemAudioOption.classList.remove('active');
+            
+            // 关闭捕获面板
+            capturePanel.classList.remove('active');
+            
+            // 开始可视化
+            visualize();
+            
+            showMessage('麦克风捕获已开启');
+        }
+        
+        // 停止音频捕获
+        function stopCapture() {
+            if (captureMode === 'microphone' && microphoneSource) {
+                // 断开麦克风连接
+                microphoneSource.disconnect();
+                microphoneSource = null;
+            }
+            
+            // 更新状态
+            isCapturing = false;
+            captureMode = null;
+            captureToggle.classList.remove('active');
+            captureToggle.innerHTML = '<i class="fas fa-microphone"></i>';
+            systemAudioOption.classList.remove('active');
+            microphoneOption.classList.remove('active');
+            
+            // 停止可视化
+            if (!isPlaying) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            showMessage('音频捕获已停止');
+        }
+        
+        // 颜色选择功能
+        colorToggle.addEventListener('click', function() {
+            colorPanel.classList.toggle('active');
+            // 关闭捕获面板
+            capturePanel.classList.remove('active');
+        });
+        
+        // 颜色选项点击事件
+        colorOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // 移除所有激活状态
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // 设置当前选项为激活状态
+                this.classList.add('active');
+                
+                // 更新颜色
+                visualizerColor = this.getAttribute('data-color');
+                
+                // 关闭颜色面板
+                colorPanel.classList.remove('active');
+            });
+        });
+        
+        // 显示消息提示
+        function showMessage(message) {
+            infoMessage.textContent = message;
+            infoMessage.style.display = 'block';
+            
+            setTimeout(() => {
+                infoMessage.style.display = 'none';
+            }, 3000);
+        }
+        
+        // 事件监听
+        audio.addEventListener('timeupdate', updateTime);
+        audio.addEventListener('ended', () => {
+            if (musicLibrary.length === 0) return;
+            currentSongIndex = (currentSongIndex + 1) % musicLibrary.length;
+            loadSong(currentSongIndex);
+            if (isPlaying) {
+                audio.play();
+            }
+        });
+        audio.addEventListener('error', (e) => {
+            console.error('音频加载错误:', e);
+            // 尝试播放下一首
+            if (musicLibrary.length > 0) {
+                setTimeout(() => {
+                    currentSongIndex = (currentSongIndex + 1) % musicLibrary.length;
+                    loadSong(currentSongIndex);
+                    if (isPlaying) {
+                        audio.play();
+                    }
+                }, 1000);
+            }
+        });
+        progressContainer.addEventListener('click', setProgress);
+        
+        // 初始化播放器
+        initPlayer();
+    </script>
+</body>
+</html>
