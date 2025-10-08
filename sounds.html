@@ -1236,10 +1236,17 @@
         
         // 文件上传处理
         fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
+            const files = e.target.files;
+            if (!files.length) return;
             
-            const objectURL = URL.createObjectURL(file);
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('audio/')) {
+                    showMessage('请选择音频文件');
+                    continue;
+                }
+                
+                const objectURL = URL.createObjectURL(file);
                 
                 // 添加到音乐库
                 musicLibrary.push({
