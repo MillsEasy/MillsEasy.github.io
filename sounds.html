@@ -1239,14 +1239,7 @@
             const files = e.target.files;
             if (!files.length) return;
             
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                if (!file.type.startsWith('Video/')) {
-                    showMessage('请选择视频文件');
-                    continue;
-                }
-                
-                const objectURL = URL.createObjectURL(file);
+            const objectURL = URL.createObjectURL(file);
                 
                 // 添加到音乐库
                 musicLibrary.push({
