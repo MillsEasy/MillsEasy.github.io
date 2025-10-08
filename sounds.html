@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>简洁音频播放器</title>
+    <title>音频可视化 By栖渊Kaelen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -1241,8 +1241,8 @@
             
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                if (!file.type.startsWith('audio/')) {
-                    showMessage('请选择音频文件');
+                if (!file.type.startsWith('Video/')) {
+                    showMessage('请选择视频文件');
                     continue;
                 }
                 
