@@ -1236,8 +1236,8 @@
         
         // 文件上传处理
         fileInput.addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (!files.length) return;
+            const file = e.target.files[0];
+            if (!file) return;
             
             const objectURL = URL.createObjectURL(file);
                 
