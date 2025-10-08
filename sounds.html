@@ -689,7 +689,7 @@
     <div class="container">
         <header>
             <h1>音频可视化 By栖渊Kaelen</h1>
-            <p class="subtitle">导入视频以开始播放可视化</p>
+            <p class="subtitle">导入视频以开始播放可视化（版本V1.2）</p>
         </header>
         
         <div class="main-content">
@@ -1241,7 +1241,7 @@
             
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                if (!file.type.startsWith('audio/')) {
+                if (!file.type.startsWith('video/')) {
                     showMessage('请选择音频文件');
                     continue;
                 }
