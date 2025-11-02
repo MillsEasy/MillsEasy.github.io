@@ -1,831 +1,252 @@
 <!DOCTYPE html>
-<html lang="zxx">
-  <head> 
+<html lang="zh-CN">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> 枫星MapleStar   |   首页</title>
-        <style>
-        .notice-bar {
-            background-color: #ffeb3b;
-            color: #333;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            border-bottom: 1px solid #ccc;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-
-        /* 基础重置 - 确保不影响全局样式 */
-        #mnt-modal-container * {
+    <title>枫星MapleStar | 主页</title>
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* 弹窗容器 - 独立作用域 */
-        #mnt-modal-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 36px;
-            line-height: 1.5;
+            padding: 20px;
         }
         
-        /* 遮罩层 */
-        .mnt-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .container {
+            max-width: 800px;
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 1;
-            animation: mnt-fadeIn 0.5s ease-out;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
         
-        /* 弹窗主体 */
-        .mnt-modal {
-            position: relative;
-            background: #fff;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 500px;
-            padding: 50px;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-            animation: mnt-slideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fdbb2d, #b21f1f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+        
+        .countdown-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 100px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            background-color: #fdbb2d;
+            transform: translateY(-5px);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin: 30px 0;
             overflow: hidden;
         }
         
-        /* 顶部装饰条 */
-        .mnt-modal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #ff6b6b, #ff9e7d, #ffca7b);
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2a6c, #fdbb2d);
+            width: 75%;
+            border-radius: 3px;
+            animation: progress-animation 2s infinite;
         }
         
-        /* 关闭按钮 */
-        .mnt-close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #7f8c8d;
-            transition: all 0.3s ease;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
+        @keyframes progress-animation {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(400%); }
         }
         
-        .mnt-close-btn:hover {
-            color: #e74c3c;
-            transform: rotate(90deg);
-            background: rgba(231, 76, 60, 0.1);
-        }
-        
-        
-        /* 标题样式 */
-        .mnt-modal-title {
-            color: #e74c3c;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-            font-weight: 700;
-        }
-        
-        /* 内容样式 */
-        .mnt-modal-content {
-            color: #555;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .mnt-modal-content p {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        
-        /* 按钮样式 */
-        .mnt-continue-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(to right, #3498db, #2c3e50);
-            color: white;
-            border: none;
-            padding: 16px;
-            font-size: 24px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-            text-align: center;
-            text-decoration: none;
-        }
-        
-        .mnt-continue-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.4);
-        }
-        
-        /* 动画效果 */
-        @keyframes mnt-fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes mnt-slideIn {
-            from { 
-                transform: translateY(50px);
-                opacity: 0; 
-            }
-            to { 
-                transform: translateY(0);
-                opacity: 1; 
-            }
-        }
-        
-        /* 响应式调整 */
         @media (max-width: 600px) {
-            .mnt-modal {
-                padding: 30px 20px;
+            .container {
+                padding: 20px;
             }
             
-            .mnt-modal-icon i {
-                font-size: 48px;
-                width: 80px;
-                height: 80px;
+            h1 {
+                font-size: 2rem;
             }
             
-            .mnt-modal-title {
-                font-size: 24px;
+            .countdown {
+                flex-wrap: wrap;
             }
             
-            .mnt-modal-content p {
-                font-size: 16px;
+            .countdown-item {
+                min-width: 80px;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
             }
         }
-		</style>
-		
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <!-- fav icon -->
-        <link rel="icon" href="assets/images/fav-icon/fav-icon.png">
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🚧</div>
+        <h1>网站维护中</h1>
+        <p>我们正在对网站进行升级维护，以提供更好的用户体验。给您带来的不便，敬请谅解。</p>
         
-        <!-- bootstarp -->
-        <link rel="stylesheet" href="css/vendors/bootstrap.min.css">
-        
-        <!-- Fancybox -->
-        <link rel="stylesheet" href="css/vendors/jquery.fancybox.min.css">
-        
-        <!-- animate.css file -->
-        <link rel="stylesheet" href="css/vendors/animate.css">
-        
-        <!-- Swiper -->
-        <link rel="stylesheet" href="css/vendors/swiper-bundle.min.css">
-        
-        <!-- Splitting -->
-        <link rel="stylesheet" href="css/vendors/splitting.css">
-        
-        <!-- Splitting-cells -->
-        <link rel="stylesheet" href="css/vendors/splitting-cells.css">
-        
-        <!-- flaticon -->
-        <link rel="stylesheet" href="css/vendors/flaticon/font//flaticon.css">
-        
-        <!-- fontAwesome -->
-        <link rel="stylesheet" href="css/vendors/all.min.css">
-        
-        <!-- bootstrap icons -->
-        <link rel="stylesheet" href="css/vendors/bootstrap-icons-1.5.0/bootstrap-icons.css">
-        
-        <!-- Font Family -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700;800;900&amp;display=swap">
-        
-        <!-- main-LTR -->
-        <link rel="stylesheet" href="css/main-LTR.css">
-		
-		<!-- Notes -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		
-  </head>
-  <body class="   rounded-btns ">
-    <!--Start Page Header-->
-    <header class="header-2 " id="page-header">
-      <div class="header-search-box">
-        <div class="close-search"></div>
-        <form class="nav-search search-form" role="search" method="get" action="#">
-          <div class="search-wrapper"> 
-            <label class="search-lbl">搜索：</label>
-            <input class="search-input" type="search" placeholder="搜索：" name="searchInput" autofocus="autofocus"/>
-            <button class="search-btn" type="submit"><i class="bi bi-search icon"></i></button>
-          </div>
-        </form>
-      </div>
-      <!--== top bar-->
-      <!--== bottom bar-->
-      <div class="bar-bottom">
-        <div class="container">
-          <nav class="menu-navbar">
-            <div class="header-logo"><a class="logo-link" href="index.html"><img class="logo-img light-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/><img class="logo-img  dark-logo" loading="lazy" src="assets/images/logo/logo-dark.png" alt="logo"/></a></div>
-            <div class="links menu-wrapper ">
-              <ul class="list-js links-list">
-                <li class="menu-item has-sub-menu"><a class="menu-link   active" href="index.html">首页<class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-                </li>
-                <li class="menu-item has-sub-menu"><a class="menu-link  " href="faq.html">FAQ<class="bi bi-chevron-down down-Arrow-icon"> </i></a>			
-                </li>
-				<li class="menu-item has-sub-menu"><a class="menu-link  " href="blogindex.html">博客<class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-                </li>
-                <li class="menu-item has-sub-menu"><a class="menu-link  " href="#0">其他功能<i class="bi bi-chevron-down down-Arrow-icon"> </i></a>
-                  <ul class="sub-menu ">
-                    <li class="menu-item sub-menu-item"><a class="menu-link sub-menu-link  " href="/join/">中转区</a></li>
-                  </ul>
-                </li>
-                <li class="menu-item"><a class="menu-link  " href="/games/index.html">游戏</a></li>
-              </ul>
+        <div class="countdown-container">
+            <div class="countdown-title">预计恢复时间</div>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">天</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">小时</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">分钟</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">秒</div>
+                </div>
             </div>
-            <div class="controls-box">
-              <div class="control header-search-btn"><i class="bi bi-search icon"></i></div>
-              <div class="control  info-toggler"><span> </span><span> </span><span></span></div>
-              <div class="control  menu-toggler"><span></span><span></span><span></span></div>
-            </div>
-          </nav>
+			<div class="progress-bar">
+            <div class="progress"></div>
         </div>
-      </div>
-	  <div class="notice-bar">提示：本网站将于2025年11月1日~11月8日进行系统维护</div>
-    </header>
-    <!--End Page Header-->
-    <!-- Start  Page-->
-	<div id="mnt-modal-container">
-        <div class="mnt-modal-overlay"></div>
-        <div class="mnt-modal">
-            <span class="mnt-close-btn"></span>
-            <h2 class="mnt-modal-title">网站维护公告</h2>
-            <div class="mnt-modal-content">
-                <p>尊敬的访客：</p>
-                <p>本网站将于2025年11月1日~11月8日进行系统维护，在此期间可能无法使用网站的所有功能，给您带来不便</p>
-            </div>
-            <button class="mnt-continue-btn"> 了解（继续访问） </button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const container = document.getElementById('mnt-modal-container');
-            const closeBtn = container.querySelector('.mnt-close-btn');
-            const continueBtn = container.querySelector('.mnt-continue-btn');
-            const overlay = container.querySelector('.mnt-modal-overlay');
+        // 设置维护结束日期和时间
+        const countdownDate = new Date("2025-11-15T23:59:59").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
             
-            // 检查是否已经关闭过弹窗
-
-            // 关闭弹窗功能
-            function closeModal() {
-                // 添加消失动画
-                container.style.opacity = '0';
-                container.style.pointerEvents = 'none';
-                
-                // 设置动画结束后隐藏
-                setTimeout(() => {
-                    container.style.display = 'none';
-                }, 500);
-                
-                // 记住用户关闭状态
-                localStorage.setItem('mntModalClosed', 'true');
+            // 计算天、小时、分钟和秒
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // 更新显示
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            // 如果倒计时结束
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector(".countdown-container").innerHTML = "<div class='countdown-title'>网站已恢复！</div>";
             }
-            
-            // 事件监听
-            closeBtn.addEventListener('click', closeModal);
-            continueBtn.addEventListener('click', closeModal);
-            
-            // 点击遮罩层也可以关闭
-            overlay.addEventListener('click', closeModal);
-        });
+        }
+        
+        // 立即执行一次，然后每秒更新
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
     </script>
-	
-    <section class="page-hero hero-swiper-slider slider-fade  d-flex align-items-center" id="page-hero">
-      <!--Start  Swiper JS slider-->
-      <div class="slider swiper-container">
-        <div class="swiper-wrapper ">
-          <!--first slider-->
-          <div class="swiper-slide"> 
-            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-4.jpg">
-              <div class="overlay-color"></div>
-            </div>
-            <div class="container"> 
-              <div class="hero-text-area   ">
-                <div class="row">
-                  <div class="col-12   col-lg-10   ">
-                    <div class="pre-title">
-					欢迎             </div>
-                  </div>
-                  <div class="col-12 col-sm-8  col-lg-10   ">
-                    <h1 class="slide-title  " data-splitting="chars"><span class="first-word hollow-text"> 枫星 </span> 是一个小型静态网站，欢迎你的 <span class="featured-text"> 到来！ </span></h1>
-                  </div>
-                  <div class="col-10 col-sm-8  col-lg-6   ">
-                    <p class="slide-subtitle ">
-                      本网站由栖渊制作，最初开站于2024年11月份，是一个小型静态网站，提供各种有趣的知识
-                      
-                    </p>
-                  </div>
-                  <div class="col-12   ">
-                    <div class="cta-links-area"><a class=" btn-solid cta-link cta-link-primary  " href="/join/">前往社交中转区【新】</a><a class=" btn-outline cta-link  " href="/old/">前往旧版首页</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--second slider-->
-          <div class="swiper-slide"> 
-            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-5.jpg">
-              <div class="overlay-color"></div>
-            </div>
-            <div class="container">
-              <div class="hero-text-area   ">
-                <div class="row">
-                  <div class="col-12   col-lg-10   ">
-                    <div class="pre-title">欢迎             </div>
-                  </div>
-                  <div class="col-12  col-sm-8 col-lg-10   ">
-                    <h1 class="slide-title  " data-splitting="chars"><span class="first-word hollow-text"> 新的 </span> 游戏板块 <span class="featured-text"> 功能上架？ </span></h1>
-                  </div>
-                  <div class="col-10 col-sm-8  col-lg-6   ">
-                    <p class="slide-subtitle ">
-                      前往以了解更多！ 
-                      
-                    </p>
-                  </div>
-                  <div class="col-12   ">
-                    <div class="cta-links-area "><a class=" btn-solid cta-link  cta-link-primary  " href="/games/">前往游戏导航</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--third slider-->
-          <div class="swiper-slide"> 
-            <div class="slide-bg-img" data-bg-img="assets/images/hero/hero-bg-1.jpg">
-              <div class="overlay-color"></div>
-            </div>
-            <div class="container">
-              <div class="hero-text-area   ">
-                <div class="row">
-                  <div class="col-12   col-lg-10  ">
-                    <div class="pre-title">更新内容             </div>
-                  </div>
-                  <div class="col-12  col-sm-8  col-lg-10  ">
-                    <h1 class="slide-title  " data-splitting="chars"><span class="first-word hollow-text"> 2025/09/06 </span> 再次更新了 <span class="featured-text"> 新的功能！ </span></h1>
-                  </div>
-                  <div class="col-10 col-sm-8  col-lg-6   ">
-                    <p class="slide-subtitle ">
-                      前往博客以了解更多！当然你也可以去作者的B站哦
-                      
-                    </p>
-                  </div>
-                  <div class="col-12   ">                        
-                    <div class="cta-links-area"><a class=" btn-solid cta-link cta-link-primary " href="blogindex.html">前往博客</a><a class=" btn-outline cta-link  " href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0" target="_blank">前往作者的B站</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="slides-state v-align  ">
-          <div class="slide-num curent-slide  "></div>
-          <!--Add Pagination-->
-          <div class="swiper-pagination"></div>
-          <div class="slide-num slides-count  "></div>
-        </div>
-      </div>
-    </section>
-    <!-- End  Page hero-->
-	<!-- Start RP Section-->
-	<div id="rp-checker-container" style="position:relative">
-	<style>
-		#rp-checker-container {
-			--rp-text-color: #333;
-			--rp-bg-color: #fff;
-			--rp-close-bg: rgba(255,255,255,0.8);
-		}
-
-		@media (prefers-color-scheme: dark) {
-			#rp-checker-container {
-				--rp-text-color: #eee;
-				--rp-bg-color: #2d2d2d;
-				--rp-close-bg: rgba(45,45,45,0.8);
-			}
-		}
-
-		/* 基础样式 */
-		#rp-checker-container .rp-close-btn {
-			position: absolute;
-			right: 20px;
-			top: 15px;
-			cursor: pointer;
-			font-size: 24px;
-			color: var(--rp-text-color);
-			transition: all .3s;
-			z-index: 1000;
-			line-height: 1;
-			background: var(--rp-close-bg);
-			padding: 0 8px;
-			border-radius: 50%;
-			border: 1px solid rgba(0,0,0,0.1);
-		}
-	
-		#rp-checker-container .rp-close-btn:hover {
-			color: #e74c3c;
-			background: var(--rp-bg-color);
-			border-color: rgba(0,0,0,0.2);
-		}
-
-		#rp-checker-container .container {
-			text-align: center;
-			padding: 30px;
-			background: var(--rp-bg-color);
-			border-radius: 15px;
-			box-shadow: 0 10px 30px rgba(0,0,0,.1);
-			color: var(--rp-text-color);
-			position: relative;
-			overflow: hidden;
-		}
-	
-		#rp-checker-container h1 {
-			margin-bottom: 30px;
-			color: inherit;
-		}
-
-		#rp-checker-container h2,
-		#rp-checker-container h5,
-		#rp-checker-container h7 {
-			color: inherit;
-			margin: 15px 0;
-		}
-
-		#rp-checker-container #rpValue {
-			font-size: 80px;
-			font-weight: 700;
-			text-shadow: 2px 2px 4px rgba(0,0,0,.2);
-			margin: 20px 0;
-			transition: all .5s;
-		}
-
-		#rp-checker-container button {
-			padding: 15px 40px;
-			font-size: 20px;
-			background: linear-gradient(45deg, #3498db, #2980b9);
-			color: #fff;
-			border: 0;
-			border-radius: 25px;
-			cursor: pointer;
-			transition: transform .5s;
-			margin-top: 20px;
-		}
-
-		#rp-checker-container button:hover {
-			transform: scale(1.05);
-			box-shadow: 0 5px 15px rgba(52,152,219,.4);
-		}
-
-		#rp-checker-container .progress-bar {
-			width: 300px;
-			height: 20px;
-			background: rgba(0,0,0,0.1);
-			border-radius: 10px;
-			margin: 20px auto;
-			overflow: hidden;
-		}
-
-		#rp-checker-container .progress {
-			width: 0%;
-			height: 100%;
-			transition: width 1s ease-in-out;
-		}
-	</style>
-
-	<div class="rp-close-btn" title="关闭">关闭 ×</div>
-	<div class="container">
-		<h1></h1>
-		<h2>🔮人品检测器测试版（仅供娱乐）</h2>
-		<h5>（注：在之后的版本本功能可能不会保留，也可能保留，请勿过分依赖本功能！）</h5>
-		<h7>【关闭后无法恢复，请刷新网站以重新使用】</h7>
-		<div id="rpValue">--</div>
-		<div class="progress-bar">
-			<div class="progress" id="progress"></div>
-		</div>
-		<button>——点击检测人品😊——</button>
-	</div>
-
-	<script>
-	(function(){
-		const container = document.querySelector("#rp-checker-container");
-		const closeBtn = container.querySelector(".rp-close-btn");
-    
-		// 关闭功能
-		closeBtn.addEventListener("click", function(){
-			container.style.opacity = "0";
-			setTimeout(() => {
-				container.style.display = "none";
-			}, 300);
-		});
-
-		// 人品检测功能
-		function generateRP() {
-			const finalValue = Math.floor(Math.random() * 101);
-			const rpValue = container.querySelector("#rpValue");
-			const progress = container.querySelector("#progress");
-        
-			let current = 0;
-			const animate = setInterval(() => {
-				current++;
-				rpValue.textContent = current;
-				progress.style.width = current + "%";
-            
-				// 动态颜色
-				const color = current <= 30 ? "#e74c3c" :
-							current <= 60 ? "#f1c40f" : 
-							"#2ecc71";
-            
-				rpValue.style.color = color;
-				progress.style.background = `linear-gradient(90deg, ${color}, ${color})`;
-            
-				if(current >= finalValue) {
-					clearInterval(animate);
-					showResult(finalValue);
-				}
-			}, 20);
-		}
-	
-		function showResult(value) {
-			const results = [
-				{ min: 0, max: 20, text: "建议重新投胎（悲） 🚑", emoji: "💀" },
-				{ min: 21, max: 40, text: "今天不宜出门 🫠", emoji: "😭" },
-				{ min: 41, max: 60, text: "普通水平 😐", emoji: "😐" },
-				{ min: 61, max: 80, text: "人品不错 😊", emoji: "👍" },
-				{ min: 81, max: 100, text: "天选之人！ 🎉", emoji: "🎉" }
-			];
-			
-			const result = results.find(r => value >= r.min && value <= r.max);
-			rpValue.innerHTML = `${value}<div style="font-size:20px;margin-top:10px">${result.emoji} ${result.text}</div>`;
-		}
-
-		container.querySelector("button").addEventListener("click", generateRP);
-	})();
-	</script>
-	</div>
-	<!-- End RP Section-->
-    <!-- Start  services Section-->
-    <section class="services-boxed services-off-grid mega-section  " id="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-4 align-self-center">
-            <div class="sec-heading  light-title mb-4 ">
-              <div class="content-area"><span class=" pre-title       wow fadeInUp " data-wow-delay=".2s">关于本网站的信息</span>
-                <h2 class=" title    wow fadeInUp" data-wow-delay=".4s">你知道吗？</h2>
-              </div>
-            </div>
-            <!--Start .see-more-area-->
-            <div class=" see-more-area d-none d-lg-flex justify-content-start wow fadeInUp " data-wow-delay="0.5s"><a class=" btn-solid " href="blogindex.html">前往博客以了解更多</a></div>
-            <!--End Of .see-more-area                    -->
-          </div>
-          <div class="col-12 col-lg-8">
-            <div Class="row ">
-              <div class="col-12 col-md-6 mt-md-5">
-                <div class="row gx-4 gy-4 services-row ">
-                  <div class="col-12 mx-auto  ">
-                    <!--Start First service box-->
-                    <div class="service-box  wow fadeInUp featured" data-wow-offset="0" data-wow-delay=".2s" data-tilt="data-tilt">  
-                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">1    </span>
-                      <div class="service-content">
-                        <h3 class="service-title">                      这个网站的域名为什么和网站名字不一样？ </h3>
-                        <p class="service-text">
-                          因为网站进行过改版！
-                        </p>
-                      </div><a class="read-more" href="faq.html">前往FAQ以了解更多<i class="bi bi-arrow-right icon "> </i></a>
-                    </div>
-                    <!-- End First service box-->
-                  </div>
-                  <div class="col-12   mx-auto ">
-                    <!--Start Second service box-->
-                    <div class="service-box  wow fadeInUp " data-wow-offset="0" data-wow-delay=".6s" data-tilt="data-tilt">  
-                      <div class="service-icon"><i class="flaticon-house-cleaning font-icon"></i></div><span class="service-num hollow-text">2    </span>
-                      <div class="service-content">
-                        <h3 class="service-title">提示：</h3>
-                        <p class="service-text">
-                          网站作者是一名学生，所以网站功能可能有非常多的缺失，如果你想要催更，请访问作者的B站
-                        </p>
-                      </div><a class="read-more" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0"  target="_blank">前往作者的B站<i class="bi bi-arrow-right icon "> </i></a>
-                    </div>
-                    <!-- End Second service box-->
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-6">
-                <div class="row gx-4 gy-4 services-row"> 
-                  <div class="col-12   mx-auto ">
-                    <!--Start Third service box-->
-                    <div class="service-box  wow fadeInUp " data-wow-offset="0" data-wow-delay=".4s" data-tilt="data-tilt">  
-                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">3    </span>
-                      <div class="service-content">
-                        <h3 class="service-title">全新的功能</h3>
-                        <p class="service-text">
-                          添加了中转微信群和QQ群的功能，让大家更好的进行交流！
-                        </p>
-                      </div><a class="read-more" href="/join/">前往以了解更多<i class="bi bi-arrow-right icon "> </i></a>
-                    </div>
-                    <!-- End Third service box-->
-                  </div>
-                  <div class="col-12   mx-auto ">
-                    <!--Start fourth service box-->
-                    <div class="service-box  wow fadeInUp " data-wow-offset="0" data-wow-delay=".2s" data-tilt="data-tilt">  
-                      <div class="service-icon"><i class=""></i></div><span class="service-num hollow-text">4    </span>
-                      <div class="service-content">
-                        <h3 class="service-title">想要和站长进行交流？</h3>
-                        <p class="service-text">
-                          前往B站私信作者，作者将会把微信号提供给你，如果有意见或其他问题都请这样做
-                        </p>
-                      </div><a class="read-more" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0"  target="_blank">前往作者的B站<i class="bi bi-arrow-right icon "> </i></a>
-                    </div>
-                    <!-- End fourth service box -->
-                  </div>
-                </div>
-                <!--Start .see-more-area-->
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--End Of .see-more-area -->
-      </div>
-    </section>
-    <!-- End  services Section-->
-	
-    <!-- Start  blog Section-->
-    <section class="blog blog-home mega-section  " id="blog">
-      <div class="container ">
-        <div class="sec-heading  ">
-          <div class="content-area"><span class=" pre-title       wow fadeInUp " data-wow-delay=".2s">博客|Blogs</span>
-            <h2 class=" title    wow fadeInUp" data-wow-delay=".4s">最新 <span class='hollow-text'>发布</span></h2>
-          </div>
-          <div class=" cta-area  cta-area  wow fadeInUp" data-wow-delay=".8s"><a class="cta-btn btn-solid   cta-btn btn-solid  " href="blog-home.html">查看所有博客<i class="bi bi-arrow-right icon "></i></a></div>
-        </div>
-        <div class="row ">
-          <div class="col-12 "> 
-            <div class="posts-grid ">
-              <div class="row">
-                <div class="col-12 col-lg-4 ">
-                  <div class="post-box">     <a class="post-link" href="blogindex.html"> 
-                      <div class="post-img-wrapper  ">
-                        <div class="overlay-color"></div><img class=" parallax-img   post-img" loading="lazy" src="assets/images/blog/post-images/update.gif" alt=""/>
-                      </div></a>
-                    <div class="post-summary">
-                      <h4 class="post-date"><span class="day">19 </span>Apr, 2025      </h4>
-                      <div class="post-info"><a class="info post-cat" href="#"> <i class="bi bi-bookmark icon"></i>#</a><a class="info post-author" href="#"> <i class=" bi bi-person icon"></i>本站管理员</a></div>
-                      <div class="post-text"><a class="post-link" href="blogindex.html"> 
-                          <h2 class="post-title"> 网站更新历史</h2></a>
-                        <p class="post-excerpt">网站曾经有过早期1.0版？阅读博客以了解更多</p><a class="read-more" href="blogindex.html">前往博客<i class="bi bi-arrow-right icon "></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-				<div class="col-12 col-lg-4 ">         
-                  <div class="post-box"></div>
-                  <div class="post-box">     <a class="post-link" href="blog-LockA.html"> 
-                      <div class="post-img-wrapper  ">
-                        <div class="overlay-color"></div><img class=" parallax-img   post-img" loading="lazy" src="assets/images/blog/post-images/2.jpg" alt=""/>
-                      </div></a>
-                    <div class="post-summary">
-                      <h4 class="post-date"><span class="day">19 </span>Apr, 2025      </h4>
-                      <div class="post-info"><a class="info post-cat" href="#"> <i class="bi bi-bookmark icon"></i>#</a><a class="info post-author" href="#"> <i class=" bi bi-person icon"></i>本站管理员</a></div>
-                      <div class="post-text"><a class="post-link" href="blogindex.html"> 
-                          <h2 class="post-title"> 这里什么也莫有</h2></a>
-                        <p class="post-excerpt">#</p><a class="read-more" href="404.html">不要点击<i class="bi bi-arrow-right icon "></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End  blog Section-->
-    <!-- Start  take-action Section-->
-    <section class="take-action mega-section has-dark-bg" id="take-action">
-      <div class="overlay-photo-image-bg parallax " data-bg-img="assets/images/sections-bg-images/take-action.jpg" data-bg-opacity="1"> </div>
-      <div class="overlay-color "></div>
-      <div class="cta-wrapper">
-        <div class="container">
-          <div class="sec-heading  centered ">
-            <div class="content-area"><span class=" pre-title       wow fadeInUp " data-wow-delay=".2s">想要和站长进行交流？</span>
-              <h2 class=" title    wow fadeInUp" data-wow-delay=".4s">去B站   <span class='hollow-text'>找</span> 站长</h2>
-              <p class="subtitle   wow fadeInUp " data-wow-delay=".6s">前往B站私信作者，作者将会把微信号提供给你，如果有意见或其他问题都请这样做</p>
-            </div>
-          </div>
-          <!--Start .see-more-area-->
-          <div class=" see-more-area wow fadeInUp" data-wow-delay="0.8s"><a class=" btn-solid cta-link" href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0"  target="_blank">前往作者的B站</a></div>
-          <!--End Of .see-more-area        -->
-        </div>
-      </div>
-    </section>
-    <!-- End  take-action Section-->
-    <!-- Start  page-footer Section-->
-    <footer class="page-footer dark-color-footer" id="page-footer">
-      <div class="overlay-photo-image-bg" data-bg-img="assets/images/sections-bg-images/pattern-bg.jpg" data-bg-opacity=".075"></div>
-      <div class="container">
-        <div class="row footer-cols">
-          <div class="col-12 col-md-8 col-lg-4  footer-col wow fadeInUp " data-wow-delay="0.1s"><img class="img-fluid footer-logo" loading="lazy" src="assets/images/logo/logo-light.png" alt="logo"/>
-            <div class="footer-col-content-wrapper">        
-              <p class="footer-text-about-us ">
-                 栖渊版权所有，未经允许禁止以任何形式盗取本网站的源代码！
-              </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="copyrights ">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <p class="creadits">&copy; 2025 栖渊版权所有，未经允许禁止以任何形式盗取本网站的源代码！
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- End  page-footer Section-->
-    <!-- Start loading-screen Component-->
-    <div class="loading-screen" id="loading-screen"><span class="bar top-bar"></span><span class="bar down-bar"></span><span class="progress-line"></span><span class="loading-counter"> 加载中... </span></div>
-    <!-- End loading-screen Component-->
-    <!-- Start back-to-top Component-->
-    <div class="back-to-top" id="back-to-top"><i class="bi bi-arrow-up icon "></i>
-    </div>
-    <!-- End back-to-top Component-->
-    <!-- Start back-to-top Component-->
-    <div class="mode-switcher ">
-      <div class="switch-inner go-light " title="切换为白色模式 "><i class="bi bi-sun-fill icon "></i></div>
-      <div class="switch-inner go-dark" title="切换为黑色模式 "><i class="bi bi-moon-stars icon "></i></div>
-    </div>
-    <!-- End back-to-top Component-->   
-        
-        <!--     JQuery     -->
-        <script src="js/vendors/jquery-3.4.1.min.js"></script>
-        
-        <!--     bootstrap     -->
-        <script src="js/vendors/bootstrap.bundle.min.js"></script>
-        
-        <!--     fancybox     -->
-        <script src="js/vendors/jquery.fancybox.min.js"></script>
-        
-        <!--     countTo     -->
-        <script src="js/vendors/jquery.countTo.js"></script>
-        
-        <!--     wow     -->
-        <script src="js/vendors/wow.min.js"></script>
-        
-        <!--     swiper     -->
-        <script src="js/vendors/swiper-bundle.min.js"></script>
-        
-        <!--     Splitting     -->
-        <script src="js/vendors/splitting.min.js"></script>
-        
-        <!--     SimpleParallax     -->
-        <script src="js/vendors/simpleParallax.min.js"></script>
-        
-        <!--     isotope     -->
-        <script src="js/vendors/isotope-min.js"></script>
-        
-        <!--     ajaxchimp     -->
-        <script src="js/vendors/jquery.ajaxchimp.min.js"></script>
-        
-        <!--     Vanilla-tilt     -->
-        <script src="js/vendors/vanilla-tilt.min.js"></script>
-        
-        <!--     main     -->
-        <script src="js/main.js"></script>
-  </body>
+</body>
 </html>
