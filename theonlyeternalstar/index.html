@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>永远酱系列定制系统 —— 宣传平台</title>
+    <style>
+        :root {
+            --primary-color: #0078d4;
+            --secondary-color: #107c10;
+            --dark-color: #1e1e1e;
+            --light-color: #f3f2f1;
+            --gray-color: #8a8886;
+            --border-radius: 4px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #faf9f8;
+            color: #323130;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #106ebe;
+        }
+        
+        .more {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .more {
+            background-color: whitesmoke;
+            color: var(--primary-color);
+        }
+        
+        .Wait {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .Wait:hover {
+            background-color: #f43030;
+        }
+        
+        /* Hero区域样式 */
+        .hero {
+            background: linear-gradient(135deg, #0078d4 0%, #1e4a7c 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+        
+        /* Fea区域样式 */
+        .features {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background-color: #e1f5fe;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .feature-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--primary-color);
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-card p {
+            color: var(--gray-color);
+        }
+        
+        /* Sys区域样式 */
+        .system-requirements {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .system-requirements .section-title h2 {
+            color: white;
+        }
+        
+        .system-requirements .section-title p {
+            color: #d2d0ce;
+        }
+        
+        .requirements-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .requirement-item {
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            padding: 25px;
+            width: 250px;
+            text-align: center;
+        }
+        
+        .requirement-icon {
+            margin-bottom: 15px;
+        }
+        
+        .requirement-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .requirement-item p {
+            color: #d2d0ce;
+        }
+        
+        /* 下载区域样式 */
+        .download {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .download-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .download-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 340px;
+            transition: transform 0.3s;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .download-card .price {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .download-card ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .download-card ul li {
+            margin-bottom: 10px;
+            color: var(--gray-color);
+        }
+        
+        /* Faq区域样式 */
+        .faq {
+            background-color: #f3f2f1;
+            padding: 80px 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #d2d0ce;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #3b3a39;
+            color: #d2d0ce;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header区域 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">永远酱系列定制系统</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">前言</a></li>
+                        <li><a href="#download">下载</a></li>
+                        <li><a href="#faq">疑难解答</a></li>
+                        <li><a href="#requirements">关于永远酱</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero区域 -->
+    <section class="hero">
+        <div class="container">
+            <h1>—— 欢迎 ——</h1>
+            <h3>欢迎来到永远酱系列定制系统宣传平台</h3>
+            <div class="hero-buttons">
+                <button class="more">更多组件下载</button>
+                <button class="secondary-button">了解更多</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features区域 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>—— 前言 ——</h2>
+                <h4>（注：这些内容可不读）</h4>
+                <p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点。当时一切完全缘起于我拍脑门想出来的一个想法，在前言部分，我们一起来回忆一下永远酱系列定制系统的发展过程。</p>
+                <p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
+                <p>8月最后的一个星期我开始着手去做定制Win11，结果出现了很多玄学问题（比如：通过新版安装程序更新系统会安装失败，在PE系统里通过不同方式安装可能会决定是否有OOBE，莫名其妙的无人值守等等）</p>
+                <p>但当时大家快要开学了（虽然我开学会晚一个星期）我就想着先发一个视频出去稳定一下大家的期盼之情，所以8月30号发布了一个预览版，虽然那个版本并不完美。</p>
+                <p>也就是在那一天，SYSTEM-SS8-0016帮我做了永远酱定制Win10最终版和永远酱定制Win11预览版的实体机验证，确认了这个系统的实体机可行性。</p>
+                <p>第二天他找到我，说想要做服务器版本的永远酱定制系统，当天他就开工了永远酱定制Server 2022的第一个版本（也就是9月3日发布视频中的beta 2版本），那个版本也存在无法镜像启动的问题，不过那个系统也标志着永远酱系列定制系统翻开了新的一页。周末永远酱定制Server的RTM版本发布了，这个版本做了一个大胆尝试，就是将2022与2025封到了同一个镜像里，作为它的两个分卷。</p>
+                <p>最终在9月17日，永远酱定制Win11正式版完成了第一次安装测试，随后我将其发给了blil114514号和SYSTEM-SS8-0016进行下一轮内测。
+在9月26号，我也成功达到了一千粉丝，这也标志着我获得了联合投稿的权利，永远酱定制Win11的推介视频也就此成为了我的第一个联合投稿。9月27日，永远酱定制Win11正式版发布了。
+永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的四人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……
+最后还有个小插曲，当时在永远酱定制Win10初版发布之前我被人催公开镜像了，为了稳住一些人的期待，我还特地发布了永远酱系统美化包，供大家装饰系统使用。
+</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- 下载区域 -->
+    <section class="download" id="download">
+        <div class="container">
+            <div class="section-title">
+                <h2>—— 下载区域 ——</h2>
+                <p>注：若找不到美化组件请点击更多版本</p>
+            </div>
+            <div class="download-options">
+                <div class="download-card">
+                    <h3>永远酱定制Win10最终版</h3>
+                    <div class="price">更新内容:</div>
+                    <ul>
+                        <li>1.增加多个永远酱立绘的显示</li>
+                        <li>2.安装程序启动界面再次修改</li>
+                        <li>基本安全增强</li>
+                        <li>3."视频"文件夹内新增示例视频《去有风的地方》《成都》</li>
+                        <li>4.移除部署阶段时的文字</li>
+                        <li>（更多更新内容请转到"更多版本"中的早期版本）</li>
+                    </ul>
+                    <button class="cta-button">下载（123云盘）</button>
+                    <button class="more">更多版本</button>
+                </div>
+                <div class="download-card">
+                    <h3>永远酱定制Win11周年纪念版</h3>
+                    <div class="price">更新内容:</div>
+                    <ul>
+                        <li>1.安装程序使用Win11 23H2的旧版安装程序，并修改了启动背景</li>
+                        <li>2.再次重新整合壁纸和锁屏，其中一张锁屏改为浅色模式的背景，新增锁屏《雨爱》并移除壁纸《去有风的地方》</li>
+                        <li>3.移除系统中所有彩蛋，将彩蛋中的两个皮套展示视频改为示例视频</li>
+                        <li>4.新增示例视频《我知道》《雨爱》《勇气大爆发》</li>
+                        <li>5.移除开关机文字修改</li>
+                        <li>6.系统安装完成后会进行后期任务，主要为.NET Framework 3.5功能启用、DirectX与C++运行库安装</li>
+                        <li>7.移除UWP应用新增MSN天气</li>
+                        <li>8.资源管理器窗口右侧新增一个永远酱立绘</li>
+                        <li>9.恢复系统Flash插件</li>
+                        <li>10.内置Microsoft Office 2024专业增强版</li>
+                        <li>11.开始菜单背景改为《碧波幻想曲永远酱夏卜卜》的六号头图</li>
+                    </ul>
+                    <button class="Wait">下载（暂未开放）</button>
+                    <button class="more">更多版本</button>
+                </div>
+                <div class="download-card">
+                    <h3>永远酱定制Windows Server2022/2025</h3>
+                    <div class="price">更新内容:</div>
+                    <ul>
+                        <li>1.剔除Server的按下三大金刚键解锁和强密码设置要求</li>
+                        <li>2.新增五张永远酱壁纸</li>
+                        <li>3.资源管理器背景改为永远酱图片</li>
+                        <li>4.开始菜单，设置背景及默认锁屏均替换为《爱×无限大》</li>
+                        <li>5.恢复应用商店（2025的商店可以正常使用）</li>
+                    </ul>
+                    <button class="cta-button">下载（123云盘）</button>
+                    <button class="more">更多版本</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题区域 -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>—— 疑难解答 ——</h2>
+                <p>以下是我们在开发过程中发现的问题</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>部分美化失效了怎么办？</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：设置多开几次就正常了，开始菜单如果没显示就等一会儿</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>为什么有的示例视频放不了？</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：可能是系统缺失HEVC拓展，不过不建议大家花七块钱获得，可以去找一个"来自设备制造商的HEVC视频拓展"（放在"更多版本"中的其他组件下载中）。如果打上拓展还不行，那么就用旧版的WMP来播放。
+或者更简单的，用PotPlayer播放器，内置了HEVC拓展</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>永远酱定制Win11为什么第一次登录会显示默认壁纸？</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：分辨率等因素影响会暂时调用默认锁屏缓存，安装完显示驱动后重启即可正常显示永远酱锁屏壁纸</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>为什么永远酱定制Win10可以自己创建账户，永远酱定制Win11就启用了管理员账户？</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：Win10没有强制联网登录微软账户，对本地账户相对宽松。而微软在Win11中强行让用户联网登录微软账户，并且也在不断删除注册本地账户的方法（比如移除bypassNRO脚本等），启用管理员账户可以跳过强制联网登录微软账户等乱七八糟的步骤。还有就是，启用管理员账户也可以保留开始菜单的美化，重启后不会消失。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>我想找旧版的永远酱定制系统，但没找到所需的版本</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：部分旧版系统，本网站不收录，请前往旧网站。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 关于区域 -->
+    <section class="system-requirements" id="requirements">
+        <div class="container">
+            <div class="section-title">
+                <h2>—— 关于永远酱 ——</h2>
+                <p>有关本定制系统的作者及更多信息，请前往查看旧网站文档</p>
+                <p>有关更多永远酱系列定制系统的信息，也在旧网站当中。目前正在逐步迁移文档中...</p>
+                <a href="https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787">——→ 前往旧版网站 ←——</a>
+                <p>————————————————</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>下载</h3>
+                    <ul>
+                        <li><a href="#download">下载区域</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>支持</h3>
+                    <p>带*代表该服务正在维护<p/>
+                    <ul>
+                        <li><a href="#">*文档中心</a></li>
+                        <li><a href="#">*社区论坛</a></li>
+                        <li><a href="#sfb">*联系我们</a></li>
+                        <li><a href="#faq">常见问题</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>网站导航</h3>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/blogindex">博客</a></li>
+                        <li><a href="https://space.bilibili.com/3493124680714310?spm_id_from=333.1007.0.0">站长B站</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>关注系统开发者</h3>
+                    <p>带*代表该服务正在维护<p/>
+                    <ul>
+                        <li><a href="#">*GitHub</a></li>
+                        <li><a href="https://space.bilibili.com/401874924">BilBil</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 岚星保留本网站的所有权利 Microsoft Windows是美国微软公司的注册商标产品。</p>
+                <p>本网站由 栖渊Kaelen 构建</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 常见问题折叠功能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 定义下载链接
+        const downloadLinks = {
+            "win10_final": "https://www.123912.com/s/dwB1vd-clPWv?pwd=tAah#",
+            "win11_anniversary": "",
+            "server_edition": "https://www.123912.com/s/dwB1vd-7TXWv?pwd=WALf#",
+            "win10_2.0": "https://www.123912.com/s/dwB1vd-xrPWv",
+            "win11_official": "https://www.123912.com/s/dwB1vd-loXWv?pwd=UGA8#",
+            "zj": "",
+            "beautify_pack": "https://www.123912.com/s/dwB1vd-oRPWv",
+            "Ot":"https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787"
+        };
+        
+        // 下载按钮点击事件 - 外部下载区域
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // 根据按钮所在的卡片确定下载链接
+                const card = this.closest('.download-card');
+                if (card) {
+                    const title = card.querySelector('h3').textContent;
+                    let downloadUrl;
+                    
+                    if (title.includes("Win10最终版")) {
+                        downloadUrl = downloadLinks.win10_final;
+                    } else if (title.includes("Windows Server")) {
+                        downloadUrl = downloadLinks.server_edition;
+                    }
+                    
+                    if (downloadUrl) {
+                        window.open(downloadUrl, '_blank');
+                    } else {
+                        alert('未成功配置链接，或网页已失效[Error Code:1]');
+                    }
+                }
+            });
+        });
+
+        // 创建嵌套弹窗样式
+        const modalStyle = document.createElement('style');
+        modalStyle.textContent = `
+            .version-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .modal-content {
+                background-color: white;
+                margin: 40px auto;
+                padding: 30px;
+                border-radius: 8px;
+                width: 95%;
+                max-width: 1400px;
+                position: relative;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            
+            .close-modal {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                color: var(--gray-color);
+                transition: color 0.3s;
+            }
+            
+            .close-modal:hover {
+                color: var(--primary-color);
+            }
+            
+            .modal-title {
+                text-align: center;
+                margin-bottom: 30px;
+                color: var(--dark-color);
+            }
+            
+            .modal-download-options {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 40px;
+                margin-top: 30px;
+            }
+            
+            .modal-download-card {
+                background-color: white;
+                border-radius: 8px;
+                padding: 40px 35px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                width: 450px;
+                transition: transform 0.3s;
+                display: flex;
+                flex-direction: column;
+                min-height: 650px;
+            }
+            
+            .modal-download-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .modal-download-card h3 {
+                font-size: 24px;
+                margin-bottom: 20px;
+                color: var(--dark-color);
+                line-height: 1.3;
+            }
+            
+            .modal-download-card .price {
+                font-size: 20px;
+                font-weight: 700;
+                color: var(--primary-color);
+                margin-bottom: 20px;
+            }
+            
+            .modal-download-card ul {
+                list-style: none;
+                margin-bottom: 25px;
+                flex-grow: 1;
+            }
+            
+            .modal-download-card ul li {
+                margin-bottom: 10px;
+                color: var(--gray-color);
+                font-size: 15px;
+                line-height: 1.5;
+            }
+            
+            .modal-download-card .cta-button {
+                margin-top: auto;
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+            
+            /* 文件树布局样式 */
+            .file-tree-layout {
+                display: none;
+                grid-template-columns: 300px 1fr;
+                gap: 30px;
+                margin-top: 20px;
+            }
+            
+            .file-tree-container {
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                padding: 20px;
+                max-height: 600px;
+                overflow-y: auto;
+            }
+            
+            .file-tree {
+                list-style: none;
+                padding-left: 0;
+            }
+            
+            .file-tree li {
+                margin-bottom: 8px;
+                cursor: pointer;
+                padding: 12px 15px;
+                border-radius: 4px;
+                transition: background-color 0.2s;
+                display: flex;
+                align-items: center;
+            }
+            
+            .file-tree li:hover {
+                background-color: #e9ecef;
+            }
+            
+            .file-tree li.active {
+                background-color: var(--primary-color);
+                color: white;
+            }
+            
+            .file-tree .folder {
+                font-weight: bold;
+                color: var(--dark-color);
+            }
+            
+            .file-tree .folder-icon {
+                margin-right: 8px;
+                font-size: 16px;
+            }
+            
+            .component-content {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .component-article {
+                background-color: white;
+                border-radius: 8px;
+                padding: 25px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                margin-bottom: 20px;
+                flex-grow: 1;
+            }
+            
+            .component-article h3 {
+                font-size: 22px;
+                margin-bottom: 15px;
+                color: var(--dark-color);
+            }
+            
+            .component-article p {
+                margin-bottom: 15px;
+                line-height: 1.6;
+                color: var(--gray-color);
+            }
+            
+            .component-article ul {
+                list-style-type: disc;
+                padding-left: 20px;
+                margin-bottom: 15px;
+            }
+            
+            .component-article li {
+                margin-bottom: 8px;
+                color: var(--gray-color);
+            }
+            
+            .back-button {
+                background-color: var(--gray-color);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: var(--border-radius);
+                font-weight: 600;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin-bottom: 20px;
+                align-self: flex-start;
+            }
+            
+            .back-button:hover {
+                background-color: #6c757d;
+            }
+        `;
+        document.head.appendChild(modalStyle);
+
+        // 创建弹窗HTML结构
+        const modalHTML = `
+            <div class="version-modal" id="versionModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="modal-title">
+                        <h2>—— 更多组件 ——</h2>
+                        <h4>查看所有目前已发布的系统或组件</h4>
+                    </div>
+                    <div class="modal-download-options" id="modalDownloadContent">
+                        <!-- 这里将通过JavaScript动态填充内容 -->
+                    </div>
+                    <div class="file-tree-layout" id="fileTreeLayout">
+                        <div class="file-tree-container">
+                            <ul class="file-tree" id="fileTree">
+                                <!-- 文件树将通过JavaScript动态填充 -->
+                            </ul>
+                        </div>
+                        <div class="component-content">
+                            <button class="back-button" id="backButton">← 返回窗口首页</button>
+                            <div class="component-article" id="componentArticle">
+                                <h3>选择一个组件</h3>
+                                <p>请从左侧选择一个组件以查看详细信息</p>
+                            </div>
+                            <button class="cta-button" id="componentDownloadBtn" style="display: none;">前往下载</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // 获取DOM元素
+        const modal = document.getElementById('versionModal');
+        const modalContent = document.getElementById('modalDownloadContent');
+        const fileTreeLayout = document.getElementById('fileTreeLayout');
+        const fileTree = document.getElementById('fileTree');
+        const componentArticle = document.getElementById('componentArticle');
+        const componentDownloadBtn = document.getElementById('componentDownloadBtn');
+        const backButton = document.getElementById('backButton');
+        const closeBtn = document.querySelector('.close-modal');
+
+        // 文件树数据
+        const fileTreeData = [
+            {
+                id: "firpe",
+                name: "FirPE工具箱-官网",
+                type: "folder",
+                content: {
+                    title: "FirPE工具箱",
+                    description: "FirPE是一个轻量级的Windows预安装环境，集成了各种实用的系统维护工具。它可以帮助您在系统无法启动时进行修复、备份、数据恢复等操作。",
+                    features: [
+                        "如果您不知道这是什么，请不要使用"
+                    ]
+                },
+                downloadUrl: "https://firpe.cn"
+            },
+            {
+                id: "vmware",
+                name: "VMware虚拟机软件",
+                type: "folder",
+                content: {
+                    title: "VMware Workstation Pro",
+                    description: "虽说博通收购VMware之后，VMware就变成免费软件了，但是下载安装包需要博通账号，并且VMware的CDS服务器也寄了。在这里将我收集的一些VMware安装包放在这里，供大家自行下载使用",
+                    features: [
+                        "如果你在用Win7的话，那么你只能下载VMware 15.5及以前的版本，VMware 16开始就不再支持Win7了",
+                        "VMware 17发布一年后博通就把VMware收购了，那时开始VMware也放开免费了，安装时选择个人用途使用即可跳过激活",
+                        "不太建议用VMware 17.6.3（除非你有安装Server 2025的需求），如果需要安装VMware 17，建议使用VMware 17.5.2",
+                        "目前最新版的VMware 25H2没有汉化（疑似博通放弃中国市场），并疑似放弃了对Win8和Win8.1的兼容。此版本安装包暂不同步"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-uxXWv?pwd=MbTp#"
+            },
+            {
+                id: "directx",
+                name: "DirectX修复工具",
+                type: "folder",
+                content: {
+                    title: "DirectX修复工具",
+                    description: "如果你们安装完系统后安装游戏和软件时报错，提示缺少某个dll文件的话，那么就说明系统缺失必要运行库，在这里我分享一个修复工具，运行后可以轻松补全你电脑里缺失的运行库",
+                    features: [
+                        "无详细信息"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-elPWv?pwd=AmJH#"
+            },
+            {
+                id: "hevc",
+                name: "HEVC视频扩展",
+                type: "folder",
+                content: {
+                    title: "HEVC视频扩展",
+                    description: "据部分内测用户反馈，永远酱定制Win10和Win11中部分示例视频无法正常播放，经排查为系统缺失HEVC拓展的缘故。但是如果安装和更新了uwp应用的话，系统就会封装失败。并且HEVC视频拓展在应用商店里是收费的，在这里我们分享一个免费的‘来自视频制造商的HEVC视频拓展’，让你能顺利播放定制系统中的示例视频",
+                    features: [
+                        "（永远酱定制Win10同样缺失了AV1视频拓展，所以示例视频《成都》无法播放，但是AV1视频拓展在应用商店是免费的，直接下载安装就好）"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-V6PWv?pwd=7ayf#"
+            },
+            {
+                id: "store",
+                name: "MS商店恢复包",
+                type: "folder",
+                content: {
+                    title: "MS商店恢复包",
+                    description: "在LTSC和Windows Server中是没有集成应用商店和uwp应用，以及Xbox支持的，如果需要恢复应用商店，我们就需要安装必要框架后部署应用商店，并在应用商店里安装那些缺失的uwp应用和恢复Xbox相关组件",
+                    features: [
+                        "在这里我们同时分享应用商店恢复包（针对于Win10 LTSC 2019，不过Win10 LTSC 2021，Win11 LTSC 2024以及Windows Server都是可用的）以及四个框架。如果你想在恢复应用商店的同时恢复其他组件（如Xbox支持），那么你就下载恢复包；如果你只想恢复应用商店，那么你就下载四个框架后用PowerShell或者Windows终端部署。（顺序为先部署VCLibs和Xaml，然后部署应用安装程序，最后部署应用商店）",
+                        "对于LTSC，这里更建议使用wsreset -i指令进行恢复应用商店。（事实上在系统文件夹的System32文件夹里就有WSReset.exe程序作为重置应用商店的工具，此指令正是调用了此工具）",
+                        "需要注意的是，wsreset -i指令以及应用商店恢复包部署的应用商店都是旧版的，第一次打开会提示更新。并且，Server 2022本身在应用商店方面就有bug，部署上旧版应用商店了会无法更新，但如果部署上了新版应用商店则会无法安装和更新应用",
+                        "备注：Windows Server疑似不支持wsreset -i指令恢复应用商店。"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-PVPWv?pwd=cBXT#"
+            },
+            {
+                id: "uwp",
+                name: "旧版UWP安装包",
+                type: "folder",
+                content: {
+                    title: "旧版UWP安装包",
+                    description: "永远酱定制Win10中预装的uwp应用基本上都是旧版，图标都是黑白，但是如果都更到最新版的话，虽说是彩色图标，但UI都是Win11的圆角UI，与Win10的直角UI又很不搭，并且“电影和电视”已经无法正常使用了，Groove音乐转化为新版媒体播放器后也没有了动态磁贴的显示，所以在这里我们准备了照片，Groove音乐，旧版电影和电视，计算器四个uwp应用的旧版安装包，供大家使用",
+                    features: [
+                        "如果你已经将应用安装程序更新到了最新版，那么你可以直接降级，如果你的应用安装程序还是旧版，那么你需要在开始菜单右键指定应用后点击卸载应用，随后再安装应用",
+                        "做完这一切后别忘了去应用商店里关闭应用的自动更新，以防uwp应用自动更新为新版"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-mpXWv?pwd=x7EB#"
+            },
+            {
+                id: "fluent",
+                name: "FluentContextMenu-官网",
+                type: "folder",
+                content: {
+                    title: "FluentContextMenu",
+                    description: "Win11的新版右键菜单将传统右键菜单折叠了，并且有些软件并没有适配新版右键菜单，你还是需要点开二级菜单才能看到。而且有的时候二级菜单并没有适配Win11的UI，依然在使用Win10的老UI，加强了系统的割裂感。在这里推荐这个小工具，还你的Win11一个熟悉的右键菜单",
+                    features: [
+                        "备注：应原作者要求，不提供下载链接，请前往原作者发布页自行下载",
+                    ]
+                },
+                downloadUrl: "https://winmoes.com/tools/17626.html"
+            },
+            {
+                id: "flash",
+                name: "Flash Player",
+                type: "folder",
+                content: {
+                    title: "Adobe Flash Player",
+                    description: "2020年12月31日，Adobe宣布Flash Player正式停止支持。在此之前的10月27日微软发布的KB4577586补丁也将Win10中内置的Flash插件移除了。但如果你还想玩4399，我们在这里分享一个纯净的Flash插件，你可以将其安装在你的Win10或Win11电脑上，然后使用Edge的IE模式或者360极速浏览器等国产浏览器来玩4399等Flash小游戏了。我们这里共提供了ActiveX，PPAPI，NPAPI三个版本的Flash",
+                    features: [
+                        "其中，PPAPI针对的是Chromium内核的浏览器（例如Chrome与Edge），最后一个原生支持Flash的Chrome是发布于2020年11月18日的Chrome 87，距今有五年了，已经非常老了。不过目前360，QQ，搜狗等国产浏览器依然保留了对Flash的兼容，可以调用PPAPI版本的Flash插件",
+                        "国产浏览器方面，推荐大家用360极速浏览器（32位版本已经停更，使用的是86核；64位版本的360极速浏览器X使用的是122核），不仅内核跟进的比较快，而且比较纯净，没那么多广告。（不建议用360安全浏览器，虽然内核跟进快但是流氓，广告多）",
+                        "NPAPI针对的是火狐浏览器，但是使用Gecko内核的火狐早就不支持Flash了，最后支持Flash的火狐是2021年1月26日发布的火狐85，也非常老了，这个版本的Flash可以不安装",
+                        "ActiveX针对的是IE浏览器，不过Edge的IE模式依然可以调用这个版本的Flash插件",
+                        "一般来说，安装ActiveX和PPAPI两个版本的Flash Player插件就可以了。安装完成后，控制面板就会多出Flash Player的控制面板项，这就表示安装成功了"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-gBXWv?pwd=UAxK#"
+            },
+            {
+                id: "potplayer",
+                name: "PotPlayer-官网",
+                type: "folder",
+                content: {
+                    title: "PotPlayer播放器",
+                    description: "永远酱定制Win10中缺乏了HEVC拓展，如果你不想安装视频拓展，那么你可以直接用PotPlayer播放器，其内置了HEVC视频拓展",
+                    features: [
+                        "注：不要被百度和必应骗了！第一个出来的PotPlayer中文网不是官网！不要被官网标骗了！"
+                    ]
+                },
+                downloadUrl: "https://potplayer.tv/?lang=zh_CN"
+            }
+        ];
+
+        // 当前选中的组件
+        let currentComponent = null;
+
+        // 渲染文件树
+        function renderFileTree() {
+            fileTree.innerHTML = '';
+            
+            fileTreeData.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'folder';
+                li.innerHTML = `<span class="folder-icon"></span> ${item.name}`;
+                li.setAttribute('data-id', item.id);
+                
+                // 添加文件夹点击事件
+                li.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    selectFolder(this, item);
+                });
+                
+                fileTree.appendChild(li);
+            });
+        }
+
+        // 选择文件夹并显示内容
+        function selectFolder(folderElement, folderData) {
+            // 移除所有活跃状态
+            document.querySelectorAll('.file-tree li').forEach(li => {
+                li.classList.remove('active');
+            });
+            
+            // 设置当前文件夹为活跃状态
+            folderElement.classList.add('active');
+            
+            // 更新当前组件
+            currentComponent = folderData;
+            
+            // 显示组件内容
+            displayComponentContent(folderData.content);
+            
+            // 设置下载按钮
+            componentDownloadBtn.onclick = function() {
+                if (folderData.downloadUrl) {
+                    window.open(folderData.downloadUrl, '_blank');
+                } else {
+                    alert('下载链接未配置');
+                }
+            };
+            
+            // 显示下载按钮
+            componentDownloadBtn.style.display = 'block';
+        }
+
+        // 显示组件内容
+        function displayComponentContent(content) {
+            componentArticle.innerHTML = `
+                <h3>${content.title}</h3>
+                <p>${content.description}</p>
+                <h4>详细信息：</h4>
+                <ul>
+                    ${content.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // 显示文件树布局
+        function showFileTreeLayout() {
+            modalContent.style.display = 'none';
+            fileTreeLayout.style.display = 'grid';
+            renderFileTree();
+            
+            // 重置组件内容
+            componentArticle.innerHTML = `
+                <h3>选择一个组件</h3>
+                <p>请从左侧选择一个组件以查看详细信息</p>
+            `;
+            componentDownloadBtn.style.display = 'none';
+        }
+
+        // 返回卡片视图
+        function backToCardsView() {
+            fileTreeLayout.style.display = 'none';
+            modalContent.style.display = 'flex';
+            currentComponent = null;
+        }
+
+        // 弹窗内的版本数据
+        const additionalVersions = [
+			{
+                id: "zj",
+                title: "其他组件下载",
+                price: "用户可以选择组件下载",
+                features: [
+                    "-内部包含：",
+                    "FirPE官网链接",
+                    "VMware安装包",
+                    "DirectX修复工具",
+                    "HEVC视频扩展",
+                    "MS商店恢复包",
+                    "旧版UWP安装包",
+                    "FluentContextMenu发布页",
+                    "Flash Player下载",
+                    "Potplayer官网链接"
+                ],
+                buttonText: "前往",
+                buttonClass: "cta-button",
+                isComponents: true
+            },
+			{
+                id: "beautify_pack",
+                title: "永远酱系统美化包",
+                price: "独立组件更新:",
+                features: [
+                    "第一版补偿美化包发布于7月20日，第二版补偿美化包发布于8月17日，因未知原因，锁屏壁纸《成都》无法正常启用，始终调用默认锁屏壁纸缓存（在测试版v5.0中曾尝试替换锁屏缓存解决这个问题，但可惜失败，替换后整个锁屏都寄了，根本不显示图片）。所以制作了补偿美化包，将成都锁屏作为开始菜单背景，并且将开发前期的万有引力背景回归到设置里（在定制Win11中正式成为锁屏背景）。",
+                    "警告：美化包需要借助MToolBox工具箱实现，应工具箱制作者要求，不提供下载链接，请前往工具箱发布页自行下载",
+                    "链接：https://winmoes.com/tools/12948.html  （复制前往）"
+                ],
+                buttonText: "下载（123云盘）提取码：87iA",
+                buttonClass: "cta-button"
+            },
+            {
+                id: "win10_2.0",
+                title: "1.永远酱定制Win10—2.0版本",
+                price: "【若最终版没有问题您不要下载本版本】",
+                features: [
+                    "1.移除部分uwp应用：3D查看器、Cortana、地图等",
+                    "2.增加五张永远酱壁纸以及五张永远酱锁屏",
+                    "3.内置office 2021家庭与学生版",
+                    "4.音乐文件夹内置示例音乐：永远酱应援曲《The Only Eternal Star》，永远酱翻唱《城里的月光》，外加一首《Windows Welcome Music》 。视频文件夹内置示例视频：《城里的月光》《万有引力》《飘雪》《一壶莲花醉》。图片文件夹内置示例图片：多张历代Windows经典壁纸。",
+                    "5.设置背景设为《爱×无限大》,安装程序启动背景修改",
+                    "6.恢复系统内置flash插件，同时资源管理器右侧增加永远酱立绘显示",
+                    "7.新增壁纸《去有风的地方》（需通过Windows 10主题调用）",
+                    "8.改善系统资源占用情况"
+                ],
+                buttonText: "下载（123云盘）提取码：HlG3",
+                buttonClass: "cta-button"
+            },
+            {
+                id: "win11_official",
+                title: "永远酱定制Win11—正式版",
+                price: "更新内容:",
+                features: [
+                    "1.修复无法镜像安装问题",
+                    "2.图片文件夹新增示例图片：《碧波幻想曲永远酱夏卜卜》九张头图。视频文件夹新增示例视频《阿拉斯加海湾》",
+                    "3.开始菜单背景调高不透明度",
+                    "5.启用内置管理员账户，OOBE阶段剔除了强制联网登录微软账户要求",
+                    "6.系统新增彩蛋！（如果算上蛋中蛋和隐藏彩蛋，共有六个彩蛋）"
+                ],
+                buttonText: "下载（123云盘）",
+                buttonClass: "cta-button"
+            },
+        ];
+
+        // 填充弹窗内容
+        function populateModalContent() {
+            modalContent.innerHTML = '';
+            
+            additionalVersions.forEach(version => {
+                const card = document.createElement('div');
+                card.className = 'modal-download-card';
+                
+                card.innerHTML = `
+                    <h3>${version.title}</h3>
+                    <div class="price">${version.price}</div>
+                    <ul>
+                        ${version.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="${version.buttonClass}" data-version="${version.id}" data-is-components="${version.isComponents || false}">${version.buttonText}</button>
+                `;
+                
+                modalContent.appendChild(card);
+            });
+            
+            // 重新绑定弹窗内按钮的事件
+            modalContent.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const versionId = this.getAttribute('data-version');
+                    const isComponents = this.getAttribute('data-is-components') === 'true';
+                    
+                    if (isComponents) {
+                        // 显示文件树布局
+                        showFileTreeLayout();
+                    } else {
+                        const downloadUrl = downloadLinks[versionId];
+                        
+                        if (downloadUrl) {
+                            window.open(downloadUrl, '_blank');
+                        } else {
+                            alert('未成功配置链接，或网页已失效[Error Code:1]');
+                        }
+                    }
+                });
+            });
+        }
+
+        // 显示弹窗
+        function showModal() {
+            populateModalContent();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏弹窗
+        function hideModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            backToCardsView(); // 确保返回卡片视图
+        }
+
+        // 绑定事件到所有"更多版本"按钮
+        document.querySelectorAll('.more').forEach(button => {
+            button.addEventListener('click', showModal);
+        });
+
+        // 点击关闭按钮关闭弹窗
+        closeBtn.addEventListener('click', hideModal);
+
+        // 点击返回按钮返回卡片视图
+        backButton.addEventListener('click', backToCardsView);
+
+        // 点击弹窗外部关闭弹窗
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                hideModal();
+            }
+        });
+
+        // 按ESC键关闭弹窗
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
