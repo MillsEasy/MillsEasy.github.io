@@ -287,56 +287,72 @@
             color: #d2d0ce;
         }
         
-        /* 下载区域样式 */
-        .download {
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .download-options {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .download-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            width: 340px;
-            transition: transform 0.3s;
-        }
-        
-        .download-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .download-card h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: var(--dark-color);
-        }
-        
-        .download-card .price {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .download-card ul {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .download-card ul li {
-            margin-bottom: 10px;
-            color: var(--gray-color);
-        }
-        
+		
+		.download {
+			padding: 80px 0;
+			text-align: center;
+		}
+
+		.download-options {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 40px;
+			margin-top: 50px;
+		}
+
+		.download-card {
+			background-color: white;
+			border-radius: 8px;
+			padding: 40px 35px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+			width: 450px; /* 增大宽度 */
+			min-height: 650px; /* 增加最小高度 */
+			transition: transform 0.3s;
+			display: flex;
+			flex-direction: column; /* 使用弹性布局以便内容分布 */
+		}
+
+		.download-card:hover {
+			transform: translateY(-5px);
+		}
+
+		.download-card h3 {
+			font-size: 24px;
+			margin-bottom: 20px;
+			color: var(--dark-color);
+			line-height: 1.3; /* 改善标题行高 */
+		}
+
+		.download-card .price {
+			font-size: 20px; /* 增大字体 */
+			font-weight: 700;
+			color: var(--primary-color);
+			margin-bottom: 20px;
+		}
+
+		.download-card ul {
+			list-style: none;
+			margin-bottom: 30px;
+			flex-grow: 1; /* 让列表占据剩余空间 */
+		}
+
+		.download-card ul li {
+			margin-bottom: 10px;
+			color: var(--gray-color);
+			font-size: 15px; /* 稍微增大列表字体 */
+			line-height: 1.5; /* 改善列表行高 */
+		}
+
+		/* 响应式设计调整 */
+		@media (max-width: 768px) {
+			.download-card {
+				width: 340px; /* 移动端保持较小宽度 */
+				min-height: auto; /* 移动端取消最小高度 */
+				padding: 30px 25px; /* 移动端调整内边距 */
+			}
+		}
+
         /* Faq区域样式 */
         .faq {
             background-color: #f3f2f1;
@@ -465,7 +481,73 @@
                 font-size: 30px;
             }
         }
-    </style>
+		
+		/* B站按钮样式 */
+		.bilibili-button {
+			background-color: #fb7299;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: var(--border-radius);
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			margin-top: 10px;
+		}
+
+		.bilibili-button:hover {
+			background-color: #ff9db5;
+		}
+		
+		.modal-download-card .cta-button,
+		.modal-download-card .bilibili-button {
+			width: 100%;
+			padding: 12px 24px;
+			font-size: 16px;
+			margin-top: 10px;
+		}
+
+		/* 嵌套窗口内按钮容器布局 */
+		.modal-download-card > div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-top: auto;
+		}
+
+		/* 确保主下载区域的按钮也有统一大小 */
+		.download-card .cta-button,
+		.download-card .bilibili-button,
+		.download-card .more,
+		.download-card .Wait {
+			width: 100%;
+			padding: 12px 24px;
+			font-size: 16px;
+			margin-top: 10px;
+		}
+
+		.download-card > div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-top: auto;
+		}
+		
+		.author-button {
+			background-color: var(--secondary-color);
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: var(--border-radius);
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.author-button:hover {
+			background-color: #0d6b0d;
+		}
+			</style>
 </head>
 <body>
     <!-- Header区域 -->
@@ -494,7 +576,8 @@
             <h3>欢迎来到永远酱系列定制系统宣传平台</h3>
             <div class="hero-buttons">
                 <button class="more">更多组件下载</button>
-                <button class="secondary-button">了解更多</button>
+                <button class="secondary-button">关于我们的发展历程</button>
+				<button class="author-button">了解本系统作者</button>
             </div>
         </div>
     </section>
@@ -526,6 +609,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>—— 下载区域 ——</h2>
+				<h3>这里展示了大版本的定制系统，若您要使用其他组件，请点击更多版本</h3>
                 <p>注：若找不到美化组件请点击更多版本</p>
             </div>
             <div class="download-options">
@@ -535,13 +619,18 @@
                     <ul>
                         <li>1.增加多个永远酱立绘的显示</li>
                         <li>2.安装程序启动界面再次修改</li>
-                        <li>基本安全增强</li>
                         <li>3."视频"文件夹内新增示例视频《去有风的地方》《成都》</li>
                         <li>4.移除部署阶段时的文字</li>
+						<li>5.系统文字修改、改善系统资源占用情况</li>
+						<li>6.图片文件夹内新增《星之永远》的两张头图、视频文件夹内新增示例视频《飘雪》《一壶莲花醉》</li>
+
                         <li>（更多更新内容请转到"更多版本"中的早期版本）</li>
                     </ul>
-                    <button class="cta-button">下载（123云盘）</button>
-                    <button class="more">更多版本</button>
+                    <div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
+						<button class="cta-button">下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xCbJzdEXd/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">观看演示视频</button>
+						<button class="more">更多版本</button>
+					</div>	
                 </div>
                 <div class="download-card">
                     <h3>永远酱定制Win11周年纪念版</h3>
@@ -559,21 +648,54 @@
                         <li>10.内置Microsoft Office 2024专业增强版</li>
                         <li>11.开始菜单背景改为《碧波幻想曲永远酱夏卜卜》的六号头图</li>
                     </ul>
-                    <button class="Wait">下载（暂未开放）</button>
-                    <button class="more">更多版本</button>
+					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
+						<button class="Wait">下载（暂未开放）</button>
+						<button class="more">更多版本</button>
+					</div>
+                </div>
+				<div class="download-card">
+                    <h3>永远酱定制Win11专业工作版</h3>
+                    <div class="price">本系统由@blil114514号制作</div>
+                    <ul>
+                        <li>1.删去壁纸《城里的月光》，删去全部示例文件</li>
+                        <li>2.仅保留计算器及新版媒体播放器等必要Microsoft Store应用。内置7-Zip，Mortix多功能下载器和Microsoft Office专业增强版2024</li>
+                        <li>3.部分窗口顶部新增颜色显示，选中时为粉色，未选中时为天蓝色。资源管理器文字颜色改为紫色与蓝色等</li>
+                        <li>4.安装完成后系统的硬件资源占用更小</li>
+                        <li>5.窗口右上角三大金刚键改为Mac OS的样式</li>
+                        <li>6.使用的是Windows11 24H2原版的安装程序。系统跳过OOBE，直接登录Administrator账户</li>
+                        <li>7.鼠标停留或点击桌面图标时会出现待选框。删除Win11的新版右键菜单，更换为Win10的旧版</li>
+                        <li>注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件</li>
+                    </ul>
+					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
+						<button class="cta-button">下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1XKsAzGE1r">观看演示视频</button>
+						<button class="more">更多版本</button>
+					</div>
                 </div>
                 <div class="download-card">
-                    <h3>永远酱定制Windows Server2022/2025</h3>
-                    <div class="price">更新内容:</div>
+                    <h3>永远酱定制Windows Server2022/2025整合包</h3>
+                    <div class="price">本系统由@SYSTEM-SS8-0016制作</div>
                     <ul>
+						<li>S2025更新内容：</li>
                         <li>1.剔除Server的按下三大金刚键解锁和强密码设置要求</li>
                         <li>2.新增五张永远酱壁纸</li>
                         <li>3.资源管理器背景改为永远酱图片</li>
                         <li>4.开始菜单，设置背景及默认锁屏均替换为《爱×无限大》</li>
                         <li>5.恢复应用商店（2025的商店可以正常使用）</li>
+						<li>S2022更新内容：</li>
+						<li>1.恢复应用商店，但是受Server 2022本身缺陷影响，无法正常安装应用</li>
+						<li>2.内置Windows通用商店（使用方法可以看Li_zip的视频）</li>
+						<li>3.内置Anyburn光盘工具</li>
+						<li>4.替换大量系统图标、任务管理器性能界面新增动画、内置Windows终端</li>
+						<li>5.插入媒体时弹出窗口更加美观</li>
+						<li>6.任务栏通知区域全部更改为Fluent样式</li>
+						<li>9.Server 2022可以安装除季度更新之外的其他补丁，不必担心美化失效</li>
                     </ul>
-                    <button class="cta-button">下载（123云盘）</button>
-                    <button class="more">更多版本</button>
+					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
+						<button class="cta-button">下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xxxxxx1/">观看演示视频</button>
+						<button class="more">更多版本</button>
+					</div>
                 </div>
             </div>
         </div>
@@ -630,7 +752,7 @@
                         <span class="faq-toggle">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p>答：部分旧版系统，本网站不收录，请前往旧网站。</p>
+                        <p>答：大部分旧版系统都在”更多版本“当中，请前往”更多版本“下载</p>
                     </div>
                 </div>
             </div>
@@ -644,8 +766,9 @@
                 <h2>—— 关于永远酱 ——</h2>
                 <p>有关本定制系统的作者及更多信息，请前往查看旧网站文档</p>
                 <p>有关更多永远酱系列定制系统的信息，也在旧网站当中。目前正在逐步迁移文档中...</p>
-                <a href="https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787">——→ 前往旧版网站 ←——</a>
-                <p>————————————————</p>
+                <button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')" style="margin: 20px auto; display: block; max-width: 200px;">
+                前往旧版网站
+				</button>
             </div>
         </div>
     </section>
@@ -689,13 +812,550 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 岚星保留本网站的所有权利 Microsoft Windows是美国微软公司的注册商标产品。</p>
-                <p>本网站由 栖渊Kaelen 构建</p>
+                <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Beta2-251112.2145</p>
             </div>
         </div>
     </footer>
 
     <script>
+		// 创建关于弹窗样式
+		const aboutModalStyle = document.createElement('style');
+		aboutModalStyle.textContent = `
+			.about-modal {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+				z-index: 1000;
+				overflow-y: auto;
+			}
+			
+			.about-modal-content {
+				background-color: white;
+				margin: 40px auto;
+				padding: 30px;
+				border-radius: 8px;
+				width: 95%;
+				max-width: 1200px;
+				position: relative;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			}
+			
+			.about-close-modal {
+				position: absolute;
+				top: 15px;
+				right: 20px;
+				font-size: 28px;
+				font-weight: bold;
+				cursor: pointer;
+				color: var(--gray-color);
+				transition: color 0.3s;
+			}
+			
+			.about-close-modal:hover {
+				color: var(--primary-color);
+			}
+			
+			.about-modal-title {
+				text-align: center;
+				margin-bottom: 30px;
+				color: var(--dark-color);
+			}
+			
+			.about-content-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 30px;
+				margin-top: 30px;
+			}
+			
+			.about-content-card {
+				background-color: white;
+				border-radius: 8px;
+				padding: 25px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+				transition: transform 0.3s;
+				border-left: 4px solid var(--primary-color);
+			}
+			
+			.about-content-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+			}
+			
+			.about-content-card h3 {
+				font-size: 20px;
+				margin-bottom: 15px;
+				color: var(--dark-color);
+			}
+			
+			.about-content-card p {
+				color: var(--gray-color);
+				line-height: 1.6;
+			}
+			
+			.about-timeline {
+				margin-top: 40px;
+			}
+			
+			.timeline-item {
+				position: relative;
+				padding-left: 30px;
+				margin-bottom: 30px;
+				border-left: 2px solid var(--primary-color);
+			}
+			
+			.timeline-date {
+				font-weight: bold;
+				color: var(--primary-color);
+				margin-bottom: 5px;
+			}
+			
+			.timeline-content {
+				background-color: #f8f9fa;
+				padding: 15px;
+				border-radius: 6px;
+			}
+			
+			.timeline-content h4 {
+				margin-bottom: 10px;
+				color: var(--dark-color);
+			}
+		`;
+		document.head.appendChild(aboutModalStyle);
+		
+		// 创建作者弹窗样式
+const authorModalStyle = document.createElement('style');
+authorModalStyle.textContent = `
+    .author-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+    
+    .author-modal-content {
+        background-color: white;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 8px;
+        width: 95%;
+        max-width: 1200px;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .author-close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        color: var(--gray-color);
+        transition: color 0.3s;
+    }
+    
+    .author-close-modal:hover {
+        color: var(--primary-color);
+    }
+    
+    .author-modal-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--dark-color);
+    }
+    
+    .authors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+    
+    .author-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+        border-top: 4px solid var(--primary-color);
+    }
+    
+    .author-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .author-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: var(--dark-color);
+    }
+    
+    .author-role {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+    
+    .author-description {
+        color: var(--gray-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    
+    .author-contributions {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    
+    .author-contributions h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: var(--dark-color);
+    }
+    
+    .author-contributions ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        color: var(--gray-color);
+    }
+    
+    .author-contributions li {
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+    
+    .author-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .author-link {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: var(--border-radius);
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        display: inline-block;
+    }
+    
+    .author-link:hover {
+        background-color: #106ebe;
+    }
+    
+    .bilibili-link {
+        background-color: #fb7299;
+    }
+    
+    .bilibili-link:hover {
+        background-color: #ff9db5;
+    }
+`;
+document.head.appendChild(authorModalStyle);
+
+		// 创建作者弹窗HTML结构
+		const authorModalHTML = `
+			<div class="author-modal" id="authorModal">
+				<div class="author-modal-content">
+					<span class="author-close-modal">&times;</span>
+					<div class="author-modal-title">
+						<h2>—— 系统开发团队 ——</h2>
+						<p>以下为永远酱定制系统的所有参与制作人员</p>
+					</div>
+					
+					<div class="authors-grid" id="authorsGrid">
+						<!-- 作者卡片将通过JavaScript动态填充 -->
+					</div>
+				</div>
+			</div>
+		`;
+		document.body.insertAdjacentHTML('beforeend', authorModalHTML);
+
+		// 作者数据
+		const authorsData = [
+			{
+				id: "yzddddl",
+				name: "一只低调的道路",
+				role: "项目创始人 & 主要开发者",
+				description: "永远酱系列定制系统创始人和主要开发者，宣传平台主理人",
+				contributions: [
+					"永远酱定制Win10初版、2.0版和最终版开发",
+					"永远酱定制Win11预览版和正式版开发", 
+					"系统美化包制作"
+				],
+				bilibili: "https://space.bilibili.com/3493124680714310",
+				github: "#"
+			},
+			{
+				id: "system-ss8",
+				name: "SYSTEM-SS8-0016",
+				role: "Server版本开发者",
+				description: "定制Server开发人员 进行系统实体机测试",
+				contributions: [
+					"永远酱定制Server 2022&2025版本开发",
+					"Server系统优化和美化",
+					"系统实体机验证测试"
+				],
+				bilibili: "https://space.bilibili.com/672508011",
+				github: "#"
+			},
+			{
+				id: "blil114514",
+				name: "blil114514号",
+				role: "Win11专业工作版开发者",
+				description: "技术支持 参与内测 永远酱定制Win11专业工作站版作者",
+				contributions: [
+					"永远酱定制Win11专业工作版开发",
+					"系统内测和问题修复"
+				],
+				bilibili: "https://space.bilibili.com/401874924",
+				github: "#"
+			},
+			{
+				id: "qiyuan",
+				name: "栖渊Kaelen",
+				role: "网站开发者&运营者",
+				description: "负责永远酱系列定制系统宣传平台的网站开发和维护，提供技术支持和用户体验优化。",
+				contributions: [
+					"宣传平台网站开发",
+					"管理&运营宣传平台"
+				],
+				bilibili: "https://space.bilibili.com/3493124680714310?spm_id_from=333.1387.0.0",
+				github: "#"
+			},
+			{
+				id: "ymsl",
+				name: "-雨木森林-",
+				role: "永远酱定制Win10最终版宣传",
+				description: "进行永远酱定制Win10最终版宣传",
+				contributions: [
+					"永远酱定制Win10最终版宣传"
+				],
+				bilibili: "https://space.bilibili.com/401874924",
+				github: "#"
+			},
+		];
+
+		// 获取作者弹窗DOM元素
+		const authorModal = document.getElementById('authorModal');
+		const authorsGrid = document.getElementById('authorsGrid');
+		const authorCloseBtn = document.querySelector('.author-close-modal');
+
+		// 渲染作者卡片
+		function renderAuthorCards() {
+			authorsGrid.innerHTML = '';
+			
+			authorsData.forEach(author => {
+				const card = document.createElement('div');
+				card.className = 'author-card';
+				
+				card.innerHTML = `
+					<h3>${author.name}</h3>
+					<div class="author-role">${author.role}</div>
+					<div class="author-description">${author.description}</div>
+					
+					<div class="author-contributions">
+						<h4>主要贡献：</h4>
+						<ul>
+							${author.contributions.map(contribution => `<li>${contribution}</li>`).join('')}
+						</ul>
+					</div>
+					
+					<div class="author-links">
+						${author.bilibili !== '#' ? `<a href="${author.bilibili}" target="_blank" class="author-link bilibili-link">B站</a>` : ''}
+						${author.github !== '#' ? `<a href="${author.github}" target="_blank" class="author-link">GitHub</a>` : ''}
+					</div>
+				`;
+				
+				authorsGrid.appendChild(card);
+			});
+		}
+
+		// 显示作者弹窗
+		function showAuthorModal() {
+			renderAuthorCards();
+			authorModal.style.display = 'block';
+			document.body.style.overflow = 'hidden';
+		}
+
+		// 隐藏作者弹窗
+		function hideAuthorModal() {
+			authorModal.style.display = 'none';
+			document.body.style.overflow = 'auto';
+		}
+
+		// 绑定事件到"了解本系统作者"按钮
+		document.querySelector('.author-button').addEventListener('click', showAuthorModal);
+
+		// 点击关闭按钮关闭作者弹窗
+		authorCloseBtn.addEventListener('click', hideAuthorModal);
+
+		// 点击弹窗外部关闭作者弹窗
+		authorModal.addEventListener('click', function(event) {
+			if (event.target === authorModal) {
+				hideAuthorModal();
+			}
+		});
+
+		// 按ESC键关闭作者弹窗
+		document.addEventListener('keydown', function(event) {
+			if (event.key === 'Escape' && authorModal.style.display === 'block') {
+				hideAuthorModal();
+			}
+		});
+				
+				
+		// 创建关于弹窗HTML结构
+		const aboutModalHTML = `
+			<div class="about-modal" id="aboutModal">
+				<div class="about-modal-content">
+					<span class="about-close-modal">&times;</span>
+					<div class="about-modal-title">
+						<h2>—— 关于永远酱系列定制系统 ——</h2>
+						<p>深入了解我们的发展历程和团队成员</p>
+					</div>
+					
+					<div class="about-content-grid">
+						<div class="about-content-card">
+							<h3>项目起源</h3>
+							<p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点。当时一切完全缘起于我拍脑门想出来的一个想法</p>
+						</div>
+						
+						<div class="about-content-card">
+							<h3>团队成长</h3>
+							<p>永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的四人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……</p>
+						</div>
+						
+						<div class="about-content-card">
+							<h3>发展历程</h3>
+							<p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了</p>
+						</div>
+					</div>
+					
+					<div class="about-timeline">
+						<h3 style="text-align: center; margin-bottom: 30px;">项目发展时间线</h3>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年6月底</div>
+							<div class="timeline-content">
+								<h4>项目启动</h4>
+								<p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年8月5日</div>
+							<div class="timeline-content">
+								<h4>2.0版本发布</h4>
+								<p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年8月15日</div>
+							<div class="timeline-content">
+								<h4>Win10最终版</h4>
+								<p>发布了永远酱定制Win10的最终版，为Win10系列画上圆满句号。</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年8月30日</div>
+							<div class="timeline-content">
+								<h4>Win11预览版发布</h4>
+								<p>8月最后的一个星期我开始着手去做定制Win11，结果出现了很多玄学问题（比如：通过新版安装程序更新系统会安装失败，在PE系统里通过不同方式安装可能会决定是否有OOBE，莫名其妙的无人值守等等）</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年9月3日</div>
+							<div class="timeline-content">
+								<h4>Server版本开发</h4>
+								<p>开始开发永远酱定制Server 2022（2022/2025），标志着项目翻开了新的一页。</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年9月17日</div>
+							<div class="timeline-content">
+								<h4>Win11正式版完成测试</h4>
+								<p>最终在9月17日，永远酱定制Win11正式版完成了第一次安装测试，随后我将其发给了blil114514号和SYSTEM-SS8-0016进行下一轮内测。</p>
+							</div>
+						</div>
+						
+						<div class="timeline-item">
+							<div class="timeline-date">2025年9月27日</div>
+							<div class="timeline-content">
+								<h4>Win11正式发布</h4>
+								<p>在9月26号，我也成功达到了一千粉丝，这也标志着我（系统作者）获得了联合投稿的权利，永远酱定制Win11的推介视频也就此成为了我的第一个联合投稿。9月27日，永远酱定制Win11正式版发布了。</p>
+							</div>
+						</div>
+					</div>
+					
+					<div style="text-align: center; margin-top: 40px;">
+						<button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')">前往旧版网站</button>
+					</div>
+				</div>
+			</div>
+		`;
+		document.body.insertAdjacentHTML('beforeend', aboutModalHTML);
+
+		// 获取关于弹窗DOM元素
+		const aboutModal = document.getElementById('aboutModal');
+		const aboutCloseBtn = document.querySelector('.about-close-modal');
+
+		// 显示关于弹窗
+		function showAboutModal() {
+			aboutModal.style.display = 'block';
+			document.body.style.overflow = 'hidden';
+		}
+
+		// 隐藏关于弹窗
+		function hideAboutModal() {
+			aboutModal.style.display = 'none';
+			document.body.style.overflow = 'auto';
+		}
+
+		// 绑定事件到"了解更多"按钮
+		document.querySelector('.secondary-button').addEventListener('click', showAboutModal);
+
+		// 点击关闭按钮关闭关于弹窗
+		aboutCloseBtn.addEventListener('click', hideAboutModal);
+
+		// 点击弹窗外部关闭关于弹窗
+		aboutModal.addEventListener('click', function(event) {
+			if (event.target === aboutModal) {
+				hideAboutModal();
+			}
+		});
+
+		// 按ESC键关闭关于弹窗
+		document.addEventListener('keydown', function(event) {
+			if (event.key === 'Escape' && aboutModal.style.display === 'block') {
+				hideAboutModal();
+			}
+		});
+		
+		
         // 常见问题折叠功能
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -717,47 +1377,63 @@
                 });
             });
         });
+		
+		// B站按钮事件处理
+		document.querySelectorAll('.bilibili-button').forEach(button => {
+			button.addEventListener('click', function() {
+				const bilibiliUrl = this.getAttribute('data-bilibili');
+				if (bilibiliUrl) {
+					window.open(bilibiliUrl, '_blank');
+				} else {
+					alert('B站链接未进行配置，请联系网站管理员进行配置！');
+				}
+			});
+		});
+		
+		// 定义下载链接
+		const downloadLinks = {
+			"win10_final": "https://www.123912.com/s/dwB1vd-clPWv?pwd=tAah#",
+			"win11_anniversary": "",
+			"server_edition": "https://www.123912.com/s/dwB1vd-7TXWv?pwd=WALf#",
+			"win10_2.0": "https://www.123912.com/s/dwB1vd-xrPWv",
+			"W11-P": "https://www.123912.com/s/dwB1vd-DFXWv?pwd=ZiSL#", // 这里添加了逗号
+			"win11_official": "https://www.123912.com/s/dwB1vd-loXWv?pwd=UGA8#",
+			"zj": "",
+			"beautify_pack": "https://www.123912.com/s/dwB1vd-oRPWv",
+			"Ot":"https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787"
+		};
 
-        // 定义下载链接
-        const downloadLinks = {
-            "win10_final": "https://www.123912.com/s/dwB1vd-clPWv?pwd=tAah#",
-            "win11_anniversary": "",
-            "server_edition": "https://www.123912.com/s/dwB1vd-7TXWv?pwd=WALf#",
-            "win10_2.0": "https://www.123912.com/s/dwB1vd-xrPWv",
-            "win11_official": "https://www.123912.com/s/dwB1vd-loXWv?pwd=UGA8#",
-            "zj": "",
-            "beautify_pack": "https://www.123912.com/s/dwB1vd-oRPWv",
-            "Ot":"https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787"
-        };
-        
-        // 下载按钮点击事件 - 外部下载区域
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // 根据按钮所在的卡片确定下载链接
-                const card = this.closest('.download-card');
-                if (card) {
-                    const title = card.querySelector('h3').textContent;
-                    let downloadUrl;
-                    
-                    if (title.includes("Win10最终版")) {
-                        downloadUrl = downloadLinks.win10_final;
-                    } else if (title.includes("Windows Server")) {
-                        downloadUrl = downloadLinks.server_edition;
-                    }
-                    
-                    if (downloadUrl) {
-                        window.open(downloadUrl, '_blank');
-                    } else {
-                        alert('未成功配置链接，或网页已失效[Error Code:1]');
-                    }
-                }
-            });
-        });
+		// 下载按钮点击事件 - 外部下载区域
+		document.querySelectorAll('.cta-button').forEach(button => {
+			button.addEventListener('click', function() {
+				// 根据按钮所在的卡片确定下载链接
+				const card = this.closest('.download-card');
+				if (card) {
+					const title = card.querySelector('h3').textContent;
+					let downloadUrl;
+					
+					if (title.includes("Win10最终版")) {
+						downloadUrl = downloadLinks.win10_final;
+					} else if (title.includes("Windows Server")) {
+						downloadUrl = downloadLinks.server_edition;
+					} else if (title.includes("Win11专业工作版")) { // 添加对Win11专业工作版的判断
+						downloadUrl = downloadLinks["W11-P"];
+					}
+					
+					if (downloadUrl) {
+						window.open(downloadUrl, '_blank');
+					} else {
+						alert('未成功配置链接，或网页已失效[Error Code:1]');
+					}
+				}
+			});
+		});
 
         // 创建嵌套弹窗样式
         const modalStyle = document.createElement('style');
         modalStyle.textContent = `
-            .version-modal {
+            
+			.version-modal {
                 display: none;
                 position: fixed;
                 top: 0;
@@ -1247,7 +1923,7 @@
             },
 			{
                 id: "beautify_pack",
-                title: "永远酱系统美化包",
+                title: "永远酱系统美化包(Win10版)",
                 price: "独立组件更新:",
                 features: [
                     "第一版补偿美化包发布于7月20日，第二版补偿美化包发布于8月17日，因未知原因，锁屏壁纸《成都》无法正常启用，始终调用默认锁屏壁纸缓存（在测试版v5.0中曾尝试替换锁屏缓存解决这个问题，但可惜失败，替换后整个锁屏都寄了，根本不显示图片）。所以制作了补偿美化包，将成都锁屏作为开始菜单背景，并且将开发前期的万有引力背景回归到设置里（在定制Win11中正式成为锁屏背景）。",
@@ -1255,7 +1931,8 @@
                     "链接：https://winmoes.com/tools/12948.html  （复制前往）"
                 ],
                 buttonText: "下载（123云盘）提取码：87iA",
-                buttonClass: "cta-button"
+                buttonClass: "cta-button",
+				bilibiliUrl: "https://www.bilibili.com/video/BV1cTYkzsEW3/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
             {
                 id: "win10_2.0",
@@ -1272,7 +1949,8 @@
                     "8.改善系统资源占用情况"
                 ],
                 buttonText: "下载（123云盘）提取码：HlG3",
-                buttonClass: "cta-button"
+                buttonClass: "cta-button",
+				bilibiliUrl: "https://www.bilibili.com/video/BV1XRtjzoE9W/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
             {
                 id: "win11_official",
@@ -1286,51 +1964,67 @@
                     "6.系统新增彩蛋！（如果算上蛋中蛋和隐藏彩蛋，共有六个彩蛋）"
                 ],
                 buttonText: "下载（123云盘）",
-                buttonClass: "cta-button"
+                buttonClass: "cta-button",
+				bilibiliUrl: "https://www.bilibili.com/video/BV1DUnMz5E7T/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
         ];
 
         // 填充弹窗内容
-        function populateModalContent() {
-            modalContent.innerHTML = '';
-            
-            additionalVersions.forEach(version => {
-                const card = document.createElement('div');
-                card.className = 'modal-download-card';
-                
-                card.innerHTML = `
-                    <h3>${version.title}</h3>
-                    <div class="price">${version.price}</div>
-                    <ul>
-                        ${version.features.map(feature => `<li>${feature}</li>`).join('')}
-                    </ul>
-                    <button class="${version.buttonClass}" data-version="${version.id}" data-is-components="${version.isComponents || false}">${version.buttonText}</button>
-                `;
-                
-                modalContent.appendChild(card);
-            });
-            
-            // 重新绑定弹窗内按钮的事件
-            modalContent.querySelectorAll('.cta-button').forEach(button => {
-                button.addEventListener('click', function() {
-                    const versionId = this.getAttribute('data-version');
-                    const isComponents = this.getAttribute('data-is-components') === 'true';
-                    
-                    if (isComponents) {
-                        // 显示文件树布局
-                        showFileTreeLayout();
-                    } else {
-                        const downloadUrl = downloadLinks[versionId];
-                        
-                        if (downloadUrl) {
-                            window.open(downloadUrl, '_blank');
-                        } else {
-                            alert('未成功配置链接，或网页已失效[Error Code:1]');
-                        }
-                    }
-                });
-            });
-        }
+		function populateModalContent() {
+			modalContent.innerHTML = '';
+			
+			additionalVersions.forEach(version => {
+				const card = document.createElement('div');
+				card.className = 'modal-download-card';
+				
+				card.innerHTML = `
+					<h3>${version.title}</h3>
+					<div class="price">${version.price}</div>
+					<ul>
+						${version.features.map(feature => `<li>${feature}</li>`).join('')}
+					</ul>
+					<div style="margin-top: auto;">
+						<button class="${version.buttonClass}" data-version="${version.id}" data-is-components="${version.isComponents || false}">${version.buttonText}</button>
+						${version.bilibiliUrl ? `<button class="bilibili-button" data-bilibili="${version.bilibiliUrl}">观看演示视频</button>` : ''}
+					</div>
+				`;
+				
+				modalContent.appendChild(card);
+			});
+			
+			// 重新绑定弹窗内按钮的事件
+			modalContent.querySelectorAll('.cta-button').forEach(button => {
+				button.addEventListener('click', function() {
+					const versionId = this.getAttribute('data-version');
+					const isComponents = this.getAttribute('data-is-components') === 'true';
+					
+					if (isComponents) {
+						// 显示文件树布局
+						showFileTreeLayout();
+					} else {
+						const downloadUrl = downloadLinks[versionId];
+						
+						if (downloadUrl) {
+							window.open(downloadUrl, '_blank');
+						} else {
+							alert('未成功配置链接，或网页已失效[Error Code:1]');
+						}
+					}
+				});
+			});
+			
+			// 绑定弹窗内B站按钮的事件
+			modalContent.querySelectorAll('.bilibili-button').forEach(button => {
+				button.addEventListener('click', function() {
+					const bilibiliUrl = this.getAttribute('data-bilibili');
+					if (bilibiliUrl) {
+						window.open(bilibiliUrl, '_blank');
+					} else {
+						alert('B站链接未配置');
+					}
+				});
+			});
+		}
 
         // 显示弹窗
         function showModal() {
