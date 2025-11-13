@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>永远酱系列定制系统 —— 宣传平台</title>
 	<link rel="icon" href="/assets/images/fav-icon/fav-icon.png">
+	<!-- FontAwesome图标库 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #0078d4;
@@ -549,6 +551,155 @@
 		.author-button:hover {
 			background-color: #0d6b0d;
 		}
+		
+		/* 按钮图标样式 */
+		.cta-button i,
+		.bilibili-button i,
+		.more i,
+		.Wait i,
+		.author-button i,
+		.secondary-button i,
+		.back-button i,
+		.author-link i {
+			margin-right: 8px;
+		}
+
+		/* 确保图标在按钮内正确对齐 */
+		button, .author-link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 对于包含HTML的按钮文本 */
+		.modal-download-card .cta-button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		/* 确保下载卡片内的按钮容器居中对齐 */
+		.download-card > div,
+		.modal-download-card > div {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-top: auto;
+			align-items: center; /* 添加这一行使按钮居中对齐 */
+			width: 100%; /* 确保容器宽度100% */
+		}
+
+		/* 确保按钮本身宽度一致并居中 */
+		.download-card .cta-button,
+		.download-card .bilibili-button,
+		.download-card .more,
+		.download-card .Wait,
+		.modal-download-card .cta-button,
+		.modal-download-card .bilibili-button {
+			width: 100%;
+			max-width: 300px; /* 限制最大宽度，避免在大屏幕上过宽 */
+			padding: 12px 24px;
+			font-size: 16px;
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 对于作者卡片中的链接按钮也应用相同的居中样式 */
+		.author-links {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			margin-top: 15px;
+			width: 100%;
+		}
+
+		.author-link {
+			background-color: var(--primary-color);
+			color: white;
+			border: none;
+			padding: 8px 15px;
+			border-radius: var(--border-radius);
+			font-size: 14px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			text-decoration: none;
+			display: inline-flex; /* 使用inline-flex而不是inline-block */
+			align-items: center;
+			justify-content: center;
+			min-width: 100px; /* 设置最小宽度确保一致性 */
+		}
+
+		/* 确保Hero区域的按钮也居中 */
+		.hero-buttons {
+			display: flex;
+			justify-content: center;
+			gap: 20px;
+			margin-top: 30px;
+			flex-wrap: wrap; /* 添加换行支持 */
+		}
+
+		/* 移动端适配 */
+		@media (max-width: 768px) {
+			.download-card .cta-button,
+			.download-card .bilibili-button,
+			.download-card .more,
+			.download-card .Wait,
+			.modal-download-card .cta-button,
+			.modal-download-card .bilibili-button {
+				max-width: 100%; /* 在移动端使用全宽 */
+			}
+			
+			.hero-buttons {
+				flex-direction: column;
+				align-items: center;
+			}
+			
+			.hero-buttons button {
+				width: 100%;
+				max-width: 280px;
+			}
+		}
+		
+		/* 确保关于区域的按钮也居中对齐 */
+		.system-requirements .section-title > div {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+		}
+
+		/* 确保关于区域的按钮使用相同的样式 */
+		.system-requirements .cta-button {
+			width: auto;
+			min-width: 200px;
+			padding: 12px 30px;
+			font-size: 16px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto; /* 确保在容器内居中 */
+		}
+
+		/* 如果上面不够，添加更具体的样式 */
+		.system-requirements .section-title > div .cta-button {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			margin: 0 auto !important;
+		}
+
+		/* 确保所有按钮的图标对齐一致 */
+		.cta-button i,
+		.bilibili-button i,
+		.more i,
+		.Wait i,
+		.author-button i,
+		.secondary-button i,
+		.back-button i,
+		.author-link i {
+			margin-right: 8px;
+		}
 		</style>
 </head>
 <body>
@@ -577,10 +728,10 @@
             <h1>—— 欢迎 ——</h1>
             <h3>欢迎来到永远酱系列定制系统宣传平台</h3>
             <div class="hero-buttons">
-                <button class="more">更多组件下载</button>
-                <button class="secondary-button">关于我们的发展历程</button>
-				<button class="author-button">了解本系统作者</button>
-            </div>
+				<button class="more"><i class="fas fa-ellipsis-h"></i> 更多组件下载</button>
+				<button class="secondary-button"><i class="fas fa-history"></i> 关于我们的发展历程</button>
+				<button class="author-button"><i class="fas fa-users"></i> 了解本系统作者</button>
+			</div>
         </div>
     </section>
 
@@ -628,11 +779,13 @@
 
                         <li>（更多更新内容请转到"更多版本"中的早期版本）</li>
                     </ul>
-                    <div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
-						<button class="cta-button">下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xCbJzdEXd/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">观看演示视频</button>
-						<button class="more">更多版本</button>
-					</div>	
+                    <div style="margin-top: auto;">
+						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xCbJzdEXd/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">
+							<i class="fab fa-bilibili"></i> 观看演示视频
+						</button>
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
+					</div>
                 </div>
                 <div class="download-card">
                     <h3>永远酱定制Win11周年纪念版</h3>
@@ -650,9 +803,9 @@
                         <li>10.内置Microsoft Office 2024专业增强版</li>
                         <li>11.开始菜单背景改为《碧波幻想曲永远酱夏卜卜》的六号头图</li>
                     </ul>
-					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
-						<button class="Wait">下载（暂未开放）</button>
-						<button class="more">更多版本</button>
+					<div style="margin-top: auto;">
+						<button class="Wait"><i class="fas fa-clock"></i> 下载（暂未开放）</button>
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
 					</div>
                 </div>
 				<div class="download-card">
@@ -668,10 +821,12 @@
                         <li>7.鼠标停留或点击桌面图标时会出现待选框。删除Win11的新版右键菜单，更换为Win10的旧版</li>
                         <li>注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件</li>
                     </ul>
-					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
-						<button class="cta-button">下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1XKsAzGE1r">观看演示视频</button>
-						<button class="more">更多版本</button>
+					<div style="margin-top: auto;">
+						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1XKsAzGE1r">
+							<i class="fab fa-bilibili"></i> 观看演示视频
+						</button>
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
 					</div>
                 </div>
                 <div class="download-card">
@@ -693,10 +848,12 @@
 						<li>6.任务栏通知区域全部更改为Fluent样式</li>
 						<li>9.Server 2022可以安装除季度更新之外的其他补丁，不必担心美化失效</li>
                     </ul>
-					<div style="margin-top: auto;"> <!-- 这个div会推动按钮到底部 -->
-						<button class="cta-button">下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xxxxxx1/">观看演示视频</button>
-						<button class="more">更多版本</button>
+					<div style="margin-top: auto;">
+						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xxxxxx1/">
+							<i class="fab fa-bilibili"></i> 观看演示视频
+						</button>
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
 					</div>
                 </div>
             </div>
@@ -768,9 +925,9 @@
                 <h2>—— 关于永远酱 ——</h2>
                 <p>有关本定制系统的作者及更多信息，请前往查看旧网站文档</p>
                 <p>有关更多永远酱系列定制系统的信息，也在旧网站当中。目前正在逐步迁移文档中...</p>
-                <button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')" style="margin: 20px auto; display: block; max-width: 200px;">
-                前往旧版网站
-				</button>
+                <div style="text-align: center; margin-top: 40px;">
+					<button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')"><i class="fas fa-external-link-alt"></i> 前往旧版网站</button>
+				</div>
             </div>
         </div>
     </section>
@@ -809,13 +966,13 @@
                     <p>带*代表该服务正在维护<p/>
                     <ul>
                         <li><a href="#">*GitHub</a></li>
-                        <li><a href="https://space.bilibili.com/401874924">BilBil</a></li>
+                        <li><a href="https://space.bilibili.com/401874924">BiliBili</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.1f-251113.2116</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.2f-251113.2205</p>
             </div>
         </div>
     </footer>
@@ -948,6 +1105,108 @@
 		// 创建作者弹窗样式
 const authorModalStyle = document.createElement('style');
 authorModalStyle.textContent = `
+	/* 文件树布局的移动端适配 */
+	@media (max-width: 768px) {
+		.file-tree-layout {
+			grid-template-columns: 1fr !important;
+			gap: 20px !important;
+		}
+		
+		.file-tree-container {
+			max-height: 300px !important;
+			order: 1 !important;
+		}
+		
+		.component-content {
+			order: 2 !important;
+		}
+		
+		.file-tree li {
+			padding: 10px 12px !important;
+			font-size: 14px !important;
+		}
+		
+		.component-article {
+			padding: 20px !important;
+		}
+		
+		.component-article h3 {
+			font-size: 20px !important;
+		}
+		
+		.back-button {
+			width: 100% !important;
+			margin-bottom: 15px !important;
+		}
+		
+		/* 嵌套窗口卡片在移动端的适配 */
+		.modal-download-card {
+			width: 100% !important;
+			min-height: auto !important;
+			padding: 25px 20px !important;
+		}
+		
+		.modal-download-options {
+			gap: 20px !important;
+		}
+		
+		.modal-content {
+			padding: 20px 15px !important;
+			margin: 20px auto !important;
+		}
+		
+		/* 确保文件树在移动端有更好的触摸体验 */
+		.file-tree li {
+			min-height: 44px !important;
+			display: flex !important;
+			align-items: center !important;
+		}
+		
+		.folder-icon {
+			margin-right: 10px !important;
+			font-size: 18px !important;
+		}
+	}
+
+	/* 超小屏幕适配 */
+	@media (max-width: 480px) {
+		.file-tree-container {
+			max-height: 250px !important;
+		}
+		
+		.file-tree li {
+			padding: 8px 10px !important;
+			font-size: 13px !important;
+		}
+		
+		.component-article {
+			padding: 15px !important;
+		}
+		
+		.component-article h3 {
+			font-size: 18px !important;
+		}
+		
+		.modal-content {
+			padding: 15px 10px !important;
+		}
+		
+		.modal-download-card {
+			padding: 20px 15px !important;
+		}
+		
+		.modal-download-card h3 {
+			font-size: 20px !important;
+		}
+		
+		.modal-download-card .price {
+			font-size: 18px !important;
+		}
+		
+		.modal-download-card ul li {
+			font-size: 14px !important;
+		}
+	}
 	.author-modal {
 		display: none;
 		position: fixed;
@@ -1213,8 +1472,8 @@ document.head.appendChild(authorModalStyle);
 					</div>
 					
 					<div class="author-links">
-						${author.bilibili !== '#' ? `<a href="${author.bilibili}" target="_blank" class="author-link bilibili-link">B站</a>` : ''}
-						${author.github !== '#' ? `<a href="${author.github}" target="_blank" class="author-link">GitHub</a>` : ''}
+						${author.bilibili !== '#' ? `<a href="${author.bilibili}" target="_blank" class="author-link bilibili-link"><i class="fab fa-bilibili"></i> B站</a>` : ''}
+						${author.github !== '#' ? `<a href="${author.github}" target="_blank" class="author-link"><i class="fab fa-github"></i> GitHub</a>` : ''}
 					</div>
 				`;
 				
@@ -1730,12 +1989,12 @@ document.head.appendChild(authorModalStyle);
                             </ul>
                         </div>
                         <div class="component-content">
-                            <button class="back-button" id="backButton">← 返回窗口首页</button>
+                            <button class="back-button" id="backButton"><i class="fas fa-arrow-left"></i> 返回窗口首页</button>
                             <div class="component-article" id="componentArticle">
                                 <h3>选择一个组件</h3>
                                 <p>请从左侧选择一个组件以查看详细信息</p>
                             </div>
-                            <button class="cta-button" id="componentDownloadBtn" style="display: none;">前往下载</button>
+                            <button class="cta-button" id="componentDownloadBtn" style="display: none;"><i class="fas fa-download"></i> 前往下载</button>
                         </div>
                     </div>
                 </div>
@@ -1957,7 +2216,7 @@ document.head.appendChild(authorModalStyle);
             
             // 重置组件内容
             componentArticle.innerHTML = `
-                <h3>选择一个组件</h3>
+                <h3><i class="fas fa-folder-open"></i> 组件文件视图</h3>
                 <p>请从左侧选择一个组件以查看详细信息</p>
             `;
             componentDownloadBtn.style.display = 'none';
@@ -1988,7 +2247,7 @@ document.head.appendChild(authorModalStyle);
                     "Flash Player下载",
                     "Potplayer官网链接"
                 ],
-                buttonText: "前往",
+                buttonText: "<i class='fas fa-folder-open'></i> 前往",
                 buttonClass: "cta-button",
                 isComponents: true
             },
@@ -2001,7 +2260,7 @@ document.head.appendChild(authorModalStyle);
                     "警告：美化包需要借助MToolBox工具箱实现，应工具箱制作者要求，不提供下载链接，请前往工具箱发布页自行下载",
                     "链接：https://winmoes.com/tools/12948.html  （复制前往）"
                 ],
-                buttonText: "下载（123云盘）提取码：87iA",
+                buttonText: "<i class='fas fa-download'></i> 下载（123云盘）提取码：87iA",
                 buttonClass: "cta-button",
 				bilibiliUrl: "https://www.bilibili.com/video/BV1cTYkzsEW3/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
@@ -2019,7 +2278,7 @@ document.head.appendChild(authorModalStyle);
                     "7.新增壁纸《去有风的地方》（需通过Windows 10主题调用）",
                     "8.改善系统资源占用情况"
                 ],
-                buttonText: "下载（123云盘）提取码：HlG3",
+                buttonText: "<i class='fas fa-download'></i> 下载（123云盘）提取码：HlG3",
                 buttonClass: "cta-button",
 				bilibiliUrl: "https://www.bilibili.com/video/BV1XRtjzoE9W/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
@@ -2034,7 +2293,7 @@ document.head.appendChild(authorModalStyle);
                     "4.启用内置管理员账户，OOBE阶段剔除了强制联网登录微软账户要求",
                     "5.系统新增彩蛋！（如果算上蛋中蛋和隐藏彩蛋，共有六个彩蛋）"
                 ],
-                buttonText: "下载（123云盘）",
+                buttonText: "<i class='fas fa-download'></i> 下载（123云盘）",
                 buttonClass: "cta-button",
 				bilibiliUrl: "https://www.bilibili.com/video/BV1DUnMz5E7T/?share_source=copy_web&amp;vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
@@ -2056,7 +2315,7 @@ document.head.appendChild(authorModalStyle);
 					</ul>
 					<div style="margin-top: auto;">
 						<button class="${version.buttonClass}" data-version="${version.id}" data-is-components="${version.isComponents || false}">${version.buttonText}</button>
-						${version.bilibiliUrl ? `<button class="bilibili-button" data-bilibili="${version.bilibiliUrl}">观看演示视频</button>` : ''}
+						${version.bilibiliUrl ? `<button class="bilibili-button" data-bilibili="${version.bilibiliUrl}"><i class="fab fa-bilibili"></i> 观看演示视频</button>` : ''}
 					</div>
 				`;
 				
