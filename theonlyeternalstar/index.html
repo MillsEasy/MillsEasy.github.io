@@ -815,7 +815,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Beta3.1-251113.2032</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.0f-251113.2059</p>
             </div>
         </div>
     </footer>
@@ -836,29 +836,29 @@
 				overflow-y: auto;
 				transition: background-color 0.3s ease;
 			}
-			
+
 			.about-modal.show {
 				background-color: rgba(0, 0, 0, 0.7);
 			}
 			
-			.about-modal-content {
-				background-color: white;
-				margin: 40px auto;
-				padding: 30px;
-				border-radius: 8px;
-				width: 95%;
-				max-width: 1200px;
-				position: relative;
-				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-				transform: translateY(-30px);
-				opacity: 0;
-				transition: all 0.3s ease;
-			}
-			
-			.about-modal.show .about-modal-content {
-				transform: translateY(0);
-				opacity: 1;
-			}
+		.about-modal-content {
+			background-color: white;
+			margin: 40px auto;
+			padding: 30px;
+			border-radius: 8px;
+			width: 95%;
+			max-width: 1200px;
+			position: relative;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			transform: translateY(-30px);
+			opacity: 0;
+			transition: all 0.3s ease;
+		}
+
+		.about-modal.show .about-modal-content {
+			transform: translateY(0);
+			opacity: 1;
+		}
 			
 			.about-close-modal {
 				position: absolute;
