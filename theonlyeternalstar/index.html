@@ -815,7 +815,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.0f-251113.2059</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.1f-251113.2116</p>
             </div>
         </div>
     </footer>
@@ -831,34 +831,35 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background-color: rgba(0, 0, 0, 0);
+				background-color: rgba(0, 0, 0, 0.7); /* 直接设置背景色，不通过过渡 */
 				z-index: 1000;
 				overflow-y: auto;
-				transition: background-color 0.3s ease;
+				opacity: 0; /* 初始透明度为0 */
+				transition: opacity 0.3s ease; /* 只过渡透明度 */
 			}
 
 			.about-modal.show {
-				background-color: rgba(0, 0, 0, 0.7);
+				opacity: 1; /* 显示时完全不透明 */
 			}
-			
-		.about-modal-content {
-			background-color: white;
-			margin: 40px auto;
-			padding: 30px;
-			border-radius: 8px;
-			width: 95%;
-			max-width: 1200px;
-			position: relative;
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-			transform: translateY(-30px);
-			opacity: 0;
-			transition: all 0.3s ease;
-		}
 
-		.about-modal.show .about-modal-content {
-			transform: translateY(0);
-			opacity: 1;
-		}
+			.about-modal-content {
+				background-color: white;
+				margin: 40px auto;
+				padding: 30px;
+				border-radius: 8px;
+				width: 95%;
+				max-width: 1200px;
+				position: relative;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				transform: translateY(-30px);
+				opacity: 0;
+				transition: all 0.3s ease;
+			}
+
+			.about-modal.show .about-modal-content {
+				transform: translateY(0);
+				opacity: 1;
+			}
 			
 			.about-close-modal {
 				position: absolute;
@@ -947,23 +948,24 @@
 		// 创建作者弹窗样式
 const authorModalStyle = document.createElement('style');
 authorModalStyle.textContent = `
-    .author-modal {
+	.author-modal {
 		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.7);
 		z-index: 1000;
 		overflow-y: auto;
-		transition: background-color 0.3s ease;
+		opacity: 0;
+		transition: opacity 0.3s ease;
 	}
-	
+
 	.author-modal.show {
-		background-color: rgba(0, 0, 0, 0.7);
+		opacity: 1;
 	}
-    
+
 	.author-modal-content {
 		background-color: white;
 		margin: 40px auto;
@@ -977,7 +979,7 @@ authorModalStyle.textContent = `
 		opacity: 0;
 		transition: all 0.3s ease;
 	}
-	
+
 	.author-modal.show .author-modal-content {
 		transform: translateY(0);
 		opacity: 1;
@@ -1225,6 +1227,9 @@ document.head.appendChild(authorModalStyle);
 			renderAuthorCards();
 			authorModal.style.display = 'block';
 			
+			// 强制重绘
+			authorModal.offsetHeight;
+			
 			requestAnimationFrame(() => {
 				authorModal.classList.add('show');
 			});
@@ -1240,7 +1245,7 @@ document.head.appendChild(authorModalStyle);
 				authorModal.style.display = 'none';
 				document.body.style.overflow = 'auto';
 			}, 300);
-		}
+}
 
 		// 绑定事件到"了解本系统作者"按钮
 		document.querySelector('.author-button').addEventListener('click', showAuthorModal);
@@ -1365,6 +1370,9 @@ document.head.appendChild(authorModalStyle);
 		// 显示关于弹窗
 		function showAboutModal() {
 			aboutModal.style.display = 'block';
+			
+			// 强制重绘，确保过渡动画生效
+			aboutModal.offsetHeight;
 			
 			requestAnimationFrame(() => {
 				aboutModal.classList.add('show');
