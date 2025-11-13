@@ -309,13 +309,14 @@
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 			width: 450px; /* 增大宽度 */
 			min-height: 650px; /* 增加最小高度 */
-			transition: transform 0.3s;
+			transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
 			display: flex;
 			flex-direction: column; /* 使用弹性布局以便内容分布 */
 		}
 
 		.download-card:hover {
-			transform: translateY(-5px);
+			/* 移除 transform: translateY(-5px); */
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 保留阴影变化 */
 		}
 
 		.download-card h3 {
@@ -548,7 +549,7 @@
 		.author-button:hover {
 			background-color: #0d6b0d;
 		}
-			</style>
+		</style>
 </head>
 <body>
     <!-- Header区域 -->
@@ -814,7 +815,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Beta2.3-251113.1824</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Beta3.0-251113.1912</p>
             </div>
         </div>
     </footer>
@@ -874,17 +875,18 @@
 				margin-top: 30px;
 			}
 			
+			/* 修复关于窗口中的卡片悬停移动问题 */
 			.about-content-card {
 				background-color: white;
 				border-radius: 8px;
 				padding: 25px;
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-				transition: transform 0.3s;
+				transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
 				border-left: 4px solid var(--primary-color);
 			}
-			
+
 			.about-content-card:hover {
-				transform: translateY(-5px);
+				/* 移除 transform: translateY(-5px); */
 				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 			}
 			
@@ -983,20 +985,21 @@ authorModalStyle.textContent = `
         margin-top: 30px;
     }
     
-    .author-card {
-        background-color: white;
-        border-radius: 8px;
-        padding: 25px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s, box-shadow 0.3s;
-        text-align: center;
-        border-top: 4px solid var(--primary-color);
-    }
-    
-    .author-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
+    /* 修复作者窗口中的卡片悬停移动问题 */
+	.author-card {
+		background-color: white;
+		border-radius: 8px;
+		padding: 25px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+		text-align: center;
+		border-top: 4px solid var(--primary-color);
+	}
+
+	.author-card:hover {
+		/* 移除 transform: translateY(-5px); */
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+	}
     
     .author-card h3 {
         font-size: 20px;
@@ -1232,7 +1235,7 @@ document.head.appendChild(authorModalStyle);
 					<span class="about-close-modal">&times;</span>
 					<div class="about-modal-title">
 						<h2>—— 关于永远酱系列定制系统 ——</h2>
-						<p>深入了解我们的发展历程和团队成员</p>
+						<p>了解我们的发展历程</p>
 					</div>
 					
 					<div class="about-content-grid">
@@ -1258,7 +1261,7 @@ document.head.appendChild(authorModalStyle);
 						<div class="timeline-item">
 							<div class="timeline-date">2025年6月底</div>
 							<div class="timeline-content">
-								<h4>项目启动</h4>
+								<h4>项目的开始</h4>
 								<p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点</p>
 							</div>
 						</div>
@@ -1266,7 +1269,7 @@ document.head.appendChild(authorModalStyle);
 						<div class="timeline-item">
 							<div class="timeline-date">2025年8月5日</div>
 							<div class="timeline-content">
-								<h4>2.0版本发布</h4>
+								<h4>永远酱定制Win10-2.0版本发布</h4>
 								<p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
 							</div>
 						</div>
@@ -1274,7 +1277,7 @@ document.head.appendChild(authorModalStyle);
 						<div class="timeline-item">
 							<div class="timeline-date">2025年8月15日</div>
 							<div class="timeline-content">
-								<h4>Win10最终版</h4>
+								<h4>永远酱定制Win10最终版</h4>
 								<p>发布了永远酱定制Win10的最终版，为Win10系列画上圆满句号。</p>
 							</div>
 						</div>
@@ -1282,7 +1285,7 @@ document.head.appendChild(authorModalStyle);
 						<div class="timeline-item">
 							<div class="timeline-date">2025年8月30日</div>
 							<div class="timeline-content">
-								<h4>Win11预览版发布</h4>
+								<h4>永远酱定制Win11预览版发布</h4>
 								<p>8月最后的一个星期我开始着手去做定制Win11，结果出现了很多玄学问题（比如：通过新版安装程序更新系统会安装失败，在PE系统里通过不同方式安装可能会决定是否有OOBE，莫名其妙的无人值守等等）</p>
 							</div>
 						</div>
@@ -1306,7 +1309,7 @@ document.head.appendChild(authorModalStyle);
 						<div class="timeline-item">
 							<div class="timeline-date">2025年9月27日</div>
 							<div class="timeline-content">
-								<h4>Win11正式发布</h4>
+								<h4>永远酱定制Win11正式版发布</h4>
 								<p>在9月26号，我也成功达到了一千粉丝，这也标志着我（系统作者）获得了联合投稿的权利，永远酱定制Win11的推介视频也就此成为了我的第一个联合投稿。9月27日，永远酱定制Win11正式版发布了。</p>
 							</div>
 						</div>
@@ -1435,27 +1438,41 @@ document.head.appendChild(authorModalStyle);
         modalStyle.textContent = `
             
 			.version-modal {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.7);
-                z-index: 1000;
-                overflow-y: auto;
-            }
-            
-            .modal-content {
-                background-color: white;
-                margin: 40px auto;
-                padding: 30px;
-                border-radius: 8px;
-                width: 95%;
-                max-width: 1400px;
-                position: relative;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            }
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+				z-index: 1000;
+				overflow-y: auto;
+				opacity: 0; /* 添加透明度 */
+				transition: opacity 0.3s ease; /* 添加淡入淡出过渡 */
+			}
+
+			.version-modal.show {
+				opacity: 1; /* 显示时完全不透明 */
+			}
+
+			.modal-content {
+				background-color: white;
+				margin: 40px auto;
+				padding: 30px;
+				border-radius: 8px;
+				width: 95%;
+				max-width: 1400px;
+				position: relative;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				transform: translateY(-20px); /* 初始位置向上偏移 */
+				opacity: 0; /* 初始透明度 */
+				transition: all 0.3s ease; /* 添加过渡效果 */
+			}
+
+			.version-modal.show .modal-content {
+				transform: translateY(0); /* 回到正常位置 */
+				opacity: 1; /* 完全不透明 */
+			}
             
             .close-modal {
                 position: absolute;
@@ -1487,20 +1504,21 @@ document.head.appendChild(authorModalStyle);
             }
             
             .modal-download-card {
-                background-color: white;
-                border-radius: 8px;
-                padding: 40px 35px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-                width: 450px;
-                transition: transform 0.3s;
-                display: flex;
-                flex-direction: column;
-                min-height: 650px;
-            }
-            
-            .modal-download-card:hover {
-                transform: translateY(-5px);
-            }
+				background-color: white;
+				border-radius: 8px;
+				padding: 40px 35px;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+				width: 450px;
+				transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+				display: flex;
+				flex-direction: column;
+				min-height: 650px;
+			}
+
+			.modal-download-card:hover {
+				/* 移除 transform: translateY(-5px); */
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 保留阴影变化 */
+			}
             
             .modal-download-card h3 {
                 font-size: 24px;
@@ -2028,18 +2046,29 @@ document.head.appendChild(authorModalStyle);
 		}
 
         // 显示弹窗
-        function showModal() {
-            populateModalContent();
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+		function showModal() {
+			populateModalContent();
+			modal.style.display = 'block';
+			
+			// 使用setTimeout确保display:block先应用，再添加show类触发动画
+			setTimeout(() => {
+				modal.classList.add('show');
+			}, 10);
+			
+			document.body.style.overflow = 'hidden';
+		}
 
-        // 隐藏弹窗
-        function hideModal() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            backToCardsView(); // 确保返回卡片视图
-        }
+		// 隐藏弹窗
+		function hideModal() {
+			modal.classList.remove('show');
+			
+			// 等待动画完成后再隐藏display
+			setTimeout(() => {
+				modal.style.display = 'none';
+				document.body.style.overflow = 'auto';
+				backToCardsView();
+			}, 300); // 这个时间要与CSS过渡时间一致
+		}
 
         // 绑定事件到所有"更多版本"按钮
         document.querySelectorAll('.more').forEach(button => {
