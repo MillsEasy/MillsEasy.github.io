@@ -326,6 +326,7 @@
 			margin-bottom: 20px;
 			color: var(--dark-color);
 			line-height: 1.3; /* 改善标题行高 */
+			text-align: left;
 		}
 
 		.download-card .price {
@@ -333,12 +334,16 @@
 			font-weight: 700;
 			color: var(--primary-color);
 			margin-bottom: 20px;
+			text-align: left !important;
+			width: 100%;
+			display: block;
 		}
 
 		.download-card ul {
 			list-style: none;
 			margin-bottom: 30px;
 			flex-grow: 1; /* 让列表占据剩余空间 */
+			text-align: left;
 		}
 
 		.download-card ul li {
@@ -346,6 +351,7 @@
 			color: var(--gray-color);
 			font-size: 15px; /* 稍微增大列表字体 */
 			line-height: 1.5; /* 改善列表行高 */
+			text-align: left;
 		}
 
 		/* 响应式设计调整 */
@@ -597,7 +603,7 @@
 		.modal-download-card .cta-button,
 		.modal-download-card .bilibili-button {
 			width: 100%;
-			max-width: 300px; /* 限制最大宽度，避免在大屏幕上过宽 */
+			max-width: 300px; /* 限制最大宽度 */
 			padding: 12px 24px;
 			font-size: 16px;
 			margin-top: 10px;
@@ -606,7 +612,6 @@
 			justify-content: center;
 		}
 
-		/* 对于作者卡片中的链接按钮也应用相同的居中样式 */
 		.author-links {
 			display: flex;
 			justify-content: center;
@@ -628,16 +633,16 @@
 			display: inline-flex; /* 使用inline-flex而不是inline-block */
 			align-items: center;
 			justify-content: center;
-			min-width: 100px; /* 设置最小宽度确保一致性 */
+			min-width: 100px; /* 确保一致性 */
 		}
 
-		/* 确保Hero区域的按钮也居中 */
+		/* 确保Hero区域的按钮居中 */
 		.hero-buttons {
 			display: flex;
 			justify-content: center;
 			gap: 20px;
 			margin-top: 30px;
-			flex-wrap: wrap; /* 添加换行支持 */
+			flex-wrap: wrap; /* 换行支持 */
 		}
 
 		/* 移动端适配 */
@@ -700,9 +705,54 @@
 		.author-link i {
 			margin-right: 8px;
 		}
+		
+		/* 加载动画样式 */
+		#loading-animation {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.70); /* 改为半透明黑色背景 */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 9999;
+			transition: opacity 0.7s ease, visibility 0.7s ease;
+		}
+		
+		.loading-spinner {
+			text-align: center;
+		}
+		
+		.spinner {
+			width: 60px;
+			height: 60px;
+			border: 5px solid rgba(0, 120, 212, 0.2);
+			border-top: 5px solid var(--primary-color);
+			border-radius: 50%;
+			animation: spin 1s linear infinite;
+			margin: 0 auto 20px;
+		}
+		
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+		
+		/* 加载完成后的隐藏状态 */
+		#loading-animation.loaded {
+			opacity: 0;
+			visibility: hidden;
+		}
 		</style>
 </head>
 <body>
+	<div id="loading-animation">
+		<div class="loading-spinner">
+			<div class="spinner"></div>
+		</div>
+	</div>
     <!-- Header区域 -->
     <header>
         <div class="container">
@@ -914,6 +964,24 @@
                         <p>答：大部分旧版系统都在”更多版本“当中，请前往”更多版本“下载</p>
                     </div>
                 </div>
+				<div class="faq-item">
+                    <div class="faq-question">
+                        <span>怎么找不到我要的文档？/我找不到关于永远酱的具体信息</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：本站不提供任何有关永远酱本人有关的信息，请移步旧网站</p>
+                    </div>
+                </div>
+				<div class="faq-item">
+                    <div class="faq-question">
+                        <span>为何没有同步旧网站的文档？</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>答：站长可能未进行维护，请前往B站提醒站长进行更新维护</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -972,12 +1040,18 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha1.2f-251113.2205</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0a-251114.1708</p>
             </div>
         </div>
     </footer>
 
     <script>
+	    // 页面加载完成后隐藏加载动画
+		window.addEventListener('load', function() {
+			setTimeout(function() {
+				document.getElementById('loading-animation').classList.add('loaded');
+			}, 500); // 延迟500ms确保所有资源加载完成
+		});
 		// 创建关于弹窗样式
 		const aboutModalStyle = document.createElement('style');
 		aboutModalStyle.textContent = `
@@ -1843,6 +1917,9 @@ document.head.appendChild(authorModalStyle);
                 font-weight: 700;
                 color: var(--primary-color);
                 margin-bottom: 20px;
+				text-align: left !important;
+				width: 100%;
+				display: block;
             }
             
             .modal-download-card ul {
