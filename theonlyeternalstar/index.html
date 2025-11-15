@@ -37,9 +37,11 @@
             padding: 0 20px;
         }
         
-        /* 头部样式 */
+		/* 头部样式 */
 		header {
-			background-color: white;
+			background-color: rgba(255, 255, 255, 0.85); /* 半透明背景 */
+			backdrop-filter: blur(10px); /* 毛玻璃效果 */
+			-webkit-backdrop-filter: blur(10px); /* Safari 支持 */
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 			position: sticky;
 			top: 0;
@@ -52,23 +54,23 @@
 			align-items: center;
 			padding: 15px 0;
 		}
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        .logo-text {
-            font-size: 26px;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        
+
+		.logo {
+			display: flex;
+			align-items: center;
+		}
+
+		.logo img {
+			height: 40px;
+			margin-right: 10px;
+		}
+
+		.logo-text {
+			font-size: 26px;
+			font-weight: 600;
+			color: var(--primary-color);
+		}
+
 		.nav-right {
 			display: flex;
 			align-items: center;
@@ -82,17 +84,17 @@
 		nav ul li {
 			margin-left: 30px;
 		}
-        
-        nav ul li a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary-color);
-        }
+
+		nav ul li a {
+			text-decoration: none;
+			color: var(--dark-color);
+			font-weight: 500;
+			transition: color 0.3s;
+		}
+
+		nav ul li a:hover {
+			color: var(--primary-color);
+		}
         
         .cta-button {
             background-color: var(--primary-color);
@@ -763,7 +765,9 @@
 		}
 
 		.dark-mode header {
-			background-color: #1e1e1e;
+			background-color: rgba(30, 30, 30, 0.85); /* 深色半透明背景 */
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 		}
 
@@ -1031,16 +1035,21 @@
 		}
 		
 		/* 主题切换过渡动画 */
-		body, 
-		header, 
-		nav ul li a, 
-		.logo-text,
+		body,
+		header,
+		.features,
+		.faq,
+		.download,
+		.system-requirements,
+		footer {
+			transition: background-color 0.4s ease;
+		}
+
+		/* 卡片和内容元素的过渡 - 与背景保持同步 */
 		.feature-card,
 		.download-card,
 		.modal-download-card,
 		.faq-item,
-		.footer-column,
-		.footer-column ul li a,
 		.about-content-card,
 		.author-card,
 		.component-article,
@@ -1053,12 +1062,47 @@
 		.author-button,
 		.bilibili-button,
 		.theme-toggle {
-			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 		}
 
-		/* 所有文本元素的颜色过渡 */
+		/* 文本元素的过渡 */
 		h1, h2, h3, h4, h5, h6, p, span, li, a, button, input, textarea, select, label {
 			transition: color 0.4s ease;
+		}
+
+		/* 确保深色模式下的过渡与浅色模式一致 */
+		.dark-mode .feature-card,
+		.dark-mode .download-card,
+		.dark-mode .modal-download-card,
+		.dark-mode .faq-item,
+		.dark-mode .about-content-card,
+		.dark-mode .author-card,
+		.dark-mode .component-article,
+		.dark-mode .file-tree li,
+		.dark-mode .timeline-content,
+		.dark-mode .cta-button,
+		.dark-mode .secondary-button,
+		.dark-mode .more,
+		.dark-mode .Wait,
+		.dark-mode .author-button,
+		.dark-mode .bilibili-button,
+		.dark-mode .theme-toggle {
+			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+		}
+
+		/* 修复JavaScript切换主题时的淡入淡出效果 */
+		body.theme-transitioning {
+			transition: background-color 0.4s ease !important;
+		}
+
+		body.theme-transitioning .feature-card,
+		body.theme-transitioning .download-card,
+		body.theme-transitioning .modal-download-card,
+		body.theme-transitioning .faq-item,
+		body.theme-transitioning .about-content-card,
+		body.theme-transitioning .author-card,
+		body.theme-transitioning .component-article {
+			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
 		}
 
 		/* 保持移动端显示按钮正常 */
@@ -1412,7 +1456,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0d-251115.1207</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0d-251115.1248</p>
             </div>
         </div>
     </footer>
@@ -2901,17 +2945,18 @@ document.head.appendChild(authorModalStyle);
 
 		// 切换主题函数
 		function toggleTheme() {
-			// 淡出效果
-			document.body.style.opacity = '0.8';
-			document.body.style.transition = 'opacity 0.3s ease';
+			// 添加过渡类
+			document.body.classList.add('theme-transitioning');
 			
 			setTimeout(() => {
 				const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
 				applyTheme(newTheme);
 				
-				// 淡入效果
-				document.body.style.opacity = '1';
-			}, 150);
+				// 移除过渡类
+				setTimeout(() => {
+					document.body.classList.remove('theme-transitioning');
+				}, 400); // 与CSS过渡时间一致
+			}, 10);
 		}
 
 		// 绑定点击事件
