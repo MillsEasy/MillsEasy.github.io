@@ -1125,6 +1125,7 @@
 				width: 100%;
 				margin-top: 15px;
 				flex-wrap: nowrap;
+				position: relative; /* 添加相对定位 */
 			}
 			
 			nav ul {
@@ -1133,6 +1134,7 @@
 				overflow-x: auto;
 				margin-top: 0;
 				flex-grow: 1;
+				margin-right: 60px; /* 为主题切换按钮留出空间 */
 			}
 			
 			nav ul li {
@@ -1145,26 +1147,10 @@
 				margin-left: 15px;
 				flex-shrink: 0;
 				order: 2;
-			}
-		}
-
-		/* 超小屏幕进一步优化 */
-		@media (max-width: 480px) {
-			.nav-right {
-				flex-wrap: wrap;
-				justify-content: center;
-			}
-			
-			nav ul {
-				order: 1;
-				width: 100%;
-				justify-content: center;
-				margin-bottom: 10px;
-			}
-			
-			.theme-toggle {
-				order: 2;
-				margin-left: 0;
+				position: absolute; /* 改为绝对定位 */
+				right: 0; /* 固定在右侧 */
+				top: 50%; /* 垂直居中 */
+				transform: translateY(-50%); /* 垂直居中调整 */
 			}
 		}
 		</style>
