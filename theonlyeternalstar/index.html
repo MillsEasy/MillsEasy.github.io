@@ -38,20 +38,20 @@
         }
         
         /* 头部样式 */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
+		header {
+			background-color: white;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+
+		.header-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 15px 0;
+		}
         
         .logo {
             display: flex;
@@ -64,19 +64,24 @@
         }
         
         .logo-text {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 600;
             color: var(--primary-color);
         }
         
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
+		.nav-right {
+			display: flex;
+			align-items: center;
+		}
+
+		nav ul {
+			display: flex;
+			list-style: none;
+		}
+
+		nav ul li {
+			margin-left: 30px;
+		}
         
         nav ul li a {
             text-decoration: none;
@@ -115,6 +120,10 @@
             transition: all 0.3s;
         }
         
+		.more:hover {
+			background-color: #dcdcdc
+		}
+		
         .more {
             background-color: whitesmoke;
             color: var(--primary-color);
@@ -745,6 +754,364 @@
 			opacity: 0;
 			visibility: hidden;
 		}
+		
+		
+		/* 黑色模式样式 */
+		body.dark-mode {
+			background-color: #121212;
+			color: #e0e0e0;
+		}
+
+		.dark-mode header {
+			background-color: #1e1e1e;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+		}
+
+		.dark-mode .logo-text {
+			color: var(--primary-color);
+		}
+
+		.dark-mode nav ul li a {
+			color: #e0e0e0;
+		}
+
+		.dark-mode nav ul li a:hover {
+			color: var(--primary-color);
+		}
+
+		.dark-mode .features {
+			background-color: #121212;
+		}
+
+		.dark-mode .section-title h2 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .section-title p {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .feature-card {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .feature-card p {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .faq {
+			background-color: #1a1a1a;
+		}
+
+		.dark-mode .faq-item {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .download-card,
+		.dark-mode .modal-download-card {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .download-card h3,
+		.dark-mode .modal-download-card h3 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .download-card ul li,
+		.dark-mode .modal-download-card ul li {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .about-content-card,
+		.dark-mode .author-card {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .about-content-card h3,
+		.dark-mode .author-card h3 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .about-content-card p,
+		.dark-mode .author-description {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .component-article {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .component-article h3 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .component-article p,
+		.dark-mode .component-article li {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .file-tree-container {
+			background-color: #2d2d2d;
+		}
+
+		.dark-mode .file-tree li {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .file-tree li:hover {
+			background-color: #3d3d3d;
+		}
+
+		.dark-mode .file-tree li.active {
+			background-color: var(--primary-color);
+			color: white;
+		}
+
+		.theme-toggle {
+			background: none;
+			border: 2px solid var(--primary-color);
+			color: var(--primary-color);
+			cursor: pointer;
+			font-size: 18px;
+			padding: 8px;
+			border-radius: 50%;
+			width: 44px;
+			height: 44px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+			margin-left: 20px;
+		}
+
+		.theme-toggle:hover {
+			background-color: var(--primary-color);
+			color: white;
+		}
+
+		.dark-mode .theme-toggle {
+			border-color: #e0e0e0;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .theme-toggle:hover {
+			background-color: #e0e0e0;
+			color: #121212;
+		}
+
+		/* 响应式设计 */
+		@media (max-width: 768px) {
+			.theme-toggle {
+				margin-left: 10px;
+				width: 40px;
+				height: 40px;
+				font-size: 16px;
+			}
+		}
+		
+		/* 嵌套窗口的黑色模式 */
+		.dark-mode .modal-content,
+		.dark-mode .about-modal-content,
+		.dark-mode .author-modal-content {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .modal-title h2,
+		.dark-mode .about-modal-title h2,
+		.dark-mode .author-modal-title h2 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .modal-title p,
+		.dark-mode .about-modal-title p,
+		.dark-mode .author-modal-title p {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .close-modal,
+		.dark-mode .about-close-modal,
+		.dark-mode .author-close-modal {
+			color: #b0b0b0;
+		}
+
+		.dark-mode .close-modal:hover,
+		.dark-mode .about-close-modal:hover,
+		.dark-mode .author-close-modal:hover {
+			color: var(--primary-color);
+		}
+
+		.dark-mode .timeline-content {
+			background-color: #2d2d2d;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .timeline-content h4 {
+			color: #e0e0e0;
+		}
+
+		.dark-mode .back-button {
+			background-color: #555;
+			color: #e0e0e0;
+		}
+
+		.dark-mode .back-button:hover {
+			background-color: #666;
+		}
+		
+		/* 按钮在黑色模式下的样式 */
+		.dark-mode .cta-button {
+			background-color: var(--primary-color);
+			color: white;
+		}
+
+		.dark-mode .cta-button:hover {
+			background-color: #106ebe;
+		}
+
+		.dark-mode .secondary-button {
+			border: 2px solid #e0e0e0;
+		}
+
+		.dark-mode .secondary-button:hover {
+			border-color: var(--primary-color);
+			background-color: #e0e0e0;
+			color: #121212;
+		}
+
+		.dark-mode .more {
+			background-color: #2d2d2d;
+			color: #e0e0e0;
+			border: 2px solid #555;
+		}
+
+		.dark-mode .more:hover {
+			background-color: #3d3d3d;
+			border-color: #666;
+		}
+
+		.dark-mode .Wait {
+			background-color: #106ebe;
+			color: white;
+		}
+
+		.dark-mode .Wait:hover {
+			background-color: #f43030;
+		}
+
+		.dark-mode .author-button {
+			background-color: var(--secondary-color);
+			color: white;
+		}
+
+		.dark-mode .author-button:hover {
+			background-color: #0d6b0d;
+		}
+	
+		/* 移动端黑色模式适配 */
+		@media (max-width: 768px) {
+			.dark-mode .header-content {
+				flex-direction: column;
+			}
+			
+			.dark-mode .nav-right {
+				margin-top: 15px;
+				width: 100%;
+				justify-content: space-between;
+			}
+			
+			.dark-mode nav ul {
+				margin-top: 0;
+			}
+		}
+		
+		/* 主题切换过渡动画 */
+		body, 
+		header, 
+		nav ul li a, 
+		.logo-text,
+		.feature-card,
+		.download-card,
+		.modal-download-card,
+		.faq-item,
+		.footer-column,
+		.footer-column ul li a,
+		.about-content-card,
+		.author-card,
+		.component-article,
+		.file-tree li,
+		.timeline-content,
+		.cta-button,
+		.secondary-button,
+		.more,
+		.Wait,
+		.author-button,
+		.bilibili-button,
+		.theme-toggle {
+			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+		}
+
+		/* 所有文本元素的颜色过渡 */
+		h1, h2, h3, h4, h5, h6, p, span, li, a, button, input, textarea, select, label {
+			transition: color 0.4s ease;
+		}
+
+		/* 保持移动端显示按钮正常 */
+		@media (max-width: 768px) {
+			.nav-right {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				width: 100%;
+				margin-top: 15px;
+				flex-wrap: nowrap;
+			}
+			
+			nav ul {
+				display: flex;
+				flex-wrap: nowrap;
+				overflow-x: auto;
+				margin-top: 0;
+				flex-grow: 1;
+			}
+			
+			nav ul li {
+				margin-left: 15px;
+				margin-right: 15px;
+				flex-shrink: 0; /* 防止导航项被压缩 */
+			}
+			
+			.theme-toggle {
+				margin-left: 15px;
+				flex-shrink: 0;
+				order: 2;
+			}
+		}
+
+		/* 超小屏幕进一步优化 */
+		@media (max-width: 480px) {
+			.nav-right {
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			
+			nav ul {
+				order: 1;
+				width: 100%;
+				justify-content: center;
+				margin-bottom: 10px;
+			}
+			
+			.theme-toggle {
+				order: 2;
+				margin-left: 0;
+			}
+		}
 		</style>
 </head>
 <body>
@@ -755,22 +1122,27 @@
 	</div>
     <!-- Header区域 -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-text">永远酱系列定制系统</div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#features">前言</a></li>
-                        <li><a href="#download">下载</a></li>
-                        <li><a href="#faq">疑难解答</a></li>
-                        <li><a href="#requirements">关于永远酱</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </header>
+		<div class="container">
+			<div class="header-content">
+				<div class="logo">
+					<div class="logo-text">永远酱系列定制系统</div>
+				</div>
+				<div class="nav-right">
+					<nav>
+						<ul>
+							<li><a href="#features">前言</a></li>
+							<li><a href="#download">下载</a></li>
+							<li><a href="#faq">疑难解答</a></li>
+							<li><a href="#requirements">关于永远酱</a></li>
+						</ul>
+					</nav>
+					<button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
+						<i class="fas fa-moon"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</header>
 
     <!-- Hero区域 -->
     <section class="hero">
@@ -1040,7 +1412,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 岚星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0c-251115.1108</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0d-251115.1207</p>
             </div>
         </div>
     </footer>
@@ -2482,6 +2854,68 @@ document.head.appendChild(authorModalStyle);
                 hideModal();
             }
         });
+		
+		
+		// 黑色模式切换功能
+		const themeToggle = document.getElementById('themeToggle');
+		const themeIcon = themeToggle.querySelector('i');
+
+		// 检查系统主题偏好
+		function getSystemTheme() {
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				return 'dark';
+			}
+			return 'light';
+		}
+
+		// 检查本地存储的主题偏好，如果没有则使用系统主题
+		const currentTheme = localStorage.getItem('theme') || getSystemTheme();
+
+		// 应用主题
+		function applyTheme(theme) {
+			if (theme === 'dark') {
+				document.body.classList.add('dark-mode');
+				themeIcon.classList.remove('fa-moon');
+				themeIcon.classList.add('fa-sun');
+			} else {
+				document.body.classList.remove('dark-mode');
+				themeIcon.classList.remove('fa-sun');
+				themeIcon.classList.add('fa-moon');
+			}
+			localStorage.setItem('theme', theme);
+		}
+
+		// 初始应用主题
+		applyTheme(currentTheme);
+
+		// 监听系统主题变化
+		if (window.matchMedia) {
+			const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+			mediaQuery.addEventListener('change', (e) => {
+				// 只有当用户没有手动设置过主题时才跟随系统
+				if (!localStorage.getItem('theme')) {
+					applyTheme(e.matches ? 'dark' : 'light');
+				}
+			});
+		}
+
+		// 切换主题函数
+		function toggleTheme() {
+			// 淡出效果
+			document.body.style.opacity = '0.8';
+			document.body.style.transition = 'opacity 0.3s ease';
+			
+			setTimeout(() => {
+				const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+				applyTheme(newTheme);
+				
+				// 淡入效果
+				document.body.style.opacity = '1';
+			}, 150);
+		}
+
+		// 绑定点击事件
+		themeToggle.addEventListener('click', toggleTheme);
     </script>
 </body>
 </html>
