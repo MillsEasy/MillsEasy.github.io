@@ -321,28 +321,27 @@
 			border-radius: 8px;
 			padding: 40px 35px;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-			width: 450px; /* 增大宽度 */
-			min-height: 650px; /* 增加最小高度 */
-			transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+			width: 450px;
+			min-height: 650px;
+			transition: box-shadow 0.3s;
 			display: flex;
-			flex-direction: column; /* 使用弹性布局以便内容分布 */
+			flex-direction: column;
 		}
 
 		.download-card:hover {
-			/* 移除 transform: translateY(-5px); */
-			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 保留阴影变化 */
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 		}
 
 		.download-card h3 {
 			font-size: 24px;
 			margin-bottom: 20px;
 			color: var(--dark-color);
-			line-height: 1.3; /* 改善标题行高 */
+			line-height: 1.3;
 			text-align: left;
 		}
 
 		.download-card .price {
-			font-size: 20px; /* 增大字体 */
+			font-size: 20px;
 			font-weight: 700;
 			color: var(--primary-color);
 			margin-bottom: 20px;
@@ -354,24 +353,24 @@
 		.download-card ul {
 			list-style: none;
 			margin-bottom: 30px;
-			flex-grow: 1; /* 让列表占据剩余空间 */
+			flex-grow: 1;
 			text-align: left;
 		}
 
 		.download-card ul li {
 			margin-bottom: 10px;
 			color: var(--gray-color);
-			font-size: 15px; /* 稍微增大列表字体 */
-			line-height: 1.5; /* 改善列表行高 */
+			font-size: 15px;
+			line-height: 1.5;
 			text-align: left;
 		}
 
 		/* 响应式设计调整 */
 		@media (max-width: 768px) {
 			.download-card {
-				width: 340px; /* 移动端保持较小宽度 */
-				min-height: auto; /* 移动端取消最小高度 */
-				padding: 30px 25px; /* 移动端调整内边距 */
+				width: 340px;
+				min-height: auto;
+				padding: 30px 25px;
 			}
 		}
 
@@ -536,8 +535,7 @@
 			gap: 10px;
 			margin-top: auto;
 		}
-
-		/* 确保主下载区域的按钮也有统一大小 */
+		
 		.download-card .cta-button,
 		.download-card .bilibili-button,
 		.download-card .more,
@@ -582,32 +580,28 @@
 			margin-right: 8px;
 		}
 
-		/* 确保图标在按钮内正确对齐 */
 		button, .author-link {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 
-		/* 对于包含HTML的按钮文本 */
 		.modal-download-card .cta-button {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 		}
 		
-		/* 确保下载卡片内的按钮容器居中对齐 */
 		.download-card > div,
 		.modal-download-card > div {
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
 			margin-top: auto;
-			align-items: center; /* 添加这一行使按钮居中对齐 */
-			width: 100%; /* 确保容器宽度100% */
+			align-items: center;
+			width: 100%;
 		}
 
-		/* 确保按钮本身宽度一致并居中 */
 		.download-card .cta-button,
 		.download-card .bilibili-button,
 		.download-card .more,
@@ -615,7 +609,7 @@
 		.modal-download-card .cta-button,
 		.modal-download-card .bilibili-button {
 			width: 100%;
-			max-width: 300px; /* 限制最大宽度 */
+			max-width: 300px;
 			padding: 12px 24px;
 			font-size: 16px;
 			margin-top: 10px;
@@ -642,19 +636,18 @@
 			cursor: pointer;
 			transition: background-color 0.3s;
 			text-decoration: none;
-			display: inline-flex; /* 使用inline-flex而不是inline-block */
+			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			min-width: 100px; /* 确保一致性 */
+			min-width: 100px;
 		}
 
-		/* 确保Hero区域的按钮居中 */
 		.hero-buttons {
 			display: flex;
 			justify-content: center;
 			gap: 20px;
 			margin-top: 30px;
-			flex-wrap: wrap; /* 换行支持 */
+			flex-wrap: wrap;
 		}
 
 		/* 移动端适配 */
@@ -665,7 +658,7 @@
 			.download-card .Wait,
 			.modal-download-card .cta-button,
 			.modal-download-card .bilibili-button {
-				max-width: 100%; /* 在移动端使用全宽 */
+				max-width: 100%;
 			}
 			
 			.hero-buttons {
@@ -679,14 +672,12 @@
 			}
 		}
 		
-		/* 确保关于区域的按钮也居中对齐 */
 		.system-requirements .section-title > div {
 			display: flex;
 			justify-content: center;
 			width: 100%;
 		}
 
-		/* 确保关于区域的按钮使用相同的样式 */
 		.system-requirements .cta-button {
 			width: auto;
 			min-width: 200px;
@@ -695,10 +686,9 @@
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
-			margin: 0 auto; /* 确保在容器内居中 */
+			margin: 0 auto;
 		}
 
-		/* 如果上面不够，添加更具体的样式 */
 		.system-requirements .section-title > div .cta-button {
 			display: inline-flex !important;
 			align-items: center !important;
@@ -706,7 +696,6 @@
 			margin: 0 auto !important;
 		}
 
-		/* 确保所有按钮的图标对齐一致 */
 		.cta-button i,
 		.bilibili-button i,
 		.more i,
@@ -725,7 +714,7 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background-color: rgba(0, 0, 0, 0.70); /* 改为半透明黑色背景 */
+			background-color: rgba(0, 0, 0, 0.70);
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -752,7 +741,6 @@
 			100% { transform: rotate(360deg); }
 		}
 		
-		/* 加载完成后的隐藏状态 */
 		#loading-animation.loaded {
 			opacity: 0;
 			visibility: hidden;
@@ -766,7 +754,7 @@
 		}
 
 		.dark-mode header {
-			background-color: rgba(30, 30, 30, 0.85); /* 深色半透明背景 */
+			background-color: rgba(30, 30, 30, 0.85);
 			backdrop-filter: blur(10px);
 			-webkit-backdrop-filter: blur(10px);
 			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -816,14 +804,14 @@
 
 		.dark-mode .download-card,
 		.dark-mode .modal-download-card {
-			background-color: #2a2a2a; /* 比原来稍亮的背景色 */
-			color: #f0f0f0; /* 更亮的文字颜色 */
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 增强阴影以突出层次 */
+			background-color: #2a2a2a;
+			color: #f0f0f0;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 		}
 		
 		.dark-mode .download-card .price,
 		.dark-mode .modal-download-card .price {
-			color: var(--primary-color); /* 保持主色调 */
+			color: var(--primary-color);
 		}
 
 		.dark-mode .download-card h3,
@@ -915,7 +903,6 @@
 			color: #121212;
 		}
 
-		/* 响应式设计 */
 		@media (max-width: 768px) {
 			.theme-toggle {
 				margin-left: 10px;
@@ -975,7 +962,6 @@
 			background-color: #666;
 		}
 		
-		/* 按钮在黑色模式下的样式 */
 		.dark-mode .cta-button {
 			background-color: var(--primary-color);
 			color: white;
@@ -1060,7 +1046,6 @@
 			transition: background-color 0.4s ease;
 		}
 
-		/* 卡片和内容元素的过渡 - 与背景保持同步 */
 		.feature-card,
 		.download-card,
 		.modal-download-card,
@@ -1080,12 +1065,10 @@
 			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 		}
 
-		/* 文本元素的过渡 */
 		h1, h2, h3, h4, h5, h6, p, span, li, a, button, input, textarea, select, label {
 			transition: color 0.4s ease;
 		}
 
-		/* 确保深色模式下的过渡与浅色模式一致 */
 		.dark-mode .feature-card,
 		.dark-mode .download-card,
 		.dark-mode .modal-download-card,
@@ -1105,7 +1088,6 @@
 			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 		}
 
-		/* 修复JavaScript切换主题时的淡入淡出效果 */
 		body.theme-transitioning {
 			transition: background-color 0.4s ease !important;
 		}
@@ -1120,7 +1102,6 @@
 			transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
 		}
 
-		/* 保持移动端显示按钮正常 */
 		@media (max-width: 768px) {
 			.nav-right {
 				display: flex;
@@ -1129,7 +1110,7 @@
 				width: 100%;
 				margin-top: 15px;
 				flex-wrap: nowrap;
-				position: relative; /* 添加相对定位 */
+				position: relative;
 			}
 			
 			nav ul {
@@ -1138,23 +1119,23 @@
 				overflow-x: auto;
 				margin-top: 0;
 				flex-grow: 1;
-				margin-right: 60px; /* 为主题切换按钮留出空间 */
+				margin-right: 60px;
 			}
 			
 			nav ul li {
 				margin-left: 15px;
 				margin-right: 15px;
-				flex-shrink: 0; /* 防止导航项被压缩 */
+				flex-shrink: 0;
 			}
 			
 			.theme-toggle {
 				margin-left: 15px;
 				flex-shrink: 0;
 				order: 2;
-				position: absolute; /* 改为绝对定位 */
-				right: 0; /* 固定在右侧 */
-				top: 50%; /* 垂直居中 */
-				transform: translateY(-50%); /* 垂直居中调整 */
+				position: absolute;
+				right: 0;
+				top: 50%;
+				transform: translateY(-50%);
 			}
 		}
 		</style>
@@ -1459,7 +1440,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 枫星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0e-251116.0811</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：Alpha2.0e-251116.0820</p>
             </div>
         </div>
     </footer>
@@ -1481,15 +1462,15 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background-color: rgba(0, 0, 0, 0.7); /* 直接设置背景色，不通过过渡 */
+				background-color: rgba(0, 0, 0, 0.7);
 				z-index: 1000;
 				overflow-y: auto;
-				opacity: 0; /* 初始透明度为0 */
-				transition: opacity 0.3s ease; /* 只过渡透明度 */
+				opacity: 0;
+				transition: opacity 0.3s ease;
 			}
 
 			.about-modal.show {
-				opacity: 1; /* 显示时完全不透明 */
+				opacity: 1;
 			}
 
 			.about-modal-content {
@@ -1539,18 +1520,16 @@
 				margin-top: 30px;
 			}
 			
-			/* 修复关于窗口中的卡片悬停移动问题 */
 			.about-content-card {
 				background-color: white;
 				border-radius: 8px;
 				padding: 25px;
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-				transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+				transition: box-shadow 0.3s; 
 				border-left: 4px solid var(--primary-color);
 			}
 
 			.about-content-card:hover {
-				/* 移除 transform: translateY(-5px); */
 				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 			}
 			
@@ -1632,7 +1611,6 @@ authorModalStyle.textContent = `
 			margin-bottom: 15px !important;
 		}
 		
-		/* 嵌套窗口卡片在移动端的适配 */
 		.modal-download-card {
 			width: 100% !important;
 			min-height: auto !important;
@@ -1648,7 +1626,6 @@ authorModalStyle.textContent = `
 			margin: 20px auto !important;
 		}
 		
-		/* 确保文件树在移动端有更好的触摸体验 */
 		.file-tree li {
 			min-height: 44px !important;
 			display: flex !important;
@@ -1764,20 +1741,18 @@ authorModalStyle.textContent = `
         gap: 30px;
         margin-top: 30px;
     }
-    
-    /* 修复作者窗口中的卡片悬停移动问题 */
+
 	.author-card {
 		background-color: white;
 		border-radius: 8px;
 		padding: 25px;
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-		transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+		transition: box-shadow 0.3s;
 		text-align: center;
 		border-top: 4px solid var(--primary-color);
 	}
 
 	.author-card:hover {
-		/* 移除 transform: translateY(-5px); */
 		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 	}
     
@@ -1874,7 +1849,7 @@ document.head.appendChild(authorModalStyle);
 		`;
 		document.body.insertAdjacentHTML('beforeend', authorModalHTML);
 
-		// 作者数据
+		// 数据
 		const authorsData = [
 			{
 				id: "yzddddl",
@@ -1939,12 +1914,12 @@ document.head.appendChild(authorModalStyle);
 			},
 		];
 
-		// 获取作者弹窗DOM元素
+		// 获取Author弹窗DOM元素
 		const authorModal = document.getElementById('authorModal');
 		const authorsGrid = document.getElementById('authorsGrid');
 		const authorCloseBtn = document.querySelector('.author-close-modal');
 
-		// 渲染作者卡片
+		// 渲染卡片
 		function renderAuthorCards() {
 			authorsGrid.innerHTML = '';
 			
@@ -1974,12 +1949,11 @@ document.head.appendChild(authorModalStyle);
 			});
 		}
 
-		// 显示作者弹窗
+		// 显示Author弹窗
 		function showAuthorModal() {
 			renderAuthorCards();
 			authorModal.style.display = 'block';
 			
-			// 强制重绘
 			authorModal.offsetHeight;
 			
 			requestAnimationFrame(() => {
@@ -1989,7 +1963,7 @@ document.head.appendChild(authorModalStyle);
 			document.body.style.overflow = 'hidden';
 		}
 
-		// 隐藏作者弹窗
+		// 隐藏Author弹窗
 		function hideAuthorModal() {
 			authorModal.classList.remove('show');
 			
@@ -1999,20 +1973,16 @@ document.head.appendChild(authorModalStyle);
 			}, 300);
 }
 
-		// 绑定事件到"了解本系统作者"按钮
 		document.querySelector('.author-button').addEventListener('click', showAuthorModal);
 
-		// 点击关闭按钮关闭作者弹窗
 		authorCloseBtn.addEventListener('click', hideAuthorModal);
 
-		// 点击弹窗外部关闭作者弹窗
 		authorModal.addEventListener('click', function(event) {
 			if (event.target === authorModal) {
 				hideAuthorModal();
 			}
 		});
 
-		// 按ESC键关闭作者弹窗
 		document.addEventListener('keydown', function(event) {
 			if (event.key === 'Escape' && authorModal.style.display === 'block') {
 				hideAuthorModal();
@@ -2123,7 +2093,6 @@ document.head.appendChild(authorModalStyle);
 		function showAboutModal() {
 			aboutModal.style.display = 'block';
 			
-			// 强制重绘，确保过渡动画生效
 			aboutModal.offsetHeight;
 			
 			requestAnimationFrame(() => {
@@ -2143,28 +2112,22 @@ document.head.appendChild(authorModalStyle);
 			}, 300);
 		}
 
-		// 绑定事件到"了解更多"按钮
 		document.querySelector('.secondary-button').addEventListener('click', showAboutModal);
 
-		// 点击关闭按钮关闭关于弹窗
 		aboutCloseBtn.addEventListener('click', hideAboutModal);
 
-		// 点击弹窗外部关闭关于弹窗
 		aboutModal.addEventListener('click', function(event) {
 			if (event.target === aboutModal) {
 				hideAboutModal();
 			}
 		});
 
-		// 按ESC键关闭关于弹窗
 		document.addEventListener('keydown', function(event) {
 			if (event.key === 'Escape' && aboutModal.style.display === 'block') {
 				hideAboutModal();
 			}
 		});
 		
-		
-        // 常见问题折叠功能
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
                 const item = question.parentNode;
@@ -2186,7 +2149,6 @@ document.head.appendChild(authorModalStyle);
             });
         });
 		
-		// B站按钮事件处理
 		document.querySelectorAll('.bilibili-button').forEach(button => {
 			button.addEventListener('click', function() {
 				const bilibiliUrl = this.getAttribute('data-bilibili');
@@ -2251,12 +2213,12 @@ document.head.appendChild(authorModalStyle);
 				background-color: rgba(0, 0, 0, 0.7);
 				z-index: 1000;
 				overflow-y: auto;
-				opacity: 0; /* 添加透明度 */
-				transition: opacity 0.3s ease; /* 添加淡入淡出过渡 */
+				opacity: 0;
+				transition: opacity 0.3s ease;
 			}
 
 			.version-modal.show {
-				opacity: 1; /* 显示时完全不透明 */
+				opacity: 1;
 			}
 
 			.modal-content {
@@ -2268,14 +2230,14 @@ document.head.appendChild(authorModalStyle);
 				max-width: 1400px;
 				position: relative;
 				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-				transform: translateY(-20px); /* 初始位置向上偏移 */
-				opacity: 0; /* 初始透明度 */
-				transition: all 0.3s ease; /* 添加过渡效果 */
+				transform: translateY(-20px);
+				opacity: 0;
+				transition: all 0.3s ease;
 			}
 
 			.version-modal.show .modal-content {
-				transform: translateY(0); /* 回到正常位置 */
-				opacity: 1; /* 完全不透明 */
+				transform: translateY(0);
+				opacity: 1;
 			}
             
             .close-modal {
@@ -2313,15 +2275,14 @@ document.head.appendChild(authorModalStyle);
 				padding: 40px 35px;
 				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 				width: 450px;
-				transition: box-shadow 0.3s; /* 只保留阴影过渡效果 */
+				transition: box-shadow 0.3s;
 				display: flex;
 				flex-direction: column;
 				min-height: 650px;
 			}
 
 			.modal-download-card:hover {
-				/* 移除 transform: translateY(-5px); */
-				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* 保留阴影变化 */
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
 			}
             
             .modal-download-card h3 {
@@ -2360,7 +2321,6 @@ document.head.appendChild(authorModalStyle);
                 font-size: 16px;
             }
             
-            /* 文件树布局样式 */
             .file-tree-layout {
                 display: none;
                 grid-template-columns: 300px 1fr;
@@ -2818,7 +2778,7 @@ document.head.appendChild(authorModalStyle);
 				modalContent.appendChild(card);
 			});
 			
-			// 重新绑定弹窗内按钮的事件
+			// 重新绑定弹窗内事件
 			modalContent.querySelectorAll('.cta-button').forEach(button => {
 				button.addEventListener('click', function() {
 					const versionId = this.getAttribute('data-version');
@@ -2857,7 +2817,6 @@ document.head.appendChild(authorModalStyle);
 			populateModalContent();
 			modal.style.display = 'block';
 			
-			// 使用setTimeout确保display:block先应用，再添加show类触发动画
 			setTimeout(() => {
 				modal.classList.add('show');
 			}, 10);
@@ -2869,33 +2828,27 @@ document.head.appendChild(authorModalStyle);
 		function hideModal() {
 			modal.classList.remove('show');
 			
-			// 等待动画完成后再隐藏display
 			setTimeout(() => {
 				modal.style.display = 'none';
 				document.body.style.overflow = 'auto';
 				backToCardsView();
-			}, 300); // 这个时间要与CSS过渡时间一致
+			}, 300);
 		}
 
-        // 绑定事件到所有"更多版本"按钮
         document.querySelectorAll('.more').forEach(button => {
             button.addEventListener('click', showModal);
         });
 
-        // 点击关闭按钮关闭弹窗
         closeBtn.addEventListener('click', hideModal);
 
-        // 点击返回按钮返回卡片视图
         backButton.addEventListener('click', backToCardsView);
 
-        // 点击弹窗外部关闭弹窗
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {
                 hideModal();
             }
         });
 
-        // 按ESC键关闭弹窗
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.style.display === 'block') {
                 hideModal();
@@ -2915,7 +2868,6 @@ document.head.appendChild(authorModalStyle);
 			return 'light';
 		}
 
-		// 检查本地存储的主题偏好，如果没有则使用系统主题
 		const currentTheme = localStorage.getItem('theme') || getSystemTheme();
 
 		// 应用主题
@@ -2939,7 +2891,6 @@ document.head.appendChild(authorModalStyle);
 		if (window.matchMedia) {
 			const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 			mediaQuery.addEventListener('change', (e) => {
-				// 只有当用户没有手动设置过主题时才跟随系统
 				if (!localStorage.getItem('theme')) {
 					applyTheme(e.matches ? 'dark' : 'light');
 				}
@@ -2948,21 +2899,18 @@ document.head.appendChild(authorModalStyle);
 
 		// 切换主题函数
 		function toggleTheme() {
-			// 添加过渡类
 			document.body.classList.add('theme-transitioning');
 			
 			setTimeout(() => {
 				const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
 				applyTheme(newTheme);
 				
-				// 移除过渡类
 				setTimeout(() => {
 					document.body.classList.remove('theme-transitioning');
-				}, 400); // 与CSS过渡时间一致
+				}, 400);
 			}, 10);
 		}
 
-		// 绑定点击事件
 		themeToggle.addEventListener('click', toggleTheme);
     </script>
 <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
