@@ -61,11 +61,13 @@
 		.logo {
 			display: flex;
 			align-items: center;
+			gap: 15px; /* 使用gap属性代替margin */
 		}
 
 		.logo img {
 			height: 60px;
 			width: auto;
+			max-height: 70px; /* 限制最大高度 */
 		}
 
 		.logo-text {
@@ -1215,7 +1217,7 @@
 			<div class="header-content">
 				<div class="logo">
 				    <img src="/logo.png" alt="logo">
-					<div class="logo-text">Vizyn</div>
+					<div class="logo-text"></div>
 				</div>
 				<div class="nav-right">
 					<nav>
