@@ -1204,6 +1204,214 @@
 				transform: translateY(-50%);
 			}
 		}
+		
+		/* 公告栏样式 */
+		.announcement {
+			background-color: #ffc107;
+			color: #856404;
+			padding: 10px 0;
+			text-align: center;
+			border-bottom: 1px solid #ffb300;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.announcement p {
+			margin: 0;
+			font-weight: 500;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+		}
+
+		.announcement i {
+			font-size: 18px;
+		}
+
+		/* 黑色模式适配 */
+		.dark-mode .announcement {
+			background-color: #333;
+			color: #ffc107;
+			border-bottom: 1px solid #555;
+		}
+
+		.dark-mode .announcement p {
+			color: #ffc107;
+		}
+
+		/* 响应式设计 */
+		@media (max-width: 768px) {
+			.announcement p {
+				font-size: 14px;
+				padding: 0 10px;
+			}
+		}
+		
+		.floating-announcement {
+			position: sticky;
+			top: 80px;
+			left: 0;
+			right: 0;
+			background-color: #ffc107;
+			color: #856404;
+			padding: 8px 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-bottom: 1px solid #ffb300;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			z-index: 90;
+			transition: all 0.3s ease;
+			margin-top: -1px;
+		}
+		
+		.floating-announcement .container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.announcement-content {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-weight: 500;
+		}
+
+		.close-announcement {
+			background: none;
+			border: none;
+			color: #856404;
+			font-size: 24px;
+			cursor: pointer;
+			padding: 0;
+			width: 24px;
+			height: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 4px;
+			transition: background-color 0.3s;
+			position: absolute;
+			right: 0;
+		}
+
+		.close-announcement:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+		.dark-mode .floating-announcement {
+			background-color: #333;
+			color: #ffc107;
+			border-bottom: 1px solid #555;
+		}
+
+		.dark-mode .close-announcement {
+			color: #ffc107;
+		}
+
+		.dark-mode .close-announcement:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		@media (max-width: 768px) {
+			.floating-announcement {
+				padding: 8px 15px;
+				font-size: 14px;
+			}
+		}
+		
+		/* 分类卡片 */
+		.category-card {
+			background-color: white;
+			border-radius: 12px;
+			overflow: hidden;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			transition: transform 0.3s, box-shadow 0.3s;
+			width: 450px;
+			height: 350px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.category-card:hover {
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+		}
+
+		.category-image {
+			height: 180px;
+			width: 100%;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.category-content {
+			padding: 25px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.category-content h3 {
+			font-size: 24px;
+			margin-bottom: 10px;
+			color: var(--dark-color);
+		}
+
+		.category-content p {
+			color: var(--gray-color);
+			margin-bottom: 20px;
+			flex-grow: 1;
+		}
+
+		.category-button {
+			background-color: var(--primary-color);
+			color: white;
+			border: none;
+			padding: 12px 24px;
+			border-radius: var(--border-radius);
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+		}
+
+		.category-button:hover {
+			background-color: #106ebe;
+		}
+
+		/* 黑色模式适配 */
+		.dark-mode .category-card {
+			background-color: #2a2a2a;
+		}
+
+		.dark-mode .category-content h3 {
+			color: #ffffff;
+		}
+
+		.dark-mode .category-content p {
+			color: #d0d0d0;
+		}
+
+		@media (max-width: 768px) {
+			.category-card {
+				width: 340px;
+				height: 320px;
+			}
+			
+			.category-image {
+				height: 150px;
+			}
+			
+			.category-content {
+				padding: 20px;
+			}
+		}
 		</style>
 </head>
 <body>
@@ -1234,13 +1442,22 @@
 				</div>
 			</div>
 		</div>
+		<!-- 公告 -->
+		<div class="floating-announcement" id="floatingAnnouncement">
+			<div class="container">
+				<div class="announcement-content">
+					<i class="fas fa-exclamation-triangle"></i>
+					<span>网站正在进行功能性调整，可能有显示上的问题</span>
+				</div>
+				<button class="close-announcement" id="closeAnnouncement">&times;</button>
+			</div>
+		</div>
 	</header>
-
     <!-- Hero区域 -->
     <section class="hero">
         <div class="container">
             <h1>—— 欢迎 ——</h1>
-            <h3>欢迎来到操作系统收录平台，这里收录了各种Windows民间修改的版本，当然同时也有原版，欢迎大家来下载！</h3>
+            <h3>欢迎来到操作系统收录平台，这里收录了各种Windows民间修改的版本。同时也有原版，欢迎大家来下载！</h3>
             <div class="hero-buttons">
 				<button class="more"><i class="fas fa-ellipsis-h"></i> 更多组件下载</button>
 				<button class="secondary-button"><i class="fas fa-history"></i> 关于网站的发展历程</button>
@@ -1272,149 +1489,36 @@
 
     
     <!-- 下载区域 -->
-    <section class="download" id="download">
-        <div class="container">
-            <div class="section-title">
-                <h2>—— 下载区域 ——</h2>
-				<h3>这里展示了目前的稳定版本系统。若您要下载其他系统或组件，请点击更多版本</h3>
-                <p>注：若找不到美化组件请点击更多版本</p>
-            </div>
-            <div class="download-options">
-                <div class="download-card">
-                    <h3>永远酱定制Win10最终版</h3>
-                    <div class="price">更新内容:</div>
-                    <ul>
-                        <li>1.增加多个永远酱立绘的显示</li>
-                        <li>2.安装程序启动界面再次修改</li>
-                        <li>3."视频"文件夹内新增示例视频《去有风的地方》《成都》</li>
-                        <li>4.移除部署阶段时的文字</li>
-						<li>5.系统文字修改、改善系统资源占用情况</li>
-						<li>6.图片文件夹内新增《星之永远》的两张头图、视频文件夹内新增示例视频《飘雪》《一壶莲花醉》</li>
-
-                        <li>（更多更新内容请转到"更多版本"中的早期版本）</li>
-                    </ul>
-                    <div style="margin-top: auto;">
-						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1xCbJzdEXd/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">
-							<i class="fab fa-bilibili"></i> 观看演示视频
-						</button>
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
+	<section class="download" id="download">
+		<div class="container">
+			<div class="section-title">
+				<h2>—— 下载区域 ——</h2>
+				<h3>请选择您要下载的系统分类</h3>
+				<p>注：若找不到美化组件请点击更多版本</p>
+			</div>
+			<div class="download-options">
+				<!-- 分类卡片 1: 官方Windows分类 -->
+				<div class="category-card">
+					<div class="category-image" style="background-image: url('/assets/images/categories/windows-official.jpg');"></div>
+					<div class="category-content">
+						<h3>官方Windows分类</h3>
+						<p>包含微软官方的Windows原版系统镜像下载</p>
+						<button class="category-button"><i class="fas fa-ellipsis-h"></i> 前往分类【正在维修中】</button>
 					</div>
-                </div>
-                <div class="download-card">
-                    <h3>永远酱定制Win11周年纪念版</h3>
-                    <div class="price">更新内容:</div>
-                    <ul>
-                        <li>1.安装程序使用Win11 23H2的旧版安装程序，并修改了启动背景</li>
-                        <li>2.再次重新整合壁纸和锁屏，其中一张锁屏改为浅色模式的背景，新增锁屏《雨爱》并移除壁纸《去有风的地方》</li>
-                        <li>3.移除系统中所有彩蛋，将彩蛋中的两个皮套展示视频改为示例视频</li>
-                        <li>4.新增示例视频《我知道》《雨爱》《勇气大爆发》</li>
-                        <li>5.移除开关机文字修改</li>
-                        <li>6.系统安装完成后会进行后期任务，主要为.NET Framework 3.5功能启用、DirectX与C++运行库安装</li>
-                        <li>7.移除UWP应用新增MSN天气</li>
-                        <li>8.资源管理器窗口右侧新增一个永远酱立绘</li>
-                        <li>9.恢复系统Flash插件</li>
-                        <li>10.内置Microsoft Office 2024专业增强版</li>
-                        <li>11.开始菜单背景改为《碧波幻想曲永远酱夏卜卜》的六号头图</li>
-                    </ul>
-					<div style="margin-top: auto;">
-						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1nVS7B3E45/">
-							<i class="fab fa-bilibili"></i> 观看演示视频
-						</button>
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
+				</div>
+				
+				<!-- 分类卡片 2: 永远酱系列改版Windows -->
+				<div class="category-card">
+					<div class="category-image" style="background-image: url('/assets/images/categories/forever-mod.jpg');"></div>
+					<div class="category-content">
+						<h3>永远酱系列改版Windows</h3>
+						<p>包含所有永远酱系列定制系统和相关组件</p>
+						<button class="category-button more"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
 					</div>
-                </div>
-				<div class="download-card">
-                    <h3>永远酱定制Win11专业工作站版</h3>
-                    <div class="price">本系统由@blil114514号制作</div>
-                    <ul>
-                        <li>更新时间：2025/11/15</li>
-						<li>1.删去壁纸《城里的月光》，删去全部示例文件</li>
-                        <li>2.仅保留计算器及新版媒体播放器等必要Microsoft Store应用。内置7-Zip，Mortix多功能下载器和Microsoft Office专业增强版2024</li>
-                        <li>3.部分窗口顶部新增颜色显示，选中时为粉色，未选中时为天蓝色。资源管理器文字颜色改为紫色与蓝色等</li>
-                        <li>4.安装完成后系统的硬件资源占用更小、系统体积进一步缩小</li>
-                        <li>5.系统内置Everything极速搜索工具</li>
-                        <li>6.使用的是Windows11 24H2原版的安装程序。系统跳过OOBE，直接登录Administrator账户</li>
-                        <li>7.鼠标停留或点击桌面图标时会出现待选框。删除Win11的新版右键菜单，更换为Win10的旧版</li>
-						<li>8.内置Office 2024专业增强版LTSC</li>
-                        <li>注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件</li>
-                    </ul>
-					<div style="margin-top: auto;">
-						<!-- <button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button> --!>
-						<button class="Wait"><i class="fas fa-clock"></i> 下载【维护中】</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1XKsAzGE1r/">
-							<i class="fab fa-bilibili"></i> 观看演示视频
-						</button>
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
-					</div>
-                </div>
-                <div class="download-card">
-                    <h3>永远酱定制Windows Server2022/2025整合包</h3>
-                    <div class="price">本系统由@SYSTEM-SS8-0016制作</div>
-                    <ul>
-						<li>S2025更新内容：</li>
-                        <li>1.剔除Server的按下三大金刚键解锁和强密码设置要求</li>
-                        <li>2.新增五张永远酱壁纸</li>
-                        <li>3.资源管理器背景改为永远酱图片</li>
-                        <li>4.开始菜单，设置背景及默认锁屏均替换为《爱×无限大》</li>
-                        <li>5.恢复应用商店（2025的商店可以正常使用）</li>
-						<li>S2022更新内容：</li>
-						<li>1.恢复应用商店，但是受Server 2022本身缺陷影响，无法正常安装应用</li>
-						<li>2.内置Windows通用商店（使用方法可以看Li_zip的视频）</li>
-						<li>3.内置Anyburn光盘工具</li>
-						<li>4.替换大量系统图标、任务管理器性能界面新增动画、内置Windows终端</li>
-						<li>5.插入媒体时弹出窗口更加美观</li>
-						<li>6.任务栏通知区域全部更改为Fluent样式</li>
-						<li>9.Server 2022可以安装除季度更新之外的其他补丁，不必担心美化失效</li>
-                    </ul>
-					<div style="margin-top: auto;">
-						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1CcYMz8En3">
-							<i class="fab fa-bilibili"></i> 观看演示视频
-						</button>
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
-					</div>
-                </div>
-				<div class="download-card">
-                    <h3>永远酱定制Win10 LTSC2021（版本1）</h3>
-                    <div class="price">本系统由一只低调的道路制作</div>
-                    <ul>
-						<li>版本1为我本人作品，完工于11月22日，为永远酱定制Win10计划重启后的首作。2025年10月14日微软正式停止了对Win10的技术支持，但是LTSC 2021会继续陪伴我们走下去，特此制作此版本。此版本使用预设和永远酱定制Win10最终版相同</li>
-                        <li>1.修复了LTSC 2021中wsappx进程CPU占用过高及中文输入法无选字框的bug</li>
-                        <li>2.修复了锁屏《成都》及开始菜单美化无法正常启用的问题</li>
-                        <li>3.恢复Windows照片查看器</li>
-                        <li>4.内置office 2021专业增强版 LTSC</li>
-                        <li>5.使用与永远酱定制Win10相同的壁纸、锁屏及美化包</li>
-						<li>6.OOBE大幅精简，启用系统管理员账户</li>
-						<li>7.开机后执行后期任务，补全DirectX及C++运行库</li>
-						<li>8.移除示例文件及文字修改</li>
-						<li>恢复Microsoft Store应用商店方法：
-按下Win+R打开运行框，输入wsreset -i命令后回车，系统会自动在后台下载应用商店相关组件。
-稍等片刻后即可在开始菜单看到应用商店。
-						</li>
-                    </ul>
-					<div style="margin-top: auto;">
-						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
-						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1yZUKBmEbP/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">
-							<i class="fab fa-bilibili"></i> 观看演示视频
-						</button>
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
-					</div>
-                </div>
-				<div class="download-card">
-                    <h3>寻找更多组件</h3>
-                    <div class="price">更多组件中可能会有您想要的映像下载链接</div>
-						<ul>
-							<li>   </li>
-						</ul>
-					<div style="margin-top: auto;">
-						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
-					</div>
-                </div>
-            </div>
-        </div>
-    </section>
+				</div>
+			</div>
+		</div>
+	</section>
 
     <!-- 常见问题区域 -->
     <section class="faq" id="faq">
@@ -1422,6 +1526,7 @@
             <div class="section-title">
                 <h2>—— 疑难解答 ——</h2>
                 <p>以下是我们在开发过程中发现的问题</p>
+				<p>注：该区域正在迁移当中，详细请前往‘永远酱’</p>
             </div>
             <div class="faq-container">
                 <div class="faq-item">
@@ -1570,6 +1675,22 @@
 				document.getElementById('loading-animation').classList.add('loaded');
 			}, 500); // 延迟500ms确保所有资源加载完成
 		});
+		
+		// 悬浮公告栏关闭功能
+		const floatingAnnouncement = document.getElementById('floatingAnnouncement');
+		const closeAnnouncementBtn = document.getElementById('closeAnnouncement');
+
+		if (closeAnnouncementBtn) {
+			closeAnnouncementBtn.addEventListener('click', function() {
+				floatingAnnouncement.style.transform = 'translateY(-100%)';
+				floatingAnnouncement.style.opacity = '0';
+				
+				setTimeout(() => {
+					floatingAnnouncement.style.display = 'none';
+				}, 300);
+			});
+		}
+		
 		// 创建关于弹窗样式
 		const aboutModalStyle = document.createElement('style');
 		aboutModalStyle.textContent = `
