@@ -1318,7 +1318,10 @@
                         <li>11.开始菜单背景改为《碧波幻想曲永远酱夏卜卜》的六号头图</li>
                     </ul>
 					<div style="margin-top: auto;">
-						<button class="Wait"><i class="fas fa-clock"></i> 下载（暂未开放）</button>
+						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1nVS7B3E45/">
+							<i class="fab fa-bilibili"></i> 观看演示视频
+						</button>
 						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
 					</div>
                 </div>
@@ -1339,7 +1342,7 @@
                     </ul>
 					<div style="margin-top: auto;">
 						<!-- <button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button> --!>
-						<button class="Wait"><i class="fas fa-clock"></i> 下载【正在紧急维护中】</button>
+						<button class="Wait"><i class="fas fa-clock"></i> 下载【维护中】</button>
 						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1XKsAzGE1r/">
 							<i class="fab fa-bilibili"></i> 观看演示视频
 						</button>
@@ -1373,6 +1376,42 @@
 						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
 					</div>
                 </div>
+				<div class="download-card">
+                    <h3>永远酱定制Win10 LTSC2021（版本1）</h3>
+                    <div class="price">本系统由一只低调的道路制作</div>
+                    <ul>
+						<li>版本1为我本人作品，完工于11月22日，为永远酱定制Win10计划重启后的首作。2025年10月14日微软正式停止了对Win10的技术支持，但是LTSC 2021会继续陪伴我们走下去，特此制作此版本。此版本使用预设和永远酱定制Win10最终版相同</li>
+                        <li>1.修复了LTSC 2021中wsappx进程CPU占用过高及中文输入法无选字框的bug</li>
+                        <li>2.修复了锁屏《成都》及开始菜单美化无法正常启用的问题</li>
+                        <li>3.恢复Windows照片查看器</li>
+                        <li>4.内置office 2021专业增强版 LTSC</li>
+                        <li>5.使用与永远酱定制Win10相同的壁纸、锁屏及美化包</li>
+						<li>6.OOBE大幅精简，启用系统管理员账户</li>
+						<li>7.开机后执行后期任务，补全DirectX及C++运行库</li>
+						<li>8.移除示例文件及文字修改</li>
+						<li>恢复Microsoft Store应用商店方法：
+按下Win+R打开运行框，输入wsreset -i命令后回车，系统会自动在后台下载应用商店相关组件。
+稍等片刻后即可在开始菜单看到应用商店。
+						</li>
+                    </ul>
+					<div style="margin-top: auto;">
+						<button class="cta-button"><i class="fas fa-download"></i> 下载（123云盘）</button>
+						<button class="bilibili-button" data-bilibili="https://www.bilibili.com/video/BV1yZUKBmEbP/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1">
+							<i class="fab fa-bilibili"></i> 观看演示视频
+						</button>
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
+					</div>
+                </div>
+				<div class="download-card">
+                    <h3>寻找更多组件</h3>
+                    <div class="price">更多组件中可能会有您想要的映像下载链接</div>
+						<ul>
+							<li>   </li>
+						</ul>
+					<div style="margin-top: auto;">
+						<button class="more"><i class="fas fa-ellipsis-h"></i> 更多版本</button>
+					</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1400,8 +1439,20 @@
                         <span class="faq-toggle">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p>答：可能是系统缺失HEVC拓展，不过不建议大家花七块钱获得，可以去找一个"来自设备制造商的HEVC视频拓展"（放在"更多版本"中的其他组件下载中）。如果打上拓展还不行，那么就用旧版的WMP来播放。
-或者更简单的，用PotPlayer播放器，内置了HEVC拓展</p>
+                        <p>答：以下是不同系统的解决方案。
+						A.永远酱定制Win10：
+						系统缺失了HEVC视频扩展和AV1视频扩展，后者直接在微软商店里搜索安装就好。不过前者在应用商店里是收费的，我们可以安装一个免费的“来自视频制造商的HEVC视频扩展”（在宣传平台可下载）来解决这个问题。
+						你也可以直接安装Potplayer播放器或者VLC播放器来解决这个问题。
+						B.永远酱定制Win11预览版/正式版：
+						可能是系统缺失了HEVC视频扩展（内测人员反馈出现此问题，但我这没有出现）
+						解决方案为补齐HEVC视频扩展后用旧版Windows Media Player播放，或者安装Potplayer、VLC播放器等。
+						C.永远酱定制Win11周年纪念版：
+						这与虚拟机3D加速有关，我们提供三个解决方案：
+						1.禁用虚拟机3D加速（代价是损失Win11的窗口圆角以及锁屏、任务栏虚化等视觉效果）
+						2.安装Potplayer或者VLC播放器
+						3.（不建议）虚拟机兼容性降为workstation 16.2.x
+						这个问题其实也是一个玄学问题，我这里出现了，但是内测人员反馈并未出现这个问题。
+						</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2227,13 +2278,15 @@ document.head.appendChild(authorModalStyle);
 			});
 		});
 		
-		// 定义下载链接
+		// 定义下载链接代码块
 		const downloadLinks = {
 			"win10_final": "https://www.123912.com/s/dwB1vd-clPWv?pwd=tAah#",
 			"win11_anniversary": "",
 			"server_edition": "https://www.123912.com/s/dwB1vd-7TXWv?pwd=WALf#",
 			"win10_2.0": "https://www.123912.com/s/dwB1vd-xrPWv",
 			"W11-P": "https://www.123912.com/s/dwB1vd-m0XWv?pwd=AFCn#",
+			"W11-Z": "https://www.123865.com/s/dwB1vd-BWXWv?pwd=6Krh#",
+			"W10L": "https://www.123912.com/s/dwB1vd-aSXWv?pwd=qPOl#",
 			"win11_official": "https://www.123912.com/s/dwB1vd-loXWv?pwd=UGA8#",
 			"zj": "",
 			"beautify_pack": "https://www.123912.com/s/dwB1vd-oRPWv",
@@ -2253,8 +2306,12 @@ document.head.appendChild(authorModalStyle);
 						downloadUrl = downloadLinks.win10_final;
 					} else if (title.includes("Windows Server")) {
 						downloadUrl = downloadLinks.server_edition;
-					} else if (title.includes("Win11专业工作站版")) { // 添加对Win11专业工作版的判断
+					} else if (title.includes("Win11专业工作站版")) {
 						downloadUrl = downloadLinks["W11-P"];
+					} else if (title.includes("Win11周年纪念版")) {
+						downloadUrl = downloadLinks["W11-Z"];
+					} else if (title.includes("永远酱定制Win10 LTSC2021（版本1）")) {
+						downloadUrl = downloadLinks["W10L"];
 					}
 					
 					if (downloadUrl) {
@@ -2664,6 +2721,20 @@ document.head.appendChild(authorModalStyle);
                     ]
                 },
                 downloadUrl: "https://potplayer.tv/?lang=zh_CN"
+            },
+			{
+                id: "W10LTSC-U",
+                name: "Win10 LTSC 2021升级包",
+                type: "folder",
+                content: {
+                    title: "Win10LTSC2021升级包",
+                    description: "LTSC 2021的版本号为21H2，内核版本为19044，比22H2的19045落后一个版本号，部分软件可能出现不兼容问题。这里我们分享一个升级包，可以将LTSC 2021升级为22H2，解决不兼容问题",
+                    features: [
+                        "使用方法：进入PE系统打开Dism++，选择系统后点击“更新管理”，随后点击右下角的添加，将升级包导入，等待更新安装完成后重启电脑，即可将系统升级至22H2。(如果您是电脑小白，请勿轻易进行操作！)",
+						"注意：如果你是32位系统，你就下载x86版本的；如果你是64位系统，你就下载x64版本的"
+                    ]
+                },
+                downloadUrl: "https://www.123912.com/s/dwB1vd-eSXWv?pwd=JLoN#"
             }
         ];
 
