@@ -133,6 +133,26 @@
             background-color: whitesmoke;
             color: var(--primary-color);
         }
+
+        .mainD {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .mainD:hover {
+            background-color: #dcdcdc
+        }
+        
+        .mainD {
+            background-color: whitesmoke;
+            color: var(--primary-color);
+        }
         
         .Wait {
             background-color: var(--primary-color);
@@ -635,6 +655,7 @@
         .cta-button i,
         .bilibili-button i,
         .more i,
+        .mainD i,
         .Wait i,
         .author-button i,
         .secondary-button i,
@@ -1055,6 +1076,17 @@
             border-color: #666;
         }
 
+        .dark-mode .mainD {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+            border: 2px solid #555;
+        }
+
+        .dark-mode .mainD:hover {
+            background-color: #3d3d3d;
+            border-color: #666;
+        }
+
         .dark-mode .Wait {
             background-color: #106ebe;
             color: white;
@@ -1144,6 +1176,7 @@
         .dark-mode .cta-button,
         .dark-mode .secondary-button,
         .dark-mode .more,
+        .dark-mode .mainD
         .dark-mode .Wait,
         .dark-mode .author-button,
         .dark-mode .bilibili-button,
@@ -1718,6 +1751,17 @@
                 padding: 15px;
             }
         }
+
+        /* 隐藏主界面的FAQ区域 */
+        #faq {
+            display: none !important;
+        }
+
+        nav a[href="#faq"]::after {
+            content: " (弹窗)";
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -1738,7 +1782,6 @@
                         <ul>
                             <li><a href="#features">前言</a></li>
                             <li><a href="#download">下载</a></li>
-                            <li><a href="#faq">疑难解答</a></li>
                             <li><a href="#requirements">关于永远酱</a></li>
                         </ul>
                     </nav>
@@ -1765,7 +1808,7 @@
             <h1>—— 欢迎 ——</h1>
             <h3>欢迎来到操作系统收录平台，这里收录了各种Windows民间修改的版本。同时也有原版，欢迎大家来下载！</h3>
             <div class="hero-buttons">
-                <button class="more"><i class="fas fa-ellipsis-h"></i> 更多组件下载</button>
+                <button class="mainD" id="heroDownloadBtn"><i class="fas fa-ellipsis-h"></i>  下载 </button>
                 <button class="secondary-button"><i class="fas fa-history"></i> 关于网站的发展历程</button>
             </div>
         </div>
@@ -1799,7 +1842,6 @@
             <div class="section-title">
                 <h2>—— 下载区域 ——</h2>
                 <h3>请选择您要下载的系统分类</h3>
-                <p>注：若找不到美化组件请点击更多版本</p>
             </div>
             <div class="download-options">
                 <!-- 分类卡片 1: 官方Windows分类 -->
@@ -1825,13 +1867,11 @@
         </div>
     </section>
 
-    <!-- 常见问题区域 -->
     <section class="faq" id="faq">
         <div class="container">
             <div class="section-title">
                 <h2>—— 疑难解答 ——</h2>
                 <p>以下是我们在开发过程中发现的问题</p>
-                <p>注：该区域正在迁移当中，详细请前往'永远酱'</p>
             </div>
             <div class="faq-container">
                 <div class="faq-item">
@@ -1913,16 +1953,16 @@
             </div>
         </div>
     </section>
-    
+
+
     <!-- 关于区域 -->
     <section class="system-requirements" id="requirements">
         <div class="container">
             <div class="section-title">
-                <h2>—— 关于永远酱 ——</h2>
-                <p>有关本定制系统的作者及更多信息，请前往查看旧网站文档</p>
-                <p>警告：本功能正在迁移</p>
+                <h2>—— 前往讨论QQ群 ——</h2>
+                <p>如果您要发送反馈，请加入QQ群</p>
                 <div style="text-align: center; margin-top: 40px;">
-                    <button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')"><i class="fas fa-external-link-alt"></i> 前往旧版网站</button>
+                    <button class="cta-button" onclick="window.open('https://qm.qq.com/q/PNZDCINXus', '_blank')"><i class="fas fa-external-link-alt"></i> 前往讨论QQ群</button>
                 </div>
             </div>
         </div>
@@ -1946,7 +1986,6 @@
                         <li><a href="#">*文档中心</a></li>
                         <li><a href="#">*社区论坛</a></li>
                         <li><a href="#sfb">*联系我们</a></li>
-                        <li><a href="#faq">常见问题</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1978,16 +2017,23 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="modal-title">
-                <h2>—— 更多组件 ——</h2>
-                <h4>查看所有目前已发布的系统或组件</h4>
+                <h2>—— 永远酱系列系统 ——</h2>
+                <h4>查看所有目前已发布的永远酱系统或组件</h4>
             </div>
             <div class="modal-download-options" id="modalDownloadContent">
+            </div>
+            <!-- FAQ模态容器 -->
+            <div class="faq-modal-container" id="faqModalContainer" style="display: none;">
+                <button class="back-button" id="backToComponentsBtn2"><i class="fas fa-arrow-left"></i> 返回组件列表</button>
+                <div class="modal-faq-content" id="modalFaqContent">
+                </div>
             </div>
             <div class="authors-modal-container" id="authorsModalContainer" style="display: none;">
                 <button class="back-button" id="backToComponentsBtn"><i class="fas fa-arrow-left"></i> 返回组件列表</button>
                 <div class="authors-grid" id="authorsGrid">
                 </div>
             </div>
+
             <div class="file-tree-layout" id="fileTreeLayout">
                 <div class="file-tree-container">
                     <ul class="file-tree" id="fileTree">
@@ -2137,6 +2183,21 @@
 
     
     <script>
+        // 欢迎界面下载点击事件
+        const heroDownloadBtn = document.getElementById('heroDownloadBtn');
+        if (heroDownloadBtn) {
+            heroDownloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const downloadSection = document.getElementById('download');
+                if (downloadSection) {
+                    window.scrollTo({
+                        top: downloadSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+
         // 页面加载完成后隐藏加载动画
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -2332,18 +2393,6 @@
                 bilibili: "https://space.bilibili.com/672508011",
                 github: "#"
             },
-            {
-                id: "qiyuan",
-                name: "栖渊Kaelen",
-                role: "网站开发者&运营者",
-                description: "负责永远酱系列定制系统宣传平台的网站开发和维护，提供技术支持和用户体验优化。",
-                contributions: [
-                    "宣传平台网站开发",
-                    "管理&运营宣传平台"
-                ],
-                bilibili: "https://space.bilibili.com/3493124680714310?spm_id_from=333.1387.0.0",
-                github: "#"
-            },
         ];
 
         // 渲染作者卡片
@@ -2396,6 +2445,16 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        document.getElementById('heroDownloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const downloadSection = document.getElementById('download');
+            if (downloadSection) {
+                window.scrollTo({
+                    top: downloadSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         });
         
         document.querySelectorAll('.bilibili-button').forEach(button => {
@@ -2458,7 +2517,9 @@
         const modal = document.getElementById('versionModal');
         const modalContent = document.getElementById('modalDownloadContent');
         const authorsModalContainer = document.getElementById('authorsModalContainer');
+        const faqModalContainer = document.getElementById('faqModalContainer');
         const backToComponentsBtn = document.getElementById('backToComponentsBtn');
+        const backToComponentsBtn2 = document.getElementById('backToComponentsBtn2');
         const fileTreeLayout = document.getElementById('fileTreeLayout');
         const fileTree = document.getElementById('fileTree');
         const componentArticle = document.getElementById('componentArticle');
@@ -2680,6 +2741,7 @@
         function showFileTreeLayout() {
             modalContent.style.display = 'none';
             authorsModalContainer.style.display = 'none';
+            faqModalContainer.style.display = 'none';
             fileTreeLayout.style.display = 'grid';
             renderFileTree();
             
@@ -2695,14 +2757,55 @@
         function showAuthorsInfo() {
             modalContent.style.display = 'none';
             fileTreeLayout.style.display = 'none';
+            faqModalContainer.style.display = 'none';
             authorsModalContainer.style.display = 'block';
             renderAuthorCards();
+        }
+
+        // 显示FAQ信息
+        function showFAQInfo() {
+            modalContent.style.display = 'none';
+            fileTreeLayout.style.display = 'none';
+            authorsModalContainer.style.display = 'none';
+            faqModalContainer.style.display = 'block';
+            renderFAQContent();
+        }
+
+        // 渲染FAQ内容
+        function renderFAQContent() {
+            const modalFaqContent = document.getElementById('modalFaqContent');
+            
+            // 获取页面FAQ区域的内容
+            const pageFaqContainer = document.querySelector('.faq-container');
+            
+            if (pageFaqContainer) {
+                // 克隆FAQ内容
+                const clone = pageFaqContainer.cloneNode(true);
+                
+                // 移除可能存在的ID冲突
+                clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+                
+                // 清空并填充FAQ内容
+                modalFaqContent.innerHTML = '';
+                modalFaqContent.appendChild(clone);
+                
+                // 重新绑定FAQ点击事件
+                modalFaqContent.querySelectorAll('.faq-question').forEach(question => {
+                    question.addEventListener('click', () => {
+                        const item = question.parentNode;
+                        item.classList.toggle('active');
+                    });
+                });
+            } else {
+                modalFaqContent.innerHTML = '<p>FAQ内容加载失败，请刷新页面重试。</p>';
+            }
         }
 
         // 返回卡片视图
         function backToCardsView() {
             fileTreeLayout.style.display = 'none';
             authorsModalContainer.style.display = 'none';
+            faqModalContainer.style.display = 'none';
             modalContent.style.display = 'flex';
             currentComponent = null;
         }
@@ -2711,12 +2814,12 @@
         const additionalVersions = [
             {
                 id: "authors",
-                title: "开发团队",
+                title: "永远酱系列开发团队",
                 price: "了解永远酱定制系统的开发团队",
                 features: [
                     "查看永远酱系列定制系统的所有参与制作人员",
-                    "了解每位开发者的贡献和角色",
-                    "访问开发者的社交媒体"
+                    "了解每位开发者的贡献",
+                    "快速前往开发者的社交媒体，以向他们发送反馈"
                 ],
                 buttonText: "<i class='fas fa-users'></i> 查看团队成员",
                 buttonClass: "cta-button",
@@ -2748,8 +2851,7 @@
                 title: "永远酱定制系统-疑难解答",
                 price: "常见问题解答",
                 features: [
-                    "以下是我们在开发过程中发现的问题",
-                    "注：该区域正在迁移当中，详细请前往'永远酱旧版网站'中"
+                    "以下是我们在开发过程中发现的问题"
                 ],
                 buttonText: "<i class='fas fa-question-circle'></i> 查看疑难解答",
                 buttonClass: "cta-button",
@@ -2818,7 +2920,7 @@
                         ${version.features.map(feature => `<li>${feature}</li>`).join('')}
                     </ul>
                     <div style="margin-top: auto;">
-                        <button class="${version.buttonClass}" data-version="${version.id}" data-is-authors="${version.isAuthors || false}" data-is-components="${version.isComponents || false}">${version.buttonText}</button>
+                        <button class="${version.buttonClass}" data-version="${version.id}" data-is-authors="${version.isAuthors || false}" data-is-components="${version.isComponents || false}" data-is-faq="${version.isFAQ || false}">${version.buttonText}</button>
                         ${version.bilibiliUrl ? `<button class="bilibili-button" data-bilibili="${version.bilibiliUrl}"><i class="fab fa-bilibili"></i> 观看演示视频</button>` : ''}
                     </div>
                 `;
@@ -2832,6 +2934,7 @@
                     const versionId = this.getAttribute('data-version');
                     const isAuthors = this.getAttribute('data-is-authors') === 'true';
                     const isComponents = this.getAttribute('data-is-components') === 'true';
+                    const isFAQ = this.getAttribute('data-is-faq') === 'true';
                     
                     if (isAuthors) {
                         // 显示作者信息
@@ -2839,6 +2942,9 @@
                     } else if (isComponents) {
                         // 显示文件树布局
                         showFileTreeLayout();
+                    } else if (isFAQ) {
+                        // 显示FAQ信息
+                        showFAQInfo();
                     } else {
                         const downloadUrl = downloadLinks[versionId];
                         
@@ -2896,6 +3002,8 @@
         backButton.addEventListener('click', backToCardsView);
         
         backToComponentsBtn.addEventListener('click', backToCardsView);
+        
+        backToComponentsBtn2.addEventListener('click', backToCardsView);
 
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {
@@ -3097,14 +3205,29 @@
                     "支持周期：至2020年1月14日（已结束）",
                     "包含功能：Aero界面、任务栏预览、库功能"
                 ],
-                downloadUrl: "",
+                downloadUrl: "#",
                 isAvailable: false
+            },
+            {
+                id: "win-server-2025",
+                name: "Windows Server 2025",
+                icon: "fas fa-server",
+                description: "最新的Windows Server版本，提供目前所需的安全性、性能和灵活性。通过更轻松的网络连接、更快的存储和满足你需求的混合云功能提高工作效率。凭借前瞻性的安全性和 AI 就绪型计算，领先于未来的发展。",
+                details: [
+                    "版本：2025",
+                    "架构：全部支持",
+                    "发布时间：2025年",
+                    "支持周期：至2034年11月",
+                    "包含功能：更快、更轻松的网络和存储；可减少故障时间的实时热修补操作；可在边缘进行推理的 GPU 分区。在基于闪存的存储方面做出了改进，让 Windows Server 成为更好的 SQL Server 平台。"
+                ],
+                downloadUrl: "https://www.microsoft.com/zh-cn/evalcenter/evaluate-windows-server-2025",
+                isAvailable: true
             },
             {
                 id: "win-server-2022",
                 name: "Windows Server 2022",
                 icon: "fas fa-server",
-                description: "最新的Windows Server版本，专为现代混合工作负载设计，提供增强的安全功能。",
+                description: "Windows Server 2022 引入高级多层安全性、Azure 混合功能以及灵活的应用程序平台。在此版本中，我们引入了安全核心功能，可最大限度降低固件漏洞和高级恶意软件带来的风险。新版本还提供安全连接，引入了多种新功能。",
                 details: [
                     "版本：2022",
                     "架构：全部支持",
@@ -3112,14 +3235,14 @@
                     "支持周期：至2031年10月",
                     "包含功能：增强的HTTPS和TLS 1.3支持、SMB over QUIC、Windows Admin Center改进"
                 ],
-                downloadUrl: "#",
-                isAvailable: false
+                downloadUrl: "https://www.microsoft.com/zh-cn/evalcenter/evaluate-windows-server-2022",
+                isAvailable: true
             },
             {
                 id: "win-server-2019",
                 name: "Windows Server 2019",
                 icon: "fas fa-server",
-                description: "微软较为早期的Windows Server版本，若出现部分问题可选择使用它",
+                description: "微软较为早期的Windows Server版本，若出现部分问题可选择使用它。Windows Server 2019 是一款连接本地环境和 Azure 服务的操作系统，通过操作系统内置的多层保护提高安全性。使用 Windows Server 2019，还可使用容器和微服务创建云原生和现代化传统应用。",
                 details: [
                     "版本：2019",
                     "架构：全部支持",
@@ -3247,58 +3370,6 @@
             });
         });
         
-        // 显示FAQ弹窗
-        function showFAQModal() {
-            const faqModal = document.getElementById('faqModal');
-            const faqContent = document.getElementById('faqModalContent');
-            
-            // 填充FAQ内容
-            faqContent.innerHTML = `
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>部分美化失效了怎么办？</span>
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>答：设置多开几次就正常了，开始菜单如果没显示就等一会儿</p>
-                    </div>
-                </div>
-                <!-- 其他FAQ项目... -->
-            `;
-            
-            faqModal.style.display = 'block';
-            
-            setTimeout(() => {
-                faqModal.classList.add('show');
-            }, 10);
-            
-            document.body.style.overflow = 'hidden';
-            
-            // 重新绑定FAQ事件
-            setTimeout(() => {
-                faqContent.querySelectorAll('.faq-question').forEach(question => {
-                    question.addEventListener('click', () => {
-                        const item = question.parentNode;
-                        item.classList.toggle('active');
-                    });
-                });
-            }, 100);
-        }
-
-        // 在弹窗按钮点击事件中添加FAQ处理
-        modalContent.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const versionId = this.getAttribute('data-version');
-                const isFAQ = this.getAttribute('data-is-faq') === 'true';
-                
-                if (isFAQ) {
-                    hideModal();
-                    showFAQModal();
-                    return;
-                }
-            });
-        });
-
         // 创建嵌套弹窗样式
         const modalStyle = document.createElement('style');
         modalStyle.textContent = `
@@ -3518,6 +3589,55 @@
                 background-color: #ff9db5;
             }
             
+            .faq-modal-container {
+                margin-top: 20px;
+            }
+            
+            .modal-faq-content {
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                padding: 25px;
+                margin-top: 20px;
+            }
+            
+            .modal-faq-content .faq-item {
+                background-color: white;
+                border-radius: 8px;
+                margin-bottom: 15px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+            
+            .modal-faq-content .faq-question {
+                padding: 20px;
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: 600;
+            }
+            
+            .modal-faq-content .faq-answer {
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s, padding 0.3s;
+            }
+            
+            .modal-faq-content .faq-item.active .faq-answer {
+                padding: 0 20px 20px;
+                max-height: 500px;
+            }
+            
+            .modal-faq-content .faq-toggle {
+                font-size: 20px;
+                transition: transform 0.3s;
+            }
+            
+            .modal-faq-content .faq-item.active .faq-toggle {
+                transform: rotate(180deg);
+            }
+            
             .file-tree-layout {
                 display: none;
                 grid-template-columns: 300px 1fr;
@@ -3673,6 +3793,23 @@
             .dark-mode .author-contributions ul {
                 color: #d0d0d0;
             }
+            
+            .dark-mode .modal-faq-content {
+                background-color: #2d2d2d;
+            }
+            
+            .dark-mode .modal-faq-content .faq-item {
+                background-color: #2a2a2a;
+                color: #f0f0f0;
+            }
+            
+            .dark-mode .modal-faq-content .faq-question {
+                color: #f0f0f0;
+            }
+            
+            .dark-mode .modal-faq-content .faq-answer {
+                color: #d0d0d0;
+            }
 
             .dark-mode .file-tree-container {
                 background-color: #2d2d2d;
@@ -3768,6 +3905,10 @@
                 .authors-grid {
                     grid-template-columns: 1fr !important;
                     gap: 20px !important;
+                }
+                
+                .modal-faq-content {
+                    padding: 15px !important;
                 }
             }
 
