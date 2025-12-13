@@ -1576,28 +1576,6 @@
 			margin-bottom: 0;
 			font-size: 16px;
 		}
-		
-		.official-website-button {
-			background-color: var(--primary-color);
-			color: white;
-			border: none;
-			padding: 12px 24px;
-			border-radius: var(--border-radius);
-			font-weight: 600;
-			cursor: pointer;
-			transition: background-color 0.3s;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-			width: 100%;
-			margin-top: 20px;
-			font-size: 16px;
-		}
-
-		.official-website-button:hover {
-			background-color: #106ebe;
-		}
 
 		.dark-mode .official-tip {
 			background-color: #1a365d;
@@ -1608,11 +1586,6 @@
 		.dark-mode .official-tip h3,
 		.dark-mode .official-tip p {
 			color: #60a5fa;
-		}
-		
-		.dark-mode .official-website-button {
-			background-color: var(--primary-color);
-			color: white;
 		}
 
 		@media (max-width: 768px) {
@@ -1630,11 +1603,6 @@
 			}
 			
 			.official-tip p {
-				font-size: 15px;
-			}
-			
-			.official-website-button {
-				padding: 10px 20px;
 				font-size: 15px;
 			}
 		}
@@ -2295,11 +2263,8 @@
             <div class="official-tip">
 				<i class="fas fa-shield-alt"></i>
 				<h3>安全提示</h3>
-				<p>提示：如果您不信任这些下载链接，请前往官方网站进行下载，或您也可以自行搜索前往</p>
+				<p>提示：如果您不信任这些下载链接，请自行搜索前往官方网站进行下载</p>
 			</div>
-			<button class="official-website-button" id="officialWebsiteBtn">
-				<i class="fas fa-external-link-alt"></i> 前往微软官方下载页面
-			</button>
             <div class="official-versions-grid" id="officialVersionsGrid">
             </div>
         </div>
