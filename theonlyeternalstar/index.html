@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>永远酱系列定制系统 —— 宣传平台</title>
+    <title>Vizer-操作系统收录平台</title>
     <link rel="icon" href="/assets/images/fav-icon/fav-icon.png">
     <!-- FontAwesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -58,11 +58,11 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px; /* 使用gap属性代替margin */
+            gap: 15px;
         }
 
         .logo img {
-            height: 70px; /* 增加到70px或更大 */
+            height: 70px;
             width: auto;
             margin-right: 20px;
             object-fit: contain;
@@ -1780,7 +1780,7 @@
                 <div class="nav-right">
                     <nav>
                         <ul>
-                            <li><a href="#features">前言</a></li>
+                            <li><a href="#features">介绍</a></li>
                             <li><a href="#download">下载</a></li>
                             <li><a href="#requirements">关于永远酱</a></li>
                         </ul>
@@ -1806,19 +1806,19 @@
     <section class="hero">
         <div class="container">
             <h1>—— 欢迎 ——</h1>
-            <h3>欢迎来到操作系统收录平台，这里收录了各种Windows民间修改的版本。同时也有原版，欢迎大家来下载！</h3>
+            <h3>欢迎来到Vizer系统收录平台，这里收录了各种Windows民间修改的版本。同时也有原版，欢迎大家来下载！</h3>
             <div class="hero-buttons">
-                <button class="mainD" id="heroDownloadBtn"><i class="fas fa-ellipsis-h"></i>  下载 </button>
+                <button class="mainD" id="heroDownloadBtn"><i class="fas fa-ellipsis-h"></i>  前往下载分类 </button>
                 <button class="secondary-button"><i class="fas fa-history"></i> 关于网站的发展历程</button>
             </div>
         </div>
     </section>
 
-    <!-- Features区域 -->
+    <!--
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
-                <h2>—— 前言 ——</h2>
+                <h2>—— 介绍 ——</h2>
                 <h4>（注：这些内容可不读）</h4>
                 <p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点。当时一切完全缘起于我拍脑门想出来的一个想法，在前言部分，我们一起来回忆一下永远酱系列定制系统的发展过程。</p>
                 <p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
@@ -1834,7 +1834,7 @@
             </div>
         </div>
     </section>
-
+    -->
     
     <!-- 下载区域 -->
     <section class="download" id="download">
@@ -1846,9 +1846,9 @@
             <div class="download-options">
                 <!-- 分类卡片 1: 官方Windows分类 -->
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('/assets/images/categories/windows-official.jpg');"></div>
+                    <div class="category-image" style="background-image: url('/bimg1.jpg');"></div>
                     <div class="category-content">
-                        <h3>官方Windows分类</h3>
+                        <h3><i class="fab fa-microsoft"></i> 官方Windows分类</h3>
                         <p>包含微软官方的Windows原版系统镜像下载</p>
                         <button class="category-button"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
                     </div>
@@ -1856,9 +1856,9 @@
                 
                 <!-- 分类卡片 2: 永远酱系列改版Windows -->
                 <div class="category-card">
-                    <div class="category-image" style="background-image: url('/assets/images/categories/forever-mod.jpg');"></div>
+                    <div class="category-image" style="background-image: url('/b1.jpg');"></div>
                     <div class="category-content">
-                        <h3>永远酱系列改版Windows</h3>
+                        <h3><i class="fas fa-code-branch"></i> 永远酱系列改版Windows</h3>
                         <p>包含所有永远酱系列定制系统和相关组件</p>
                         <button class="category-button more"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
                     </div>
@@ -1950,6 +1950,9 @@
                         <p>答：站长可能未进行维护，请前往B站提醒站长进行更新维护</p>
                     </div>
                 </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <button class="cta-button" onclick="window.open('https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787', '_blank')">前往旧版网站</button>
+                </div>
             </div>
         </div>
     </section>
@@ -2040,7 +2043,7 @@
                     </ul>
                 </div>
                 <div class="component-content">
-                    <button class="back-button" id="backButton"><i class="fas fa-arrow-left"></i> 返回窗口首页</button>
+                    <button class="back-button" id="backButton"><i class="fas fa-arrow-left"></i> 返回组件列表</button>
                     <div class="component-article" id="componentArticle">
                         <h3>组件文件视图</h3>
                         <p>请从左侧选择一个组件以查看详细信息</p>
@@ -2148,8 +2151,8 @@
         <div class="official-modal-content">
             <span class="official-close-modal">&times;</span>
             <div class="official-modal-title">
-                <h2>—— 官方Windows系统镜像 ——</h2>
-                <p>微软官方原版系统镜像下载 | 该区域正在维护中，部分功能可能暂时不可用</p>
+                <h2>—— 官方系统镜像 ——</h2>
+                <p>官方系统镜像下载</p>
             </div>
             
             <div class="official-versions-grid" id="officialVersionsGrid">
@@ -2158,19 +2161,8 @@
             
             <div class="maintenance-notice">
                 <i class="fas fa-tools"></i>
-                <h3>重要通知：该区域正在维护中</h3>
-                <p>官方Windows系统镜像下载功能正在进行技术升级和维护，预计在下次更新中恢复正常。在此期间，部分下载链接可能暂时不可用。</p>
-                
-                <div class="maintenance-features">
-                    <div class="maintenance-feature">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <span>新功能测试</span>
-                    </div>
-                    <div class="maintenance-feature">
-                        <i class="fas fa-sync-alt"></i>
-                        <span>代码库迁移</span>
-                    </div>
-                </div>
+                <h3>警告：该区域正在维护中</h3>
+                <p>部分官方Windows系统镜像下载功能正在上传网盘，预计在下次更新中恢复正常。在此期间，部分下载可能暂时不可用。</p>
                 <p style="margin-top: 20px; font-size: 14px;">如需获取官方Windows系统镜像，请访问微软官方下载页面。</p>
             </div>
             <button class="official-download-button" onclick="window.open('https://www.microsoft.com/zh-cn/software-download', '_blank')">
@@ -3138,9 +3130,9 @@
                 id:"win11-ltsc-2025",
                 name:"Windows11 LTSC2025",
                 icon:"fab fa-microsoft",
-                description: "Windows11 LTSC2025是最新的长期服务频道版本，适合对性能有要求的用户，该版本默认无ms商店功能。",
+                description: "Windows11 LTSC2025是最新的长期服务频道版本，适合对性能有要求的用户。该版本无ms商店功能。",
                 details: [
-                    "版本号：25H2/24H2 (Build 26100/26200)",
+                    "版本号：24H2/25H2 (Build 26100/26200)",
                     "架构：全部支持",
                     "发布时间：2024年",
                     "支持周期：至2034年10月",
@@ -3159,7 +3151,7 @@
                     "架构：全部支持",
                     "发布时间：2015年",
                     "支持周期：至2025年10月（已结束普通支持）",
-                    "包含功能：Windows 10的最终功能更新，安全性和稳定性改进"
+                    "包含功能：Windows10的最终更新，安全性和稳定性改进"
                 ],
                 downloadUrl: "https://www.microsoft.com/zh-cn/software-download/windows10",
                 isAvailable: true
@@ -3188,7 +3180,8 @@
                     "版本：6.3.9600",
                     "架构：全部支持",
                     "发布时间：2014年",
-                    "支持周期：至2023年9月（已结束）"
+                    "支持周期：至2023年9月（已结束）",
+                    "包含功能：加入了Modern UI，和Windows传统界面并存。新的ModernUI风格。ModernUI操作界面被称为开始屏幕"
                 ],
                 downloadUrl: "",
                 isAvailable: false
@@ -3196,7 +3189,7 @@
                         {
                 id: "win7",
                 name: "Windows7",
-                icon: "fab fa-windows",
+                icon: "fas fa-computer",
                 description: "对设备进行优化，史上最快、最美的操作系统，口碑极好，对老设备优化极好，但部分软件已不适配。",
                 details: [
                     "版本：6.1.7602",
