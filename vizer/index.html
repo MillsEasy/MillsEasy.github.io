@@ -1548,6 +1548,98 @@
             max-width: 600px;
             margin: 0 auto;
         }
+		
+		.official-tip {
+			background-color: #e6f2ff;
+			border: 2px solid #0078d4;
+			border-radius: 8px;
+			padding: 20px;
+			margin-top: 40px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 15px;
+		}
+
+		.official-tip i {
+			color: #0078d4;
+			font-size: 32px;
+		}
+
+		.official-tip h3 {
+			color: #0078d4;
+			margin-bottom: 5px;
+			font-size: 20px;
+		}
+
+		.official-tip p {
+			color: #005a9e;
+			margin-bottom: 0;
+			font-size: 16px;
+		}
+		
+		.official-website-button {
+			background-color: var(--primary-color);
+			color: white;
+			border: none;
+			padding: 12px 24px;
+			border-radius: var(--border-radius);
+			font-weight: 600;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			width: 100%;
+			margin-top: 20px;
+			font-size: 16px;
+		}
+
+		.official-website-button:hover {
+			background-color: #106ebe;
+		}
+
+		.dark-mode .official-tip {
+			background-color: #1a365d;
+			border-color: #2b579a;
+		}
+
+		.dark-mode .official-tip i,
+		.dark-mode .official-tip h3,
+		.dark-mode .official-tip p {
+			color: #60a5fa;
+		}
+		
+		.dark-mode .official-website-button {
+			background-color: var(--primary-color);
+			color: white;
+		}
+
+		@media (max-width: 768px) {
+			.official-tip {
+				padding: 15px;
+				margin-top: 30px;
+			}
+			
+			.official-tip i {
+				font-size: 28px;
+			}
+			
+			.official-tip h3 {
+				font-size: 18px;
+			}
+			
+			.official-tip p {
+				font-size: 15px;
+			}
+			
+			.official-website-button {
+				padding: 10px 20px;
+				font-size: 15px;
+			}
+		}
 
         /* 官方Windows版本卡片 */
         .official-versions-grid {
@@ -2199,22 +2291,18 @@
             <span class="official-close-modal">&times;</span>
             <div class="official-modal-title">
                 <h2>—— 官方系统镜像 ——</h2>
-                <p>官方系统镜像下载</p>
+                <p>此处提供官方系统镜像下载，部分镜像为爱好者上传，所有镜像默认选择最新补丁版</p>
             </div>
-            
+            <div class="official-tip">
+				<i class="fas fa-shield-alt"></i>
+				<h3>安全提示</h3>
+				<p>提示：如果您不信任这些下载链接，请前往官方网站进行下载，或您也可以自行搜索前往</p>
+			</div>
+			<button class="official-website-button" id="officialWebsiteBtn">
+				<i class="fas fa-external-link-alt"></i> 前往微软官方下载页面
+			</button>
             <div class="official-versions-grid" id="officialVersionsGrid">
-                <!-- 版本卡片将通过JavaScript动态填充 -->
             </div>
-            
-            <div class="maintenance-notice">
-                <i class="fas fa-tools"></i>
-                <h3>警告：该区域正在维护中</h3>
-                <p>部分官方Windows系统镜像下载功能正在上传网盘，预计在下次更新中恢复正常。在此期间，部分下载可能暂时不可用。</p>
-                <p style="margin-top: 20px; font-size: 14px;">如需获取官方Windows系统镜像，请访问微软官方下载页面。</p>
-            </div>
-            <button class="official-download-button" onclick="window.open('https://www.microsoft.com/zh-cn/software-download', '_blank')">
-                    <i class="fas fa-external-link-alt"></i> 前往微软官方下载页面
-            </button>
         </div>
     </div>
 
@@ -3261,13 +3349,13 @@
                 id: "win11-25h2",
                 name: "Windows11 25H2",
                 icon: "fab fa-microsoft",
-                description: "Windows 11 25H2是微软最新的操作系统，包含所有最新的功能更新和安全补丁。",
+                description: "Windows 11 25H2是微软最新的操作系统，史上最慢的操作系统，对老设备优化较差，不建议其安装。全新的文件管理器功能常常因卡顿问题被诟病。",
                 details: [
                     "版本：25H2 (Build 26200)",
                     "架构：全部支持",
                     "发布时间：2025年",
                     "支持周期：至2027年10月",
-                    "包含功能：Copilot AI助手、全新文件资源管理器、任务栏改进等"
+                    "包含功能：Copilot AI助手、全新文件资源管理器、全新开始菜单设计、任务栏改进等"
                 ],
                 downloadUrl: "https://www.microsoft.com/zh-cn/software-download/windows11",
                 isAvailable: true
@@ -3276,7 +3364,7 @@
                 id:"win11-ltsc-2025",
                 name:"Windows11 LTSC2025",
                 icon:"fab fa-microsoft",
-                description: "Windows11 LTSC2025是最新的长期服务频道版本，适合对性能有要求的用户。该版本无ms商店功能。",
+                description: "Windows11 LTSC2025是最新的长期服务频道版本，适合对性能有要求的用户。该版本无ms商店功能，去除了无用的功能。",
                 details: [
                     "版本号：24H2/25H2 (Build 26100/26200)",
                     "架构：全部支持",
@@ -3291,13 +3379,13 @@
                 id: "win10-22h2",
                 name: "Windows10 22H2",
                 icon: "fab fa-windows",
-                description: "Windows 10的最终功能更新版本，提供经典的用户界面和稳定的使用体验。",
+                description: "Windows10的最终功能更新版本，提供你最熟悉经典的用户界面和稳定、快速的体验。大部分软件仍然支持，若您的设备无法安装Win11，那么它就是最佳选择。",
                 details: [
                     "版本：22H2 (Build 19045)",
                     "架构：全部支持",
                     "发布时间：2015年",
                     "支持周期：至2025年10月（已结束普通支持）",
-                    "包含功能：Windows10的最终更新，安全性和稳定性改进"
+                    "包含功能：全新开始菜单、磁贴设计，扁平化UI，简洁的系统"
                 ],
                 downloadUrl: "https://www.microsoft.com/zh-cn/software-download/windows10",
                 isAvailable: true
@@ -3306,28 +3394,28 @@
                 id: "win10-ltsc-2021",
                 name: "Windows10 LTSC2022",
                 icon: "fab fa-windows",
-                description: "长期服务频道版本，适合对性能有要求的用户，该版本默认无ms商店功能。",
+                description: "Win10的长期服务频道版本，史上最快的Win10版本，其早期版本曾有不少问题，这里我们提供22H2的版本。",
                 details: [
                     "版本：22H2 (Build 19045)",
                     "架构：全部支持",
                     "发布时间：2021年",
                     "支持周期：至2027年1月",
-                    "包含功能：无ms商店、精简的预装应用，运存占用少"
+                    "包含功能：无ms商店、精简的预装应用，运存占用少，优化较好，适合老电脑安装。"
                 ],
                 downloadUrl: "https://pan.huang1111.cn/s/6ewY7hN",
                 isAvailable: true
             },
             {
                 id: "win8.x",
-                name: "Windows8.x",
+                name: "Windows8.1",
                 icon: "fab fa-windows",
-                description: "全新开始屏幕设计，Metro应用加入，MS商店，对部分移动设备优化极好，但部分设计教不好",
+                description: "Windows8快如闪电！Win8加入了全新开始屏幕设计，Metro应用与MS商店。对部分设备优化极好，但其部分设计遭受用户诟病导致没落。",
                 details: [
                     "版本：6.3.9600",
                     "架构：全部支持",
                     "发布时间：2014年",
                     "支持周期：至2023年9月（已结束）",
-                    "包含功能：加入了Modern UI，和Windows传统界面并存。新的ModernUI风格。ModernUI操作界面被称为开始屏幕"
+                    "包含功能：加入ModernUI和MetroAPP，和Windows传统界面并存。ModernUI操作界面被称为开始屏幕"
                 ],
                 downloadUrl: "123865.com/s/AKYRVv-xEUov?pwd=DWaW",
                 isAvailable: true
@@ -3336,13 +3424,13 @@
                 id: "win7",
                 name: "Windows7",
                 icon: "fas fa-computer",
-                description: "对设备进行优化，史上最快、最美的操作系统，口碑极好，对老设备优化极好，但部分软件已不适配。",
+                description: "对设备进行优化，史上最快、最美的操作系统，口碑极好，对老设备优化极好，但存在部分软件不适配，系统内核过时的问题。",
                 details: [
                     "版本：6.1.7602",
                     "架构：全部支持",
                     "发布时间：2009年",
                     "支持周期：至2020年1月14日（已结束）",
-                    "包含功能：Aero界面、任务栏预览、库功能"
+                    "包含功能：Aero界面、任务栏预览、库功能，现代化开始菜单设计"
                 ],
                 downloadUrl: "123865.com/s/AKYRVv-xEUov?pwd=DWaW",
                 isAvailable: true
@@ -3509,6 +3597,10 @@
             });
         });
         
+		document.getElementById('officialWebsiteBtn')?.addEventListener('click', function() {
+			window.open('https://www.microsoft.com/zh-cn/software-download', '_blank');
+		});
+		
         // 创建嵌套弹窗样式
         const modalStyle = document.createElement('style');
         modalStyle.textContent = `
