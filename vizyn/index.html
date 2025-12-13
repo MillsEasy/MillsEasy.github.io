@@ -710,6 +710,7 @@
             gap: 10px;
             margin-top: 15px;
             width: 100%;
+            flex-wrap: wrap;
         }
 
         .author-link {
@@ -725,7 +726,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            max-width: 150px;
             min-width: 100px;
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .hero-buttons {
@@ -1872,7 +1880,7 @@
             <div class="header-content">
                 <div class="logo">
 					<img src="/vizyn/logo.png" alt="logo">
-                    <div class="logo-text">/系统收录平台</div>
+                    <div class="logo-text">| 系统收录平台</div>
                 </div>
                 <div class="nav-right">
                     <nav>
@@ -2644,7 +2652,7 @@
                         "如果你在用Win7的话，那么你只能下载VMware 15.5及以前的版本，VMware 16开始就不再支持Win7了",
                         "VMware 17发布一年后博通就把VMware收购了，那时开始VMware也放开免费了，安装时选择个人用途使用即可跳过激活",
                         "不太建议用VMware 17.6.3（除非你有安装Server 2025的需求），如果需要安装VMware 17，建议使用VMware 17.5.2",
-                        "目前最新版的VMware 25H2没有汉化（疑似博通放弃中国市场），并疑似放弃了对Win8和Win8.1的兼容。此版本安装包暂不同步"
+                        "4.目前最新版的VMware 25H2没有汉化（疑似博通放弃中国市场），并疑似放弃了对Win8和Win8.1的兼容。此版本安装包暂不同步。（并且25H2版本侧重的是Linux虚拟机，对Windows虚拟机疑似优化欠佳），所以我们暂不提供25H2的安装包。"
                     ]
                 },
                 downloadUrl: "https://www.123912.com/s/dwB1vd-uxXWv?pwd=MbTp#"
@@ -2685,7 +2693,7 @@
                     features: [
                         "在这里我们同时分享应用商店恢复包（针对于Win10 LTSC 2019，不过Win10 LTSC 2021，Win11 LTSC 2024以及Windows Server都是可用的）以及四个框架。如果你想在恢复应用商店的同时恢复其他组件（如Xbox支持），那么你就下载恢复包；如果你只想恢复应用商店，那么你就下载四个框架后用PowerShell或者Windows终端部署。（顺序为先部署VCLibs和Xaml，然后部署应用安装程序，最后部署应用商店）",
                         "对于LTSC，这里更建议使用wsreset -i指令进行恢复应用商店。（事实上在系统文件夹的System32文件夹里就有WSReset.exe程序作为重置应用商店的工具，此指令正是调用了此工具）",
-                        "需要注意的是，wsreset -i指令以及应用商店恢复包部署的应用商店都是旧版的，第一次打开会提示更新。并且，Server 2022本身在应用商店方面就有bug，部署上旧版应用商店了会无法更新，但如果部署上了新版应用商店则会无法安装和更新应用",
+                        "需要注意的是，wsreset -i指令已可部署新版应用商店，但是应用商店恢复包部署的应用商店是旧版的，第一次打开会提示更新。并且，Server 2022本身在应用商店方面就有bug，部署上旧版应用商店了会无法更新，但如果部署上了新版应用商店则会无法安装和更新应用。",
                         "备注：Windows Server疑似不支持wsreset -i指令恢复应用商店。"
                     ]
                 },
@@ -2761,6 +2769,19 @@
                     ]
                 },
                 downloadUrl: "https://www.123912.com/s/dwB1vd-eSXWv?pwd=JLoN#"
+            },
+            {
+                id: "yyjb",
+                name: "永远酱w-鼠标指针购买链接",
+                type: "folder",
+                content: {
+                    title: "永远酱w的鼠标指针购买链接",
+                    description: "这是原计划加入到系统中的内容之一，因为内置鼠标指针比较麻烦（要写一大堆注册表啥的）再加上一些二创限制，就没有内置。但如果你想进一步提升系统体验，可以在工房购买鼠标指针后自行安装，我们不提供鼠标指针文件。",
+                    features: [
+                        "无"
+                    ]
+                },
+                downloadUrl: "https://gf.bilibili.com/item/detail/1107855076"
             }
         ];
 
@@ -2961,6 +2982,7 @@
                 price: "独立组件更新:",
                 features: [
                     "第一版补偿美化包发布于7月20日，第二版补偿美化包发布于8月17日，因未知原因，锁屏壁纸《成都》无法正常启用，始终调用默认锁屏壁纸缓存（在测试版v5.0中曾尝试替换锁屏缓存解决这个问题，但可惜失败，替换后整个锁屏都寄了，根本不显示图片）。所以制作了补偿美化包，将成都锁屏作为开始菜单背景，并且将开发前期的万有引力背景回归到设置里（在定制Win11中正式成为锁屏背景）。",
+                    "后记：在永远酱定制Win10 LTSC 2021中已成功修复《成都》锁屏无法正常启用的问题。",
                     "警告：美化包需要借助MToolBox工具箱实现，应工具箱制作者要求，不提供下载链接，请前往工具箱发布页自行下载",
                     "链接：https://winmoes.com/tools/12948.html  （复制前往）"
                 ],
@@ -2991,8 +3013,7 @@
                     "完工于11月3日，将于12月11日定时发布，这个版本相较于9月的版本更加完善，并且也是一份送给阿笨的周年礼物，未来的故事未完待续，且永远不会结束。",
                     "1.安装程序使用Win11 23H2的旧版安装程序，并修改了启动背景。再次重新整合壁纸和锁屏，其中一张锁屏改为浅色模式的背景，新增锁屏《雨爱》并移除壁纸《去有风的地方》移除系统中所有彩蛋，将彩蛋中的两个皮套展示视频改为示例视频。新增示例视频《我知道》《雨爱》《勇气大爆发》",
                     "2.移除开关机文字修改。系统安装完成后会进行后期任务，主要为.NET Framework 3.5功能启用、DirectX与C++运行库安装。移除UWP应用新增MSN天气",
-                    "3.资源管理器窗口右侧新增一个永远酱立绘。恢复系统Flash插件。内置Microsoft Office 2024专业增强版",
-                    "5.系统新增彩蛋！（如果算上蛋中蛋和隐藏彩蛋，共有六个彩蛋）"
+                    "3.资源管理器窗口右侧新增一个永远酱立绘。恢复系统Flash插件。内置Microsoft Office 2024专业增强版"
                 ],
                 buttonText: "<i class='fas fa-download'></i> 下载（123云盘）",
                 buttonClass: "cta-button",
