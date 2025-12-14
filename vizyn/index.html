@@ -4823,7 +4823,7 @@
                                 </div>
                             </div>
                             <span class="comment-badge ${state}">
-                                <i class="fas fa-${state === 'open' ? 'circle' : 'check-circle'}"></i>
+                                <i class="fas fa-${state === 'open' ? 'check-circle' : 'circle'}"></i>
                                 ${state === 'open' ? '可用' : '不可用'}
                             </span>
                         </div>
@@ -4853,7 +4853,7 @@
                 commentsList.style.display = 'block';
                 commentsList.innerHTML = `
                     <p class="comments-empty" style="color: #ff6b6b;">
-                        <i class="fas fa-exclamation-triangle"></i> 加载评论失败，请检查网络连接或稍后重试
+                        <i class="fas fa-exclamation-triangle"></i> 加载评论失败，请检查你的网络连接或稍后重试
                         <br><small style="margin-top: 10px; display: block;">错误信息: ${error.message}</small>
                     </p>
                 `;
@@ -4862,7 +4862,7 @@
         
         // 创建新Issue
         function createNewIssue() {
-            const issueTitle = encodeURIComponent('网站评论反馈');
+            const issueTitle = encodeURIComponent('网站问题反馈');
             const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
             const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
             
@@ -4892,7 +4892,7 @@
                 if (commentsList) {
                     commentsList.innerHTML = `
                         <p class="comments-empty" style="color: #ffc107;">
-                            <i class="fas fa-info-circle"></i> 评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
+                            <i class="fas fa-info-circle"></i> 错误：评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
                         </p>
                     `;
                 }
