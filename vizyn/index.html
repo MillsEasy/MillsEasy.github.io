@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -1874,7 +1875,6 @@
             padding-bottom: 40px;
         }
         
-        /* 确保评论系统在深色背景区域内的文字颜色正确 */
         .system-requirements .comments-section {
             border-bottom-color: rgba(255, 255, 255, 0.1);
         }
@@ -1959,7 +1959,7 @@
         
         .comment-form-actions {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -2175,6 +2175,43 @@
             color: #60a5fa;
             border: 1px solid rgba(0, 120, 212, 0.3);
         }
+
+        .comment-form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .comment-form-actions .left-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .comment-form-actions .right-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: auto;
+        }
+
+
+        @media (max-width: 768px) {
+            .comment-form-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+            
+            .comment-form-actions .right-buttons {
+                margin-left: 0;
+                order: 2;
+            }
+            
+            .comment-form-actions .left-buttons {
+                order: 1;
+            }
+        }
         
         .dark-mode .system-requirements .comments-section,
         .system-requirements .comments-section {
@@ -2283,10 +2320,13 @@
             
             .comment-form-actions {
                 flex-direction: column;
+                align-items: flex-start;
             }
             
             .comment-form-actions button {
                 width: 100%;
+                max-width: 300px;
+                text-align: left;
             }
             
             .comment-item {
@@ -2358,27 +2398,20 @@
         </div>
     </section>
 
-    <!--
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
                 <h2>—— 介绍 ——</h2>
-                <h4>（注：这些内容可不读）</h4>
-                <p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点。当时一切完全缘起于我拍脑门想出来的一个想法，在前言部分，我们一起来回忆一下永远酱系列定制系统的发展过程。</p>
-                <p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
-                <p>8月最后的一个星期我开始着手去做定制Win11，结果出现了很多玄学问题（比如：通过新版安装程序更新系统会安装失败，在PE系统里通过不同方式安装可能会决定是否有OOBE，莫名其妙的无人值守等等）</p>
-                <p>但当时大家快要开学了（虽然我开学会晚一个星期）我就想着先发一个视频出去稳定一下大家的期盼之情，所以8月30号发布了一个预览版，虽然那个版本并不完美。</p>
-                <p>也就是在那一天，SYSTEM-SS8-0016帮我做了永远酱定制Win10最终版和永远酱定制Win11预览版的实体机验证，确认了这个系统的实体机可行性。</p>
-                <p>第二天他找到我，说想要做服务器版本的永远酱定制系统，当天他就开工了永远酱定制Server 2022的第一个版本（也就是9月3日发布视频中的beta 2版本），那个版本也存在无法镜像启动的问题，不过那个系统也标志着永远酱系列定制系统翻开了新的一页。周末永远酱定制Server的RTM版本发布了，这个版本做了一个大胆尝试，就是将2022与2025封到了同一个镜像里，作为它的两个分卷。</p>
-                <p>最终在9月17日，永远酱定制Win11正式版完成了第一次安装测试，随后我将其发给了blil114514号和SYSTEM-SS8-0016进行下一轮内测。
-在9月26号，我也成功达到了一千粉丝，这也标志着我获得了联合投稿的权利，永远酱定制Win11的推介视频也就此成为了我的第一个联合投稿。9月27日，永远酱定制Win11正式版发布了。
-永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的四人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……
-最后还有个小插曲，当时在永远酱定制Win10初版发布之前我被人催公开镜像了，为了稳住一些人的期待，我还特地发布了永远酱系统美化包，供大家装饰系统使用。
-</p>
+                <p>回忆：这个站点最早是为“永远酱定制系统”制作的，但后来我突发灵感才将其改成现在这样的下载站，也为之后的“Easy Cards”设计进行了铺垫。</p>
+                <p>在11月初，我灵感突发，于是决定帮助当时的UP主 @一只低调的道路 做一个宣传“永远酱定制系统”的网站，在AI辅助编写的情况下，我想到了“Easy Cards”的设计，于是，本站的基本设计语言很快便实现了。
+                   12月6日，我决定将网站改造为综合性的下载网站，于是开始对代码进行重构。
+                   12月11日，我完成了分类设计，对“Easy Cards”设计进行了优化，加入了官方镜像下载。
+                   12月13日，我在BiliBili发布了一个宣传帖子，但无人问津。但构建代码的工作仍在进行...
+                   12月14日，我借助Cursor完成了基于Github的反馈/评论系统，对网站的发展很有作用。</p>
+                <p>这个网站最终会发生什么呢？走一步看一步吧！最后欢迎您的到来！</p>
             </div>
         </div>
     </section>
-    -->
     
     <!-- 下载区域 -->
     <section class="download" id="download">
@@ -2508,23 +2541,28 @@
             <!-- 评论系统 -->
             <div class="comments-section" id="commentsSection">
                 <div class="section-title">
-                    <h2>—— 评论反馈 ——</h2>
-                    <p>基于 GitHub Issues 的评论系统，您的反馈对我们很重要</p>
+                    <h2>—— 发送反馈 ——</h2>
+                    <p>基于 GitHub Issues 的反馈系统，您的反馈对我们很重要</p>
+                    <p>您必须注册Github并登录，才能使用本功能</p>
                 </div>
                 
                 <div class="comments-container">
                     <div class="comment-form-container">
                         <div class="comment-form-header">
-                            <h3><i class="fas fa-comment-dots"></i> 发表评论</h3>
+                            <h3><i class="fas fa-comment-dots"></i> 发送反馈</h3>
                             <p>您可以在 GitHub 上创建 Issue 来发表评论或反馈</p>
                         </div>
                         <div class="comment-form-actions">
-                            <button class="cta-button" id="createIssueBtn">
-                                <i class="fab fa-github"></i> 在 GitHub 上创建评论
-                            </button>
-                            <button class="secondary-button" id="refreshCommentsBtn">
-                                <i class="fas fa-sync-alt"></i> 刷新评论列表
-                            </button>
+                            <div class="left-buttons">
+                                <button class="cta-button" id="createIssueBtn">
+                                    <i class="fab fa-github"></i> 在 GitHub 上创建评论
+                                </button>
+                            </div>
+                            <div class="right-buttons">
+                                <button class="secondary-button" id="refreshCommentsBtn">
+                                    <i class="fas fa-sync-alt"></i> 刷新评论列表
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -2567,8 +2605,8 @@
                     <p>带*代表该服务正在维护<p/>
                     <ul>
                         <li><a href="#">*文档中心</a></li>
-                        <li><a href="#">*社区论坛</a></li>
-                        <li><a href="#sfb">*联系我们</a></li>
+                        <li><a href="https://github.com/MillsEasy/SendFeedback/issues">社区论坛</a></li>
+                        <li><a href="#requirements">*发送反馈</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -2590,7 +2628,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 枫星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：RC3.0-251213</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：V3.0-2512134</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -4862,5 +4900,5 @@
             }
         });
     </script>
-<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
 </html>
