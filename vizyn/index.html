@@ -4689,13 +4689,12 @@
         `;
         document.head.appendChild(modalStyle);
         
-        // ========== GitHub Issues 评论系统 ==========
-        // 配置GitHub仓库信息（请根据实际情况修改）
+        // ========== GitHub Issues 评论系统配置 ==========
         const GITHUB_CONFIG = {
-            owner: 'MillsEasy',  // 替换为您的GitHub用户名
-            repo: 'SendFeedBack',       // 替换为您的仓库名
-            issueLabel: 'Websites',  // 用于标识网站评论的标签
-            newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'  // 创建新Issue的URL
+            owner: 'MillsEasy',
+            repo: 'SendFeedBack',
+            issueLabel: 'Websites',
+            newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'
         };
         
         // 格式化日期
@@ -4864,7 +4863,7 @@
         // 创建新Issue
         function createNewIssue() {
             const issueTitle = encodeURIComponent('网站评论反馈');
-            const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*此评论由网站评论系统自动创建*`);
+            const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
             const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
             
             const url = `${GITHUB_CONFIG.newIssueUrl}?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
@@ -4893,7 +4892,7 @@
                 if (commentsList) {
                     commentsList.innerHTML = `
                         <p class="comments-empty" style="color: #ffc107;">
-                            <i class="fas fa-info-circle"></i> 评论系统未配置，请在代码中设置 GitHub 仓库信息
+                            <i class="fas fa-info-circle"></i> 评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
                         </p>
                     `;
                 }
