@@ -2912,6 +2912,24 @@
                 margin: 20px auto;
             }
         }
+
+        /* 子卡片暗色模式适配 */
+        .dark-mode .custom-modal-content {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .custom-modal-title h3 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .custom-modal-title p {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .custom-modal-body p {
+            color: #e0e0e0;
+        }
 		
 		/* 汉堡菜单按钮样式 */
         .hamburger-button {
@@ -3185,12 +3203,10 @@
                 display: none !important;
             }
             
-            /* 确保汉堡按钮显示 */
             .hamburger-button {
                 display: flex !important;
             }
             
-            /* 调整header-content布局 */
             .header-content {
                 min-height: 70px;
                 padding-top: 10px;
@@ -3255,7 +3271,7 @@
                 </div>
             </div>
         </div>
-        <!-- 公告 -->
+        <!-- 公告
         <div class="floating-announcement" id="floatingAnnouncement">
             <div class="container">
                 <div class="announcement-content">
@@ -3265,6 +3281,7 @@
                 <button class="close-announcement" id="closeAnnouncement">&times;</button>
             </div>
         </div>
+        -->
     </header>
 	<!-- 移动端导航菜单 -->
 	<div class="mobile-nav-container" id="mobileNavContainer">
@@ -3531,14 +3548,13 @@
                     <h3>关注第三方系统开发者</h3>
                     <p>带*代表该服务正在维护<p/>
                     <ul>
-                        <li><a href="#">*GitHub</a></li>
                         <li><a href="https://space.bilibili.com/401874924">永远酱系统开发者B站</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 枫星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：V3.1-260125.a</p>
+                <p>&copy; 2025 栖渊保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
+                <p>本网站由 栖渊Kaelen 管理 | 版本：V3.1-260127</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -4121,6 +4137,28 @@
                 bilibili: "https://space.bilibili.com/672508011",
                 github: "#"
             },
+            {
+                id: "crl",
+                name: "CakesAreLies",
+                role: "系统技术支持",
+                description: "进行永远酱定制系统的相关技术支持",
+                contributions: [
+                    "系统技术支持"
+                ],
+                bilibili: "https://space.bilibili.com/1845800720",
+                github: "#"
+            },
+            {
+                id: "author",
+                name: "栖渊Kaelen",
+                role: "网站开发者",
+                description: "宣传平台新站点开发者、运营者",
+                contributions: [
+                    "运营Vizyn平台，Python开发者"
+                ],
+                bilibili: "https://space.bilibili.com/3493124680714310",
+                github: "#"
+            },
         ];
 
         // 渲染作者卡片
@@ -4152,7 +4190,98 @@
                 
                 authorsGrid.appendChild(card);
             });
+
+            // 添加自定义按钮容器
+            const buttonContainer = document.createElement('div');
+            buttonContainer.style.textAlign = 'center';
+            buttonContainer.style.marginTop = '40px';
+            buttonContainer.style.paddingTop = '20px';
+            buttonContainer.style.borderTop = '1px solid rgba(255, 255, 255, 0.1)';
+            // 创建自定义按钮
+            const customButton = document.createElement('button');
+            customButton.className = 'cta-button';
+            customButton.style.margin = '0 auto';
+            customButton.innerHTML = ' 关于永远酱本人：';
+            customButton.onclick = showCustomModal;
+            buttonContainer.appendChild(customButton);
+            authorsGrid.appendChild(buttonContainer);
         }
+
+
+
+        // 创建自定义模态窗口HTML
+        const customModalHTML = `
+        <div class="custom-modal" id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 1000; overflow-y: auto; opacity: 0; transition: opacity 0.3s ease;">
+            <div class="custom-modal-content" style="background-color: white; margin: 40px auto; padding: 30px; border-radius: 8px; width: 95%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); transform: translateY(-30px); opacity: 0; transition: all 0.3s ease;">
+                <span class="custom-close-modal" style="position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: var(--gray-color); transition: color 0.3s;">&times;</span>
+                <div class="custom-modal-title" style="text-align: center; margin-bottom: 20px; color: var(--dark-color);">
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">-关于永远酱-</h3>
+                    <p style="color: var(--gray-color);">吾辈的自我介绍</p>
+                </div>
+                <div class="custom-modal-body" style="text-align: center; padding: 20px 0;">
+                    <p style="font-size: 18px; color: var(--dark-color);">吾辈是一颗来自太阳系之外的小行星，星体主色调为靛蓝色，后脱离了自身运动轨道，在宇宙中漫无目的地漂游，几次险些与其他行星相撞...几亿年后，误打误撞被地球引力所吸引，坠入到了地表...
+再次醒来后，发现自己正躺在一个巨大的深坑中，而自己的外表竟变成了人类少女！由于搞不清楚状况，她决定先去往人类城市，以偶像之名出道，一边感受人类文化的乐趣，一边寻找让自己身体恢复原样重回宇宙的方法...
+根据永远酱的身体数据，这次坠落的威力相当于空爆20枚广岛原子弹（46万吨TNT），能夷平5公里内的建筑物，震碎150公里内的玻璃（约1/16个华北平原）。更正，根据最新模拟结果，当永远酱本体收到地球引力撞击地球时，将造成覆盖四分之一中国的冲击波，造成损失不可估量。
+后来因为在飞回外太空的途中遇到了一些意外，本体被创的四分五裂，好在最重要的核心被保存了下来，后面寄生到了一个可爱的猫猫鱿鱼的身上～后面的故事未完待续～</p>
+                    <p style="color: var(--gray-color); margin-top: 10px;">（我是结尾）</p>
+                </div>
+            </div>
+        </div>
+        `;
+
+        // 将自定义模态窗口添加到页面
+        document.body.insertAdjacentHTML('beforeend', customModalHTML);
+
+        // 获取自定义模态窗口元素
+        const customModal = document.getElementById('customModal');
+        const customCloseBtn = document.querySelector('.custom-close-modal');
+
+        // 显示自定义模态窗口
+        function showCustomModal() {
+            customModal.style.display = 'block';
+            
+            // 触发重排以应用动画
+            customModal.offsetHeight;
+            
+            requestAnimationFrame(() => {
+                customModal.style.opacity = '1';
+                const content = customModal.querySelector('.custom-modal-content');
+                content.style.transform = 'translateY(0)';
+                content.style.opacity = '1';
+            });
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏自定义模态窗口
+        function hideCustomModal() {
+            customModal.style.opacity = '0';
+            const content = customModal.querySelector('.custom-modal-content');
+            content.style.transform = 'translateY(-30px)';
+            content.style.opacity = '0';
+            
+            setTimeout(() => {
+                customModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // 绑定关闭事件
+        customCloseBtn.addEventListener('click', hideCustomModal);
+
+        // 点击模态窗口背景关闭
+        customModal.addEventListener('click', function(event) {
+            if (event.target === customModal) {
+                hideCustomModal();
+            }
+        });
+
+        // ESC键关闭
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && customModal.style.display === 'block') {
+                hideCustomModal();
+            }
+        });
         
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
@@ -4206,7 +4335,7 @@
             "W11-Z": "https://www.123865.com/s/dwB1vd-BWXWv?pwd=6Krh#",
             "W10L": "https://www.123912.com/s/dwB1vd-aSXWv?pwd=qPOl#",
             "win11_official": "https://www.123912.com/s/dwB1vd-loXWv?pwd=UGA8#",
-            "zj": "",
+            "W11qh7": "https://www.123865.com/s/dwB1vd-BQnWv?pwd=rT6T#",
             "beautify_pack": "https://www.123912.com/s/dwB1vd-oRPWv",
             "Ot":"https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787"
         };
@@ -4625,6 +4754,22 @@
                 bilibiliUrl: "https://www.bilibili.com/video/BV1cTYkzsEW3/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
             },
             {
+                id: "w11qh7",
+                title: "永远酱定制Win11启航第七年版",
+                price: "更新内容:",
+                features: [
+                    "将发布于2026年1月10日，这一年是永远酱出道第七年，也是我做up主第七年。此版本为工具+美化双更新，是项目立项以来更新规模最大，更新内容最的丰富一次。",
+                    "下面介绍一下这个系统的主要更新内容：",
+                    "1.安装程序背景再次修改。文件资源管理器窗口右侧的永远酱立绘数量增加至20个。浅色模式壁纸修改为六周年直播后启用的新版片头片尾",
+                    "2.系统内置7-zip、Motrix多功能下载器、Everything文件搜索器、Dism++及PotPlayer",
+                    "3.‘音乐’文件夹新增示例音乐：翻唱《下山》《有何不可》《一抹多即是正义！》《ホーリーナイト》《わたしの声》。‘视频’文件夹新增示例视频：翻唱《繁华唱遍》《喜欢你》《狐狸精》，新增19个睡前故事视频，新增一个新的皮套展示视频，新增《该起床啦欧尼酱》和拜年视频",
+                    "7.恢复旧版Windows照片查看器。文字修改回归、彩蛋系统回归。移除应用新增手机连接"
+                ],
+                buttonText: "<i class='fas fa-download'></i> 下载（123云盘）",
+                buttonClass: "cta-button",
+                bilibiliUrl: "https://www.bilibili.com/video/BV1QWrNBiEcg/?share_source=copy_web&vd_source=6a8f32c1db81a71fb0752ab418c2a9b1"
+            },
+            {
                 id: "win11_official",
                 title: "永远酱定制Win11—正式版",
                 price: "更新内容:",
@@ -4651,19 +4796,20 @@
                 ],
                 buttonText: "<i class='fas fa-download'></i> 下载（123云盘）",
                 buttonClass: "cta-button",
-                bilibiliUrl: "https://www.bilibili.com/video/BV1nVS7B3E45/?spm_id_from=333.1387.homepage.video_card.click&vd_source=0697af1569057eba1b7f117dccbb054e"
+                bilibiliUrl: "https://www.bilibili.com/video/BV1j1vDBtE5i/"
             },
             {
                 id: "win11_anniversary",
                 title: "永远酱定制Win11专业工作站版",
                 price: "更新内容:",
                 features: [
-                    "系统作者为blil114514号，原计划发布于10月10日，但发布后发现了重大问题（主要为笔记本用户可能无法正常联网，以及无法正常安装语言包和更新疑似没了等），便在发布后不久撤下了视频及全部下载链接，加急修复问题。接着即将发布更新10月19日修复版系统正式发布，修复了问题。",
-                    "1.删去全部示例文件，但是文件资源管理器左侧“文档”文件夹有扩展可用。仅保留计算器及新版媒体播放器等必要Microsoft Store应用。内置7-Zip，Mortix多功能下载器，everything文件搜索器和Microsoft Office LTSC专业增强版2024",
-                    "2.部分窗口顶部新增颜色显示，选中时为粉色，未选中时为天蓝色。更改资源管理器的背景和文字颜色。窗口右上角三大金刚键改MacOS样式",
-                    "3.安装完成后系统的硬件资源占用更小。使用的是Windows11 24H2原版的安装程序。系统跳过OOBE，直接登录Administrator账户",
-                    "4.鼠标停留或点击桌面图标时会出现待选框。删除Win11的新版右键菜单，更换为Win10的旧版。禁用部分系统部分没什么大用服务（若有需要，开始菜单输入“服务”然后寻找需要启用的服务接着右键点击点“启用”）。自动安装C++运行库和DirectX，集成.NET Framework3.5（包含3.0和2.0）",
-                    "注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件。另外，我们将在几天后再进行一次更新（主要为外观，软件功能，软件必须的运行库，和有助于提高颜值的扩展）并且把旧版链接删除"
+                    "系统作者为bli114514号，初版发布于2025年10月10日，但那个版本发现了重大bug,于是撤回并在 2025年10 月19 日发布修复版。2026年1月1日，新版的永远酱定制Win11专业工作站版发布，下面来介绍这个系统",
+                    "1.深色模式的壁纸《城里的月光》回归，浅色模式壁纸修改为六周年直播后启用的新永远酱定制Win11专业工作站版片头、片尾",
+                    "2.内置 Microsoft Office LTSC 2024 专业增强版",
+                    "3.系统内置 7zip、Motrix 多功能网络下载器及 Everything 文件搜索工具。资源管理器背景设为粉色，文字设为紫色，部分窗口顶部新增颜色显示，选中窗口时显示为系统主题色",
+                    "4.删除Win11 新版右键菜单，更换为Win10 右键菜单",
+                    "5.自动安装 C++运行库和 DirectX,集成.NET Framework3.5(包含 3.0和 2.0)",
+                    "注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件。"
                 ],
                 buttonText: "<i class='fas fa-download'></i> 维修中",
                 buttonClass: "cta-button",
