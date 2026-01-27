@@ -1278,7 +1278,7 @@
                 transform: translateY(-50%);
             }
         }
-        
+    
         /* 公告栏样式 */
         .announcement {
             background-color: #ffc107;
@@ -2343,6 +2343,882 @@
                 align-items: flex-start;
             }
         }
+
+        .third-party-windows-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .third-party-windows-modal.show {
+            opacity: 1;
+        }
+
+        .third-party-modal-content {
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 95%;
+            max-width: 1200px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .third-party-windows-modal.show .third-party-modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .third-party-close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: color 0.3s;
+        }
+
+        .third-party-close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .third-party-modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .third-party-modal-title h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .third-party-modal-title p {
+            color: var(--gray-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .third-party-tip {
+            background-color: #fff3cd;
+            border: 2px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .third-party-tip i {
+            color: #856404;
+            font-size: 32px;
+        }
+
+        .third-party-tip h3 {
+            color: #856404;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .third-party-tip p {
+            color: #856404;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+        .third-party-versions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .third-party-version-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .third-party-version-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .third-party-version-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .third-party-version-card h3 i {
+            color: var(--primary-color);
+        }
+
+        .third-party-version-info {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .third-party-version-info p {
+            color: var(--gray-color);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .third-party-version-details {
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .third-party-version-details h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .third-party-version-details ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: var(--gray-color);
+        }
+
+        .third-party-version-details li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .third-party-download-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .third-party-download-button:hover {
+            background-color: #106ebe;
+        }
+
+        .third-party-download-button.disabled {
+            background-color: var(--gray-color);
+            cursor: not-allowed;
+        }
+
+        .third-party-download-button.disabled:hover {
+            background-color: var(--gray-color);
+        }
+
+        /* 黑色模式适配 */
+        .dark-mode .third-party-modal-content {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .third-party-modal-title h2 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .third-party-modal-title p {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .third-party-version-card {
+            background-color: #2a2a2a;
+            border-top-color: var(--primary-color);
+        }
+
+        .dark-mode .third-party-version-card h3 {
+            color: #ffffff;
+        }
+
+        .dark-mode .third-party-version-card h3 i {
+            color: var(--primary-color);
+        }
+
+        .dark-mode .third-party-version-info p {
+            color: #d0d0d0;
+        }
+
+        .dark-mode .third-party-version-details {
+            background-color: #3d3d3d;
+        }
+
+        .dark-mode .third-party-version-details h4 {
+            color: #ffffff;
+        }
+
+        .dark-mode .third-party-version-details ul {
+            color: #d0d0d0;
+        }
+
+        .dark-mode .third-party-tip {
+            background-color: #333;
+            border-color: #555;
+        }
+
+        .dark-mode .third-party-tip i,
+        .dark-mode .third-party-tip h3,
+        .dark-mode .third-party-tip p {
+            color: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .third-party-modal-content {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            .third-party-versions-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .third-party-version-card {
+                padding: 20px;
+            }
+        }
+
+        /* 其他组件下载模态窗口样式 */
+        .components-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .components-modal.show {
+            opacity: 1;
+        }
+
+        .components-modal-content {
+            background-color: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 95%;
+            max-width: 1400px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-30px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .components-modal.show .components-modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .components-close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: color 0.3s;
+        }
+
+        .components-close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .components-modal-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .components-modal-title h2 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .components-modal-title p {
+            color: var(--gray-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .components-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .components-tree-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .components-search {
+            margin-bottom: 20px;
+        }
+
+        .components-search input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .components-tree {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .components-tree li {
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 12px 15px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .components-tree li:hover {
+            background-color: #e9ecef;
+        }
+
+        .components-tree li.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .components-tree .component-item {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .components-tree .component-icon {
+            margin-right: 8px;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .components-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .components-article {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .components-article h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .components-article p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--gray-color);
+        }
+
+        .components-article h4 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: var(--dark-color);
+        }
+
+        .components-article ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .components-article li {
+            margin-bottom: 8px;
+            color: var(--gray-color);
+        }
+
+        .components-actions {
+            text-align: center;
+        }
+
+        /* 黑色模式适配 */
+        .dark-mode .components-modal-content {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .components-modal-title h2 {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .components-modal-title p {
+            color: #b0b0b0;
+        }
+
+        .dark-mode .components-tree-container {
+            background-color: #2d2d2d;
+        }
+
+        .dark-mode .components-search input {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+
+        .dark-mode .components-tree li {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .components-tree li:hover {
+            background-color: #3d3d3d;
+        }
+
+        .dark-mode .components-tree li.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .dark-mode .components-tree .component-item {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .components-article {
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+        }
+
+        .dark-mode .components-article h3 {
+            color: #ffffff;
+        }
+
+        .dark-mode .components-article p {
+            color: #d0d0d0;
+        }
+
+        .dark-mode .components-article h4 {
+            color: #ffffff;
+        }
+
+        .dark-mode .components-article li {
+            color: #d0d0d0;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .components-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .components-tree-container {
+                max-height: 300px;
+                order: 1;
+            }
+            
+            .components-content {
+                order: 2;
+            }
+            
+            .components-tree li {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+            
+            .components-article {
+                padding: 20px;
+            }
+            
+            .components-article h3 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .components-tree-container {
+                max-height: 250px;
+            }
+            
+            .components-tree li {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+            
+            .components-article {
+                padding: 15px;
+            }
+            
+            .components-article h3 {
+                font-size: 18px;
+            }
+            
+            .components-modal-content {
+                padding: 20px 15px;
+                margin: 20px auto;
+            }
+        }
+		
+		/* 汉堡菜单按钮样式 */
+        .hamburger-button {
+            display: none; /* 默认隐藏 */
+            background: rgba(255, 255, 255, 0.839);
+            border: 2px solid rgba(255, 255, 255, 0.99);
+            color: var(--primary-color);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            position: fixed;
+            left: 15px;
+            top: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000 !important;
+        }
+
+        .hamburger-button:hover {
+            background: rgba(255, 255, 255, 0.921);
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 16px rgba(255, 255, 255, 0.88);
+            transform: scale(1.05);
+        }
+
+        .hamburger-button:active {
+            background: rgba(190, 190, 190, 0.575);
+            transform: scale(0.95);
+        }
+
+        .dark-mode .hamburger-button {
+            background: rgba(30, 30, 30, 0.534);
+            border: 1px solid rgba(224, 224, 224, 0.3);
+            color: #e0e0e0;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 4px 12px rgba(114, 114, 114, 0.4);
+        }
+
+        .dark-mode .hamburger-button:hover {
+            background: rgba(212, 212, 212, 0.9);
+            border-color: rgba(224, 224, 224, 0.5);
+        }
+
+		/* 移除关闭按钮样式，因为我们不再需要独立的关闭按钮 */
+		.close-menu {
+			display: none !important;
+		}
+
+		.mobile-nav-container {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(226, 226, 226, 0.195);
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			z-index: 999;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+        .dark-mode .mobile-nav-container {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(255, 255, 255, 0.568);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			z-index: 999;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.mobile-nav-container.active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		/* 菜单内容容器 */
+		.mobile-nav-content {
+			width: 100%;
+			max-width: 320px;
+			padding: 30px;
+			background: rgba(255, 255, 255, 0.298);
+			border-radius: 20px;
+			backdrop-filter: blur(30px);
+			-webkit-backdrop-filter: blur(30px);
+			border: 1px solid rgba(255, 255, 255, 0.247);
+			box-shadow: 0 20px 60px rgba(255, 255, 255, 0.394);
+			transform: translateY(10px);
+			transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.mobile-nav-container.active .mobile-nav-content {
+			transform: translateY(0);
+		}
+
+		.mobile-nav-menu {
+			list-style: none;
+			text-align: center;
+			width: 100%;
+			padding: 10px 0;
+		}
+
+		.mobile-nav-menu li {
+			margin: 12px 0;
+			opacity: 0;
+			transform: translateY(10px);
+			transition: all 0.3s ease;
+		}
+
+		.mobile-nav-container.active .mobile-nav-menu li {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		/* 为每个菜单项添加延迟动画 */
+		.mobile-nav-menu li:nth-child(1) { transition-delay: 0.1s; }
+		.mobile-nav-menu li:nth-child(2) { transition-delay: 0.15s; }
+		.mobile-nav-menu li:nth-child(3) { transition-delay: 0.2s; }
+		.mobile-nav-menu li:nth-child(4) { transition-delay: 0.25s; }
+		.mobile-nav-menu li:nth-child(5) { transition-delay: 0.3s; }
+		.mobile-nav-menu li:nth-child(6) { transition-delay: 0.35s; }
+		.mobile-nav-menu li:nth-child(7) { transition-delay: 0.4s; }
+
+		.mobile-nav-menu li a {
+			color: rgb(110, 110, 110);
+			text-decoration: none;
+			font-size: 18px;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 16px 24px;
+			border-radius: 12px;
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			position: relative;
+			overflow: hidden;
+		}
+
+		.mobile-nav-menu li a::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.822), transparent);
+			transition: left 0.5s ease;
+		}
+
+		.mobile-nav-menu li a:hover {
+			background: rgba(228, 228, 228, 0.767);
+			border-color: rgba(255, 255, 255, 0.952);
+			transform: translateX(8px);
+			box-shadow: 0 8px 20px rgba(206, 206, 206, 0.2);
+		}
+
+		.mobile-nav-menu li a:hover::before {
+			left: 100%;
+		}
+
+		.mobile-nav-menu li a i {
+			margin-right: 12px;
+			font-size: 20px;
+			width: 24px;
+			text-align: center;
+			transition: transform 0.3s ease;
+		}
+
+		.mobile-nav-menu li a:hover i {
+			transform: scale(1.2);
+		}
+
+		/* 图标颜色 */
+		.mobile-nav-menu li:nth-child(1) a i { color: #4fc3f7; }
+		.mobile-nav-menu li:nth-child(2) a i { color: #81c784; }
+		.mobile-nav-menu li:nth-child(3) a i { color: #ffb74d; }
+		.mobile-nav-menu li:nth-child(4) a i { color: #e57373; }
+		.mobile-nav-menu li:nth-child(5) a i { color: #9575cd; }
+		.mobile-nav-menu li:nth-child(6) a i { color: #fb7299; }
+		.mobile-nav-menu li:nth-child(7) a i { color: #64b5f6; }
+
+		/* 黑色模式适配 */
+		.dark-mode .mobile-nav-container {
+			background: rgba(18, 18, 18, 0.92);
+		}
+
+		.dark-mode .mobile-nav-content {
+			background: rgba(30, 30, 30, 0.6);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.dark-mode .mobile-nav-menu li a {
+			background: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.dark-mode .mobile-nav-menu li a:hover {
+			background: rgba(255, 255, 255, 0.08);
+			border-color: rgba(255, 255, 255, 0.15);
+		}
+
+		/* 菜单标题 */
+		.menu-title {
+			text-align: center;
+			color: white;
+			font-size: 14px;
+			margin-bottom: 25px;
+			opacity: 0.8;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			font-weight: 500;
+		}
+
+		/* 移动端适配 */
+		@media (max-width: 768px) {
+            header {
+                z-index: 99;
+            }
+
+            .theme-toggle {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-left: 0;
+                z-index: 10001;
+            }
+
+            nav ul {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                margin-top: 0;
+                flex-grow: 1;
+                margin-right: 60px; /* 为主题按钮留出空间 */
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            .mobile-nav-container {
+                z-index: 9999 !important;
+            }
+
+            .header-content .logo {
+                display: none !important;
+            }
+            
+            /* 确保汉堡按钮显示 */
+            .hamburger-button {
+                display: flex !important;
+            }
+            
+            /* 调整header-content布局 */
+            .header-content {
+                min-height: 70px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .header-content .logo {
+                display: none !important;
+            }
+            
+            .nav-right nav {
+                display: none !important;
+            }
+            
+            .nav-right {
+                position: relative;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 0;
+                padding-right: 60px;
+            }
+        }
+
+        body {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -2353,6 +3229,10 @@
             <p class="loading-text"><i class="fas fa-spinner fa-pulse" style="margin-right: 10px;"></i>正在加载图片资源...</p>
         </div>
     </div>
+	
+	<button class="hamburger-button" id="hamburgerButton">
+		<i class="fas fa-bars"></i>
+	</button>
     <!-- Header区域 -->
     <header>
         <div class="container">
@@ -2386,6 +3266,18 @@
             </div>
         </div>
     </header>
+	<!-- 移动端导航菜单 -->
+	<div class="mobile-nav-container" id="mobileNavContainer">
+		<button class="close-menu" id="closeMenuButton">
+			<i class="fas fa-times"></i>
+		</button>
+		<ul class="mobile-nav-menu">
+			<li><a href="#features" class="mobile-nav-link">介绍</a></li>
+			<li><a href="#download" class="mobile-nav-link">下载</a></li>
+			<li><a href="#requirements" class="mobile-nav-link">发送反馈</a></li>
+			<li><a href="https://qm.qq.com/q/PNZDCINXus" class="mobile-nav-link" target="_blank">讨论QQ群</a></li>
+		</ul>
+	</div>
     <!-- Hero区域 -->
     <section class="hero">
         <div class="container">
@@ -2438,6 +3330,24 @@
                         <h3><i class="fab fa-windows"></i> 永远酱系列改版Windows</h3>
                         <p>包含所有永远酱系列定制系统和相关组件</p>
                         <button class="category-button more"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
+                    </div>
+                </div>
+                <!-- 分类卡片 3: 第三方Windows分类 -->
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60');"></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-code-branch"></i> 第三方Windows分类</h3>
+                        <p>包含其他开发者制作的第三方Windows修改版本</p>
+                        <button class="category-button" id="thirdPartyWindowsBtn"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
+                    </div>
+                </div>
+                <!-- 分类卡片 4：其他组件 -->
+                <div class="category-card">
+                    <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60');"></div>
+                    <div class="category-content">
+                        <h3><i class="fas fa-folder-open"></i> 其他组件下载</h3>
+                        <p>包含各种实用工具和组件，如PE工具、虚拟机软件、运行库等</p>
+                        <button class="category-button" id="componentsDownloadBtn"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
                     </div>
                 </div>
             </div>
@@ -2628,7 +3538,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 枫星保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 构建 | 版本：V3.0-2512134</p>
+                <p>本网站由 栖渊Kaelen 构建 | 版本：V3.1-260125.a</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -2791,10 +3701,216 @@
         </div>
     </div>
 
+    <!-- 第三方Windows分类模态窗口 -->
+    <div class="third-party-windows-modal" id="thirdPartyWindowsModal">
+        <div class="third-party-modal-content">
+            <span class="third-party-close-modal">&times;</span>
+            <div class="third-party-modal-title">
+                <h2>—— 第三方Windows分类 ——</h2>
+                <p>此处提供第三方开发者制作的Windows修改版本下载</p>
+            </div>
+            <div class="third-party-tip">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>免责声明</h3>
+                <p>第三方修改版Windows由独立个人开发者制作，非微软官方Windows产品。使用前请确保您了解相关风险。</p>
+            </div>
+            <div class="third-party-versions-grid" id="thirdPartyVersionsGrid">
+                <!-- 第三方Windows版本卡片将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="components-modal" id="componentsModal">
+        <div class="components-modal-content">
+            <span class="components-close-modal">&times;</span>
+            <div class="components-modal-title">
+                <h2>—— 其他组件下载 ——</h2>
+                <p>这里提供各种实用工具和组件下载</p>
+            </div>
+            
+            <div class="components-layout">
+                <div class="components-tree-container">
+                    <div class="components-search">
+                        <input type="text" placeholder="搜索组件..." id="componentsSearch">
+                    </div>
+                    <ul class="components-tree" id="componentsTree">
+                        <!-- 组件列表将通过JavaScript动态生成 -->
+                    </ul>
+                </div>
+                <div class="components-content">
+                    <div class="components-article" id="componentsArticle">
+                        <h3><i class="fas fa-folder-open"></i> 组件文件视图</h3>
+                        <p>请从左侧选择一个组件以查看详细信息</p>
+                    </div>
+                    <div class="components-actions">
+                        <button class="cta-button" id="componentsDownloadButton" style="display: none;">
+                            <i class="fas fa-download"></i> 前往下载
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     
     <script>
+		// 汉堡菜单功能
+		const hamburgerButton = document.getElementById('hamburgerButton');
+        const hamburgerIcon = hamburgerButton.querySelector('i');
+        const mobileNavContainer = document.getElementById('mobileNavContainer');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // 确保移动端导航容器初始状态正确
+        mobileNavContainer.style.display = 'none';
+
+        // 切换移动端菜单
+        function toggleMobileMenu() {
+            const isActive = mobileNavContainer.style.display === 'flex';
+            
+            if (isActive) {
+                hideMobileMenu();
+            } else {
+                showMobileMenu();
+            }
+        }
+
+        // 显示移动端菜单
+        function showMobileMenu() {
+            // 显示菜单容器
+            mobileNavContainer.style.display = 'flex';
+            
+            // 强制重绘
+            mobileNavContainer.offsetHeight;
+            
+            // 延迟添加active类以触发动画
+            setTimeout(() => {
+                mobileNavContainer.classList.add('active');
+            }, 10);
+            
+            // 更新汉堡按钮图标
+            hamburgerIcon.classList.remove('fa-bars');
+            hamburgerIcon.classList.add('fa-times');
+            
+            // 禁用页面滚动
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏移动端菜单
+        function hideMobileMenu() {
+            // 移除active类以触发关闭动画
+            mobileNavContainer.classList.remove('active');
+            
+            // 更新汉堡按钮图标
+            hamburgerIcon.classList.remove('fa-times');
+            hamburgerIcon.classList.add('fa-bars');
+            
+            // 延迟隐藏菜单容器
+            setTimeout(() => {
+                mobileNavContainer.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400); // 匹配CSS过渡时间
+        }
+
+        // 绑定事件
+        hamburgerButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // 阻止事件冒泡
+            toggleMobileMenu();
+        });
+
+        // 点击菜单链接时隐藏菜单
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 如果是外部链接，直接跳转
+                if (this.getAttribute('target') === '_blank') {
+                    hideMobileMenu();
+                    return;
+                }
+                
+                // 如果是内部锚点链接
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    hideMobileMenu();
+                    
+                    // 延迟滚动到目标位置
+                    setTimeout(() => {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 450);
+                } else {
+                    // 内部页面链接
+                    hideMobileMenu();
+                }
+            });
+        });
+
+        // 点击菜单容器外部关闭菜单
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileNavContainer.contains(event.target);
+            const isClickOnHamburger = hamburgerButton.contains(event.target);
+            
+            if (mobileNavContainer.style.display === 'flex' && 
+                !isClickInsideMenu && 
+                !isClickOnHamburger) {
+                hideMobileMenu();
+            }
+        });
+
+        // ESC键关闭菜单
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && mobileNavContainer.style.display === 'flex') {
+                hideMobileMenu();
+            }
+        });
+
+        // 页面滚动时隐藏菜单
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (mobileNavContainer.style.display === 'flex') {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    hideMobileMenu();
+                }, 100);
+            }
+        });
+
+        // 窗口大小改变时重置菜单状态
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                hideMobileMenu();
+            }
+        });
+
+        // 确保深色模式下的按钮样式
+        function updateHamburgerButtonTheme() {
+            if (document.body.classList.contains('dark-mode')) {
+                hamburgerButton.style.background = 'rgba(30, 30, 30, 0.5)';
+                hamburgerButton.style.borderColor = 'rgba(224, 224, 224, 0.3)';
+                hamburgerButton.style.color = '#e0e0e0';
+            }
+        }
+
+        // 监听主题变化
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    updateHamburgerButtonTheme();
+                }
+            });
+        });
+
+        // 开始观察body元素的class变化
+        observer.observe(document.body, { attributes: true });
+
+        // 初始化按钮主题
+        updateHamburgerButtonTheme();
+	
         // 欢迎界面下载点击事件
         const heroDownloadBtn = document.getElementById('heroDownloadBtn');
         if (heroDownloadBtn) {
@@ -3295,6 +4411,32 @@
                     ]
                 },
                 downloadUrl: "https://gf.bilibili.com/item/detail/1107855076"
+            },
+            {
+                id: "desktopzj",
+                name: "桌面小组件",
+                type: "folder",
+                content: {
+                    title: "相关介绍：",
+                    description: "这个软件名叫rainmeter，它可以在你桌面上面显示天气，硬件资源占用等",
+                    features: [
+                        "可以通过官网和致美化上面“雨滴皮肤”获得更多桌面组件"
+                    ]
+                },
+                downloadUrl: "https://www.rainmeter.net/"
+            },
+            {
+                id: "mousetm",
+                name: "鼠标拖尾效果",
+                type: "folder",
+                content: {
+                    title: "相关介绍：",
+                    description: "这个工具是MagicMouseTrails，在你鼠标光标滑动时会在光标运动轨迹后面显示拖尾效果(种类多样什么星星，足球甚至橄榄球都有）",
+                    features: [
+                        "无"
+                    ]
+                },
+                downloadUrl: "https://zhutix.com/software/magicmousetrails/"
             }
         ];
 
@@ -3449,27 +4591,6 @@
                 buttonText: "<i class='fas fa-users'></i> 查看团队成员",
                 buttonClass: "cta-button",
                 isAuthors: true
-            },
-            {
-                id: "zj",
-                title: "其他组件下载",
-                price: "用户可以选择组件下载",
-                features: [
-                    "内部包含：",
-                    "FirPE官网链接",
-                    "VMware安装包",
-                    "DirectX修复工具",
-                    "HEVC视频扩展",
-                    "MS商店恢复包",
-                    "旧版UWP安装包",
-                    "FluentContextMenu发布页",
-                    "Flash Player下载",
-                    "Potplayer官网链接",
-                    "Win10LTSC2021升级包"
-                ],
-                buttonText: "<i class='fas fa-folder-open'></i> 前往浏览文件夹",
-                buttonClass: "cta-button",
-                isComponents: true
             },
             {
                 id: "faq",
@@ -4078,7 +5199,7 @@
         // 为分类卡片按钮添加事件
         document.querySelectorAll('.category-button').forEach(button => {
             button.addEventListener('click', function() {
-                // 找到按钮所在的分类卡片
+                // 遍历按钮所在的分类卡片
                 const categoryCard = this.closest('.category-card');
                 
                 if (!categoryCard) return;
@@ -4089,8 +5210,10 @@
                 if (cardTitle.includes('官方Windows分类')) {
                     showOfficialWindowsModal();
                 } else if (cardTitle.includes('永远酱系列改版Windows')) {
-                    // 显示现有的更多组件弹窗
                     showModal();
+                } else if (cardTitle.includes('第三方Windows分类')) {
+                    // 显示第三方Windows分类弹窗
+                    showThirdPartyWindowsModal();
                 }
             });
         });
@@ -4098,6 +5221,120 @@
 		document.getElementById('officialWebsiteBtn')?.addEventListener('click', function() {
 			window.open('https://www.microsoft.com/zh-cn/software-download', '_blank');
 		});
+
+        // 第三方Windows版本数据
+        const thirdPartyWindowsData = [
+            {
+                id: "tiny11",
+                name: "Tiny11 精简版",
+                icon: "fas fa-compress-alt",
+                description: "Tiny11是著名的Windows 11精简版，移除了大量不必要的组件，系统体积小，运行速度快。",
+                details: [
+                    "版本：基于Windows 11 23H2",
+                    "体积：约3-4GB",
+                    "特性：移除Edge、Cortana、OneDrive等",
+                    "适合：老旧设备或追求极致性能的用户",
+                    "注意：部分功能可能缺失"
+                ],
+                downloadUrl: "#",
+                isAvailable: true
+            },
+        ];
+
+        // 获取第三方Windows模态窗口DOM元素
+        const thirdPartyWindowsModal = document.getElementById('thirdPartyWindowsModal');
+        const thirdPartyVersionsGrid = document.getElementById('thirdPartyVersionsGrid');
+        const thirdPartyCloseBtn = document.querySelector('.third-party-close-modal');
+
+        // 渲染第三方Windows版本卡片
+        function renderThirdPartyWindowsCards() {
+            thirdPartyVersionsGrid.innerHTML = '';
+            
+            thirdPartyWindowsData.forEach(version => {
+                const card = document.createElement('div');
+                card.className = 'third-party-version-card';
+                
+                card.innerHTML = `
+                    <h3><i class="${version.icon}"></i> ${version.name}</h3>
+                    <div class="third-party-version-info">
+                        <p>${version.description}</p>
+                        <div class="third-party-version-details">
+                            <h4>版本信息：</h4>
+                            <ul>
+                                ${version.details.map(detail => `<li>${detail}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="third-party-download-button ${!version.isAvailable ? 'disabled' : ''}" 
+                            data-version="${version.id}" 
+                            ${!version.isAvailable ? 'disabled' : ''}>
+                        <i class="fas fa-download"></i> 
+                        ${version.isAvailable ? '下载' : '维护中'}
+                    </button>
+                `;
+                
+                thirdPartyVersionsGrid.appendChild(card);
+            });
+            
+            // 为下载按钮添加事件
+            document.querySelectorAll('.third-party-download-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('disabled')) {
+                        alert('该版本下载功能正在维护中，请稍后再试！');
+                    } else {
+                        const versionId = this.getAttribute('data-version');
+                        const version = thirdPartyWindowsData.find(v => v.id === versionId);
+                        if (version && version.downloadUrl && version.downloadUrl !== '#') {
+                            window.open(version.downloadUrl, '_blank');
+                        } else {
+                            alert('下载链接暂时不可用，该功能正在维护中！');
+                        }
+                    }
+                });
+            });
+        }
+
+        // 显示第三方Windows模态窗口
+        function showThirdPartyWindowsModal() {
+            renderThirdPartyWindowsCards();
+            thirdPartyWindowsModal.style.display = 'block';
+            
+            // 触发重排以应用动画
+            thirdPartyWindowsModal.offsetHeight;
+            
+            requestAnimationFrame(() => {
+                thirdPartyWindowsModal.classList.add('show');
+            });
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏第三方Windows模态窗口
+        function hideThirdPartyWindowsModal() {
+            thirdPartyWindowsModal.classList.remove('show');
+            
+            setTimeout(() => {
+                thirdPartyWindowsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // 绑定关闭事件
+        thirdPartyCloseBtn.addEventListener('click', hideThirdPartyWindowsModal);
+
+        // 点击模态窗口背景关闭
+        thirdPartyWindowsModal.addEventListener('click', function(event) {
+            if (event.target === thirdPartyWindowsModal) {
+                hideThirdPartyWindowsModal();
+            }
+        });
+
+        // ESC键关闭
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && thirdPartyWindowsModal.style.display === 'block') {
+                hideThirdPartyWindowsModal();
+            }
+        });
 		
         // 创建嵌套弹窗样式
         const modalStyle = document.createElement('style');
@@ -4688,6 +5925,338 @@
             }
         `;
         document.head.appendChild(modalStyle);
+
+        // 其他组件下载数据
+const componentsData = [
+    {
+        id: "firpe",
+        name: "FirPE工具箱-官网",
+        icon: "fas fa-tools",
+        content: {
+            title: "FirPE工具箱",
+            description: "FirPE是一个轻量级的Windows预安装环境，集成了各种实用的系统维护工具。它可以帮助您在系统无法启动时进行修复、备份、数据恢复等操作。",
+            features: [
+                "如果您不知道这是什么，请不要使用"
+            ]
+        },
+        downloadUrl: "https://firpe.cn"
+    },
+    {
+        id: "vmware",
+        name: "VMware虚拟机软件",
+        icon: "fas fa-desktop",
+        content: {
+            title: "VMware Workstation Pro",
+            description: "虽说博通收购VMware之后，VMware就变成免费软件了，但是下载安装包需要博通账号，并且VMware的CDS服务器也寄了。在这里将我收集的一些VMware安装包放在这里，供大家自行下载使用",
+            features: [
+                "如果你在用Win7的话，那么你只能下载VMware 15.5及以前的版本，VMware 16开始就不再支持Win7了",
+                "VMware 17发布一年后博通就把VMware收购了，那时开始VMware也放开免费了，安装时选择个人用途使用即可跳过激活",
+                "不太建议用VMware 17.6.3（除非你有安装Server 2025的需求），如果需要安装VMware 17，建议使用VMware 17.5.2",
+                "4.目前最新版的VMware 25H2没有汉化（疑似博通放弃中国市场），并疑似放弃了对Win8和Win8.1的兼容。此版本安装包暂不同步。（并且25H2版本侧重的是Linux虚拟机，对Windows虚拟机疑似优化欠佳），所以我们暂不提供25H2的安装包。"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-uxXWv?pwd=MbTp#"
+    },
+    {
+        id: "directx",
+        name: "DirectX修复工具",
+        icon: "fas fa-wrench",
+        content: {
+            title: "DirectX修复工具",
+            description: "如果你们安装完系统后安装游戏和软件时报错，提示缺少某个dll文件的话，那么就说明系统缺失必要运行库，在这里我分享一个修复工具，运行后可以轻松补全你电脑里缺失的运行库",
+            features: [
+                "无详细信息"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-elPWv?pwd=AmJH#"
+    },
+    {
+        id: "hevc",
+        name: "HEVC视频扩展",
+        icon: "fas fa-video",
+        content: {
+            title: "HEVC视频扩展",
+            description: "据部分内测用户反馈，永远酱定制Win10和Win11中部分示例视频无法正常播放，经排查为系统缺失HEVC拓展的缘故。但是如果安装和更新了uwp应用的话，系统就会封装失败。并且HEVC视频拓展在应用商店里是收费的，在这里我们分享一个免费的'来自视频制造商的HEVC视频拓展'，让你能顺利播放定制系统中的示例视频",
+            features: [
+                "（永远酱定制Win10同样缺失了AV1视频拓展，所以示例视频《成都》无法播放，但是AV1视频拓展在应用商店是免费的，直接下载安装就好）"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-V6PWv?pwd=7ayf#"
+    },
+    {
+        id: "store",
+        name: "MS商店恢复包",
+        icon: "fas fa-store",
+        content: {
+            title: "MS商店恢复包",
+            description: "在LTSC和Windows Server中是没有集成应用商店和uwp应用，以及Xbox支持的，如果需要恢复应用商店，我们就需要安装必要框架后部署应用商店，并在应用商店里安装那些缺失的uwp应用和恢复Xbox相关组件",
+            features: [
+                "在这里我们同时分享应用商店恢复包（针对于Win10 LTSC 2019，不过Win10 LTSC 2021，Win11 LTSC 2024以及Windows Server都是可用的）以及四个框架。如果你想在恢复应用商店的同时恢复其他组件（如Xbox支持），那么你就下载恢复包；如果你只想恢复应用商店，那么你就下载四个框架后用PowerShell或者Windows终端部署。（顺序为先部署VCLibs和Xaml，然后部署应用安装程序，最后部署应用商店）",
+                "对于LTSC，这里更建议使用wsreset -i指令进行恢复应用商店。（事实上在系统文件夹的System32文件夹里就有WSReset.exe程序作为重置应用商店的工具，此指令正是调用了此工具）",
+                "需要注意的是，wsreset -i指令已可部署新版应用商店，但是应用商店恢复包部署的应用商店是旧版的，第一次打开会提示更新。并且，Server 2022本身在应用商店方面就有bug，部署上旧版应用商店了会无法更新，但如果部署上了新版应用商店则会无法安装和更新应用。",
+                "备注：Windows Server疑似不支持wsreset -i指令恢复应用商店。"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-PVPWv?pwd=cBXT#"
+    },
+    {
+        id: "uwp",
+        name: "旧版UWP安装包",
+        icon: "fab fa-microsoft",
+        content: {
+            title: "旧版UWP安装包",
+            description: "永远酱定制Win10中预装的uwp应用基本上都是旧版，图标都是黑白，但是如果都更到最新版的话，虽说是彩色图标，但UI都是Win11的圆角UI，与Win10的直角UI又很不搭，并且电影和电视已经无法正常使用了，Groove音乐转化为新版媒体播放器后也没有了动态磁贴的显示，所以在这里我们准备了照片，Groove音乐，旧版电影和电视，计算器四个uwp应用的旧版安装包，供大家使用",
+            features: [
+                "如果你已经将应用安装程序更新到了最新版，那么你可以直接降级，如果你的应用安装程序还是旧版，那么你需要在开始菜单右键指定应用后点击卸载应用，随后再安装应用",
+                "做完这一切后别忘了去应用商店里关闭应用的自动更新，以防uwp应用自动更新为新版"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-mpXWv?pwd=x7EB#"
+    },
+    {
+        id: "fluent",
+        name: "FluentContextMenu-官网",
+        icon: "fas fa-mouse-pointer",
+        content: {
+            title: "FluentContextMenu",
+            description: "Win11的新版右键菜单将传统右键菜单折叠了，并且有些软件并没有适配新版右键菜单，你还是需要点开二级菜单才能看到。而且有的时候二级菜单并没有适配Win11的UI，依然在使用Win10的老UI，加强了系统的割裂感。在这里推荐这个小工具，还你的Win11一个熟悉的右键菜单",
+            features: [
+                "备注：应原作者要求，不提供下载链接，请前往原作者发布页自行下载",
+            ]
+        },
+        downloadUrl: "https://winmoes.com/tools/17626.html"
+    },
+    {
+        id: "flash",
+        name: "Flash Player",
+        icon: "fas fa-bolt",
+        content: {
+            title: "Adobe Flash Player",
+            description: "2020年12月31日，Adobe宣布Flash Player正式停止支持。在此之前的10月27日微软发布的KB4577586补丁也将Win10中内置的Flash插件移除了。但如果你还想玩4399，我们在这里分享一个纯净的Flash插件，你可以将其安装在你的Win10或Win11电脑上，然后使用Edge的IE模式或者360极速浏览器等国产浏览器来玩4399等Flash小游戏了。我们这里共提供了ActiveX，PPAPI，NPAPI三个版本的Flash",
+            features: [
+                "其中，PPAPI针对的是Chromium内核的浏览器（例如Chrome与Edge），最后一个原生支持Flash的Chrome是发布于2020年11月18日的Chrome 87，距今有五年了，已经非常老了。不过目前360，QQ，搜狗等国产浏览器依然保留了对Flash的兼容，可以调用PPAPI版本的Flash插件",
+                "国产浏览器方面，推荐大家用360极速浏览器（32位版本已经停更，使用的是86核；64位版本的360极速浏览器X使用的是122核），不仅内核跟进的比较快，而且比较纯净，没那么多广告。（不建议用360安全浏览器，虽然内核跟进快但是流氓，广告多）",
+                "NPAPI针对的是火狐浏览器，但是使用Gecko内核的火狐早就不支持Flash了，最后支持Flash的火狐是2021年1月26日发布的火狐85，也非常老了，这个版本的Flash可以不安装",
+                "ActiveX针对的是IE浏览器，不过Edge的IE模式依然可以调用这个版本的Flash插件",
+                "一般来说，安装ActiveX和PPAPI两个版本的Flash Player插件就可以了。安装完成后，控制面板就会多出Flash Player的控制面板项，这就表示安装成功了"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-gBXWv?pwd=UAxK#"
+    },
+    {
+        id: "potplayer",
+        name: "PotPlayer-官网",
+        icon: "fas fa-play-circle",
+        content: {
+            title: "PotPlayer播放器",
+            description: "永远酱定制Win10中缺乏了HEVC拓展，如果你不想安装视频拓展，那么你可以直接用PotPlayer播放器，其内置了HEVC视频拓展",
+            features: [
+                "注：不要被百度和必应骗了！第一个出来的PotPlayer中文网不是官网！不要被官网标骗了！"
+            ]
+        },
+        downloadUrl: "https://potplayer.tv/?lang=zh_CN"
+    },
+    {
+        id: "W10LTSC-U",
+        name: "Win10 LTSC 2021升级包",
+        icon: "fas fa-level-up-alt",
+        content: {
+            title: "Win10LTSC2021升级包",
+            description: "LTSC 2021的版本号为21H2，内核版本为19044，比22H2的19045落后一个版本号，部分软件可能出现不兼容问题。这里我们分享一个升级包，可以将LTSC 2021升级为22H2，解决不兼容问题",
+            features: [
+                "使用方法：进入PE系统打开Dism++，选择系统后点击更新管理，随后点击右下角的添加，将升级包导入，等待更新安装完成后重启电脑，即可将系统升级至22H2。(如果您是电脑小白，请勿轻易进行操作！)",
+                "注意：如果你是32位系统，你就下载x86版本的；如果你是64位系统，你就下载x64版本的"
+            ]
+        },
+        downloadUrl: "https://www.123912.com/s/dwB1vd-eSXWv?pwd=JLoN#"
+    },
+    {
+        id: "yyjb",
+        name: "永远酱w-鼠标指针购买链接",
+        icon: "fas fa-mouse",
+        content: {
+            title: "永远酱w的鼠标指针购买链接",
+            description: "这是原计划加入到系统中的内容之一，因为内置鼠标指针比较麻烦（要写一大堆注册表啥的）再加上一些二创限制，就没有内置。但如果你想进一步提升系统体验，可以在工房购买鼠标指针后自行安装，我们不提供鼠标指针文件。",
+            features: [
+                "无"
+            ]
+        },
+        downloadUrl: "https://gf.bilibili.com/item/detail/1107855076"
+    },
+    {
+        id: "desktopzj",
+        name: "桌面小组件",
+        icon: "fas fa-th-large",
+        content: {
+            title: "相关介绍：",
+            description: "这个软件名叫rainmeter，它可以在你桌面上面显示天气，硬件资源占用等",
+            features: [
+                "可以通过官网和致美化上面'雨滴皮肤'获得更多桌面组件"
+            ]
+        },
+        downloadUrl: "https://www.rainmeter.net/"
+    },
+    {
+        id: "mousetm",
+        name: "鼠标拖尾效果",
+        icon: "fas fa-magic",
+        content: {
+            title: "相关介绍：",
+            description: "这个工具是MagicMouseTrails，在你鼠标光标滑动时会在光标运动轨迹后面显示拖尾效果(种类多样什么星星，足球甚至橄榄球都有）",
+            features: [
+                "无"
+            ]
+        },
+        downloadUrl: "https://zhutix.com/software/magicmousetrails/"
+    }
+];
+
+        // 组件下载模态窗口DOM元素
+        const componentsModal = document.getElementById('componentsModal');
+        const componentsTree = document.getElementById('componentsTree');
+        const componentsArticle = document.getElementById('componentsArticle');
+        const componentsDownloadButton = document.getElementById('componentsDownloadButton');
+        const componentsCloseBtn = document.querySelector('.components-close-modal');
+        const componentsSearch = document.getElementById('componentsSearch');
+        let currentSelectedComponent = null;
+
+        // 渲染组件树
+        function renderComponentsTree(filterText = '') {
+            componentsTree.innerHTML = '';
+            
+            const filteredComponents = componentsData.filter(component => 
+                !filterText || 
+                component.name.toLowerCase().includes(filterText.toLowerCase()) ||
+                component.content.title.toLowerCase().includes(filterText.toLowerCase()) ||
+                component.content.description.toLowerCase().includes(filterText.toLowerCase())
+            );
+            
+            filteredComponents.forEach(component => {
+                const li = document.createElement('li');
+                li.className = 'component-item';
+                li.innerHTML = `<span class="component-icon"><i class="${component.icon}"></i></span> ${component.name}`;
+                li.setAttribute('data-id', component.id);
+                
+                li.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    selectComponent(this, component);
+                });
+                
+                componentsTree.appendChild(li);
+            });
+            
+            // 如果过滤后有结果，选择第一个
+            if (filteredComponents.length > 0 && !currentSelectedComponent) {
+                const firstLi = componentsTree.querySelector('li');
+                const firstComponent = filteredComponents[0];
+                if (firstLi && firstComponent) {
+                    selectComponent(firstLi, firstComponent);
+                }
+            }
+        }
+
+        // 选择组件并显示内容
+        function selectComponent(element, componentData) {
+            // 移除所有活跃状态
+            document.querySelectorAll('.components-tree li').forEach(li => {
+                li.classList.remove('active');
+            });
+            
+            // 设置当前组件为活跃状态
+            element.classList.add('active');
+            
+            // 更新当前组件
+            currentSelectedComponent = componentData;
+            
+            // 显示组件内容
+            displayComponentContent(componentData.content);
+            
+            // 设置下载按钮
+            componentsDownloadButton.onclick = function() {
+                if (componentData.downloadUrl) {
+                    window.open(componentData.downloadUrl, '_blank');
+                } else {
+                    alert('下载链接未配置');
+                }
+            };
+            
+            // 显示下载按钮
+            componentsDownloadButton.style.display = 'block';
+        }
+
+        // 显示组件内容
+        function displayComponentContent(content) {
+            componentsArticle.innerHTML = `
+                <h3><i class="fas fa-info-circle"></i> ${content.title}</h3>
+                <p>${content.description}</p>
+                ${content.features.length > 0 ? `
+                    <h4>详细信息：</h4>
+                    <ul>
+                        ${content.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                ` : ''}
+            `;
+        }
+
+        // 显示组件下载模态窗口
+        function showComponentsModal() {
+            renderComponentsTree();
+            componentsModal.style.display = 'block';
+            
+            // 触发重排以应用动画
+            componentsModal.offsetHeight;
+            
+            requestAnimationFrame(() => {
+                componentsModal.classList.add('show');
+            });
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏组件下载模态窗口
+        function hideComponentsModal() {
+            componentsModal.classList.remove('show');
+            
+            setTimeout(() => {
+                componentsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // 绑定组件下载按钮事件
+        document.getElementById('componentsDownloadBtn')?.addEventListener('click', showComponentsModal);
+
+        // 绑定关闭事件
+        componentsCloseBtn.addEventListener('click', hideComponentsModal);
+
+        // 点击模态窗口背景关闭
+        componentsModal.addEventListener('click', function(event) {
+            if (event.target === componentsModal) {
+                hideComponentsModal();
+            }
+        });
+
+        // ESC键关闭
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && componentsModal.style.display === 'block') {
+                hideComponentsModal();
+            }
+        });
+
+        // 搜索功能
+        componentsSearch?.addEventListener('input', function() {
+            renderComponentsTree(this.value);
+        });
+
+        // 为其他分类卡片按钮添加ID，以便绑定事件
+        document.querySelectorAll('.category-button').forEach((button, index) => {
+            if (index === 0) button.id = 'officialWindowsBtn';
+            if (index === 1) button.id = 'eternalStarBtn';
+            if (index === 2) button.id = 'thirdPartyWindowsBtn';
+        });
+
+        // 绑定永远酱系列按钮事件
+        document.getElementById('eternalStarBtn')?.addEventListener('click', showModal);
         
         // ========== GitHub Issues 评论系统配置 ==========
         const GITHUB_CONFIG = {
