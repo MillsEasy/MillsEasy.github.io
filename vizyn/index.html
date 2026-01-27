@@ -3235,6 +3235,78 @@
         body {
             position: relative;
         }
+
+        .service-modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .service-modal-body h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .service-modal-body h4 {
+            font-size: 18px;
+            margin: 25px 0 15px;
+            color: var(--dark-color);
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .service-modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--gray-color);
+        }
+
+        .service-modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-modal-body li {
+            margin-bottom: 8px;
+            color: var(--gray-color);
+            line-height: 1.5;
+        }
+
+        .service-note {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .service-note p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        /* 深色模式适配 */
+        .dark-mode .service-modal-body h4 {
+            color: #e0e0e0;
+            border-bottom-color: #444;
+        }
+
+        .dark-mode .service-modal-body p,
+        .dark-mode .service-modal-body li {
+            color: #d0d0d0;
+        }
+
+        .dark-mode .service-note {
+            background-color: #2a2a2a;
+        }
+
+        .dark-mode .service-note p {
+            color: #b0b0b0;
+        }
     </style>
 </head>
 <body>
@@ -3303,6 +3375,7 @@
             <div class="hero-buttons">
                 <button class="mainD" id="heroDownloadBtn"><i class="fas fa-ellipsis-h"></i>  前往下载分类 </button>
                 <button class="secondary-button"><i class="fas fa-history"></i> 关于网站的发展历程</button>
+                <button class="secondary-button" id="serviceInfoBtn"><i class="fas fa-info-circle"></i> 关于本网站的服务</button>
             </div>
         </div>
     </section>
@@ -3768,7 +3841,83 @@
         </div>
     </div>
 
-
+    <!-- 版权弹窗 -->
+    <div class="service-modal" id="serviceModal">
+        <div class="service-modal-content">
+            <span class="service-close-modal">&times;</span>
+            <div class="service-modal-title">
+                <h2>—— 关于本网站的服务 ——</h2>
+                <p>网站服务提供规则</p>
+            </div>
+            <div class="service-modal-body">
+                <h3>网站服务提供规则</h3>
+                
+                <h4>一、服务概述</h4>
+                <p>Vizyn系统收录平台（以下简称"本网站"）是一个专注于收录和分享Windows系统及相关组件、工具的平台。我们致力于为用户提供便捷的系统资源获取途径，同时建立良好的社区交流环境。</p>
+                
+                <h4>二、服务内容</h4>
+                <p>1. <strong>系统资源收录：</strong>收录官方及第三方Windows系统镜像、定制版系统、相关组件和工具。</p>
+                <p>2. <strong>资源下载：</strong>提供系统镜像及相关组件的下载指引和链接。</p>
+                <p>3. <strong>技术支持：</strong>通过QQ群、GitHub Issues等方式提供基础的技术交流和问题反馈渠道。</p>
+                <p>4. <strong>社区交流：</strong>搭建用户与开发者之间的交流平台，促进技术分享和经验交流。</p>
+                
+                <h4>三、服务原则</h4>
+                <p>1. <strong>开源共享原则：</strong>本网站基于GitHub Pages构建，坚持开源共享的理念，代码公开透明。</p>
+                <p>2. <strong>中立性原则：</strong>本网站作为资源收录平台，不对任何第三方系统的安全性、稳定性做担保，用户需自行判断风险。</p>
+                <p>3. <strong>用户自愿原则：</strong>所有服务均为用户自愿使用，不强制注册、不收集用户个人信息。</p>
+                <p>4. <strong>免费服务原则：</strong>本网站提供的所有服务均为免费，不收取任何费用。</p>
+                
+                <h4>四、用户权利与义务</h4>
+                <p>1. <strong>用户权利：</strong></p>
+                <ul>
+                    <li>免费使用本网站提供的所有服务</li>
+                    <li>通过GitHub Issues提交反馈和建议</li>
+                    <li>加入QQ群参与技术讨论</li>
+                    <li>下载和使用网站收录的资源</li>
+                </ul>
+                
+                <p>2. <strong>用户义务：</strong></p>
+                <ul>
+                    <li>遵守中国法律法规，不传播违法违规内容</li>
+                    <li>尊重他人知识产权，不盗用他人作品</li>
+                    <li>文明交流，不发表侮辱、诽谤等不当言论</li>
+                    <li>合理使用网站资源，不恶意攻击服务器</li>
+                </ul>
+                
+                <h4>五、免责声明</h4>
+                <p>1. <strong>资源安全：</strong>本网站仅提供资源收录和下载指引，不对第三方资源的真实性、安全性、合法性做任何担保。用户下载和使用资源需自行承担风险。</p>
+                <p>2. <strong>系统兼容性：</strong>不同系统版本可能存在兼容性问题，建议用户在虚拟机或备用设备上测试后再部署到生产环境。</p>
+                <p>3. <strong>数据损失：</strong>安装或使用第三方系统可能导致数据丢失，建议用户提前备份重要数据。</p>
+                <p>4. <strong>服务中断：</strong>因不可抗力（如服务器故障、网络中断等）导致的服务中断，本网站不承担责任。</p>
+                <p>5. <strong>第三方链接：</strong>本网站包含的第三方网站链接，其内容和服务由第三方提供，本网站不对其负责。</p>
+                
+                <h4>六、知识产权</h4>
+                <p>1. 本网站设计、布局、代码等由本站开发团队创作，遵循开源协议。</p>
+                <p>2. Windows操作系统及相关商标归微软公司所有。</p>
+                <p>3. 第三方系统资源的知识产权归其原作者所有。</p>
+                <p>4. 用户通过GitHub Issues提交的内容，默认授权本网站展示。</p>
+                
+                <h4>七、服务变更与终止</h4>
+                <p>1. 本网站保留随时修改服务规则的权利，修改后将通过网站公告等方式通知用户。</p>
+                <p>2. 如遇不可抗力因素，本网站可能暂停或终止部分或全部服务。</p>
+                <p>3. 用户违反服务规则，本网站有权限制或终止其使用服务的权利。</p>
+                
+                <h4>八、争议解决</h4>
+                <p>1. 本服务规则的解释权归Vizyn系统收录平台所有。</p>
+                <p>2. 因本服务规则引起的任何争议，双方应友好协商解决；协商不成的，可向本网站所在地人民法院提起诉讼。</p>
+                
+                <h4>九、联系方式</h4>
+                <p>1. 反馈建议：通过GitHub Issues提交</p>
+                <p>2. 技术交流：加入官方QQ群</p>
+                <p>3. 站长联系：通过B站私信联系站长</p>
+                
+                <div class="service-note">
+                    <p><strong>重要提示：</strong>在使用本网站服务前，请仔细阅读并理解本服务规则。一旦使用本网站服务，即视为您已阅读、理解并同意遵守本规则的所有条款。</p>
+                    <p>最后更新日期：2026年1月27日</p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script>
 		// 汉堡菜单功能
@@ -6404,6 +6553,153 @@ const componentsData = [
         // 绑定永远酱系列按钮事件
         document.getElementById('eternalStarBtn')?.addEventListener('click', showModal);
         
+
+        // 创建服务弹窗样式
+        const serviceModalStyle = document.createElement('style');
+        serviceModalStyle.textContent = `
+            .service-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+                overflow-y: auto;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .service-modal.show {
+                opacity: 1;
+            }
+
+            .service-modal-content {
+                background-color: white;
+                margin: 40px auto;
+                padding: 30px;
+                border-radius: 8px;
+                width: 95%;
+                max-width: 800px;
+                position: relative;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                transform: translateY(-30px);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .service-modal.show .service-modal-content {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .service-close-modal {
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                color: var(--gray-color);
+                transition: color 0.3s;
+            }
+            
+            .service-close-modal:hover {
+                color: var(--primary-color);
+            }
+            
+            .service-modal-title {
+                text-align: center;
+                margin-bottom: 30px;
+                color: var(--dark-color);
+            }
+            
+            .service-modal-title h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            .service-modal-title p {
+                color: var(--gray-color);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .service-modal-body {
+                text-align: center;
+                padding: 20px 0;
+                color: var(--dark-color);
+            }
+            
+            /* 黑色模式适配 */
+            .dark-mode .service-modal-content {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+            }
+            
+            .dark-mode .service-modal-title h2 {
+                color: #e0e0e0;
+            }
+            
+            .dark-mode .service-modal-title p {
+                color: #b0b0b0;
+            }
+            
+            .dark-mode .service-modal-body {
+                color: #e0e0e0;
+            }
+        `;
+        document.head.appendChild(serviceModalStyle);
+
+        // 获取服务弹窗DOM元素
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceCloseBtn = document.querySelector('.service-close-modal');
+        const serviceInfoBtn = document.getElementById('serviceInfoBtn');
+
+        // 显示服务弹窗
+        function showServiceModal() {
+            serviceModal.style.display = 'block';
+            
+            // 触发重排以应用动画
+            serviceModal.offsetHeight;
+            
+            requestAnimationFrame(() => {
+                serviceModal.classList.add('show');
+            });
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 隐藏服务弹窗
+        function hideServiceModal() {
+            serviceModal.classList.remove('show');
+            
+            setTimeout(() => {
+                serviceModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        // 绑定事件
+        serviceInfoBtn.addEventListener('click', showServiceModal);
+        serviceCloseBtn.addEventListener('click', hideServiceModal);
+
+        // 点击模态窗口背景关闭
+        serviceModal.addEventListener('click', function(event) {
+            if (event.target === serviceModal) {
+                hideServiceModal();
+            }
+        });
+
+        // ESC键关闭
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && serviceModal.style.display === 'block') {
+                hideServiceModal();
+            }
+        });
+
+
         // ========== GitHub Issues 评论系统配置 ==========
         const GITHUB_CONFIG = {
             owner: 'MillsEasy',
