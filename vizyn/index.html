@@ -3305,6 +3305,239 @@
         .dark-mode .service-note p {
             color: #b0b0b0;
         }
+		
+		/* 回复评论样式 */
+		.comment-replies {
+			margin-left: 40px;
+			border-left: 3px solid rgba(0, 120, 212, 0.2);
+			padding-left: 20px;
+			margin-top: 20px;
+			padding-top: 10px;
+		}
+
+		.comment-reply {
+			background-color: rgba(255, 255, 255, 0.03);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+			margin-bottom: 15px;
+		}
+
+		.comment-reply:last-child {
+			margin-bottom: 0;
+		}
+
+		.dark-mode .comment-reply {
+			background-color: rgba(255, 255, 255, 0.02);
+			border-color: rgba(255, 255, 255, 0.05);
+		}
+
+		/* 回复指示器 */
+		.reply-indicator {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			font-size: 12px;
+			color: #60a5fa;
+			margin-left: 5px;
+		}
+
+		.reply-indicator i {
+			font-size: 10px;
+		}
+
+		/* 回复按钮样式 */
+		.reply-button {
+			background-color: transparent;
+			color: #60a5fa;
+			border: none;
+			padding: 5px 10px;
+			border-radius: 4px;
+			font-size: 12px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+		.reply-button:hover {
+			background-color: rgba(0, 120, 212, 0.1);
+		}
+
+		/* 回复表单样式 */
+		.reply-form {
+			background-color: rgba(255, 255, 255, 0.05);
+			border-radius: 8px;
+			padding: 20px;
+			margin-top: 15px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			display: none;
+		}
+
+		.reply-form.active {
+			display: block;
+		}
+
+		.reply-form-header {
+			margin-bottom: 15px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.reply-form-header h4 {
+			font-size: 16px;
+			color: white;
+			margin-bottom: 5px;
+		}
+
+		.reply-form-header p {
+			font-size: 12px;
+			color: #d2d0ce;
+		}
+
+		.reply-form-actions {
+			display: flex;
+			justify-content: flex-end;
+			gap: 10px;
+			margin-top: 15px;
+		}
+
+		.reply-cancel {
+			background-color: transparent;
+			color: #d2d0ce;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			padding: 8px 15px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.reply-cancel:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		.reply-submit {
+			background-color: var(--primary-color);
+			color: white;
+			border: none;
+			padding: 8px 20px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		.reply-submit:hover {
+			background-color: #106ebe;
+		}
+
+		/* 加载更多回复按钮 */
+		.load-more-replies {
+			background-color: rgba(0, 120, 212, 0.1);
+			color: #60a5fa;
+			border: 1px solid rgba(0, 120, 212, 0.3);
+			padding: 8px 15px;
+			border-radius: 4px;
+			font-size: 12px;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			margin-top: 10px;
+			transition: all 0.3s;
+		}
+
+		.load-more-replies:hover {
+			background-color: rgba(0, 120, 212, 0.2);
+		}
+
+		/* 回复数量指示器 */
+		.reply-count {
+			font-size: 12px;
+			color: #d2d0ce;
+			margin-left: 5px;
+			display: inline-flex;
+			align-items: center;
+			gap: 3px;
+		}
+
+		/* Markdown工具栏样式 */
+		.markdown-toolbar {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 10px;
+			padding: 10px;
+			background-color: rgba(255, 255, 255, 0.03);
+			border-radius: 6px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+		}
+
+		.markdown-button {
+			background-color: rgba(255, 255, 255, 0.08);
+			color: #d2d0ce;
+			border: none;
+			padding: 6px 12px;
+			border-radius: 4px;
+			font-size: 12px;
+			cursor: pointer;
+			transition: all 0.3s;
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+		}
+
+		.markdown-button:hover {
+			background-color: rgba(0, 120, 212, 0.2);
+			color: white;
+		}
+
+		.markdown-button.active {
+			background-color: var(--primary-color);
+			color: white;
+		}
+
+		.markdown-preview {
+			background-color: rgba(0, 0, 0, 0.2);
+			border-radius: 6px;
+			padding: 15px;
+			margin-top: 10px;
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			display: none;
+		}
+
+		.markdown-preview.active {
+			display: block;
+		}
+
+		.markdown-preview h4 {
+			font-size: 14px;
+			margin-bottom: 10px;
+			color: white;
+		}
+
+		.markdown-help {
+			font-size: 11px;
+			color: #d2d0ce;
+			margin-top: 5px;
+			padding: 8px;
+			background-color: rgba(0, 0, 0, 0.3);
+			border-radius: 4px;
+			border-left: 3px solid var(--primary-color);
+		}
+
+		/* 响应式调整 */
+		@media (max-width: 768px) {
+			.comment-replies {
+				margin-left: 20px;
+				padding-left: 15px;
+			}
+			
+			.markdown-toolbar {
+				gap: 5px;
+			}
+			
+			.markdown-button {
+				padding: 5px 8px;
+				font-size: 11px;
+			}
+		}
     </style>
 </head>
 <body>
@@ -4952,7 +5185,7 @@
                     "5.自动安装 C++运行库和 DirectX,集成.NET Framework3.5(包含 3.0和 2.0)",
                     "注意：系统自带的Windows Defender被移除了，建议立即安装靠谱的防病毒软件。"
                 ],
-                buttonText: "<i class='fas fa-download'></i> 下载（123云盘）",
+                buttonText: "<i class='fas fa-download'></i> 下载（百度云盘）",
                 buttonClass: "cta-button",
                 bilibiliUrl: "https://www.bilibili.com/video/BV1j1vDBtE5i/?vd_source=0697af1569057eba1b7f117dccbb054e"
             },
@@ -6694,214 +6927,547 @@ const componentsData = [
 
 
         // ========== GitHub Issues 评论系统配置 ==========
-        const GITHUB_CONFIG = {
-            owner: 'MillsEasy',
-            repo: 'SendFeedBack',
-            issueLabel: 'Websites',
-            newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'
-        };
+		const GITHUB_CONFIG = {
+			owner: 'MillsEasy',
+			repo: 'SendFeedBack',
+			issueLabel: 'Websites',
+			newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'
+		};
+
+		// 缓存评论数据
+		let cachedIssues = [];
+		let issueCommentsMap = new Map();
+
+		// 格式化日期
+		function formatDate(dateString) {
+			const date = new Date(dateString);
+			const now = new Date();
+			const diff = now - date;
+			
+			const minutes = Math.floor(diff / 60000);
+			const hours = Math.floor(diff / 3600000);
+			const days = Math.floor(diff / 86400000);
+			
+			if (minutes < 1) return '刚刚';
+			if (minutes < 60) return `${minutes}分钟前`;
+			if (hours < 24) return `${hours}小时前`;
+			if (days < 7) return `${days}天前`;
+			
+			return date.toLocaleDateString('zh-CN', {
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
+			});
+		}
+
+		// 增强的Markdown转换函数
+		function markdownToHtml(text) {
+			if (!text) return '';
+			
+			let html = text
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;');
+			
+			// 代码块（多行）
+			html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="code-block"><code class="language-$1">$2</code></pre>');
+			
+			// 行内代码
+			html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+			
+			// 标题
+			html = html.replace(/###### (.*?)(?=\n|$)/g, '<h6>$1</h6>');
+			html = html.replace(/##### (.*?)(?=\n|$)/g, '<h5>$1</h5>');
+			html = html.replace(/#### (.*?)(?=\n|$)/g, '<h4>$1</h4>');
+			html = html.replace(/### (.*?)(?=\n|$)/g, '<h3>$1</h3>');
+			html = html.replace(/## (.*?)(?=\n|$)/g, '<h2>$1</h2>');
+			html = html.replace(/# (.*?)(?=\n|$)/g, '<h1>$1</h1>');
+			
+			// 粗体（**或__）
+			html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+			html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+			
+			// 斜体（*或_）
+			html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+			html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+			
+			// 删除线
+			html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+			
+			// 引用
+			html = html.replace(/^> (.*)$/gm, '<blockquote>$1</blockquote>');
+			
+			// 无序列表
+			html = html.replace(/^\s*[-*+] (.*)$/gm, '<li>$1</li>');
+			html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+			
+			// 有序列表
+			html = html.replace(/^\s*\d+\. (.*)$/gm, '<li>$1</li>');
+			html = html.replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
+			
+			// 链接
+			html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="comment-link">$1</a>');
+			
+			// 图片
+			html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="comment-image" style="max-width: 100%; border-radius: 4px;">');
+			
+			// 水平线
+			html = html.replace(/^---$/gm, '<hr>');
+			
+			// 表格（简单支持）
+			html = html.replace(/^\|(.+)\|$/gm, function(match) {
+				const cells = match.split('|').filter(cell => cell.trim());
+				if (cells.length > 1) {
+					const row = cells.map(cell => `<td>${cell.trim()}</td>`).join('');
+					return `<tr>${row}</tr>`;
+				}
+				return match;
+			});
+			
+			// 换行处理
+			html = html.replace(/\n\n/g, '</p><p>');
+			html = html.replace(/\n/g, '<br>');
+			
+			// 包裹段落
+			if (!html.startsWith('<')) {
+				html = `<p>${html}</p>`;
+			}
+			
+			return html;
+		}
+
+		// 获取GitHub Issues
+		async function fetchIssues() {
+			const commentsList = document.getElementById('commentsList');
+			const commentsLoading = document.getElementById('commentsLoading');
+			
+			commentsList.style.display = 'none';
+			commentsLoading.style.display = 'block';
+			
+			try {
+				const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/issues?labels=${GITHUB_CONFIG.issueLabel}&state=all&sort=created&direction=desc&per_page=10`;
+				
+				const response = await fetch(apiUrl, {
+					headers: {
+						'Accept': 'application/vnd.github.v3+json'
+					}
+				});
+				
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				
+				const issues = await response.json();
+				cachedIssues = issues;
+				
+				commentsLoading.style.display = 'none';
+				commentsList.style.display = 'flex';
+				
+				if (issues.length === 0) {
+					commentsList.innerHTML = '<p class="comments-empty">暂无评论，快来发表第一条评论吧！</p>';
+					return;
+				}
+				
+				commentsList.innerHTML = '';
+				
+				// 为每个issue获取评论
+				const issuesWithComments = await Promise.all(
+					issues.map(async (issue) => {
+						try {
+							const commentsResponse = await fetch(issue.comments_url, {
+								headers: {
+									'Accept': 'application/vnd.github.v3+json'
+								}
+							});
+							
+							if (commentsResponse.ok) {
+								const comments = await commentsResponse.json();
+								issueCommentsMap.set(issue.number, comments);
+								issue.comments = comments;
+								issue.commentsCount = comments.length;
+							} else {
+								issue.comments = [];
+								issue.commentsCount = 0;
+							}
+						} catch (error) {
+							console.error(`Failed to fetch comments for issue #${issue.number}:`, error);
+							issue.comments = [];
+							issue.commentsCount = 0;
+						}
+						
+						return issue;
+					})
+				);
+				
+				issuesWithComments.forEach(issue => {
+					renderIssue(issue, true);
+				});
+				
+			} catch (error) {
+				console.error('加载评论失败:', error);
+				commentsLoading.style.display = 'none';
+				commentsList.style.display = 'block';
+				commentsList.innerHTML = `
+					<p class="comments-empty" style="color: #ff6b6b;">
+						<i class="fas fa-exclamation-triangle"></i> 加载评论失败，请检查你的网络连接或稍后重试
+						<br><small style="margin-top: 10px; display: block;">错误信息: ${error.message}</small>
+					</p>
+				`;
+			}
+		}
+
+		// 渲染Issue
+		function renderIssue(issue, isMain = false) {
+			const commentsList = document.getElementById('commentsList');
+			
+			const commentItem = document.createElement('div');
+			commentItem.className = `comment-item ${isMain ? '' : 'comment-reply'}`;
+			commentItem.id = `comment-${issue.number}`;
+			
+			const authorName = issue.user.login;
+			const authorAvatar = issue.user.avatar_url;
+			const authorUrl = issue.user.html_url;
+			const createdAt = formatDate(issue.created_at);
+			const state = issue.state;
+			const body = markdownToHtml(issue.body || '');
+			const issueUrl = issue.html_url;
+			const issueNumber = issue.number;
+			const labels = issue.labels || [];
+			const commentsCount = issue.commentsCount || 0;
+			
+			commentItem.innerHTML = `
+				<div class="comment-header">
+					<div class="comment-author">
+						<img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+						<div class="comment-author-avatar" style="display: none;">
+							${authorName.charAt(0).toUpperCase()}
+						</div>
+						<div class="comment-author-info">
+							<div class="comment-author-name">
+								<a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
+								${!isMain ? '<span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>' : ''}
+							</div>
+							<div class="comment-date">${createdAt}</div>
+						</div>
+					</div>
+					<span class="comment-badge ${state}">
+						<i class="fas fa-${state === 'open' ? 'check-circle' : 'circle'}"></i>
+						${state === 'open' ? '开放中' : '已关闭'}
+					</span>
+				</div>
+				<div class="comment-body">${body || '<p>（无内容）</p>'}</div>
+				<div class="comment-footer">
+					<div class="comment-actions">
+						<a href="${issueUrl}" target="_blank" rel="noopener" class="comment-link">
+							<i class="fab fa-github"></i> 在 GitHub 上查看 #${issueNumber}
+						</a>
+						${isMain ? `
+							<button class="reply-button" data-issue-number="${issueNumber}">
+								<i class="fas fa-reply"></i> 回复
+							</button>
+						` : ''}
+					</div>
+					${isMain && commentsCount > 0 ? `
+						<div class="reply-count">
+							<i class="fas fa-comments"></i> ${commentsCount} 条回复
+						</div>
+					` : ''}
+					${labels.length > 0 ? `
+						<div class="comment-labels">
+							${labels.map(label => `
+								<span class="comment-label">${label.name}</span>
+							`).join('')}
+						</div>
+					` : ''}
+				</div>
+			`;
+			
+			if (isMain) {
+				commentsList.appendChild(commentItem);
+				
+				// 添加回复表单
+				const replyForm = createReplyForm(issue.number);
+				commentItem.appendChild(replyForm);
+				
+				// 显示回复评论
+				if (issue.comments && issue.comments.length > 0) {
+					const repliesContainer = document.createElement('div');
+					repliesContainer.className = 'comment-replies';
+					repliesContainer.id = `replies-${issue.number}`;
+					
+					// 显示前3条回复
+					const initialReplies = issue.comments.slice(0, 3);
+					const remainingReplies = issue.comments.slice(3);
+					
+					initialReplies.forEach(comment => {
+						renderCommentReply(comment, repliesContainer);
+					});
+					
+					// 如果有更多回复，添加"加载更多"按钮
+					if (remainingReplies.length > 0) {
+						const loadMoreBtn = document.createElement('button');
+						loadMoreBtn.className = 'load-more-replies';
+						loadMoreBtn.innerHTML = `<i class="fas fa-chevron-down"></i> 显示另外 ${remainingReplies.length} 条回复`;
+						loadMoreBtn.onclick = () => {
+							remainingReplies.forEach(comment => {
+								renderCommentReply(comment, repliesContainer);
+							});
+							loadMoreBtn.remove();
+						};
+						repliesContainer.appendChild(loadMoreBtn);
+					}
+					
+					commentItem.appendChild(repliesContainer);
+				}
+			}
+			
+			return commentItem;
+		}
+
+		// 渲染回复评论
+		function renderCommentReply(comment, container) {
+			const replyItem = document.createElement('div');
+			replyItem.className = 'comment-item comment-reply';
+			
+			const authorName = comment.user.login;
+			const authorAvatar = comment.user.avatar_url;
+			const authorUrl = comment.user.html_url;
+			const createdAt = formatDate(comment.created_at);
+			const body = markdownToHtml(comment.body || '');
+			
+			replyItem.innerHTML = `
+				<div class="comment-header">
+					<div class="comment-author">
+						<img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+						<div class="comment-author-avatar" style="display: none;">
+							${authorName.charAt(0).toUpperCase()}
+						</div>
+						<div class="comment-author-info">
+							<div class="comment-author-name">
+								<a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
+								<span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>
+							</div>
+							<div class="comment-date">${createdAt}</div>
+						</div>
+					</div>
+				</div>
+				<div class="comment-body">${body || '<p>（无内容）</p>'}</div>
+			`;
+			
+			container.appendChild(replyItem);
+		}
+
+		// 创建回复表单
+		function createReplyForm(issueNumber) {
+        const form = document.createElement('div');
+        form.className = 'reply-form';
+        form.id = `reply-form-${issueNumber}`;
         
-        // 格式化日期
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diff = now - date;
-            
-            const minutes = Math.floor(diff / 60000);
-            const hours = Math.floor(diff / 3600000);
-            const days = Math.floor(diff / 86400000);
-            
-            if (minutes < 1) return '刚刚';
-            if (minutes < 60) return `${minutes}分钟前`;
-            if (hours < 24) return `${hours}小时前`;
-            if (days < 7) return `${days}天前`;
-            
-            return date.toLocaleDateString('zh-CN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+        form.innerHTML = `
+            <div class="reply-form-header">
+                <h4>回复此问题</h4>
+                <p>你的回复将被发布到 GitHub Issues（测试中，当前必须用户前往Github以回复）</p>
+            </div>
+            <div class="markdown-toolbar" id="toolbar-${issueNumber}">
+                <button type="button" class="markdown-button" data-action="bold" title="粗体">
+                    <i class="fas fa-bold"></i> 粗体
+                </button>
+                <button type="button" class="markdown-button" data-action="italic" title="斜体">
+                    <i class="fas fa-italic"></i> 斜体
+                </button>
+                <button type="button" class="markdown-button" data-action="code" title="代码">
+                    <i class="fas fa-code"></i> 代码
+                </button>
+                <button type="button" class="markdown-button" data-action="link" title="链接">
+                    <i class="fas fa-link"></i> 链接
+                </button>
+                <button type="button" class="markdown-button" data-action="preview" title="预览">
+                    <i class="fas fa-eye"></i> 预览
+                </button>
+            </div>
+            <textarea id="reply-text-${issueNumber}" placeholder="输入你的回复内容... (支持 Markdown 语法)" rows="4"></textarea>
+            <div class="markdown-preview" id="preview-${issueNumber}"></div>
+            <div class="markdown-help">
+                <strong>Markdown 语法提示：</strong> **粗体** *斜体* \`代码\` [链接文本](URL) > 引用
+            </div>
+            <div class="reply-form-actions">
+                <button type="button" class="reply-cancel" data-issue-number="${issueNumber}">取消</button>
+                <button type="button" class="reply-submit" data-issue-number="${issueNumber}">提交回复</button>
+            </div>
+        `;
+        
+        // 设置textarea的样式
+        const textarea = form.querySelector(`#reply-text-${issueNumber}`);
+        if (textarea) {
+            textarea.style.width = '100%';
+            textarea.style.padding = '12px';
+            textarea.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+            textarea.style.borderRadius = '6px';
+            textarea.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+            textarea.style.color = 'white';
+            textarea.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+            textarea.style.boxSizing = 'border-box';
         }
         
-        // 将Markdown转换为HTML（简单版本）
-        function markdownToHtml(text) {
-            if (!text) return '';
-            
-            // 转义HTML
-            let html = text
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;');
-            
-            // 代码块
-            html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-            
-            // 行内代码
-            html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-            
-            // 链接
-            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-            
-            // 粗体
-            html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-            
-            // 斜体
-            html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-            
-            // 换行
-            html = html.replace(/\n/g, '<br>');
-            
-            // 段落
-            html = html.split('<br><br>').map(p => {
-                if (p.trim()) {
-                    return `<p>${p}</p>`;
-                }
-                return '';
-            }).join('');
-            
-            return html;
-        }
-        
-        // 获取GitHub Issues
-        async function fetchComments() {
-            const commentsList = document.getElementById('commentsList');
-            const commentsLoading = document.getElementById('commentsLoading');
-            
-            commentsList.style.display = 'none';
-            commentsLoading.style.display = 'block';
-            
-            try {
-                // 使用GitHub API获取Issues
-                // 注意：由于CORS限制，这里使用GitHub的公开API
-                // 如果您的仓库是私有的，需要使用GitHub Token或通过后端代理
-                const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/issues?labels=${GITHUB_CONFIG.issueLabel}&state=all&sort=created&direction=desc&per_page=10`;
-                
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const issues = await response.json();
-                
-                commentsLoading.style.display = 'none';
-                commentsList.style.display = 'flex';
-                
-                if (issues.length === 0) {
-                    commentsList.innerHTML = '<p class="comments-empty">暂无评论，快来发表第一条评论吧！</p>';
-                    return;
-                }
-                
-                commentsList.innerHTML = '';
-                
-                issues.forEach(issue => {
-                    const commentItem = document.createElement('div');
-                    commentItem.className = 'comment-item';
-                    
-                    const authorName = issue.user.login;
-                    const authorAvatar = issue.user.avatar_url;
-                    const authorUrl = issue.user.html_url;
-                    const createdAt = formatDate(issue.created_at);
-                    const state = issue.state;
-                    const body = markdownToHtml(issue.body || '');
-                    const issueUrl = issue.html_url;
-                    const issueNumber = issue.number;
-                    const labels = issue.labels || [];
-                    
-                    commentItem.innerHTML = `
-                        <div class="comment-header">
-                            <div class="comment-author">
-                                <img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="comment-author-avatar" style="display: none;">
-                                    ${authorName.charAt(0).toUpperCase()}
-                                </div>
-                                <div class="comment-author-info">
-                                    <div class="comment-author-name">
-                                        <a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
-                                    </div>
-                                    <div class="comment-date">${createdAt}</div>
-                                </div>
-                            </div>
-                            <span class="comment-badge ${state}">
-                                <i class="fas fa-${state === 'open' ? 'check-circle' : 'circle'}"></i>
-                                ${state === 'open' ? '可用' : '不可用'}
-                            </span>
-                        </div>
-                        <div class="comment-body">${body || '<p>（无内容）</p>'}</div>
-                        <div class="comment-footer">
-                            <div class="comment-actions">
-                                <a href="${issueUrl}" target="_blank" rel="noopener" class="comment-link">
-                                    <i class="fab fa-github"></i> 查看完整讨论 #${issueNumber}
-                                </a>
-                            </div>
-                            ${labels.length > 0 ? `
-                                <div class="comment-labels">
-                                    ${labels.map(label => `
-                                        <span class="comment-label">${label.name}</span>
-                                    `).join('')}
-                                </div>
-                            ` : ''}
-                        </div>
-                    `;
-                    
-                    commentsList.appendChild(commentItem);
-                });
-                
-            } catch (error) {
-                console.error('加载评论失败:', error);
-                commentsLoading.style.display = 'none';
-                commentsList.style.display = 'block';
-                commentsList.innerHTML = `
-                    <p class="comments-empty" style="color: #ff6b6b;">
-                        <i class="fas fa-exclamation-triangle"></i> 加载评论失败，请检查你的网络连接或稍后重试
-                        <br><small style="margin-top: 10px; display: block;">错误信息: ${error.message}</small>
-                    </p>
-                `;
-            }
-        }
-        
-        // 创建新Issue
-        function createNewIssue() {
-            const issueTitle = encodeURIComponent('网站问题反馈');
-            const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
-            const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
-            
-            const url = `${GITHUB_CONFIG.newIssueUrl}?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
-            window.open(url, '_blank');
-        }
-        
-        // 初始化评论系统
-        document.addEventListener('DOMContentLoaded', function() {
-            const createIssueBtn = document.getElementById('createIssueBtn');
-            const refreshCommentsBtn = document.getElementById('refreshCommentsBtn');
-            
-            if (createIssueBtn) {
-                createIssueBtn.addEventListener('click', createNewIssue);
-            }
-            
-            if (refreshCommentsBtn) {
-                refreshCommentsBtn.addEventListener('click', fetchComments);
-            }
-            
-            // 自动加载评论
-            // 注意：如果GitHub配置未设置，则不加载
-            if (GITHUB_CONFIG.owner !== 'your-username' && GITHUB_CONFIG.repo !== 'your-repo') {
-                fetchComments();
-            } else {
-                const commentsList = document.getElementById('commentsList');
-                if (commentsList) {
-                    commentsList.innerHTML = `
-                        <p class="comments-empty" style="color: #ffc107;">
-                            <i class="fas fa-info-circle"></i> 错误：评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
-                        </p>
-                    `;
-                }
-            }
-        });
+        return form;
+    }
+
+		// 创建新Issue
+		function createNewIssue() {
+			const issueTitle = encodeURIComponent('网站问题反馈');
+			const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
+			const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
+			
+			const url = `${GITHUB_CONFIG.newIssueUrl}?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
+			window.open(url, '_blank');
+		}
+
+		// Markdown工具栏按钮
+		function handleMarkdownToolbar(textareaId, action) {
+			const textarea = document.getElementById(textareaId);
+			const start = textarea.selectionStart;
+			const end = textarea.selectionEnd;
+			const selectedText = textarea.value.substring(start, end);
+			let newText = '';
+			let cursorPos = 0;
+			
+			switch(action) {
+				case 'bold':
+					newText = `**${selectedText}**`;
+					cursorPos = start + 2;
+					break;
+				case 'italic':
+					newText = `*${selectedText}*`;
+					cursorPos = start + 1;
+					break;
+				case 'code':
+					newText = selectedText.includes('\n') ? `\`\`\`\n${selectedText}\n\`\`\`` : `\`${selectedText}\``;
+					cursorPos = start + (selectedText.includes('\n') ? 4 : 1);
+					break;
+				case 'link':
+					newText = `[${selectedText || '链接文本'}](https://example.com)`;
+					cursorPos = start + (selectedText ? selectedText.length + 3 : 5);
+					break;
+				case 'preview':
+					const previewDiv = document.getElementById(`preview-${textareaId.split('-')[2]}`);
+					previewDiv.innerHTML = markdownToHtml(textarea.value);
+					previewDiv.classList.toggle('active');
+					return;
+			}
+			
+			textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+			textarea.focus();
+			textarea.setSelectionRange(cursorPos, cursorPos + (selectedText.length || 0));
+		}
+
+		// 提交回复
+		async function submitReply(issueNumber) {
+			const textarea = document.getElementById(`reply-text-${issueNumber}`);
+			const replyContent = textarea.value.trim();
+			
+			if (!replyContent) {
+				alert('请输入回复内容');
+				return;
+			}
+			
+			const issue = cachedIssues.find(issue => issue.number === issueNumber);
+			if (!issue) {
+				alert('找不到对应的问题');
+				return;
+			}
+			
+			const replyUrl = `${issue.html_url}#new_comment_field`;
+			
+			// 打开GitHub回复页面
+			window.open(replyUrl, '_blank');
+			
+			textarea.value = '';
+			
+			const form = document.getElementById(`reply-form-${issueNumber}`);
+			form.classList.remove('active');
+			
+			alert('请在GitHub页面提交你的回复。页面已在新标签页打开。');
+		}
+
+		// 初始化评论系统
+		document.addEventListener('DOMContentLoaded', function() {
+			const createIssueBtn = document.getElementById('createIssueBtn');
+			const refreshCommentsBtn = document.getElementById('refreshCommentsBtn');
+			
+			if (createIssueBtn) {
+				createIssueBtn.addEventListener('click', createNewIssue);
+			}
+			
+			if (refreshCommentsBtn) {
+				refreshCommentsBtn.addEventListener('click', fetchIssues);
+			}
+			
+			// 自动加载评论
+			if (GITHUB_CONFIG.owner && GITHUB_CONFIG.repo && GITHUB_CONFIG.owner !== 'your-username' && GITHUB_CONFIG.repo !== 'your-repo') {
+				fetchIssues();
+			} else {
+				const commentsList = document.getElementById('commentsList');
+				if (commentsList) {
+					commentsList.innerHTML = `
+						<p class="comments-empty" style="color: #ffc107;">
+							<i class="fas fa-info-circle"></i> 评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
+						</p>
+					`;
+				}
+			}
+			
+			// 事件委托处理回复按钮和表单
+			document.addEventListener('click', function(event) {
+				// 回复按钮
+				if (event.target.closest('.reply-button')) {
+					const issueNumber = parseInt(event.target.closest('.reply-button').dataset.issueNumber);
+					const form = document.getElementById(`reply-form-${issueNumber}`);
+					if (form) {
+						form.classList.toggle('active');
+						if (form.classList.contains('active')) {
+							const textarea = document.getElementById(`reply-text-${issueNumber}`);
+							textarea.focus();
+						}
+					}
+				}
+				
+				// 取消回复按钮
+				if (event.target.closest('.reply-cancel')) {
+					const issueNumber = parseInt(event.target.closest('.reply-cancel').dataset.issueNumber);
+					const form = document.getElementById(`reply-form-${issueNumber}`);
+					if (form) {
+						form.classList.remove('active');
+					}
+				}
+				
+				// 提交回复按钮
+				if (event.target.closest('.reply-submit')) {
+					const issueNumber = parseInt(event.target.closest('.reply-submit').dataset.issueNumber);
+					submitReply(issueNumber);
+				}
+				
+				// Markdown工具栏按钮
+				if (event.target.closest('.markdown-button')) {
+					const button = event.target.closest('.markdown-button');
+					const action = button.dataset.action;
+					const toolbar = button.closest('.markdown-toolbar');
+					const toolbarId = toolbar.id;
+					const issueNumber = toolbarId.split('-')[1];
+					handleMarkdownToolbar(`reply-text-${issueNumber}`, action);
+				}
+			});
+			
+			// 实时Markdown预览
+			document.addEventListener('input', function(event) {
+				if (event.target.id && event.target.id.startsWith('reply-text-')) {
+					const issueNumber = event.target.id.split('-')[2];
+					const previewDiv = document.getElementById(`preview-${issueNumber}`);
+					if (previewDiv && previewDiv.classList.contains('active')) {
+						previewDiv.innerHTML = markdownToHtml(event.target.value);
+					}
+				}
+			});
+		});
     </script>
 <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
 </html>
