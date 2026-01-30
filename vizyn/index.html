@@ -3566,6 +3566,7 @@
                             <li><a href="#features">介绍</a></li>
                             <li><a href="#download">下载</a></li>
                             <li><a href="#requirements">发送反馈</a></li>
+                            <li><a href="/vizyn/forum">论坛</a></li>
                         </ul>
                     </nav>
                     <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
@@ -3595,7 +3596,7 @@
 			<li><a href="#features" class="mobile-nav-link">介绍</a></li>
 			<li><a href="#download" class="mobile-nav-link">下载</a></li>
 			<li><a href="#requirements" class="mobile-nav-link">发送反馈</a></li>
-			<li><a href="https://qm.qq.com/q/PNZDCINXus" class="mobile-nav-link" target="_blank">讨论QQ群</a></li>
+			<li><a href="/vizyn/forum">论坛</a></li>
 		</ul>
 	</div>
     <!-- Hero区域 -->
@@ -3733,24 +3734,6 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>我想找旧版的永远酱定制系统，但没找到所需的版本</span>
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>答：大部分旧版系统都在"更多版本"当中，请前往"更多版本"下载</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>怎么找不到我要的文档？/我找不到关于永远酱的具体信息</span>
-                        <span class="faq-toggle">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>答：本站不提供任何有关永远酱本人有关的信息，请移步旧网站</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
                         <span>为何没有同步旧网站的文档？</span>
                         <span class="faq-toggle">▼</span>
                     </div>
@@ -3775,18 +3758,21 @@
                     <h2>—— 发送反馈 ——</h2>
                     <p>基于 GitHub Issues 的反馈系统，您的反馈对我们很重要</p>
                     <p>您必须注册Github并登录，才能使用本功能</p>
+                    <p><i class="fas fa-exclamation-triangle"></i>警告：请勿多次刷新评论，这将导致您被限制访问</p>
                 </div>
                 
                 <div class="comments-container">
                     <div class="comment-form-container">
                         <div class="comment-form-header">
-                            <h3><i class="fas fa-comment-dots"></i> 发送反馈</h3>
+                            <h3><i class="fas fa-comment-dots"></i> 评论区</h3>
                             <p>您可以在 GitHub 上创建 Issue 来发表评论或反馈</p>
+                            <p><i class="fas fa-exclamation-triangle"></i>警告：请勿多次刷新评论，这将导致您被限制访问</p>
                         </div>
                         <div class="comment-form-actions">
                             <div class="left-buttons">
                                 <button class="cta-button" id="createIssueBtn">
                                     <i class="fab fa-github"></i> 在 GitHub 上创建评论
+
                                 </button>
                             </div>
                             <div class="right-buttons">
@@ -3812,7 +3798,7 @@
             
             <div class="section-title" style="margin-top: 60px;">
                 <h2>—— 前往讨论QQ群 ——</h2>
-                <p>如果您要发送反馈，请加入QQ群</p>
+                <p>如果您要发送反馈/建议，请加入QQ群</p>
                 <div style="text-align: center; margin-top: 40px;">
                     <button class="cta-button" onclick="window.open('https://qm.qq.com/q/PNZDCINXus', '_blank')"><i class="fas fa-external-link-alt"></i> 前往讨论QQ群</button>
                 </div>
@@ -3833,11 +3819,10 @@
                 </div>
                 <div class="footer-column">
                     <h3>支持</h3>
-                    <p>带*代表该服务正在维护<p/>
                     <ul>
-                        <li><a href="#">*文档中心</a></li>
-                        <li><a href="https://github.com/MillsEasy/SendFeedback/issues">社区论坛</a></li>
-                        <li><a href="#requirements">*发送反馈</a></li>
+                        <li><a href="https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787">文档中心</a></li>
+                        <li><a href="https://github.com/MillsEasy/SendFeedback/issues">Github Issue</a></li>
+                        <li><a href="#requirements">发送反馈</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -3850,7 +3835,6 @@
                 </div>
                 <div class="footer-column">
                     <h3>关注第三方系统开发者</h3>
-                    <p>带*代表该服务正在维护<p/>
                     <ul>
                         <li><a href="https://space.bilibili.com/401874924">永远酱系统开发者B站</a></li>
                     </ul>
@@ -3858,7 +3842,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 栖渊保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 管理 | 版本：V3.1-260128</p>
+                <p>本网站由 栖渊Kaelen 管理 | 版本：V3.2-260130</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -3915,27 +3899,22 @@
                 <h2>—— 关于本站的发展及永远酱系列定制系统 ——</h2>
                 <p>了解网站的发展历程</p>
             </div>
-            
             <div class="about-content-grid">
                 <div class="about-content-card">
                     <h3>网站的起源原因</h3>
                     <p>本分支站点随永远酱系列定制系统而开始开发，完善于11月中旬</p>
                 </div>
-                
                 <div class="about-content-card">
                     <h3>团队成长</h3>
                     <p>永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的四人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……</p>
                 </div>
-                
                 <div class="about-content-card">
                     <h3>发展历程</h3>
                     <p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了</p>
                 </div>
             </div>
-            
             <div class="about-timeline">
                 <h3 style="text-align: center; margin-bottom: 30px;">项目发展时间线</h3>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年6月底</div>
                     <div class="timeline-content">
@@ -3943,7 +3922,6 @@
                         <p>永远酱系列定制系统开始开发于2025年6月底，并于7月19日发布永远酱定制Win10初版，这是一切的起点</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年8月5日</div>
                     <div class="timeline-content">
@@ -3951,7 +3929,6 @@
                         <p>在8月5日，发布了永远酱定制Win10的2.0版本，这也坚定了我继续将这个大型二创继续进行下去的想法。8月15日，永远酱定制Win10的最终版发布，本来我也想就这样完结了这个系列。后来一个用户问我为什么不搞个Win11或者Win10 LTSC 2021的时候，我便有了做定制Win11的想法，当时我也正好把我的实体机从Win10升到了Win11，对Win11也略有了一些研究，就开始着手去做了。</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年8月15日</div>
                     <div class="timeline-content">
@@ -3959,7 +3936,6 @@
                         <p>发布了永远酱定制Win10的最终版，为Win10系列画上圆满句号。</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年8月30日</div>
                     <div class="timeline-content">
@@ -3967,7 +3943,6 @@
                         <p>8月最后的一个星期我开始着手去做定制Win11，结果出现了很多玄学问题（比如：通过新版安装程序更新系统会安装失败，在PE系统里通过不同方式安装可能会决定是否有OOBE，莫名其妙的无人值守等等）</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年9月3日</div>
                     <div class="timeline-content">
@@ -3975,7 +3950,6 @@
                         <p>开始开发永远酱定制Server 2022（2022/2025），标志着项目翻开了新的一页。</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年9月17日</div>
                     <div class="timeline-content">
@@ -3983,7 +3957,6 @@
                         <p>最终在9月17日，永远酱定制Win11正式版完成了第一次安装测试，随后我将其发给了blil114514号和SYSTEM-SS8-0016进行下一轮内测。</p>
                     </div>
                 </div>
-                
                 <div class="timeline-item">
                     <div class="timeline-date">2025年9月27日</div>
                     <div class="timeline-content">
@@ -3991,7 +3964,6 @@
                         <p>在9月26号，我也成功达到了一千粉丝，这也标志着我（系统作者）获得了联合投稿的权利，永远酱定制Win11的推介视频也就此成为了我的第一个联合投稿。9月27日，永远酱定制Win11正式版发布了。</p>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-date">2025年11月初</div>
                     <div class="timeline-content">
@@ -4085,6 +4057,7 @@
 				
                 <div class="service-note">
                     <p><strong>重要提示：</strong>在使用本网站服务前，请仔细阅读并理解本网站的相关服务规则。一旦使用本网站服务，即视为您已阅读、理解并同意遵守本规则的所有条款。若违反以下的规定，本站有权进行操作。</p>
+					<p><strong>警告：</strong>本站开发者为个人注册，网站使用GithubPages构建，本网站不是专业企业的页面。</p>
                     <p>最后更新日期：2026年1月28日</p>
                 </div>
                 
@@ -6926,548 +6899,865 @@ const componentsData = [
         });
 
 
+
         // ========== GitHub Issues 评论系统配置 ==========
-		const GITHUB_CONFIG = {
-			owner: 'MillsEasy',
-			repo: 'SendFeedBack',
-			issueLabel: 'Websites',
-			newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'
-		};
+        const GITHUB_CONFIG = {
+            owner: 'MillsEasy',
+            repo: 'SendFeedBack',
+            issueLabel: 'Websites',
+            newIssueUrl: 'https://github.com/MillsEasy/SendFeedback/issues/new'
+        };
 
-		// 缓存评论数据
-		let cachedIssues = [];
-		let issueCommentsMap = new Map();
+        // 缓存配置
+        const CACHE_CONFIG = {
+            ISSUES_CACHE_KEY: 'github_issues_cache',
+            COMMENTS_CACHE_KEY_PREFIX: 'github_comments_',
+            CACHE_EXPIRY_KEY: 'github_cache_expiry',
+            CACHE_DURATION: 5 * 60 * 1000, // 5分钟缓存
+            MAX_CACHE_AGE: 30 * 60 * 1000  // 最大缓存时间30分钟
+        };
 
-		// 格式化日期
-		function formatDate(dateString) {
-			const date = new Date(dateString);
-			const now = new Date();
-			const diff = now - date;
-			
-			const minutes = Math.floor(diff / 60000);
-			const hours = Math.floor(diff / 3600000);
-			const days = Math.floor(diff / 86400000);
-			
-			if (minutes < 1) return '刚刚';
-			if (minutes < 60) return `${minutes}分钟前`;
-			if (hours < 24) return `${hours}小时前`;
-			if (days < 7) return `${days}天前`;
-			
-			return date.toLocaleDateString('zh-CN', {
-				year: 'numeric',
-				month: 'long',
-				day: 'numeric'
-			});
-		}
+        // 缓存管理对象
+        const cacheManager = {
+            // 获取缓存数据
+            getCache(key) {
+                try {
+                    const cached = localStorage.getItem(key);
+                    if (cached) {
+                        const data = JSON.parse(cached);
+                        // 检查是否过期
+                        if (Date.now() - data.timestamp < CACHE_CONFIG.MAX_CACHE_AGE) {
+                            return data.value;
+                        }
+                        // 过期则清除
+                        localStorage.removeItem(key);
+                    }
+                } catch (error) {
+                    console.error('缓存读取错误:', error);
+                    localStorage.removeItem(key);
+                }
+                return null;
+            },
 
-		// 增强的Markdown转换函数
-		function markdownToHtml(text) {
-			if (!text) return '';
-			
-			let html = text
-				.replace(/&/g, '&amp;')
-				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;');
-			
-			// 代码块（多行）
-			html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="code-block"><code class="language-$1">$2</code></pre>');
-			
-			// 行内代码
-			html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
-			
-			// 标题
-			html = html.replace(/###### (.*?)(?=\n|$)/g, '<h6>$1</h6>');
-			html = html.replace(/##### (.*?)(?=\n|$)/g, '<h5>$1</h5>');
-			html = html.replace(/#### (.*?)(?=\n|$)/g, '<h4>$1</h4>');
-			html = html.replace(/### (.*?)(?=\n|$)/g, '<h3>$1</h3>');
-			html = html.replace(/## (.*?)(?=\n|$)/g, '<h2>$1</h2>');
-			html = html.replace(/# (.*?)(?=\n|$)/g, '<h1>$1</h1>');
-			
-			// 粗体（**或__）
-			html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-			html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
-			
-			// 斜体（*或_）
-			html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-			html = html.replace(/_(.*?)_/g, '<em>$1</em>');
-			
-			// 删除线
-			html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
-			
-			// 引用
-			html = html.replace(/^> (.*)$/gm, '<blockquote>$1</blockquote>');
-			
-			// 无序列表
-			html = html.replace(/^\s*[-*+] (.*)$/gm, '<li>$1</li>');
-			html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
-			
-			// 有序列表
-			html = html.replace(/^\s*\d+\. (.*)$/gm, '<li>$1</li>');
-			html = html.replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
-			
-			// 链接
-			html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="comment-link">$1</a>');
-			
-			// 图片
-			html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="comment-image" style="max-width: 100%; border-radius: 4px;">');
-			
-			// 水平线
-			html = html.replace(/^---$/gm, '<hr>');
-			
-			// 表格（简单支持）
-			html = html.replace(/^\|(.+)\|$/gm, function(match) {
-				const cells = match.split('|').filter(cell => cell.trim());
-				if (cells.length > 1) {
-					const row = cells.map(cell => `<td>${cell.trim()}</td>`).join('');
-					return `<tr>${row}</tr>`;
-				}
-				return match;
-			});
-			
-			// 换行处理
-			html = html.replace(/\n\n/g, '</p><p>');
-			html = html.replace(/\n/g, '<br>');
-			
-			// 包裹段落
-			if (!html.startsWith('<')) {
-				html = `<p>${html}</p>`;
-			}
-			
-			return html;
-		}
+            // 设置缓存数据
+            setCache(key, value) {
+                try {
+                    const cacheData = {
+                        value: value,
+                        timestamp: Date.now()
+                    };
+                    localStorage.setItem(key, JSON.stringify(cacheData));
+                } catch (error) {
+                    console.error('缓存设置错误:', error);
+                    // 如果存储失败，可能是存储空间不足，尝试清理旧缓存
+                    this.clearOldCache();
+                    try {
+                        const cacheData = {
+                            value: value,
+                            timestamp: Date.now()
+                        };
+                        localStorage.setItem(key, JSON.stringify(cacheData));
+                    } catch (e) {
+                        console.error('再次缓存失败:', e);
+                    }
+                }
+            },
 
-		// 获取GitHub Issues
-		async function fetchIssues() {
-			const commentsList = document.getElementById('commentsList');
-			const commentsLoading = document.getElementById('commentsLoading');
-			
-			commentsList.style.display = 'none';
-			commentsLoading.style.display = 'block';
-			
-			try {
-				const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/issues?labels=${GITHUB_CONFIG.issueLabel}&state=all&sort=created&direction=desc&per_page=10`;
-				
-				const response = await fetch(apiUrl, {
-					headers: {
-						'Accept': 'application/vnd.github.v3+json'
-					}
-				});
-				
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				
-				const issues = await response.json();
-				cachedIssues = issues;
-				
-				commentsLoading.style.display = 'none';
-				commentsList.style.display = 'flex';
-				
-				if (issues.length === 0) {
-					commentsList.innerHTML = '<p class="comments-empty">暂无评论，快来发表第一条评论吧！</p>';
-					return;
-				}
-				
-				commentsList.innerHTML = '';
-				
-				// 为每个issue获取评论
-				const issuesWithComments = await Promise.all(
-					issues.map(async (issue) => {
-						try {
-							const commentsResponse = await fetch(issue.comments_url, {
-								headers: {
-									'Accept': 'application/vnd.github.v3+json'
-								}
-							});
-							
-							if (commentsResponse.ok) {
-								const comments = await commentsResponse.json();
-								issueCommentsMap.set(issue.number, comments);
-								issue.comments = comments;
-								issue.commentsCount = comments.length;
-							} else {
-								issue.comments = [];
-								issue.commentsCount = 0;
-							}
-						} catch (error) {
-							console.error(`Failed to fetch comments for issue #${issue.number}:`, error);
-							issue.comments = [];
-							issue.commentsCount = 0;
-						}
-						
-						return issue;
-					})
-				);
-				
-				issuesWithComments.forEach(issue => {
-					renderIssue(issue, true);
-				});
-				
-			} catch (error) {
-				console.error('加载评论失败:', error);
-				commentsLoading.style.display = 'none';
-				commentsList.style.display = 'block';
-				commentsList.innerHTML = `
-					<p class="comments-empty" style="color: #ff6b6b;">
-						<i class="fas fa-exclamation-triangle"></i> 加载评论失败，请检查你的网络连接或稍后重试
-						<br><small style="margin-top: 10px; display: block;">错误信息: ${error.message}</small>
-					</p>
-				`;
-			}
-		}
+            // 清除旧缓存
+            clearOldCache() {
+                const now = Date.now();
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && (key.startsWith('github_') || key.includes('_cache'))) {
+                        try {
+                            const cached = localStorage.getItem(key);
+                            if (cached) {
+                                const data = JSON.parse(cached);
+                                if (now - data.timestamp > CACHE_CONFIG.MAX_CACHE_AGE) {
+                                    localStorage.removeItem(key);
+                                }
+                            }
+                        } catch (error) {
+                            localStorage.removeItem(key);
+                        }
+                    }
+                }
+            },
 
-		// 渲染Issue
-		function renderIssue(issue, isMain = false) {
-			const commentsList = document.getElementById('commentsList');
-			
-			const commentItem = document.createElement('div');
-			commentItem.className = `comment-item ${isMain ? '' : 'comment-reply'}`;
-			commentItem.id = `comment-${issue.number}`;
-			
-			const authorName = issue.user.login;
-			const authorAvatar = issue.user.avatar_url;
-			const authorUrl = issue.user.html_url;
-			const createdAt = formatDate(issue.created_at);
-			const state = issue.state;
-			const body = markdownToHtml(issue.body || '');
-			const issueUrl = issue.html_url;
-			const issueNumber = issue.number;
-			const labels = issue.labels || [];
-			const commentsCount = issue.commentsCount || 0;
-			
-			commentItem.innerHTML = `
-				<div class="comment-header">
-					<div class="comment-author">
-						<img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-						<div class="comment-author-avatar" style="display: none;">
-							${authorName.charAt(0).toUpperCase()}
-						</div>
-						<div class="comment-author-info">
-							<div class="comment-author-name">
-								<a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
-								${!isMain ? '<span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>' : ''}
-							</div>
-							<div class="comment-date">${createdAt}</div>
-						</div>
-					</div>
-					<span class="comment-badge ${state}">
-						<i class="fas fa-${state === 'open' ? 'check-circle' : 'circle'}"></i>
-						${state === 'open' ? '开放中' : '已关闭'}
-					</span>
-				</div>
-				<div class="comment-body">${body || '<p>（无内容）</p>'}</div>
-				<div class="comment-footer">
-					<div class="comment-actions">
-						<a href="${issueUrl}" target="_blank" rel="noopener" class="comment-link">
-							<i class="fab fa-github"></i> 在 GitHub 上查看 #${issueNumber}
-						</a>
-						${isMain ? `
-							<button class="reply-button" data-issue-number="${issueNumber}">
-								<i class="fas fa-reply"></i> 回复
-							</button>
-						` : ''}
-					</div>
-					${isMain && commentsCount > 0 ? `
-						<div class="reply-count">
-							<i class="fas fa-comments"></i> ${commentsCount} 条回复
-						</div>
-					` : ''}
-					${labels.length > 0 ? `
-						<div class="comment-labels">
-							${labels.map(label => `
-								<span class="comment-label">${label.name}</span>
-							`).join('')}
-						</div>
-					` : ''}
-				</div>
-			`;
-			
-			if (isMain) {
-				commentsList.appendChild(commentItem);
-				
-				// 添加回复表单
-				const replyForm = createReplyForm(issue.number);
-				commentItem.appendChild(replyForm);
-				
-				// 显示回复评论
-				if (issue.comments && issue.comments.length > 0) {
-					const repliesContainer = document.createElement('div');
-					repliesContainer.className = 'comment-replies';
-					repliesContainer.id = `replies-${issue.number}`;
-					
-					// 显示前3条回复
-					const initialReplies = issue.comments.slice(0, 3);
-					const remainingReplies = issue.comments.slice(3);
-					
-					initialReplies.forEach(comment => {
-						renderCommentReply(comment, repliesContainer);
-					});
-					
-					// 如果有更多回复，添加"加载更多"按钮
-					if (remainingReplies.length > 0) {
-						const loadMoreBtn = document.createElement('button');
-						loadMoreBtn.className = 'load-more-replies';
-						loadMoreBtn.innerHTML = `<i class="fas fa-chevron-down"></i> 显示另外 ${remainingReplies.length} 条回复`;
-						loadMoreBtn.onclick = () => {
-							remainingReplies.forEach(comment => {
-								renderCommentReply(comment, repliesContainer);
-							});
-							loadMoreBtn.remove();
-						};
-						repliesContainer.appendChild(loadMoreBtn);
-					}
-					
-					commentItem.appendChild(repliesContainer);
-				}
-			}
-			
-			return commentItem;
-		}
+            // 检查是否需要刷新缓存
+            shouldRefreshCache(cacheKey) {
+                try {
+                    const cached = localStorage.getItem(cacheKey);
+                    if (!cached) return true;
 
-		// 渲染回复评论
-		function renderCommentReply(comment, container) {
-			const replyItem = document.createElement('div');
-			replyItem.className = 'comment-item comment-reply';
-			
-			const authorName = comment.user.login;
-			const authorAvatar = comment.user.avatar_url;
-			const authorUrl = comment.user.html_url;
-			const createdAt = formatDate(comment.created_at);
-			const body = markdownToHtml(comment.body || '');
-			
-			replyItem.innerHTML = `
-				<div class="comment-header">
-					<div class="comment-author">
-						<img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-						<div class="comment-author-avatar" style="display: none;">
-							${authorName.charAt(0).toUpperCase()}
-						</div>
-						<div class="comment-author-info">
-							<div class="comment-author-name">
-								<a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
-								<span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>
-							</div>
-							<div class="comment-date">${createdAt}</div>
-						</div>
-					</div>
-				</div>
-				<div class="comment-body">${body || '<p>（无内容）</p>'}</div>
-			`;
-			
-			container.appendChild(replyItem);
-		}
+                    const data = JSON.parse(cached);
+                    const age = Date.now() - data.timestamp;
+                    
+                    // 如果缓存超过5分钟，建议刷新
+                    return age > CACHE_CONFIG.CACHE_DURATION;
+                } catch (error) {
+                    return true;
+                }
+            },
 
-		// 创建回复表单
-		function createReplyForm(issueNumber) {
-        const form = document.createElement('div');
-        form.className = 'reply-form';
-        form.id = `reply-form-${issueNumber}`;
-        
-        form.innerHTML = `
-            <div class="reply-form-header">
-                <h4>回复此问题</h4>
-                <p>你的回复将被发布到 GitHub Issues（测试中，当前必须用户前往Github以回复）</p>
-            </div>
-            <div class="markdown-toolbar" id="toolbar-${issueNumber}">
-                <button type="button" class="markdown-button" data-action="bold" title="粗体">
-                    <i class="fas fa-bold"></i> 粗体
-                </button>
-                <button type="button" class="markdown-button" data-action="italic" title="斜体">
-                    <i class="fas fa-italic"></i> 斜体
-                </button>
-                <button type="button" class="markdown-button" data-action="code" title="代码">
-                    <i class="fas fa-code"></i> 代码
-                </button>
-                <button type="button" class="markdown-button" data-action="link" title="链接">
-                    <i class="fas fa-link"></i> 链接
-                </button>
-                <button type="button" class="markdown-button" data-action="preview" title="预览">
-                    <i class="fas fa-eye"></i> 预览
-                </button>
-            </div>
-            <textarea id="reply-text-${issueNumber}" placeholder="输入你的回复内容... (支持 Markdown 语法)" rows="4"></textarea>
-            <div class="markdown-preview" id="preview-${issueNumber}"></div>
-            <div class="markdown-help">
-                <strong>Markdown 语法提示：</strong> **粗体** *斜体* \`代码\` [链接文本](URL) > 引用
-            </div>
-            <div class="reply-form-actions">
-                <button type="button" class="reply-cancel" data-issue-number="${issueNumber}">取消</button>
-                <button type="button" class="reply-submit" data-issue-number="${issueNumber}">提交回复</button>
-            </div>
-        `;
-        
-        // 设置textarea的样式
-        const textarea = form.querySelector(`#reply-text-${issueNumber}`);
-        if (textarea) {
-            textarea.style.width = '100%';
-            textarea.style.padding = '12px';
-            textarea.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-            textarea.style.borderRadius = '6px';
-            textarea.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-            textarea.style.color = 'white';
-            textarea.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-            textarea.style.boxSizing = 'border-box';
+            // 清除所有缓存
+            clearAllCache() {
+                const keysToRemove = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key && (key.startsWith('github_') || key.includes('_cache'))) {
+                        keysToRemove.push(key);
+                    }
+                }
+                
+                keysToRemove.forEach(key => {
+                    localStorage.removeItem(key);
+                });
+                
+                console.log(`已清除 ${keysToRemove.length} 个缓存项`);
+            }
+        };
+
+        // 缓存评论数据
+        let cachedIssues = [];
+        let issueCommentsMap = new Map();
+
+        // 格式化日期
+        function formatDate(dateString) {
+            if (!dateString) return '未知时间';
+            
+            // 如果是Date对象
+            const date = dateString instanceof Date ? dateString : new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            if (minutes < 1) return '刚刚';
+            if (minutes < 60) return `${minutes}分钟前`;
+            if (hours < 24) return `${hours}小时前`;
+            if (days < 7) return `${days}天前`;
+            
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
         }
-        
-        return form;
-    }
 
-		// 创建新Issue
-		function createNewIssue() {
-			const issueTitle = encodeURIComponent('网站问题反馈');
-			const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
-			const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
-			
-			const url = `${GITHUB_CONFIG.newIssueUrl}?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
-			window.open(url, '_blank');
-		}
+        // 详细的格式化日期（用于缓存状态）
+        function formatDateDetailed(date) {
+            if (!(date instanceof Date)) {
+                date = new Date(date);
+            }
+            
+            const now = new Date();
+            const diff = now - date;
+            
+            const minutes = Math.floor(diff / 60000);
+            const hours = Math.floor(diff / 3600000);
+            const days = Math.floor(diff / 86400000);
+            
+            if (minutes < 1) return '刚刚';
+            if (minutes < 60) return `${minutes}分钟前`;
+            if (hours < 24) return `${hours}小时前`;
+            if (days < 7) return `${days}天前`;
+            
+            return date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
 
-		// Markdown工具栏按钮
-		function handleMarkdownToolbar(textareaId, action) {
-			const textarea = document.getElementById(textareaId);
-			const start = textarea.selectionStart;
-			const end = textarea.selectionEnd;
-			const selectedText = textarea.value.substring(start, end);
-			let newText = '';
-			let cursorPos = 0;
-			
-			switch(action) {
-				case 'bold':
-					newText = `**${selectedText}**`;
-					cursorPos = start + 2;
-					break;
-				case 'italic':
-					newText = `*${selectedText}*`;
-					cursorPos = start + 1;
-					break;
-				case 'code':
-					newText = selectedText.includes('\n') ? `\`\`\`\n${selectedText}\n\`\`\`` : `\`${selectedText}\``;
-					cursorPos = start + (selectedText.includes('\n') ? 4 : 1);
-					break;
-				case 'link':
-					newText = `[${selectedText || '链接文本'}](https://example.com)`;
-					cursorPos = start + (selectedText ? selectedText.length + 3 : 5);
-					break;
-				case 'preview':
-					const previewDiv = document.getElementById(`preview-${textareaId.split('-')[2]}`);
-					previewDiv.innerHTML = markdownToHtml(textarea.value);
-					previewDiv.classList.toggle('active');
-					return;
-			}
-			
-			textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
-			textarea.focus();
-			textarea.setSelectionRange(cursorPos, cursorPos + (selectedText.length || 0));
-		}
+        // 增强的Markdown转换函数
+        function markdownToHtml(text) {
+            if (!text) return '';
+            
+            let html = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+            
+            // 代码块（多行）
+            html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="code-block"><code class="language-$1">$2</code></pre>');
+            
+            // 行内代码
+            html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+            
+            // 标题
+            html = html.replace(/###### (.*?)(?=\n|$)/g, '<h6>$1</h6>');
+            html = html.replace(/##### (.*?)(?=\n|$)/g, '<h5>$1</h5>');
+            html = html.replace(/#### (.*?)(?=\n|$)/g, '<h4>$1</h4>');
+            html = html.replace(/### (.*?)(?=\n|$)/g, '<h3>$1</h3>');
+            html = html.replace(/## (.*?)(?=\n|$)/g, '<h2>$1</h2>');
+            html = html.replace(/# (.*?)(?=\n|$)/g, '<h1>$1</h1>');
+            
+            // 粗体（**或__）
+            html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            html = html.replace(/__(.*?)__/g, '<strong>$1</strong>');
+            
+            // 斜体（*或_）
+            html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            html = html.replace(/_(.*?)_/g, '<em>$1</em>');
+            
+            // 删除线
+            html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+            
+            // 引用
+            html = html.replace(/^> (.*)$/gm, '<blockquote>$1</blockquote>');
+            
+            // 无序列表
+            html = html.replace(/^\s*[-*+] (.*)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+            
+            // 有序列表
+            html = html.replace(/^\s*\d+\. (.*)$/gm, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>');
+            
+            // 链接
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="comment-link">$1</a>');
+            
+            // 图片
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="comment-image" style="max-width: 100%; border-radius: 4px;">');
+            
+            // 水平线
+            html = html.replace(/^---$/gm, '<hr>');
+            
+            // 表格（简单支持）
+            html = html.replace(/^\|(.+)\|$/gm, function(match) {
+                const cells = match.split('|').filter(cell => cell.trim());
+                if (cells.length > 1) {
+                    const row = cells.map(cell => `<td>${cell.trim()}</td>`).join('');
+                    return `<tr>${row}</tr>`;
+                }
+                return match;
+            });
+            
+            // 换行处理
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = html.replace(/\n/g, '<br>');
+            
+            // 包裹段落
+            if (!html.startsWith('<')) {
+                html = `<p>${html}</p>`;
+            }
+            
+            return html;
+        }
 
-		// 提交回复
-		async function submitReply(issueNumber) {
-			const textarea = document.getElementById(`reply-text-${issueNumber}`);
-			const replyContent = textarea.value.trim();
-			
-			if (!replyContent) {
-				alert('请输入回复内容');
-				return;
-			}
-			
-			const issue = cachedIssues.find(issue => issue.number === issueNumber);
-			if (!issue) {
-				alert('找不到对应的问题');
-				return;
-			}
-			
-			const replyUrl = `${issue.html_url}#new_comment_field`;
-			
-			// 打开GitHub回复页面
-			window.open(replyUrl, '_blank');
-			
-			textarea.value = '';
-			
-			const form = document.getElementById(`reply-form-${issueNumber}`);
-			form.classList.remove('active');
-			
-			alert('请在GitHub页面提交你的回复。页面已在新标签页打开。');
-		}
+        // 获取GitHub Issues（带缓存）
+        async function fetchIssues(forceRefresh = false) {
+            const commentsList = document.getElementById('commentsList');
+            const commentsLoading = document.getElementById('commentsLoading');
+            
+            commentsList.style.display = 'none';
+            commentsLoading.style.display = 'block';
+            
+            // 检查缓存
+            const cacheKey = CACHE_CONFIG.ISSUES_CACHE_KEY;
+            if (!forceRefresh) {
+                const cachedData = cacheManager.getCache(cacheKey);
+                if (cachedData) {
+                    console.log('使用缓存的issues数据');
+                    cachedIssues = cachedData.issues || [];
+                    issueCommentsMap = new Map(cachedData.commentsMap || []);
+                    
+                    // 延迟显示以保持UI流畅
+                    setTimeout(() => {
+                        commentsLoading.style.display = 'none';
+                        commentsList.style.display = 'flex';
+                        renderCachedIssues();
+                    }, 300);
+                    return;
+                }
+            }
+            
+            try {
+                console.log('从GitHub API获取issues数据');
+                const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/issues?labels=${GITHUB_CONFIG.issueLabel}&state=all&sort=created&direction=desc&per_page=10`;
+                
+                const response = await fetch(apiUrl, {
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const issues = await response.json();
+                cachedIssues = issues;
+                
+                // 为每个issue获取评论（带缓存）
+                const issuesWithComments = await Promise.all(
+                    issues.map(async (issue) => {
+                        try {
+                            const commentsCacheKey = `${CACHE_CONFIG.COMMENTS_CACHE_KEY_PREFIX}${issue.number}`;
+                            
+                            // 检查评论缓存
+                            if (!forceRefresh) {
+                                const cachedComments = cacheManager.getCache(commentsCacheKey);
+                                if (cachedComments) {
+                                    issue.comments = cachedComments;
+                                    issue.commentsCount = cachedComments.length;
+                                    issueCommentsMap.set(issue.number, cachedComments);
+                                    return issue;
+                                }
+                            }
+                            
+                            // 从API获取评论
+                            const commentsResponse = await fetch(issue.comments_url, {
+                                headers: {
+                                    'Accept': 'application/vnd.github.v3+json'
+                                }
+                            });
+                            
+                            if (commentsResponse.ok) {
+                                const comments = await commentsResponse.json();
+                                issue.comments = comments;
+                                issue.commentsCount = comments.length;
+                                issueCommentsMap.set(issue.number, comments);
+                                
+                                // 缓存评论
+                                cacheManager.setCache(commentsCacheKey, comments);
+                            } else {
+                                issue.comments = [];
+                                issue.commentsCount = 0;
+                            }
+                        } catch (error) {
+                            console.error(`Failed to fetch comments for issue #${issue.number}:`, error);
+                            issue.comments = [];
+                            issue.commentsCount = 0;
+                        }
+                        
+                        return issue;
+                    })
+                );
+                
+                // 缓存整个issues数据
+                cacheManager.setCache(cacheKey, {
+                    issues: issuesWithComments,
+                    commentsMap: Array.from(issueCommentsMap.entries()),
+                    timestamp: Date.now()
+                });
+                
+                commentsLoading.style.display = 'none';
+                commentsList.style.display = 'flex';
+                
+                if (issuesWithComments.length === 0) {
+                    commentsList.innerHTML = '<p class="comments-empty">暂无评论，快来发表第一条评论吧！</p>';
+                    return;
+                }
+                
+                commentsList.innerHTML = '';
+                issuesWithComments.forEach(issue => {
+                    renderIssue(issue, true);
+                });
+                
+            } catch (error) {
+                console.error('加载评论失败:', error);
+                
+                // API失败时尝试使用缓存
+                const cachedData = cacheManager.getCache(cacheKey);
+                if (cachedData) {
+                    console.log('API请求失败，使用缓存的issues数据');
+                    cachedIssues = cachedData.issues || [];
+                    issueCommentsMap = new Map(cachedData.commentsMap || []);
+                    
+                    commentsLoading.style.display = 'none';
+                    commentsList.style.display = 'flex';
+                    renderCachedIssues();
+                    return;
+                }
+                
+                // 没有缓存，显示错误
+                commentsLoading.style.display = 'none';
+                commentsList.style.display = 'block';
+                
+                let errorMessage = '';
+                if (error.message.includes('403')) {
+                    errorMessage = `
+                        <p class="comments-empty" style="color: #ff6b6b;">
+                            <i class="fas fa-exclamation-triangle"></i> GitHub API 请求次数被受限
+                            <br><small style="margin-top: 10px; display: block;">
+                                可能的原因：
+                                <ol style="text-align: left; margin: 10px 0;">
+                                    <li>API 请求频率限制（每小时 60 次）</li>
+                                    <li>需要 GitHub Token 认证</li>
+                                    <li>网络或 CORS 限制</li>
+                                </ol>
+                                解决方案：
+                                <ol style="text-align: left; margin: 10px 0;">
+                                    <li>稍后重试/刷新</li>
+                                    <li>直接访问 <a href="https://github.com/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/issues" target="_blank">GitHub Issues</a></li>
+                                    <li>联系管理员添加 GitHub Token</li>
+                                </ol>
+                            </small>
+                        </p>
+                    `;
+                } else {
+                    errorMessage = `
+                        <p class="comments-empty" style="color: #ff6b6b;">
+                            <i class="fas fa-exclamation-triangle"></i> 加载评论失败
+                            <br><small style="margin-top: 10px; display: block;">
+                                错误信息: ${error.message}
+                                <br>请检查网络连接或稍后重试
+                            </small>
+                        </p>
+                    `;
+                }
+                
+                commentsList.innerHTML = errorMessage;
+            }
+        }
 
-		// 初始化评论系统
-		document.addEventListener('DOMContentLoaded', function() {
-			const createIssueBtn = document.getElementById('createIssueBtn');
-			const refreshCommentsBtn = document.getElementById('refreshCommentsBtn');
-			
-			if (createIssueBtn) {
-				createIssueBtn.addEventListener('click', createNewIssue);
-			}
-			
-			if (refreshCommentsBtn) {
-				refreshCommentsBtn.addEventListener('click', fetchIssues);
-			}
-			
-			// 自动加载评论
-			if (GITHUB_CONFIG.owner && GITHUB_CONFIG.repo && GITHUB_CONFIG.owner !== 'your-username' && GITHUB_CONFIG.repo !== 'your-repo') {
-				fetchIssues();
-			} else {
-				const commentsList = document.getElementById('commentsList');
-				if (commentsList) {
-					commentsList.innerHTML = `
-						<p class="comments-empty" style="color: #ffc107;">
-							<i class="fas fa-info-circle"></i> 评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
-						</p>
-					`;
-				}
-			}
-			
-			// 事件委托处理回复按钮和表单
-			document.addEventListener('click', function(event) {
-				// 回复按钮
-				if (event.target.closest('.reply-button')) {
-					const issueNumber = parseInt(event.target.closest('.reply-button').dataset.issueNumber);
-					const form = document.getElementById(`reply-form-${issueNumber}`);
-					if (form) {
-						form.classList.toggle('active');
-						if (form.classList.contains('active')) {
-							const textarea = document.getElementById(`reply-text-${issueNumber}`);
-							textarea.focus();
-						}
-					}
-				}
-				
-				// 取消回复按钮
-				if (event.target.closest('.reply-cancel')) {
-					const issueNumber = parseInt(event.target.closest('.reply-cancel').dataset.issueNumber);
-					const form = document.getElementById(`reply-form-${issueNumber}`);
-					if (form) {
-						form.classList.remove('active');
-					}
-				}
-				
-				// 提交回复按钮
-				if (event.target.closest('.reply-submit')) {
-					const issueNumber = parseInt(event.target.closest('.reply-submit').dataset.issueNumber);
-					submitReply(issueNumber);
-				}
-				
-				// Markdown工具栏按钮
-				if (event.target.closest('.markdown-button')) {
-					const button = event.target.closest('.markdown-button');
-					const action = button.dataset.action;
-					const toolbar = button.closest('.markdown-toolbar');
-					const toolbarId = toolbar.id;
-					const issueNumber = toolbarId.split('-')[1];
-					handleMarkdownToolbar(`reply-text-${issueNumber}`, action);
-				}
-			});
-			
-			// 实时Markdown预览
-			document.addEventListener('input', function(event) {
-				if (event.target.id && event.target.id.startsWith('reply-text-')) {
-					const issueNumber = event.target.id.split('-')[2];
-					const previewDiv = document.getElementById(`preview-${issueNumber}`);
-					if (previewDiv && previewDiv.classList.contains('active')) {
-						previewDiv.innerHTML = markdownToHtml(event.target.value);
-					}
-				}
-			});
-		});
+        // 渲染缓存的issues
+        function renderCachedIssues() {
+            const commentsList = document.getElementById('commentsList');
+            
+            if (cachedIssues.length === 0) {
+                commentsList.innerHTML = '<p class="comments-empty">暂无评论，快来发表第一条评论吧！</p>';
+                return;
+            }
+            
+            commentsList.innerHTML = '';
+            cachedIssues.forEach(issue => {
+                // 确保issue有comments数据
+                if (!issue.comments && issueCommentsMap.has(issue.number)) {
+                    issue.comments = issueCommentsMap.get(issue.number);
+                    issue.commentsCount = issue.comments.length;
+                }
+                renderIssue(issue, true);
+            });
+            
+            // 添加缓存状态提示
+            const cacheStatus = document.createElement('div');
+            cacheStatus.className = 'cache-status';
+            cacheStatus.style.cssText = `
+                text-align: center;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: rgba(0, 120, 212, 0.1);
+                border-radius: 6px;
+                font-size: 12px;
+                color: #60a5fa;
+            `;
+            cacheStatus.innerHTML = `
+                <i class="fas fa-database"></i> 显示缓存的评论数据（最后更新：${formatDateDetailed(new Date())}）
+            `;
+            commentsList.appendChild(cacheStatus);
+        }
+
+        // 渲染Issue
+        function renderIssue(issue, isMain = false) {
+            const commentsList = document.getElementById('commentsList');
+            
+            const commentItem = document.createElement('div');
+            commentItem.className = `comment-item ${isMain ? '' : 'comment-reply'}`;
+            commentItem.id = `comment-${issue.number}`;
+            
+            const authorName = issue.user.login;
+            const authorAvatar = issue.user.avatar_url;
+            const authorUrl = issue.user.html_url;
+            const createdAt = formatDate(issue.created_at);
+            const state = issue.state;
+            const body = markdownToHtml(issue.body || '');
+            const issueUrl = issue.html_url;
+            const issueNumber = issue.number;
+            const labels = issue.labels || [];
+            const commentsCount = issue.commentsCount || 0;
+            
+            commentItem.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-author">
+                        <img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="comment-author-avatar" style="display: none;">
+                            ${authorName.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="comment-author-info">
+                            <div class="comment-author-name">
+                                <a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
+                                ${!isMain ? '<span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>' : ''}
+                            </div>
+                            <div class="comment-date">${createdAt}</div>
+                        </div>
+                    </div>
+                    <span class="comment-badge ${state}">
+                        <i class="fas fa-${state === 'open' ? 'check-circle' : 'circle'}"></i>
+                        ${state === 'open' ? '开放中' : '已关闭'}
+                    </span>
+                </div>
+                <div class="comment-body">${body || '<p>（无内容）</p>'}</div>
+                <div class="comment-footer">
+                    <div class="comment-actions">
+                        <a href="${issueUrl}" target="_blank" rel="noopener" class="comment-link">
+                            <i class="fab fa-github"></i> 在 GitHub 上查看 #${issueNumber}
+                        </a>
+                        ${isMain ? `
+                            <button class="reply-button" data-issue-number="${issueNumber}">
+                                <i class="fas fa-reply"></i> 回复
+                            </button>
+                        ` : ''}
+                    </div>
+                    ${isMain && commentsCount > 0 ? `
+                        <div class="reply-count">
+                            <i class="fas fa-comments"></i> ${commentsCount} 条回复
+                        </div>
+                    ` : ''}
+                    ${labels.length > 0 ? `
+                        <div class="comment-labels">
+                            ${labels.map(label => `
+                                <span class="comment-label">${label.name}</span>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            if (isMain) {
+                commentsList.appendChild(commentItem);
+                
+                // 添加回复表单
+                const replyForm = createReplyForm(issue.number);
+                commentItem.appendChild(replyForm);
+                
+                // 显示回复评论
+                if (issue.comments && issue.comments.length > 0) {
+                    const repliesContainer = document.createElement('div');
+                    repliesContainer.className = 'comment-replies';
+                    repliesContainer.id = `replies-${issue.number}`;
+                    
+                    // 显示前3条回复
+                    const initialReplies = issue.comments.slice(0, 3);
+                    const remainingReplies = issue.comments.slice(3);
+                    
+                    initialReplies.forEach(comment => {
+                        renderCommentReply(comment, repliesContainer);
+                    });
+                    
+                    // 如果有更多回复，添加"加载更多"按钮
+                    if (remainingReplies.length > 0) {
+                        const loadMoreBtn = document.createElement('button');
+                        loadMoreBtn.className = 'load-more-replies';
+                        loadMoreBtn.innerHTML = `<i class="fas fa-chevron-down"></i> 显示另外 ${remainingReplies.length} 条回复`;
+                        loadMoreBtn.onclick = () => {
+                            remainingReplies.forEach(comment => {
+                                renderCommentReply(comment, repliesContainer);
+                            });
+                            loadMoreBtn.remove();
+                        };
+                        repliesContainer.appendChild(loadMoreBtn);
+                    }
+                    
+                    commentItem.appendChild(repliesContainer);
+                }
+            }
+            
+            return commentItem;
+        }
+
+        // 渲染回复评论
+        function renderCommentReply(comment, container) {
+            const replyItem = document.createElement('div');
+            replyItem.className = 'comment-item comment-reply';
+            
+            const authorName = comment.user.login;
+            const authorAvatar = comment.user.avatar_url;
+            const authorUrl = comment.user.html_url;
+            const createdAt = formatDate(comment.created_at);
+            const body = markdownToHtml(comment.body || '');
+            
+            replyItem.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-author">
+                        <img src="${authorAvatar}" alt="${authorName}" class="comment-author-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="comment-author-avatar" style="display: none;">
+                            ${authorName.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="comment-author-info">
+                            <div class="comment-author-name">
+                                <a href="${authorUrl}" target="_blank" rel="noopener">${authorName}</a>
+                                <span class="reply-indicator"><i class="fas fa-reply"></i> 回复</span>
+                            </div>
+                            <div class="comment-date">${createdAt}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-body">${body || '<p>（无内容）</p>'}</div>
+            `;
+            
+            container.appendChild(replyItem);
+        }
+
+        // 创建回复表单
+        function createReplyForm(issueNumber) {
+            const form = document.createElement('div');
+            form.className = 'reply-form';
+            form.id = `reply-form-${issueNumber}`;
+            
+            form.innerHTML = `
+                <div class="reply-form-header">
+                    <h4>回复此问题</h4>
+                    <p>你的回复将被发布到 GitHub Issues（测试中，当前必须用户前往Github以回复）</p>
+                </div>
+                <div class="markdown-toolbar" id="toolbar-${issueNumber}">
+                    <button type="button" class="markdown-button" data-action="bold" title="粗体">
+                        <i class="fas fa-bold"></i> 粗体
+                    </button>
+                    <button type="button" class="markdown-button" data-action="italic" title="斜体">
+                        <i class="fas fa-italic"></i> 斜体
+                    </button>
+                    <button type="button" class="markdown-button" data-action="code" title="代码">
+                        <i class="fas fa-code"></i> 代码
+                    </button>
+                    <button type="button" class="markdown-button" data-action="link" title="链接">
+                        <i class="fas fa-link"></i> 链接
+                    </button>
+                    <button type="button" class="markdown-button" data-action="preview" title="预览">
+                        <i class="fas fa-eye"></i> 预览
+                    </button>
+                </div>
+                <textarea id="reply-text-${issueNumber}" placeholder="输入你的回复内容... (支持 Markdown 语法)" rows="4"></textarea>
+                <div class="markdown-preview" id="preview-${issueNumber}"></div>
+                <div class="markdown-help">
+                    <strong>Markdown 语法提示：</strong> **粗体** *斜体* \`代码\` [链接文本](URL) > 引用
+                </div>
+                <div class="reply-form-actions">
+                    <button type="button" class="reply-cancel" data-issue-number="${issueNumber}">取消</button>
+                    <button type="button" class="reply-submit" data-issue-number="${issueNumber}">提交回复</button>
+                </div>
+            `;
+            
+            // 设置textarea的样式
+            const textarea = form.querySelector(`#reply-text-${issueNumber}`);
+            if (textarea) {
+                textarea.style.width = '100%';
+                textarea.style.padding = '12px';
+                textarea.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                textarea.style.borderRadius = '6px';
+                textarea.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+                textarea.style.color = 'white';
+                textarea.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+                textarea.style.boxSizing = 'border-box';
+            }
+            
+            return form;
+        }
+
+        // 创建新Issue
+        function createNewIssue() {
+            const issueTitle = encodeURIComponent('网站问题反馈');
+            const issueBody = encodeURIComponent(`## 评论内容\n\n请在此处输入您的评论或反馈...\n\n---\n\n*文字由网站评论系统自动创建*`);
+            const labels = encodeURIComponent(GITHUB_CONFIG.issueLabel);
+            
+            const url = `${GITHUB_CONFIG.newIssueUrl}?title=${issueTitle}&body=${issueBody}&labels=${labels}`;
+            window.open(url, '_blank');
+        }
+
+        // Markdown工具栏按钮
+        function handleMarkdownToolbar(textareaId, action) {
+            const textarea = document.getElementById(textareaId);
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+            let newText = '';
+            let cursorPos = 0;
+            
+            switch(action) {
+                case 'bold':
+                    newText = `**${selectedText}**`;
+                    cursorPos = start + 2;
+                    break;
+                case 'italic':
+                    newText = `*${selectedText}*`;
+                    cursorPos = start + 1;
+                    break;
+                case 'code':
+                    newText = selectedText.includes('\n') ? `\`\`\`\n${selectedText}\n\`\`\`` : `\`${selectedText}\``;
+                    cursorPos = start + (selectedText.includes('\n') ? 4 : 1);
+                    break;
+                case 'link':
+                    newText = `[${selectedText || '链接文本'}](https://example.com)`;
+                    cursorPos = start + (selectedText ? selectedText.length + 3 : 5);
+                    break;
+                case 'preview':
+                    const previewDiv = document.getElementById(`preview-${textareaId.split('-')[2]}`);
+                    previewDiv.innerHTML = markdownToHtml(textarea.value);
+                    previewDiv.classList.toggle('active');
+                    return;
+            }
+            
+            textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+            textarea.focus();
+            textarea.setSelectionRange(cursorPos, cursorPos + (selectedText.length || 0));
+        }
+
+        // 提交回复
+        async function submitReply(issueNumber) {
+            const textarea = document.getElementById(`reply-text-${issueNumber}`);
+            const replyContent = textarea.value.trim();
+            
+            if (!replyContent) {
+                alert('请输入回复内容');
+                return;
+            }
+            
+            const issue = cachedIssues.find(issue => issue.number === issueNumber);
+            if (!issue) {
+                alert('找不到对应的问题');
+                return;
+            }
+            
+            const replyUrl = `${issue.html_url}#new_comment_field`;
+            
+            // 打开GitHub回复页面
+            window.open(replyUrl, '_blank');
+            
+            textarea.value = '';
+            
+            const form = document.getElementById(`reply-form-${issueNumber}`);
+            form.classList.remove('active');
+            
+            alert('请在GitHub页面提交你的回复。页面已在新标签页打开。');
+        }
+
+        // 刷新评论（强制从API获取）
+        function refreshComments() {
+            // 添加刷新提示
+            const commentsList = document.getElementById('commentsList');
+            const refreshMsg = document.createElement('div');
+            refreshMsg.className = 'refresh-message';
+            refreshMsg.style.cssText = `
+                text-align: center;
+                padding: 10px;
+                background-color: rgba(255, 193, 7, 0.1);
+                border-radius: 6px;
+                margin-bottom: 20px;
+                font-size: 14px;
+                color: #856404;
+            `;
+            refreshMsg.innerHTML = '<i class="fas fa-sync fa-spin"></i> 正在刷新评论数据...';
+            
+            // 清除现有内容但保留刷新消息
+            commentsList.innerHTML = '';
+            commentsList.appendChild(refreshMsg);
+            
+            // 强制刷新
+            fetchIssues(true);
+        }
+
+        // 初始化评论系统
+        document.addEventListener('DOMContentLoaded', function() {
+            const createIssueBtn = document.getElementById('createIssueBtn');
+            const refreshCommentsBtn = document.getElementById('refreshCommentsBtn');
+            
+            if (createIssueBtn) {
+                createIssueBtn.addEventListener('click', createNewIssue);
+            }
+            
+            if (refreshCommentsBtn) {
+                refreshCommentsBtn.addEventListener('click', function() {
+                    // 添加点击反馈
+                    this.innerHTML = '<i class="fas fa-sync fa-spin"></i> 刷新中...';
+                    this.disabled = true;
+                    
+                    refreshComments();
+                    
+                    // 2秒后恢复按钮状态
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-sync-alt"></i> 刷新评论';
+                        this.disabled = false;
+                    }, 2000);
+                });
+            }
+            
+            // 自动加载评论（优先使用缓存）
+            if (GITHUB_CONFIG.owner && GITHUB_CONFIG.repo && GITHUB_CONFIG.owner !== 'your-username' && GITHUB_CONFIG.repo !== 'your-repo') {
+                // 检查是否需要刷新缓存
+                const cacheKey = CACHE_CONFIG.ISSUES_CACHE_KEY;
+                if (cacheManager.shouldRefreshCache(cacheKey)) {
+                    console.log('缓存需要刷新，从API获取数据');
+                    fetchIssues();
+                } else {
+                    console.log('使用缓存数据');
+                    fetchIssues(false);
+                }
+            } else {
+                const commentsList = document.getElementById('commentsList');
+                if (commentsList) {
+                    commentsList.innerHTML = `
+                        <p class="comments-empty" style="color: #ffc107;">
+                            <i class="fas fa-info-circle"></i> 评论系统未进行配置，请联系管理员设置 GitHub 仓库信息
+                        </p>
+                    `;
+                }
+            }
+            
+            // 事件委托处理回复按钮和表单
+            document.addEventListener('click', function(event) {
+                // 回复按钮
+                if (event.target.closest('.reply-button')) {
+                    const issueNumber = parseInt(event.target.closest('.reply-button').dataset.issueNumber);
+                    const form = document.getElementById(`reply-form-${issueNumber}`);
+                    if (form) {
+                        form.classList.toggle('active');
+                        if (form.classList.contains('active')) {
+                            const textarea = document.getElementById(`reply-text-${issueNumber}`);
+                            textarea.focus();
+                        }
+                    }
+                }
+                
+                // 取消回复按钮
+                if (event.target.closest('.reply-cancel')) {
+                    const issueNumber = parseInt(event.target.closest('.reply-cancel').dataset.issueNumber);
+                    const form = document.getElementById(`reply-form-${issueNumber}`);
+                    if (form) {
+                        form.classList.remove('active');
+                    }
+                }
+                
+                // 提交回复按钮
+                if (event.target.closest('.reply-submit')) {
+                    const issueNumber = parseInt(event.target.closest('.reply-submit').dataset.issueNumber);
+                    submitReply(issueNumber);
+                }
+                
+                // Markdown工具栏按钮
+                if (event.target.closest('.markdown-button')) {
+                    const button = event.target.closest('.markdown-button');
+                    const action = button.dataset.action;
+                    const toolbar = button.closest('.markdown-toolbar');
+                    const toolbarId = toolbar.id;
+                    const issueNumber = toolbarId.split('-')[1];
+                    handleMarkdownToolbar(`reply-text-${issueNumber}`, action);
+                }
+            });
+            
+            // 实时Markdown预览
+            document.addEventListener('input', function(event) {
+                if (event.target.id && event.target.id.startsWith('reply-text-')) {
+                    const issueNumber = event.target.id.split('-')[2];
+                    const previewDiv = document.getElementById(`preview-${issueNumber}`);
+                    if (previewDiv && previewDiv.classList.contains('active')) {
+                        previewDiv.innerHTML = markdownToHtml(event.target.value);
+                    }
+                }
+            });
+            
+            // 添加缓存管理到全局，方便调试
+            window.cacheManager = cacheManager;
+            
+            // 定期清理旧缓存（每10分钟）
+            setInterval(() => {
+                cacheManager.clearOldCache();
+            }, 10 * 60 * 1000);
+        });
     </script>
 <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
-</html>
