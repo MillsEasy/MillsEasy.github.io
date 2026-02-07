@@ -3538,6 +3538,26 @@
 				font-size: 11px;
 			}
 		}
+		
+		.community-buttons {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 15px;
+		}
+
+		@media (max-width: 768px) {
+			.community-buttons {
+				flex-direction: column;
+				align-items: center;
+			}
+			
+			.community-buttons .cta-button {
+				margin-left: 0 !important;
+				width: 100%;
+				max-width: 300px;
+			}
+		}
     </style>
 </head>
 <body>
@@ -3566,7 +3586,6 @@
                             <li><a href="#features">介绍</a></li>
                             <li><a href="#download">下载</a></li>
                             <li><a href="#requirements">发送反馈</a></li>
-                            <li><a href="/vizyn/forum">论坛</a></li>
                         </ul>
                     </nav>
                     <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
@@ -3596,7 +3615,6 @@
 			<li><a href="#features" class="mobile-nav-link">介绍</a></li>
 			<li><a href="#download" class="mobile-nav-link">下载</a></li>
 			<li><a href="#requirements" class="mobile-nav-link">发送反馈</a></li>
-			<li><a href="/vizyn/forum">论坛</a></li>
 		</ul>
 	</div>
     <!-- Hero区域 -->
@@ -3617,11 +3635,12 @@
             <div class="section-title">
                 <h2>—— 介绍 ——</h2>
                 <p>回忆：这个站点最早是为“永远酱定制系统”制作的，但后来我突发灵感才将其改成现在这样的下载站，也为之后的“Easy Cards”设计进行了铺垫。</p>
-                <p>在11月初，我灵感突发，于是决定帮助当时的UP主 @一只低调的道路 做一个宣传“永远酱定制系统”的网站，在AI辅助编写的情况下，我想到了“Easy Cards”的设计，于是，本站的基本设计语言很快便实现了。
+                <p>在25年11月初，我灵感突发，于是决定帮助当时的UP主 @一只低调的道路 做一个宣传“永远酱定制系统”的网站，在AI辅助编写的情况下，我想到了“Easy Cards”的设计，于是，本站的基本设计语言很快便实现了。
                    12月6日，我决定将网站改造为综合性的下载网站，于是开始对代码进行重构。
                    12月11日，我完成了分类设计，对“Easy Cards”设计进行了优化，加入了官方镜像下载。
                    12月13日，我在BiliBili发布了一个宣传帖子，但无人问津。但构建代码的工作仍在进行...
-                   12月14日，我借助Cursor完成了基于Github的反馈/评论系统，对网站的发展很有作用。</p>
+                   12月14日，我借助Cursor完成了基于Github的反馈/评论系统，对网站的发展很有作用。
+				   26年2月，我决定停止维护本网站，但保留了其基本功能。</p>
                 <p>这个网站最终会发生什么呢？走一步看一步吧！最后欢迎您的到来！</p>
             </div>
         </div>
@@ -3747,6 +3766,29 @@
             </div>
         </div>
     </section>
+	
+    <!-- 报告区域 -->
+    <section class="system-requirements">
+        <div class="container">
+            <div class="section-title" style="margin-top: 60px;">
+                <h2>—— 问卷调查 ——</h2>
+                <p>欢迎前往 腾讯问卷 填写问卷，或您也可以直接前往QQ群</p>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 40px;">
+                    <button class="cta-button" 
+                            onclick="window.open('https://qm.qq.com/q/PNZDCINXus', '_blank')">
+                        <i class="fab fa-qq"></i>  加入官方QQ群
+                    </button>
+                    <button class="cta-button" style="background-color: #7289DA;" 
+                            onclick="window.open('https://wj.qq.com/s2/25695267/9b6c/', '_blank')">
+                        <i class="fas fa-file-alt"></i> 前往填写问卷 【腾讯问卷】
+                    </button>
+                </div>
+				<p style="margin-top: 20px; color: var(--gray-color); font-size: 14px;">
+                    <i class="fas fa-info-circle"></i> 提示：您的数据不会被收集，所有调查都是匿名的！
+                </p>
+            </div>
+        </div>
+	</section>
 
 
     <!-- 关于区域 -->
@@ -3755,9 +3797,9 @@
             <!-- 评论系统 -->
             <div class="comments-section" id="commentsSection">
                 <div class="section-title">
-                    <h2>—— 发送反馈 ——</h2>
+                    <h2>—— 评论反馈 ——</h2>
                     <p>基于 GitHub Issues 的反馈系统，您的反馈对我们很重要</p>
-                    <p>您必须注册Github并登录，才能使用本功能</p>
+                    <p>您必须注册Github并登录，才能使用本功能，若您无法使用Github，请加入官方QQ群（上面就是）</p>
                     <p><i class="fas fa-exclamation-triangle"></i>警告：请勿多次刷新评论，这将导致您被限制访问</p>
                 </div>
                 
@@ -3795,15 +3837,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="section-title" style="margin-top: 60px;">
-                <h2>—— 前往讨论QQ群 ——</h2>
-                <p>如果您要发送反馈/建议，请加入QQ群</p>
-                <div style="text-align: center; margin-top: 40px;">
-                    <button class="cta-button" onclick="window.open('https://qm.qq.com/q/PNZDCINXus', '_blank')"><i class="fas fa-external-link-alt"></i> 前往讨论QQ群</button>
-                </div>
-            </div>
-        </div>
     </section>
 
     
@@ -3842,7 +3875,7 @@
             </div>
             <div class="copyright">
                 <p>&copy; 2025 栖渊保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 管理 | 版本：V3.2-260130</p>
+                <p>本网站由 栖渊Kaelen 管理 | 版本：V4.0-260207-bd0001</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -3896,8 +3929,8 @@
         <div class="about-modal-content">
             <span class="about-close-modal">&times;</span>
             <div class="about-modal-title">
-                <h2>—— 关于本站的发展及永远酱系列定制系统 ——</h2>
-                <p>了解网站的发展历程</p>
+                <h2>—— 关于本站的发展 ——</h2>
+                <p>了解永远酱系统</p>
             </div>
             <div class="about-content-grid">
                 <div class="about-content-card">
@@ -3906,7 +3939,7 @@
                 </div>
                 <div class="about-content-card">
                     <h3>团队成长</h3>
-                    <p>永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的四人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……</p>
+                    <p>永远酱系列定制系统发展到今天，参与人员从最开始的两人，走到了今天的六人。系统也已经涵盖Win10，Win11，Server 2022和Server 2025四个系统，未来这个项目也会继续发展下去……</p>
                 </div>
                 <div class="about-content-card">
                     <h3>发展历程</h3>
@@ -3969,6 +4002,13 @@
                     <div class="timeline-content">
                         <h4>本站代码开始构建</h4>
                         <p>在11月初，我发现永远酱定制系统的开发者，于是为他们开发了站点（本站前身）</p>
+                    </div>
+                </div>
+				<div class="timeline-item">
+                    <div class="timeline-date">2026年2月</div>
+                    <div class="timeline-content">
+                        <h4>本站功能基本开发完善</h4>
+                        <p>“虽然不知道接下来会怎么样，总之先这样吧”</p>
                     </div>
                 </div>
             </div>
@@ -4124,10 +4164,9 @@
         const mobileNavContainer = document.getElementById('mobileNavContainer');
         const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        // 确保移动端导航容器初始状态正确
         mobileNavContainer.style.display = 'none';
 
-        // 切换移动端菜单
+
         function toggleMobileMenu() {
             const isActive = mobileNavContainer.style.display === 'flex';
             
@@ -4140,63 +4179,45 @@
 
         // 显示移动端菜单
         function showMobileMenu() {
-            // 显示菜单容器
             mobileNavContainer.style.display = 'flex';
             
-            // 强制重绘
             mobileNavContainer.offsetHeight;
-            
-            // 延迟添加active类以触发动画
+
             setTimeout(() => {
                 mobileNavContainer.classList.add('active');
             }, 10);
             
-            // 更新汉堡按钮图标
             hamburgerIcon.classList.remove('fa-bars');
             hamburgerIcon.classList.add('fa-times');
             
-            // 禁用页面滚动
             document.body.style.overflow = 'hidden';
         }
 
         // 隐藏移动端菜单
         function hideMobileMenu() {
-            // 移除active类以触发关闭动画
             mobileNavContainer.classList.remove('active');
-            
-            // 更新汉堡按钮图标
             hamburgerIcon.classList.remove('fa-times');
             hamburgerIcon.classList.add('fa-bars');
-            
-            // 延迟隐藏菜单容器
             setTimeout(() => {
                 mobileNavContainer.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }, 400); // 匹配CSS过渡时间
+            }, 400);
         }
-
-        // 绑定事件
         hamburgerButton.addEventListener('click', function(e) {
-            e.stopPropagation(); // 阻止事件冒泡
+            e.stopPropagation();
             toggleMobileMenu();
         });
-
-        // 点击菜单链接时隐藏菜单
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                // 如果是外部链接，直接跳转
                 if (this.getAttribute('target') === '_blank') {
                     hideMobileMenu();
                     return;
                 }
-                
-                // 如果是内部锚点链接
                 const targetId = this.getAttribute('href');
                 if (targetId.startsWith('#')) {
                     e.preventDefault();
                     hideMobileMenu();
-                    
-                    // 延迟滚动到目标位置
+                 
                     setTimeout(() => {
                         const targetElement = document.querySelector(targetId);
                         if (targetElement) {
@@ -4207,13 +4228,11 @@
                         }
                     }, 450);
                 } else {
-                    // 内部页面链接
                     hideMobileMenu();
                 }
             });
         });
 
-        // 点击菜单容器外部关闭菜单
         document.addEventListener('click', function(event) {
             const isClickInsideMenu = mobileNavContainer.contains(event.target);
             const isClickOnHamburger = hamburgerButton.contains(event.target);
@@ -4225,14 +4244,12 @@
             }
         });
 
-        // ESC键关闭菜单
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && mobileNavContainer.style.display === 'flex') {
                 hideMobileMenu();
             }
         });
 
-        // 页面滚动时隐藏菜单
         let scrollTimeout;
         window.addEventListener('scroll', function() {
             if (mobileNavContainer.style.display === 'flex') {
@@ -4243,14 +4260,12 @@
             }
         });
 
-        // 窗口大小改变时重置菜单状态
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768) {
                 hideMobileMenu();
             }
         });
 
-        // 确保深色模式下的按钮样式
         function updateHamburgerButtonTheme() {
             if (document.body.classList.contains('dark-mode')) {
                 hamburgerButton.style.background = 'rgba(30, 30, 30, 0.5)';
@@ -4259,7 +4274,6 @@
             }
         }
 
-        // 监听主题变化
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.attributeName === 'class') {
@@ -4267,14 +4281,9 @@
                 }
             });
         });
-
-        // 开始观察body元素的class变化
         observer.observe(document.body, { attributes: true });
 
-        // 初始化按钮主题
         updateHamburgerButtonTheme();
-	
-        // 欢迎界面下载点击事件
         const heroDownloadBtn = document.getElementById('heroDownloadBtn');
         if (heroDownloadBtn) {
             heroDownloadBtn.addEventListener('click', function(e) {
@@ -4293,10 +4302,8 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('loading-animation').classList.add('loaded');
-            }, 500); // 延迟500ms确保所有资源加载完成
+            }, 500);
         });
-        
-        // 悬浮公告栏关闭功能
         const floatingAnnouncement = document.getElementById('floatingAnnouncement');
         const closeAnnouncementBtn = document.getElementById('closeAnnouncement');
 
@@ -4600,7 +4607,6 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // 隐藏自定义模态窗口
         function hideCustomModal() {
             customModal.style.opacity = '0';
             const content = customModal.querySelector('.custom-modal-content');
@@ -4613,17 +4619,13 @@
             }, 300);
         }
 
-        // 绑定关闭事件
         customCloseBtn.addEventListener('click', hideCustomModal);
-
-        // 点击模态窗口背景关闭
         customModal.addEventListener('click', function(event) {
             if (event.target === customModal) {
                 hideCustomModal();
             }
         });
 
-        // ESC键关闭
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && customModal.style.display === 'block') {
                 hideCustomModal();
@@ -4637,7 +4639,6 @@
             });
         });
 
-        // 平滑滚动
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -4687,7 +4688,6 @@
             "Ot":"https://docs.qq.com/doc/p/52609f9f1632606501e1174463bae7302e7eb787"
         };
 
-        // 下载按钮点击事件 - 外部下载区域
         document.querySelectorAll('.cta-button').forEach(button => {
             button.addEventListener('click', function() {
                 // 根据按钮所在的卡片确定下载链接
@@ -5078,9 +5078,6 @@
                     "为什么有的示例视频放不了？",
                     "永远酱定制Win11为什么第一次登录会显示默认壁纸？",
                     "为什么永远酱定制Win10可以自己创建账户，永远酱定制Win11就启用了管理员账户？",
-                    "我想找旧版的永远酱定制系统，但没找到所需的版本",
-                    "怎么找不到我要的文档？/我找不到关于永远酱的具体信息",
-                    "为何没有同步旧网站的文档？"
                 ],
                 buttonText: "<i class='fas fa-question-circle'></i> 查看疑难解答",
                 buttonClass: "cta-button",
@@ -6564,19 +6561,6 @@ const componentsData = [
         downloadUrl: "https://www.123912.com/s/dwB1vd-eSXWv?pwd=JLoN#"
     },
     {
-        id: "yyjb",
-        name: "永远酱w-鼠标指针购买链接",
-        icon: "fas fa-mouse",
-        content: {
-            title: "永远酱w的鼠标指针购买链接",
-            description: "这是原计划加入到系统中的内容之一，因为内置鼠标指针比较麻烦（要写一大堆注册表啥的）再加上一些二创限制，就没有内置。但如果你想进一步提升系统体验，可以在工房购买鼠标指针后自行安装，我们不提供鼠标指针文件。",
-            features: [
-                "无"
-            ]
-        },
-        downloadUrl: "https://gf.bilibili.com/item/detail/1107855076"
-    },
-    {
         id: "desktopzj",
         name: "桌面小组件",
         icon: "fas fa-th-large",
@@ -6601,7 +6585,46 @@ const componentsData = [
             ]
         },
         downloadUrl: "https://zhutix.com/software/magicmousetrails/"
-    }
+    },
+	{
+        id: "Bleachbit",
+        name: "C盘清理Bleachbit",
+        icon: "fas fa-magic",
+        content: {
+            title: "相关介绍：",
+            description: "在电脑使用过程中会不断的产生一些缓存垃圾且部分还很难清理，网上所谓“专业清理C盘工具”不是要开VIP就是清理不完全",
+            features: [
+                "这里有叫Bleachbit软件可以深度清理C盘垃圾且这是免费开源的。但是请注意，在正式清理之前一定要看清楚和了解被删除的文件，不然浏览器储存的密码，回收站里可能要用到的文件等统统消失（无法恢复）"
+            ]
+        },
+        downloadUrl: "https://www.bleachbit.org/"
+    },
+	{
+        id: "xgame",
+        name: "XP以及Win7小游戏下载",
+        icon: "fas fa-magic",
+        content: {
+            title: "相关介绍：",
+            description: "Win8中移除了Win7的全部小游戏 虽然Win10和Win11也内置了新版的小游戏 但玩起来还是没有以前的那种感觉。在这里我们分享出XP和Win7的所有小游戏 让你随时随地回味。",
+            features: [
+                "下载注意事项：下载XP小游戏时一定要下载cards.dll并和游戏本体放在同一个目录下 避免纸牌 蜘蛛纸牌 红心大战无法正常运行 | 那个Holdem.exe.mui就是德州扑克游戏的汉化文件 直接替换掉目录里的英语文件就可以（目录：C:\Program Files\Microsoft Games\HoldEm\en-US\Holdem.exe.mui）"
+            ]
+        },
+        downloadUrl: "https://www.123865.com/s/dwB1vd-OanWv?pwd=A3on#"
+    },
+	{
+        id: "yyjb",
+        name: "永远酱w-鼠标指针购买链接",
+        icon: "fas fa-mouse",
+        content: {
+            title: "永远酱w的鼠标指针购买链接",
+            description: "这是原计划加入到系统中的内容之一，因为内置鼠标指针比较麻烦（要写一大堆注册表啥的）再加上一些二创限制，就没有内置。但如果你想进一步提升系统体验，可以在工房购买鼠标指针后自行安装，我们不提供鼠标指针文件。",
+            features: [
+                "这可以搭配永远酱定制系统。"
+            ]
+        },
+        downloadUrl: "https://gf.bilibili.com/item/detail/1107855076"
+    },
 ];
 
         // 组件下载模态窗口DOM元素
@@ -6949,7 +6972,6 @@ const componentsData = [
                     localStorage.setItem(key, JSON.stringify(cacheData));
                 } catch (error) {
                     console.error('缓存设置错误:', error);
-                    // 如果存储失败，可能是存储空间不足，尝试清理旧缓存
                     this.clearOldCache();
                     try {
                         const cacheData = {
@@ -6993,7 +7015,6 @@ const componentsData = [
                     const data = JSON.parse(cached);
                     const age = Date.now() - data.timestamp;
                     
-                    // 如果缓存超过5分钟，建议刷新
                     return age > CACHE_CONFIG.CACHE_DURATION;
                 } catch (error) {
                     return true;
@@ -7150,7 +7171,7 @@ const componentsData = [
             return html;
         }
 
-        // 获取GitHub Issues（带缓存）
+        // 获取GitHub Issues
         async function fetchIssues(forceRefresh = false) {
             const commentsList = document.getElementById('commentsList');
             const commentsLoading = document.getElementById('commentsLoading');
