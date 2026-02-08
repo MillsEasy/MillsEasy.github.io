@@ -3558,6 +3558,68 @@
 				max-width: 300px;
 			}
 		}
+		
+		@media (max-width: 768px) {
+			/* 隐藏原有的Header区域—代码 */
+			header {
+				display: none !important;
+			}
+			
+			/* 确保汉堡按钮显示在页面最上层 */
+			.hamburger-button {
+				display: flex !important;
+				z-index: 10000 !important;
+			}
+			
+			/* 调整主容器上边距，因为header已隐藏 */
+			.container {
+				padding-top: 20px;
+			}
+			
+			/* 调整hero区域的上边距 */
+			.hero {
+				padding: 120px 0 100px;
+			}
+			
+			/* 调整移动端菜单的显示 */
+			.mobile-nav-container {
+				display: flex;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(226, 226, 226, 0.95);
+				backdrop-filter: blur(30px);
+				-webkit-backdrop-filter: blur(30px);
+				z-index: 999;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				opacity: 0;
+				visibility: hidden;
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+			
+			/* 黑色模式适配 */
+			.dark-mode .mobile-nav-container {
+				background: rgba(18, 18, 18, 0.95);
+			}
+			
+			/* 调整主题切换按钮的位置 */
+			.theme-toggle {
+				position: fixed;
+				right: 15px;
+				top: 15px;
+				z-index: 10001;
+				margin-left: 0;
+			}
+			
+			/* 调整页面滚动行为 */
+			body {
+				padding-top: 0;
+			}
+		}
     </style>
 </head>
 <body>
@@ -3634,6 +3696,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>—— 介绍 ——</h2>
+				<p><i class="fas fa-exclamation-triangle"></i>声明：本网站为公益网站，不会向您收取任何费用！</p>
                 <p>回忆：这个站点最早是为“永远酱定制系统”制作的，但后来我突发灵感才将其改成现在这样的下载站，也为之后的“Easy Cards”设计进行了铺垫。</p>
                 <p>在25年11月初，我灵感突发，于是决定帮助当时的UP主 @一只低调的道路 做一个宣传“永远酱定制系统”的网站，在AI辅助编写的情况下，我想到了“Easy Cards”的设计，于是，本站的基本设计语言很快便实现了。
                    12月6日，我决定将网站改造为综合性的下载网站，于是开始对代码进行重构。
@@ -3874,8 +3937,8 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 栖渊保留本网站的所有权利 | Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 管理 | 版本：V4.0-260207-bd0001</p>
+                <p>Microsoft Windows是美国微软公司的注册商标产品</p>
+                <p>本网站由 栖渊Kaelen 管理 | 版本：V4.0-260207-b01</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
