@@ -1155,7 +1155,6 @@
             color: #ffffff;
         }
     
-        /* 移动端黑色模式适配 */
         @media (max-width: 768px) {
             .dark-mode .header-content {
                 flex-direction: column;
@@ -1300,7 +1299,6 @@
             font-size: 18px;
         }
 
-        /* 黑色模式适配 */
         .dark-mode .announcement {
             background-color: #333;
             color: #ffc107;
@@ -1311,7 +1309,6 @@
             color: #ffc107;
         }
 
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .announcement p {
                 font-size: 14px;
@@ -2931,10 +2928,10 @@
 		
 		/* 汉堡菜单按钮样式 */
         .hamburger-button {
-            display: none; /* 默认隐藏 */
-            background: rgba(255, 255, 255, 0.839);
-            border: 2px solid rgba(255, 255, 255, 0.99);
-            color: var(--primary-color);
+            display: none;
+            background: rgba(255, 255, 255, 0.322);
+            border: 2px solid rgba(255, 255, 255, 0.363);
+            color: rgba(75, 75, 75);
             font-size: 20px;
             cursor: pointer;
             padding: 8px;
@@ -2968,11 +2965,11 @@
 
         .dark-mode .hamburger-button {
             background: rgba(30, 30, 30, 0.534);
-            border: 1px solid rgba(224, 224, 224, 0.3);
+            border: 1px solid rgba(224, 224, 224, 0.017);
             color: #e0e0e0;
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 4px 12px rgba(114, 114, 114, 0.4);
+            box-shadow: 0 4px 12px rgba(214, 214, 214, 0);
         }
 
         .dark-mode .hamburger-button:hover {
@@ -3068,15 +3065,15 @@
 
 		/* 为每个菜单项添加延迟动画 */
 		.mobile-nav-menu li:nth-child(1) { transition-delay: 0.1s; }
-		.mobile-nav-menu li:nth-child(2) { transition-delay: 0.15s; }
-		.mobile-nav-menu li:nth-child(3) { transition-delay: 0.2s; }
-		.mobile-nav-menu li:nth-child(4) { transition-delay: 0.25s; }
-		.mobile-nav-menu li:nth-child(5) { transition-delay: 0.3s; }
-		.mobile-nav-menu li:nth-child(6) { transition-delay: 0.35s; }
-		.mobile-nav-menu li:nth-child(7) { transition-delay: 0.4s; }
+		.mobile-nav-menu li:nth-child(2) { transition-delay: 0.2s; }
+		.mobile-nav-menu li:nth-child(3) { transition-delay: 0.3s; }
+		.mobile-nav-menu li:nth-child(4) { transition-delay: 0.4s; }
+		.mobile-nav-menu li:nth-child(5) { transition-delay: 0.5s; }
+		.mobile-nav-menu li:nth-child(6) { transition-delay: 0.6s; }
+		.mobile-nav-menu li:nth-child(7) { transition-delay: 0.7s; }
 
 		.mobile-nav-menu li a {
-			color: rgb(110, 110, 110);
+			color: rgb(35, 35, 35);
 			text-decoration: none;
 			font-size: 18px;
 			font-weight: 500;
@@ -3086,7 +3083,7 @@
 			justify-content: center;
 			padding: 16px 24px;
 			border-radius: 12px;
-			background: rgba(255, 255, 255, 0.05);
+			background: rgba(161, 161, 161, 0.394);
 			border: 1px solid rgba(255, 255, 255, 0.1);
 			position: relative;
 			overflow: hidden;
@@ -3146,7 +3143,8 @@
 		}
 
 		.dark-mode .mobile-nav-menu li a {
-			background: rgba(255, 255, 255, 0.03);
+			color: rgba(255, 255, 255, 0.873);
+            background: rgba(255, 255, 255, 0.03);
 			border: 1px solid rgba(255, 255, 255, 0.08);
 		}
 
@@ -3565,23 +3563,19 @@
 				display: none !important;
 			}
 			
-			/* 确保汉堡按钮显示在页面最上层 */
 			.hamburger-button {
 				display: flex !important;
 				z-index: 10000 !important;
 			}
 			
-			/* 调整主容器上边距，因为header已隐藏 */
 			.container {
 				padding-top: 20px;
 			}
 			
-			/* 调整hero区域的上边距 */
 			.hero {
 				padding: 120px 0 100px;
 			}
 			
-			/* 调整移动端菜单的显示 */
 			.mobile-nav-container {
 				display: flex;
 				position: fixed;
@@ -3589,9 +3583,9 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: rgba(226, 226, 226, 0.95);
-				backdrop-filter: blur(30px);
-				-webkit-backdrop-filter: blur(30px);
+				background: rgba(226, 226, 226, 0.647);
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
 				z-index: 999;
 				flex-direction: column;
 				justify-content: center;
@@ -3601,12 +3595,10 @@
 				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 			}
 			
-			/* 黑色模式适配 */
 			.dark-mode .mobile-nav-container {
-				background: rgba(18, 18, 18, 0.95);
+				background: rgba(18, 18, 18, 0.25);
 			}
 			
-			/* 调整主题切换按钮的位置 */
 			.theme-toggle {
 				position: fixed;
 				right: 15px;
@@ -3618,6 +3610,67 @@
 			/* 调整页面滚动行为 */
 			body {
 				padding-top: 0;
+			}
+		}
+		
+		/* 移动端主题切换按钮样式 */
+		.mobile-theme-toggle {
+			display: none !important;
+			background: rgba(255, 255, 255, 0.12);
+			border: 2px solid rgba(255, 255, 255, 0.229);
+			color: rgba(75, 75, 75);
+			font-size: 20px;
+			cursor: pointer;
+			padding: 8px;
+			border-radius: 50%;
+			transition: all 0.4s ease;
+			position: fixed;
+			left: 70px;
+			top: 20px;
+			z-index: 10000 !important;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			box-shadow: 0 4px 12px rgba(255, 255, 255, 0);
+			width: 44px;
+			height: 44px;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.mobile-theme-toggle:hover {
+			background: rgba(255, 255, 255, 0.127);
+			border-color: rgba(0, 0, 0, 0.05);
+			box-shadow: 0 6px 16px rgba(255, 255, 255, 0.88);
+			transform: scale(1.05);
+		}
+
+		.mobile-theme-toggle:active {
+			background: rgba(255, 255, 255, 0);
+			transform: scale(0.95);
+		}
+
+		.dark-mode .mobile-theme-toggle {
+			background: rgba(255, 255, 255, 0);
+			border: 1px solid rgba(255, 255, 255, 0);
+			color: #e0e0e0;
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(15px);
+			box-shadow: 0 4px 12px rgba(255, 255, 255, 0);
+		}
+
+		.dark-mode .mobile-theme-toggle:hover {
+			background: rgba(0, 0, 0, 0);
+			border-color: rgba(0, 0, 0, 0);
+		}
+
+		/* 移动端适配--导航栏 */
+		@media (max-width: 768px) {
+			.mobile-theme-toggle {
+				display: flex !important;
+			}
+			
+			.theme-toggle {
+				display: none !important;
 			}
 		}
     </style>
@@ -3672,6 +3725,9 @@
 	<div class="mobile-nav-container" id="mobileNavContainer">
 		<button class="close-menu" id="closeMenuButton">
 			<i class="fas fa-times"></i>
+		</button>
+		<button class="mobile-theme-toggle" id="mobileThemeToggle" title="切换深色/浅色模式">
+			<i class="fas fa-moon"></i>
 		</button>
 		<ul class="mobile-nav-menu">
 			<li><a href="#features" class="mobile-nav-link">介绍</a></li>
@@ -3745,12 +3801,12 @@
                         <button class="category-button" id="thirdPartyWindowsBtn"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
                     </div>
                 </div>
-                <!-- 分类卡片 4：其他组件 -->
+                <!-- 分类卡片 4：实用工具（其他组件） -->
                 <div class="category-card">
                     <div class="category-image" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60');"></div>
                     <div class="category-content">
-                        <h3><i class="fas fa-folder-open"></i> 其他组件下载</h3>
-                        <p>包含各种实用工具和组件，如PE工具、虚拟机软件、运行库等</p>
+                        <h3><i class="fas fa-folder-open"></i> 实用工具下载</h3>
+                        <p>包含各种实用软件和组件包，如PE工具、虚拟机软件、运行库、美化软件等</p>
                         <button class="category-button" id="componentsDownloadBtn"><i class="fas fa-ellipsis-h"></i> 前往分类</button>
                     </div>
                 </div>
@@ -3847,7 +3903,7 @@
                     </button>
                 </div>
 				<p style="margin-top: 20px; color: var(--gray-color); font-size: 14px;">
-                    <i class="fas fa-info-circle"></i> 提示：您的数据不会被收集，所有调查都是匿名的！
+                    <i class="fas fa-info-circle"></i> 提示：您的数据不会被收集，问卷都是匿名的！
                 </p>
             </div>
         </div>
@@ -3900,6 +3956,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     
@@ -3938,7 +3995,7 @@
             </div>
             <div class="copyright">
                 <p>Microsoft Windows是美国微软公司的注册商标产品</p>
-                <p>本网站由 栖渊Kaelen 管理 | 版本：V4.0-260207-b01</p>
+                <p>本网站由 栖渊Kaelen 管理 | 版本：V4.0-260209</p>
                 <p class="github-link">
                     <a href="https://github.com" target="_blank" style="color: inherit; text-decoration: none;">
                         <i class="fab fa-github"></i> 基于 Github Pages 构建
@@ -4119,8 +4176,8 @@
         <div class="components-modal-content">
             <span class="components-close-modal">&times;</span>
             <div class="components-modal-title">
-                <h2>—— 其他组件下载 ——</h2>
-                <p>这里提供各种实用工具和组件下载</p>
+                <h2>—— 实用工具下载 ——</h2>
+                <p>这里提供各种实用软件和组件包下载</p>
             </div>
             
             <div class="components-layout">
@@ -4166,6 +4223,7 @@
                 
                 <h4>一、服务概述</h4>
                 <p>Vizyn系统收录平台（以下简称"本网站"）是一个专注于收录和分享 Microsoft Windows 操作系统 及相关组件、工具的平台。我们致力于为用户提供便捷的系统资源获取途径，同时建立良好的社区环境。</p>
+				<p>注：以后可能会收录其他操作系统，包括Linux等。</p>
                 
                 <h4>二、服务内容</h4>
                 <p>1. <strong>系统资源收录：</strong>收录官方及第三方Windows系统镜像、第三方定制版系统、相关组件和工具。</p>
@@ -4221,6 +4279,43 @@
     </div>
     
     <script>
+		// 获取移动端主题切换按钮
+		const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+		const mobileThemeIcon = mobileThemeToggle.querySelector('i');
+
+		// 修改applyTheme函数，同时更新桌面端和移动端按钮图标
+		function applyTheme(theme) {
+			if (theme === 'dark') {
+				document.body.classList.add('dark-mode');
+				themeIcon.classList.remove('fa-moon');
+				themeIcon.classList.add('fa-sun');
+				mobileThemeIcon.classList.remove('fa-moon');
+				mobileThemeIcon.classList.add('fa-sun');
+			} else {
+				document.body.classList.remove('dark-mode');
+				themeIcon.classList.remove('fa-sun');
+				themeIcon.classList.add('fa-moon');
+				mobileThemeIcon.classList.remove('fa-sun');
+				mobileThemeIcon.classList.add('fa-moon');
+			}
+			localStorage.setItem('theme', theme);
+		}
+
+		// 为移动端主题切换按钮添加点击事件
+		mobileThemeToggle.addEventListener('click', toggleTheme);
+
+		// 更新移动端按钮主题
+		function updateMobileThemeToggleTheme() {
+			if (document.body.classList.contains('dark-mode')) {
+				mobileThemeToggle.style.background = 'rgba(30, 30, 30, 0.5)';
+				mobileThemeToggle.style.borderColor = 'rgba(224, 224, 224, 0.3)';
+				mobileThemeToggle.style.color = '#e0e0e0';
+			} else {
+				mobileThemeToggle.style.background = 'rgba(255, 255, 255, 0.839)';
+				mobileThemeToggle.style.borderColor = 'rgba(255, 255, 255, 0.99)';
+				mobileThemeToggle.style.color = 'var(--primary-color)';
+			}
+		}
 		// 汉堡菜单功能
 		const hamburgerButton = document.getElementById('hamburgerButton');
         const hamburgerIcon = hamburgerButton.querySelector('i');
@@ -4794,14 +4889,14 @@
         const backButton = document.getElementById('backButton');
         const closeBtn = document.querySelector('.close-modal');
 
-        // 文件树数据
+        // 文件树数据，现已弃用
         const fileTreeData = [
             {
                 id: "firpe",
                 name: "FirPE工具箱-官网",
                 type: "folder",
                 content: {
-                    title: "FirPE工具箱",
+                    title: "FirPE工具箱-官网",
                     description: "FirPE是一个轻量级的Windows预安装环境，集成了各种实用的系统维护工具。它可以帮助您在系统无法启动时进行修复、备份、数据恢复等操作。",
                     features: [
                         "如果您不知道这是什么，请不要使用"
@@ -4886,7 +4981,7 @@
                 name: "FluentContextMenu-官网",
                 type: "folder",
                 content: {
-                    title: "FluentContextMenu",
+                    title: "FluentContextMenu-官网",
                     description: "Win11的新版右键菜单将传统右键菜单折叠了，并且有些软件并没有适配新版右键菜单，你还是需要点开二级菜单才能看到。而且有的时候二级菜单并没有适配Win11的UI，依然在使用Win10的老UI，加强了系统的割裂感。在这里推荐这个小工具，还你的Win11一个熟悉的右键菜单",
                     features: [
                         "备注：应原作者要求，不提供下载链接，请前往原作者发布页自行下载",
@@ -4916,7 +5011,7 @@
                 name: "PotPlayer-官网",
                 type: "folder",
                 content: {
-                    title: "PotPlayer播放器",
+                    title: "PotPlayer播放器-官网",
                     description: "永远酱定制Win10中缺乏了HEVC拓展，如果你不想安装视频拓展，那么你可以直接用PotPlayer播放器，其内置了HEVC视频拓展",
                     features: [
                         "注：不要被百度和必应骗了！第一个出来的PotPlayer中文网不是官网！不要被官网标骗了！"
@@ -4944,7 +5039,7 @@
                 type: "folder",
                 content: {
                     title: "永远酱w的鼠标指针购买链接",
-                    description: "这是原计划加入到系统中的内容之一，因为内置鼠标指针比较麻烦（要写一大堆注册表啥的）再加上一些二创限制，就没有内置。但如果你想进一步提升系统体验，可以在工房购买鼠标指针后自行安装，我们不提供鼠标指针文件。",
+                    description: "这是原计划加入到永远酱系统中的内容之一，因为内置鼠标指针比较麻烦，再加上一些二创限制，因此没有内置。如果您想进一步提升系统体验，可以在哔哩哔哩工房购买鼠标指针后自行安装，系统内不提供鼠标指针文件。",
                     features: [
                         "无"
                     ]
@@ -4976,7 +5071,41 @@
                     ]
                 },
                 downloadUrl: "https://zhutix.com/software/magicmousetrails/"
-            }
+            },
+			{
+				id: "bleachbit",
+				name: "C盘清理-Bleachbit",
+				type: "folder",
+				content: {
+					title: "C盘清理工具 - Bleachbit",
+					description: "BleachBit是一款开源的磁盘清理工具，可以清理系统缓存、临时文件、浏览器缓存等无用文件，释放磁盘空间。它特别适合Windows系统用户进行C盘清理，支持多种清理规则和深度清理选项。",
+					features: [
+						"支持清理Windows系统临时文件、日志文件",
+						"清理浏览器缓存、历史记录、Cookie等",
+						"支持清理多种应用程序的缓存数据",
+						"提供快速清理和深度清理选项",
+						"开源免费，无广告无插件"
+					]
+				},
+				downloadUrl: "https://www.bleachbit.org/download"
+			},
+			{
+				id: "xp-win7-games",
+				name: "XP/Win7小游戏下载",
+				type: "folder",
+				content: {
+					title: "经典Windows小游戏合集",
+					description: "包含Windows XP和Windows 7时代的经典系统自带小游戏，如扫雷、纸牌、空当接龙、红心大战等。这些游戏是许多人童年的回忆，现在可以在新版Windows系统上重新体验。",
+					features: [
+						"包含Windows XP时代的经典小游戏",
+						"包含Windows 7的升级版小游戏",
+						"兼容Windows 10/11系统",
+						"无需安装，解压即可运行",
+						"支持高分辨率显示适配"
+					]
+				},
+				downloadUrl: "https://www.123912.com/s/dwB1vd-example-link"
+			}
         ];
 
         // 当前选中的组件
@@ -6652,7 +6781,7 @@ const componentsData = [
 	{
         id: "Bleachbit",
         name: "C盘清理Bleachbit",
-        icon: "fas fa-magic",
+        icon: "fas fa-trash-alt",
         content: {
             title: "相关介绍：",
             description: "在电脑使用过程中会不断的产生一些缓存垃圾且部分还很难清理，网上所谓“专业清理C盘工具”不是要开VIP就是清理不完全",
@@ -6665,7 +6794,7 @@ const componentsData = [
 	{
         id: "xgame",
         name: "XP以及Win7小游戏下载",
-        icon: "fas fa-magic",
+        icon: "fas fa-gamepad",
         content: {
             title: "相关介绍：",
             description: "Win8中移除了Win7的全部小游戏 虽然Win10和Win11也内置了新版的小游戏 但玩起来还是没有以前的那种感觉。在这里我们分享出XP和Win7的所有小游戏 让你随时随地回味。",
@@ -7845,3 +7974,4 @@ const componentsData = [
         });
     </script>
 <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
+</html>
