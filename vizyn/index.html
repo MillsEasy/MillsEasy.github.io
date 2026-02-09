@@ -32,7 +32,7 @@
         
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -4161,10 +4161,16 @@
                 <h2>—— 第三方Windows分类 ——</h2>
                 <p>此处提供第三方开发者制作的Windows修改版本下载</p>
             </div>
-            <div class="third-party-tip">
+            <!-- <div class="third-party-tip">
                 <i class="fas fa-exclamation-triangle"></i>
                 <h3>免责声明</h3>
                 <p>第三方修改版Windows由独立个人开发者制作，非微软官方Windows产品。使用前请确保您了解相关风险。</p>
+            </div>
+            -->
+            <div class="third-party-tip">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>维护中</h3>
+                <p>当前页面正在维修中...</p>
             </div>
             <div class="third-party-versions-grid" id="thirdPartyVersionsGrid">
                 <!-- 第三方Windows版本卡片将在这里动态生成 -->
@@ -5906,21 +5912,21 @@
 
         // 第三方Windows版本数据
         const thirdPartyWindowsData = [
-            {
-                id: "tiny11",
-                name: "Tiny11 精简版",
-                icon: "fas fa-compress-alt",
-                description: "Tiny11是著名的Windows 11精简版，移除了大量不必要的组件，系统体积小，运行速度快。",
-                details: [
-                    "版本：基于Windows 11 23H2",
-                    "体积：约3-4GB",
-                    "特性：移除Edge、Cortana、OneDrive等",
-                    "适合：老旧设备或追求极致性能的用户",
-                    "注意：部分功能可能缺失"
-                ],
-                downloadUrl: "#",
-                isAvailable: true
-            },
+        //    {
+        //        id: "tiny11",
+        //        name: "Tiny11 精简版",
+        //        icon: "fas fa-compress-alt",
+        //        description: "Tiny11是著名的Windows 11精简版，移除了大量不必要的组件，系统体积小，运行速度快。",
+        //        details: [
+        //            "版本：基于Windows 11 23H2",
+        //            "体积：约3-4GB",
+        //            "特性：移除Edge、Cortana、OneDrive等",
+        //            "适合：老旧设备或追求极致性能的用户",
+        //            "注意：部分功能可能缺失"
+        //        ],
+        //        downloadUrl: "#",
+        //        isAvailable: true
+        //    },
         ];
 
         // 获取第三方Windows模态窗口DOM元素
