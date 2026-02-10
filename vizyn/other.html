@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh">
+
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
+<meta name="google" value="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+// 全局变量
+var currentPath = "/";
+var directoryData = {}; // 存储所有目录数据
+var historyStack = [];  // 历史记录栈
+
+// 网盘链接配置 - 每个系统对应不同的网盘链接
+var diskLinks = {
+  "WindowsLonghorn": {
+    "base": "https://cloud.189.cn/",
+    "description": "天翼云盘",
+    "requireCode": true,
+    "defaultCodes": {
+      "WindowsLonghorn_Build_4074.iso": "4074",
+      "WindowsLonghorn_Build_4083.iso": "4083",
+      "WindowsLonghorn_Build_4093.iso": "4093"
+    }
+  },
+  "Windows7Beta": {
+    "base": "https://cloud.189.cn/t/",
+    "description": "天翼云盘",
+    "requireCode": false
+  },
+  "Windows8Beta": {
+    "base": "https://www.123865.com/s/",
+    "description": "123云盘",
+    "requireCode": false
+  },
+  "Windows10Beta": {
+    "base": "https://www.123865.com/s/",
+    "description": "123云盘",
+    "requireCode": false
+  },
+  "Windows11Beta": {
+    "base": "https://www.123865.com/s/",
+    "description": "123云盘",
+    "requireCode": false
+  },
+  "WindowsVistaBeta": {
+    "base": "https://pan.baidu.com/s/",
+    "description": "百度网盘",
+    "requireCode": true
+  },
+  "WindowsXPBeta": {
+    "base": "https://cloud.189.cn/t/",
+    "description": "天翼云盘",
+    "requireCode": false
+  }
+};
+
+// 具体的文件网盘链接和提取码
+var fileLinks = {
+  "WindowsLonghorn_Build_4074.iso": {
+    "link": "1XyZ2ABC",
+    "code": "abcd",     
+    "source": "百度网盘"
+  },
+  "WindowsLonghorn_Build_4083.iso": {
+    "link": "2AbC3DEF",
+    "code": "efgh",
+    "source": "百度网盘"
+  },
+  "WindowsLonghorn_Build_4093.iso": {
+    "link": "3GhI4JKL",
+    "code": "ijkl",
+    "source": "百度网盘"
+  },
+  "Windows7_Build_6801.iso": {
+    "link": "5Mno6PQR",
+    "code": "",
+    "source": "天翼云盘"
+  },
+  "Windows7_Build_6956.iso": {
+    "link": "7StU8VWX",
+    "code": "",
+    "source": "天翼云盘"
+  },
+  "Windows8_Consumer_Preview.iso": {
+    "link": "dwB1vd-SZPWv?pwd=RJc5#",
+    "code": "RJc5",
+    "source": "123云盘"
+  },
+  "Windows8_Build_7850.iso": {
+	"link": "dwB1vd-30PWv?pwd=vLIN#",
+	"code": "vLIN",
+    "source": "123云盘"
+  },
+  "Windows10_Build_9833.iso": {
+    "link": "dwB1vd-ADPWv?pwd=oY5Y#",
+    "code": "oY5Y",
+    "source": "123云盘"
+  },
+  "Windows10_Build_14316.iso": {
+    "link": "5Qrs6TUV",
+    "code": "",
+    "source": "123云盘"
+  },
+  "Windows11_Insider_Preview_Dev.iso": {
+    "link": "7Wxy8Zab",
+    "code": "",
+    "source": "123云盘"
+  },
+  "Windows11_Insider_Preview_Beta.iso": {
+    "link": "9Cde0Fgh",
+    "code": "",
+    "source": "123云盘"
+  },
+  "WindowsVista_Beta_1.iso": {
+    "link": "2Ijk3Lmn",
+    "code": "mnop",
+    "source": "百度网盘"
+  },
+  "WindowsVista_Beta_2.iso": {
+    "link": "4Opq5Rst",
+    "code": "qrst",
+    "source": "百度网盘"
+  },
+  "WindowsXP_Beta_1.iso": {
+    "link": "6Uvw7Xyz",
+    "code": "",
+    "source": "天翼云盘"
+  },
+  "WindowsXP_Beta_2.iso": {
+    "link": "8Abc9Def",
+    "code": "",
+    "source": "天翼云盘"
+  },
+  "WindowsServer_2025_Beta.iso": {
+    "link": "0Ghi1Jkl",
+    "code": "",
+    "source": "阿里云盘"
+  },
+  "WindowsMobile_10_Beta.7z": {
+    "link": "2Mno3Pqr",
+    "code": "",
+    "source": "夸克网盘"
+  },
+  "Windows365_Enterprise_Beta_Client.exe": {
+    "link": "4Stu5Vwx",
+    "code": "",
+    "source": "123云盘"
+  }
+};
+
+// 目录结构数据（模拟文件系统）
+var fileSystemData = {
+  "/": [
+    {"name": "WindowsLonghorn", "type": "dir", "size": 0, "modified": 1770120814, "modified_str": "2026/2/3 20:13:34"},
+    {"name": "Windows7Beta", "type": "dir", "size": 0, "modified": 1769139141, "modified_str": "2026/1/23 11:32:21}"},
+    {"name": "Windows8Beta", "type": "dir", "size": 0, "modified": 1737946670, "modified_str": "2025/1/27 10:57:50"},
+    {"name": "Windows10Beta", "type": "dir", "size": 0, "modified": 1761140571, "modified_str": "2025/10/22 21:42:51"},
+    {"name": "Windows11Beta", "type": "dir", "size": 0, "modified": 1770692202, "modified_str": "2026/2/10 10:56:42"},
+    {"name": "WindowsVistaBeta", "type": "dir", "size": 0, "modified": 1757817068, "modified_str": "2025/9/14 10:31:08"},
+    {"name": "WindowsXPBeta", "type": "dir", "size": 0, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39"},
+  ],
+  "/WindowsLonghorn/": [
+  ],
+  "/Windows7Beta/": [
+  ],
+  "/Windows8Beta/": [
+    {"name": "Windows8_Consumer_Preview.iso", "type": "file", "size": 3650722201, "modified": 1761140571, "modified_str": "2025-08-17 13:39:03", "description": "Windows 8消费者预览版"},
+	{"name": "Windows8_Build_7850.iso", "type": "file", "size": 2641404887, "modified": 1761140571, "modified_str": "2025-08-04 11:13:01", "description": "Windows 8 Build 7850"}
+  ],
+  "/Windows10Beta/": [
+    {"name": "Windows10_Build_9833.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10技术预览版"},
+	{"name": "Windows10_Build_14316.iso", "type": "file", "size": 4273492459.52, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10 Build 14366"},
+  ],
+  "/Windows11Beta/": [
+  ],
+  "/WindowsVistaBeta/": [
+  ],
+  "/WindowsXPBeta/": [
+  ],
+  "/WindowsServerBeta/": [
+  ]
+};
+
+// 初始化目录数据
+function initDirectoryData() {
+  directoryData = fileSystemData;
+}
+
+// 格式化文件大小
+function formatFileSize(bytes) {
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+}
+
+// 获取网盘类型
+function getDiskType(path) {
+  var parts = path.split('/').filter(part => part.length > 0);
+  if (parts.length > 0) {
+    var dirName = parts[0];
+    if (diskLinks[dirName]) {
+      return diskLinks[dirName].description;
+    }
+  }
+  return "未知网盘";
+}
+
+// 生成网盘链接
+function generateDiskLink(filename, path) {
+  var fileLink = fileLinks[filename];
+  if (!fileLink) {
+    return null;
+  }
+  
+  var parts = path.split('/').filter(part => part.length > 0);
+  var dirName = parts[0];
+  var diskConfig = diskLinks[dirName];
+  
+  if (!diskConfig) {
+    return null;
+  }
+  
+  return {
+    url: diskConfig.base + fileLink.link,
+    code: fileLink.code,
+    source: fileLink.source || diskConfig.description,
+    requireCode: diskConfig.requireCode
+  };
+}
+
+// 创建单元格
+function createCell(value, text) {
+  var cell = document.createElement("td");
+  cell.setAttribute("class", "detailsColumn");
+  cell.dataset.value = value;
+  cell.innerText = text;
+  return cell;
+}
+
+// 拖拽开始事件
+function onDragStart(e) {
+  var el = e.srcElement;
+  var name = el.innerText.replace(":", "");
+  var downloadUrl = el.getAttribute('data-download-url') || el.href;
+  var download_url_data = "application/octet-stream:" + name + ":" + downloadUrl;
+  e.dataTransfer.setData("DownloadURL", download_url_data);
+  e.dataTransfer.effectAllowed = "copy";
+}
+
+// 复制文本到剪贴板
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('复制成功: ' + text);
+  }, function(err) {
+    console.error('复制失败: ', err);
+    // 降级方案
+    var textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('降级复制失败: ', err);
+    }
+    document.body.removeChild(textArea);
+  });
+}
+
+// 打开网盘链接
+function openDiskLink(linkInfo) {
+  if (linkInfo && linkInfo.url) {
+    window.open(linkInfo.url, '_blank');
+    return true;
+  }
+  return false;
+}
+
+// 显示网盘链接对话框
+function showDiskLinkDialog(filename, fileSize, fileDesc, linkInfo) {
+  var dialog = document.createElement('div');
+  dialog.className = 'disk-link-dialog';
+  
+  var contentHtml = `
+    <div class="disk-link-dialog-content">
+      <h3>网盘下载</h3>
+      <div class="file-info">
+        <p><strong>文件名:</strong> ${filename}</p>
+        <p><strong>大小:</strong> ${formatFileSize(fileSize)}</p>
+        <p><strong>描述:</strong> ${fileDesc || "无描述信息"}</p>
+        <p><strong>网盘:</strong> <span class="disk-source">${linkInfo.source}</span></p>
+      </div>
+      <div class="link-section">
+        <h4>下载链接</h4>
+        <div class="link-box">
+          <input type="text" readonly value="${linkInfo.url}" id="link-input-${Date.now()}">
+          <button class="btn-copy-link" data-link="${linkInfo.url}">复制链接</button>
+        </div>
+  `;
+  
+  if (linkInfo.requireCode && linkInfo.code) {
+    contentHtml += `
+        <div class="code-section">
+          <h4>提取码</h4>
+          <div class="code-box">
+            <input type="text" readonly value="${linkInfo.code}" id="code-input-${Date.now()}">
+            <button class="btn-copy-code" data-code="${linkInfo.code}">复制提取码</button>
+          </div>
+        </div>
+    `;
+  }
+  
+  contentHtml += `
+      </div>
+      <div class="instructions">
+        <p><strong>使用说明:</strong></p>
+        <ol>
+          <li>点击下方"打开网盘"按钮跳转到网盘页面</li>
+          ${linkInfo.requireCode && linkInfo.code ? '<li>如果需要提取码，已自动复制到剪贴板</li>' : ''}
+          <li>在网盘页面下载文件</li>
+        </ol>
+      </div>
+      <div class="action-buttons">
+        <button class="btn-open-disk">打开网盘</button>
+        <button class="btn-close-dialog">关闭</button>
+      </div>
+    </div>
+  `;
+  
+  dialog.innerHTML = contentHtml;
+  
+  dialog.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  `;
+  
+  var content = dialog.querySelector('.disk-link-dialog-content');
+  content.style.cssText = `
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  `;
+  
+  // 添加按钮事件
+  dialog.querySelector('.btn-open-disk').addEventListener('click', function() {
+    openDiskLink(linkInfo);
+    
+    // 自动复制提取码到剪贴板
+    if (linkInfo.requireCode && linkInfo.code) {
+      copyToClipboard(linkInfo.code);
+      setTimeout(function() {
+        alert("提取码已自动复制到剪贴板: " + linkInfo.code);
+      }, 300);
+    }
+    
+    document.body.removeChild(dialog);
+  });
+  
+  dialog.querySelector('.btn-copy-link').addEventListener('click', function() {
+    var link = this.getAttribute('data-link');
+    copyToClipboard(link);
+    this.textContent = '已复制';
+    this.style.backgroundColor = '#28a745';
+    setTimeout(() => {
+      this.textContent = '复制链接';
+      this.style.backgroundColor = '';
+    }, 2000);
+  });
+  
+  if (linkInfo.requireCode && linkInfo.code) {
+    dialog.querySelector('.btn-copy-code').addEventListener('click', function() {
+      var code = this.getAttribute('data-code');
+      copyToClipboard(code);
+      this.textContent = '已复制';
+      this.style.backgroundColor = '#28a745';
+      setTimeout(() => {
+        this.textContent = '复制提取码';
+        this.style.backgroundColor = '';
+      }, 2000);
+    });
+  }
+  
+  dialog.querySelector('.btn-close-dialog').addEventListener('click', function() {
+    document.body.removeChild(dialog);
+  });
+  
+  // 点击背景关闭
+  dialog.addEventListener('click', function(e) {
+    if (e.target === dialog) {
+      document.body.removeChild(dialog);
+    }
+  });
+  
+  document.body.appendChild(dialog);
+}
+
+// 添加文件行到表格
+function addRow(name, isdir, size, size_string, date_modified_string, description, path) {
+  if (name === "." || name === "..") return;
+  
+  var tbody = document.getElementById("tbody");
+  var row = document.createElement("tr");
+  var file_cell = document.createElement("td");
+  var link = document.createElement("a");
+  
+  link.className = isdir ? "icon dir" : "icon file";
+  
+  if (isdir) {
+    name = name + "/";
+    
+    // 目录点击事件：导航到子目录
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      var newPath = currentPath.endsWith("/") ? 
+                   currentPath + name.slice(0, -1) + "/" : 
+                   currentPath + "/" + name.slice(0, -1) + "/";
+      navigateTo(newPath);
+    });
+    
+    size = 0;
+    size_string = "";
+  } else {
+    // 文件：添加拖拽功能
+    link.draggable = "true";
+    link.addEventListener("dragstart", onDragStart, false);
+    
+    // 文件点击事件：显示网盘链接对话框
+    link.href = "#";
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      
+      var linkInfo = generateDiskLink(name, path);
+      
+      if (!linkInfo || !linkInfo.url) {
+        alert("未找到此文件的下载链接，请联系管理员添加。");
+        return;
+      }
+      
+      showDiskLinkDialog(name, size, description, linkInfo);
+      
+      // 记录下载统计
+      recordDownloadStat(name, path, linkInfo.source);
+    });
+  }
+  
+  link.innerText = name;
+  file_cell.dataset.value = name;
+  
+  // 添加描述信息（如果有）
+  var fullDescription = description || "";
+  if (isdir && directoryData[currentPath]) {
+    var item = directoryData[currentPath].find(item => item.name === name.slice(0, -1));
+    if (item && item.diskType) {
+      fullDescription += (fullDescription ? " | " : "") + "网盘: " + item.diskType;
+    }
+  }
+  
+  if (fullDescription) {
+    link.title = fullDescription;
+  }
+  
+  file_cell.appendChild(link);
+  
+  row.appendChild(file_cell);
+  row.appendChild(createCell(size, size_string || formatFileSize(size)));
+  row.appendChild(createCell(date_modified_string, date_modified_string));
+  
+  tbody.appendChild(row);
+}
+
+// 记录下载统计
+function recordDownloadStat(filename, path, source) {
+  console.log("用户访问下载: ", filename, "路径:", path, "网盘:", source, "时间:", new Date().toLocaleString());
+  
+  // 这里可以发送统计到服务器
+  // 或者使用localStorage记录
+  try {
+    var downloadHistory = JSON.parse(localStorage.getItem('downloadHistory') || '[]');
+    downloadHistory.unshift({
+      filename: filename,
+      path: path,
+      source: source,
+      time: new Date().toISOString()
+    });
+    
+    // 只保留最近的100条记录
+    if (downloadHistory.length > 100) {
+      downloadHistory = downloadHistory.slice(0, 100);
+    }
+    
+    localStorage.setItem('downloadHistory', JSON.stringify(downloadHistory));
+  } catch (e) {
+    console.error("记录下载历史失败:", e);
+  }
+}
+
+// 导航到指定路径
+function navigateTo(path) {
+  // 保存当前路径到历史记录
+  if (currentPath !== path) {
+    historyStack.push(currentPath);
+  }
+  
+  currentPath = path;
+  renderDirectory();
+  
+  // 更新浏览器URL（不刷新页面）
+  history.pushState({path: path}, "", "#" + encodeURIComponent(path));
+}
+
+// 返回上一级目录
+function navigateUp() {
+  if (historyStack.length > 0) {
+    var prevPath = historyStack.pop();
+    currentPath = prevPath;
+    renderDirectory();
+    
+    // 更新浏览器URL
+    history.pushState({path: prevPath}, "", "#" + encodeURIComponent(prevPath));
+  } else if (currentPath !== "/") {
+    // 如果没有历史记录但不在根目录，返回根目录
+    var parts = currentPath.split("/").filter(part => part.length > 0);
+    if (parts.length > 0) {
+      parts.pop();
+      var parentPath = parts.length > 0 ? "/" + parts.join("/") + "/" : "/";
+      currentPath = parentPath;
+      renderDirectory();
+      history.pushState({path: parentPath}, "", "#" + encodeURIComponent(parentPath));
+    }
+  }
+}
+
+// 渲染当前目录
+function renderDirectory() {
+  // 清空表格
+  var tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
+  
+  // 更新标题
+  var header = document.getElementById("header");
+  header.innerText = "Vizyn | WinBeta下载 - " + (currentPath === "/" ? "根目录" : currentPath);
+  document.getElementById("title").innerText = header.innerText;
+  
+  // 更新父目录链接
+  var parentDirBox = document.getElementById("parentDirLinkBox");
+  if (currentPath === "/") {
+    parentDirBox.style.display = "none";
+  } else {
+    parentDirBox.style.display = "block";
+    var parentDirLink = document.getElementById("parentDirLink");
+    parentDirLink.href = "#";
+    parentDirLink.onclick = function(e) {
+      e.preventDefault();
+      navigateUp();
+    };
+  }
+  
+  // 获取当前目录的文件列表
+  var files = directoryData[currentPath];
+  
+  if (files && files.length > 0) {
+    // 添加父目录项（如果不是根目录）
+    if (currentPath !== "/") {
+      addRow("..", 1, 0, "", "");
+    }
+    
+    // 添加目录和文件
+    files.forEach(function(item) {
+      addRow(
+        item.name,
+        item.type === "dir" ? 1 : 0,
+        item.size,
+        item.size_string || formatFileSize(item.size),
+        item.modified_str,
+        item.description,
+        currentPath === "/" ? "/" + item.name : currentPath + item.name
+      );
+    });
+  } else {
+    // 如果没有数据，显示空目录消息
+    var row = document.createElement("tr");
+    var cell = document.createElement("td");
+    cell.colSpan = 3;
+    cell.style.textAlign = "center";
+    cell.style.padding = "20px";
+    cell.innerText = "此目录为空";
+    row.appendChild(cell);
+    tbody.appendChild(row);
+  }
+}
+
+// 表格排序函数
+function sortTable(column) {
+  var theader = document.getElementById("theader");
+  var oldOrder = theader.cells[column].dataset.order || '1';
+  oldOrder = parseInt(oldOrder, 10)
+  var newOrder = 0 - oldOrder;
+  theader.cells[column].dataset.order = newOrder;
+
+  var tbody = document.getElementById("tbody");
+  var rows = tbody.rows;
+  var list = [], i;
+  for (i = 0; i < rows.length; i++) {
+    list.push(rows[i]);
+  }
+
+  list.sort(function(row1, row2) {
+    var a = row1.cells[column].dataset.value;
+    var b = row2.cells[column].dataset.value;
+    
+    // 跳过父目录项
+    if (a === ".." || b === "..") {
+      return a === ".." ? -1 : 1;
+    }
+    
+    if (column === 1) {
+      a = parseInt(a, 10);
+      b = parseInt(b, 10);
+      return a > b ? newOrder : a < b ? oldOrder : 0;
+    }
+
+    // 第0列是文本
+    if (a > b)
+      return newOrder;
+    if (a < b)
+      return oldOrder;
+    return 0;
+  });
+
+  for (i = 0; i < list.length; i++) {
+    tbody.appendChild(list[i]);
+  }
+}
+
+// 为列标题添加事件处理器
+function addHandlers(element, column) {
+  element.onclick = (e) => sortTable(column);
+  element.onkeydown = (e) => {
+    if (e.key == 'Enter' || e.key == ' ') {
+      sortTable(column);
+      e.preventDefault();
+    }
+  };
+}
+
+// 显示链接管理面板
+function showLinkManager() {
+  var manager = document.createElement('div');
+  manager.className = 'link-manager';
+  
+  var contentHtml = `
+    <div class="link-manager-content">
+      <h3><i class="icon-settings"></i> 网盘链接管理</h3>
+      <div class="manager-instructions">
+        <p><strong>使用说明:</strong></p>
+        <ol>
+          <li>每个文件都需要单独配置网盘链接</li>
+          <li>链接格式: 网盘基础URL + 文件唯一ID</li>
+          <li>部分网盘需要提取码</li>
+          <li>配置保存在本地浏览器中</li>
+        </ol>
+      </div>
+      <div class="link-editor">
+        <h4>编辑文件链接</h4>
+        <div class="form-group">
+          <label>文件名:</label>
+          <select id="link-file-select">
+            <option value="">选择文件...</option>
+  `;
+  
+  // 添加所有文件选项
+  for (var filename in fileLinks) {
+    contentHtml += `<option value="${filename}">${filename}</option>`;
+  }
+  
+  contentHtml += `
+          </select>
+        </div>
+        <div class="form-group">
+          <label>网盘链接ID:</label>
+          <input type="text" id="link-id-input" placeholder="例如: 1XyZ2ABC">
+          <small>只需要填写网盘链接的最后部分（唯一ID）</small>
+        </div>
+        <div class="form-group">
+          <label>提取码 (可选):</label>
+          <input type="text" id="link-code-input" placeholder="例如: abcd">
+        </div>
+        <div class="form-group">
+          <label>网盘来源:</label>
+          <select id="link-source-select">
+            <option value="百度网盘">百度网盘</option>
+            <option value="天翼云盘">天翼云盘</option>
+            <option value="阿里云盘">阿里云盘</option>
+            <option value="夸克网盘">夸克网盘</option>
+            <option value="123云盘">123云盘</option>
+          </select>
+        </div>
+        <div class="form-buttons">
+          <button id="btn-save-link">保存链接</button>
+          <button id="btn-test-link">测试链接</button>
+          <button id="btn-close-manager">关闭</button>
+        </div>
+      </div>
+      <div class="current-links">
+        <h4>当前已配置链接</h4>
+        <div class="links-list">
+  `;
+  
+  // 显示当前配置的链接
+  var count = 0;
+  for (var filename in fileLinks) {
+    if (count < 10) { // 只显示前10个
+      var link = fileLinks[filename];
+      contentHtml += `<div class="link-item">${filename} - ${link.source} ${link.code ? '(有提取码)' : ''}</div>`;
+      count++;
+    }
+  }
+  
+  if (Object.keys(fileLinks).length > 10) {
+    contentHtml += `<div class="link-item">... 还有 ${Object.keys(fileLinks).length - 10} 个文件</div>`;
+  }
+  
+  contentHtml += `
+        </div>
+      </div>
+    </div>
+  `;
+  
+  manager.innerHTML = contentHtml;
+  
+  manager.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+  `;
+  
+  var content = manager.querySelector('.link-manager-content');
+  content.style.cssText = `
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+  `;
+  
+  // 文件选择事件
+  manager.querySelector('#link-file-select').addEventListener('change', function() {
+    var filename = this.value;
+    if (filename && fileLinks[filename]) {
+      var link = fileLinks[filename];
+      document.getElementById('link-id-input').value = link.link || '';
+      document.getElementById('link-code-input').value = link.code || '';
+      document.getElementById('link-source-select').value = link.source || '百度网盘';
+    } else {
+      document.getElementById('link-id-input').value = '';
+      document.getElementById('link-code-input').value = '';
+      document.getElementById('link-source-select').value = '百度网盘';
+    }
+  });
+  
+  // 保存链接
+  manager.querySelector('#btn-save-link').addEventListener('click', function() {
+    var filename = document.getElementById('link-file-select').value;
+    var linkId = document.getElementById('link-id-input').value.trim();
+    var code = document.getElementById('link-code-input').value.trim();
+    var source = document.getElementById('link-source-select').value;
+    
+    if (!filename) {
+      alert('请选择文件');
+      return;
+    }
+    
+    if (!linkId) {
+      alert('请输入网盘链接ID');
+      return;
+    }
+    
+    // 更新链接
+    fileLinks[filename] = {
+      link: linkId,
+      code: code,
+      source: source
+    };
+    
+    // 保存到localStorage
+    localStorage.setItem('fileLinks', JSON.stringify(fileLinks));
+    
+    alert('链接保存成功！');
+  });
+  
+  // 测试链接
+  manager.querySelector('#btn-test-link').addEventListener('click', function() {
+    var filename = document.getElementById('link-file-select').value;
+    var linkId = document.getElementById('link-id-input').value.trim();
+    var source = document.getElementById('link-source-select').value;
+    
+    if (!filename || !linkId) {
+      alert('请先选择文件并输入链接ID');
+      return;
+    }
+    
+    // 根据网盘来源生成测试链接
+    var baseUrl = '';
+    switch(source) {
+      case '百度网盘': baseUrl = 'https://pan.baidu.com/s/'; break;
+      case '天翼云盘': baseUrl = 'https://cloud.189.cn/t/'; break;
+      case '阿里云盘': baseUrl = 'https://www.aliyundrive.com/s/'; break;
+      case '夸克网盘': baseUrl = 'https://pan.quark.cn/s/'; break;
+      case '123云盘': baseUrl = 'https://www.123pan.com/s/'; break;
+    }
+    
+    var testUrl = baseUrl + linkId;
+    window.open(testUrl, '_blank');
+  });
+  
+  manager.querySelector('#btn-close-manager').addEventListener('click', function() {
+    document.body.removeChild(manager);
+  });
+  
+  // 点击背景关闭
+  manager.addEventListener('click', function(e) {
+    if (e.target === manager) {
+      document.body.removeChild(manager);
+    }
+  });
+  
+  document.body.appendChild(manager);
+}
+
+// 初始化链接管理
+function initLinkManager() {
+  // 从localStorage加载保存的链接
+  var savedLinks = localStorage.getItem('fileLinks');
+  if (savedLinks) {
+    try {
+      var parsedLinks = JSON.parse(savedLinks);
+      // 合并保存的链接，但保留默认链接中没有的
+      Object.assign(fileLinks, parsedLinks);
+    } catch (e) {
+      console.error('加载保存的链接失败:', e);
+    }
+  }
+}
+
+// 页面加载完成
+function onLoad() {
+  // 初始化目录数据
+  initDirectoryData();
+  
+  // 初始化链接管理
+  initLinkManager();
+  
+  // 检查URL中的路径参数
+  var hash = window.location.hash;
+  if (hash && hash.length > 1) {
+    var pathFromURL = decodeURIComponent(hash.substring(1));
+    if (directoryData[pathFromURL] || pathFromURL === "/") {
+      currentPath = pathFromURL;
+    }
+  }
+  
+  // 渲染初始目录
+  renderDirectory();
+  
+  // 添加排序事件处理器
+  addHandlers(document.getElementById('nameColumnHeader'), 0);
+  addHandlers(document.getElementById('sizeColumnHeader'), 1);
+  addHandlers(document.getElementById('dateColumnHeader'), 2);
+}
+
+// 监听浏览器前进/后退
+window.addEventListener('popstate', function(event) {
+  if (event.state && event.state.path) {
+    currentPath = event.state.path;
+    renderDirectory();
+  }
+});
+
+// 监听DOM加载完成
+window.addEventListener('DOMContentLoaded', onLoad);
+</script>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  h1 {
+    border-bottom: 2px solid #0078d4;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    white-space: nowrap;
+    font-size: 1.8em;
+    color: #005a9e;
+    font-weight: 600;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  th {
+    cursor: pointer;
+    background-color: #f3f6f9;
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+    color: #495057;
+    transition: background-color 0.2s;
+  }
+  
+  th:hover {
+    background-color: #e9ecef;
+  }
+  
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  tr:hover {
+    background-color: #f8f9fa;
+  }
+
+  td.detailsColumn {
+    padding-inline-start: 2em;
+    text-align: end;
+    white-space: nowrap;
+    color: #666;
+  }
+
+  a.icon {
+    padding-inline-start: 1.8em;
+    text-decoration: none;
+    user-select: auto;
+    color: #0078d4;
+    display: inline-block;
+    padding: 4px 0 4px 28px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    min-height: 24px;
+    line-height: 24px;
+    transition: color 0.2s;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  a.icon:hover {
+    text-decoration: underline;
+    color: #005a9e;
+  }
+
+  a.file {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABnRSTlMAAAAAAABupgeRAAABEElEQVR42nRRx3HDMBC846AHZ7sP54BmWAyrsP588qnwlhqw/k4v5ZwWxM1hzmGRgV1cYqrRarXoH2w2m6qqiqKIR6cPtzc3xMSML2Te7XZZlnW7Pe/91/dX47WRBHuA9oyGmRgnzGDjab1ePzw8bLfb6WRalmW4ip9FDVpYSWZgOp12Oh3nXJ7nxoJSGEciteP9y+fH52q1euv38WosqA6T2gGOT44vry7BEQtJkMAMMpa6JagAMcUfWYa4hkkzAc7fFlSjwqCoOUYAF5RjHZPVCFBOtSBGfgUDji3c3jpibeEMQhIMh8NwshqyRsBJgvF4jMs/YlVR5KhgNpuBLzk0OcUiR3CMhcPaOzsZiAAA/AjmaB3WZIkAAAAASUVORK5CYII=");
+  }
+
+  a.dir {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABt0lEQVR42oxStZoWQRCs2cXdHTLcHZ6EjAwnQWIkJyQlRt4Cd3d3d1n5d7q7ju1zv/q+mh6taQsk8fn29kPDRo87SDMQcNAUJgIQkBjdAoRKdXjm2mOH0AqS+PlkP8sfp0h93iu/PDji9s2FzSSJVg5ykZqWgfGRr9rAAAQiDFoB1OfyESZEB7iAI0lHwLREQBcQQKqo8p+gNUCguwCNAAUQAcFOr0NNGjT+BbUC2YsHZpWLhC6/m0chqIoM1LKbQIIBwlTQE1xAo9QDGDPYf6rkTpPc92gCUYVJAZjhyZltJ95f3zuvLYRGWWCUNkDL2333McBh4kaLlxg+aTmyL7c2xTjkN4Bt7oE3DBP/3SRz65R/bkmBRPGzcRNHYuzMjaj+fdnaFoJUEdTSXfaHbe7XNnMPyqryPcmfY+zURaAB7SHk9cXSH4fQ5rojgCAVIuqCNWgRhLYLhJB4k3iZfIPtnQiCpjAzeBIRXMA6emAqoEbQSoDdGxFUrxS1AYcpaNbBgyQBGJEOnYOeENKR/iAd1npusI4C75/c3539+nbUjOgZV5CkAU27df40lH+agUdIuA/EAgDmZnwZlhDc0wAAAABJRU5ErkJggg==");
+  }
+
+  a.up {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACM0lEQVR42myTA+w1RxRHz+zftmrbdtq04qRGrCmvbDWp9tq3a7tPcub8mj9XZ3eHOGQdJAHw77/LbZuvnWy+c/CIAd+91CMf3bo+bgcBiBAGIZKXb19/zodsAkFT+3px+ssYfyHTQW5tr05dCOf3xN49KaVX9+2zy1dX4XMk+5JflN5MBPL30oVsvnvEyp+18Nt3ZAErQMSFOfelCFvw0HcUloDayljZkX+MmamTAMTe+d+ltZ+1wEaRAX/MAnkJdcujzZyErIiVSzCEvOiq4O83AG7LAkwsfIgAnbncag82jfPPdd9RQyhPkpNJvKJUQBKlYFmQA315n4YPNjwMAZYy0TgAweedLmLzTJSTLIxkWDaVCVfAbbiKjytgmm+EGpMBYW0Wwwbb7tL8anox/UxekaOW544HO0ANAshxuORT/RG5YSrjlwZ3lM955tlQqbtVMlWIhjwzkAVFB8Q9EAAA3AFJ+DR3DO/Pnd3NPi7H117rAzWjpEs8vfIqsGZpaweOfEAAFJKuM0v6kf2iC5pZ9+fmLSZfWBVaKfLLNOXj6lYY0V2lfyVCIsVzmcRV9Y0fx02eTaEwhl2PDrXcjFdYRAohQmS8QEFLCLKGYA0AeEakhCCFDXqxsE0AQACgAQp5w96o0lAXuNASeDKWIpADiHwigfBINpWKtAXJvCEKWgSJNbRvxf4SmrnKDpvZavePu1K/zu/due1X/6Nj90MBd/J2Cic7WjBp/jUdIuA8AUtd65M+PzXIAAAAASUVORK5CYII=");
+  }
+
+  #parentDirLinkBox {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  
+  #parentDirLink {
+    display: inline-block;
+    padding: 10px 18px 10px 40px;
+    background-color: #e6f2ff;
+    border-radius: 5px;
+    color: #005a9e;
+    text-decoration: none;
+    border: 1px solid #c7e0f4;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  #parentDirLink:hover {
+    background-color: #d0e7ff;
+    text-decoration: none;
+  }
+  
+  /* 网盘链接对话框样式 */
+  .disk-link-dialog-content h3 {
+    margin-top: 0;
+    color: #005a9e;
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-disk::before {
+    content: "💾";
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+  
+  .file-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+  }
+  
+  .file-info p {
+    margin: 8px 0;
+  }
+  
+  .disk-source {
+    background-color: #0078d4;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  .link-section, .code-section {
+    margin: 20px 0;
+  }
+  
+  .link-section h4, .code-section h4 {
+    margin-bottom: 10px;
+    color: #495057;
+  }
+  
+  .link-box, .code-box {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .link-box input, .code-box input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: monospace;
+    background-color: #f8f9fa;
+  }
+  
+  .btn-copy-link, .btn-copy-code {
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-copy-link:hover, .btn-copy-code:hover {
+    background-color: #5a6268;
+  }
+  
+  .instructions {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+  }
+  
+  .instructions ol {
+    margin: 10px 0 0 0;
+    padding-left: 20px;
+  }
+  
+  .instructions li {
+    margin-bottom: 5px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn-open-disk {
+    flex: 1;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.1em;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-open-disk:hover {
+    background-color: #218838;
+  }
+  
+  .btn-close-dialog {
+    padding: 12px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-close-dialog:hover {
+    background-color: #5a6268;
+  }
+  
+  /* 链接管理面板样式 */
+  .link-manager-content h3 {
+    margin-top: 0;
+    color: #6f42c1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon-settings::before {
+    content: "⚙️";
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+  
+  .manager-instructions {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px 0;
+  }
+  
+  .link-editor {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin: 20px 0;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .form-group select, .form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #6c757d;
+    font-size: 0.85em;
+  }
+  
+  .form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .form-buttons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #btn-save-link {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  #btn-save-link:hover {
+    background-color: #218838;
+  }
+  
+  #btn-test-link {
+    background-color: #17a2b8;
+    color: white;
+  }
+  
+  #btn-test-link:hover {
+    background-color: #138496;
+  }
+  
+  #btn-close-manager {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  #btn-close-manager:hover {
+    background-color: #5a6268;
+  }
+  
+  .current-links {
+    margin-top: 20px;
+  }
+  
+  .links-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  
+  .link-item {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+  
+  .link-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    body {
+      margin: 10px;
+    }
+    
+    h1 {
+      font-size: 1.4em;
+    }
+    
+    th, td {
+      padding: 10px 12px;
+    }
+    
+    .detailsColumn {
+      font-size: 0.9em;
+    }
+    
+    .link-box, .code-box {
+      flex-direction: column;
+    }
+    
+    #link-manager-btn {
+      bottom: 10px;
+      right: 10px;
+      padding: 8px 12px;
+      font-size: 0.9em;
+    }
+  }
+  
+  .link-box input, .code-box input {
+	  flex: 1;
+	  padding: 10px;
+	  border: 1px solid #ced4da;
+	  border-radius: 4px;
+	  font-family: monospace;
+	  background-color: #f8f9fa;
+	  color: #333 !important; /* 确保文字颜色为深色 */
+	  font-size: 14px;
+	}
+
+	/* 确保对话框所有文字都是深色 */
+	.disk-link-dialog-content {
+	  background-color: white;
+	  padding: 25px;
+	  border-radius: 10px;
+	  max-width: 600px;
+	  width: 90%;
+	  max-height: 90vh;
+	  overflow-y: auto;
+	  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+	  color: #333 !important; /* 确保整体文字颜色为深色 */
+	}
+
+	/* 修复文件信息区域文字颜色 */
+	.file-info {
+	  background-color: #f8f9fa;
+	  padding: 15px;
+	  border-radius: 5px;
+	  margin: 15px 0;
+	  color: #333 !important;
+	}
+
+	.file-info p {
+	  margin: 8px 0;
+	  color: #333 !important;
+	}
+
+	.file-info strong {
+	  color: #005a9e !important;
+	}
+
+	/* 修复对话框标题颜色 */
+	.disk-link-dialog-content h3 {
+	  margin-top: 0;
+	  color: #005a9e !important;
+	  display: flex;
+	  align-items: center;
+	}
+
+	/* 修复说明区域文字颜色 */
+	.instructions {
+	  background-color: #fff3cd;
+	  border-left: 4px solid #ffc107;
+	  padding: 15px;
+	  border-radius: 4px;
+	  margin: 20px 0;
+	  color: #333 !important;
+	}
+
+	.instructions p, .instructions li {
+	  color: #333 !important;
+	}
+
+	/* 修复链接管理面板的文字颜色问题 */
+	.link-manager-content {
+	  background-color: white;
+	  padding: 25px;
+	  border-radius: 10px;
+	  max-width: 700px;
+	  width: 90%;
+	  max-height: 90vh;
+	  overflow-y: auto;
+	  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+	  color: #333 !important;
+	}
+
+	/* 修复表单元素文字颜色 */
+	.form-group select, .form-group input {
+	  width: 100%;
+	  padding: 8px 10px;
+	  border: 1px solid #ced4da;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	  color: #333 !important;
+	  background-color: #fff !important;
+	}
+
+	.form-group label {
+	  display: block;
+	  margin-bottom: 5px;
+	  font-weight: 500;
+	  color: #333 !important;
+	}
+
+	/* 修复下拉菜单选项文字颜色 */
+	.form-group select option {
+	  color: #333 !important;
+	  background-color: #fff !important;
+	}
+</style>
+
+<title id="title">Vizyn | WinBeta下载</title>
+</head>
+
+<body>
+
+<h1 id="header">Vizyn | WinBeta下载</h1>
+
+<div id="parentDirLinkBox" style="display:none">
+  <a id="parentDirLink" class="icon up">
+    <span id="parentDirText">[返回上一级]</span>
+  </a>
+</div>
+
+<table>
+  <thead>
+    <tr class="header" id="theader">
+      <th id="nameColumnHeader" tabindex=0 role="button">名称</th>
+      <th id="sizeColumnHeader" class="detailsColumn" tabindex=0 role="button">
+        大小
+      </th>
+      <th id="dateColumnHeader" class="detailsColumn" tabindex=0 role="button">
+        修改日期
+      </th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+  </tbody>
+</table>
+
+<div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #666; border-left: 4px solid #0078d4;">
+  <strong>使用说明：</strong><br>
+  1. 点击文本以跳转下一页<br>
+  2. 点击文件（如iso）弹出下载确定页面<br>
+  3. 点击下载跳转至第三方网盘<br>
+</div>
+
+<script>
+// 兼容性处理
+if (!window.history.pushState) {
+  console.warn("浏览器不支持HTML5 History API，导航功能受限");
+}
+
+// 初始化时检查链接配置
+window.addEventListener('DOMContentLoaded', function() {
+  // 检查是否有未配置链接的文件
+  var unconfiguredFiles = [];
+  for (var path in fileSystemData) {
+    if (path !== "/") {
+      var files = fileSystemData[path];
+      files.forEach(function(file) {
+        if (file.type === "file" && !fileLinks[file.name]) {
+          unconfiguredFiles.push(file.name);
+        }
+      });
+    }
+  }
+  
+  if (unconfiguredFiles.length > 0) {
+    setTimeout(function() {
+      var setupPrompt = confirm("检测到 " + unconfiguredFiles.length + " 个文件未配置网盘链接。\n\n是否现在进行配置？");
+      if (setupPrompt) {
+        // 触发管理链接面板
+        document.getElementById('link-manager-btn').click();
+      }
+    }, 3000);
+  }
+});
+</script>
+
+</body>
+</html>
