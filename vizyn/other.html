@@ -906,6 +906,12 @@ window.addEventListener('popstate', function(event) {
 
 // 监听DOM加载完成
 window.addEventListener('DOMContentLoaded', onLoad);
+
+// 返回主页函数
+function goToHome() {
+  var homeUrl = "https://millseasy-github-io.pages.dev/vizyn/";
+  window.location.href = homeUrl;
+}
 </script>
 
 <style>
@@ -1147,7 +1153,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
     background-color: #5a6268;
   }
   
-  /* 链接管理面板样式 */
   .link-manager-content h3 {
     margin-top: 0;
     color: #6f42c1;
@@ -1264,7 +1269,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
     border-bottom: none;
   }
   
-  /* 响应式设计 */
   @media (max-width: 768px) {
     body {
       margin: 10px;
@@ -1301,11 +1305,10 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  border-radius: 4px;
 	  font-family: monospace;
 	  background-color: #f8f9fa;
-	  color: #333 !important; /* 确保文字颜色为深色 */
+	  color: #333 !important;
 	  font-size: 14px;
 	}
 
-	/* 确保对话框所有文字都是深色 */
 	.disk-link-dialog-content {
 	  background-color: white;
 	  padding: 25px;
@@ -1315,10 +1318,9 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  max-height: 90vh;
 	  overflow-y: auto;
 	  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-	  color: #333 !important; /* 确保整体文字颜色为深色 */
+	  color: #333 !important;
 	}
 
-	/* 修复文件信息区域文字颜色 */
 	.file-info {
 	  background-color: #f8f9fa;
 	  padding: 15px;
@@ -1336,7 +1338,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  color: #005a9e !important;
 	}
 
-	/* 修复对话框标题颜色 */
 	.disk-link-dialog-content h3 {
 	  margin-top: 0;
 	  color: #005a9e !important;
@@ -1344,7 +1345,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  align-items: center;
 	}
 
-	/* 修复说明区域文字颜色 */
 	.instructions {
 	  background-color: #fff3cd;
 	  border-left: 4px solid #ffc107;
@@ -1358,7 +1358,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  color: #333 !important;
 	}
 
-	/* 修复链接管理面板的文字颜色问题 */
 	.link-manager-content {
 	  background-color: white;
 	  padding: 25px;
@@ -1371,7 +1370,6 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  color: #333 !important;
 	}
 
-	/* 修复表单元素文字颜色 */
 	.form-group select, .form-group input {
 	  width: 100%;
 	  padding: 8px 10px;
@@ -1389,11 +1387,39 @@ window.addEventListener('DOMContentLoaded', onLoad);
 	  color: #333 !important;
 	}
 
-	/* 修复下拉菜单选项文字颜色 */
 	.form-group select option {
 	  color: #333 !important;
 	  background-color: #fff !important;
 	}
+	
+	  #homeButton {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		padding: 10px 20px;
+		background-color: #0078d4;
+		color: white;
+		text-decoration: none;
+		border-radius: 5px;
+		border: none;
+		cursor: pointer;
+		font-weight: 500;
+		z-index: 999;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+		transition: all 0.3s ease;
+		font-size: 14px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	  }
+
+	  #homeButton:hover {
+		background-color: #005a9e;
+	  }
+
+	  #homeButton:active {
+		transform: translateY(0);
+	  }
 </style>
 
 <title id="title">Vizyn | WinBeta下载</title>
@@ -1402,6 +1428,8 @@ window.addEventListener('DOMContentLoaded', onLoad);
 <body>
 
 <h1 id="header">Vizyn | WinBeta下载</h1>
+
+<button id="homeButton" onclick="goToHome()" title="返回主页">返回主页</button>
 
 <div id="parentDirLinkBox" style="display:none">
   <a id="parentDirLink" class="icon up">
@@ -1427,13 +1455,13 @@ window.addEventListener('DOMContentLoaded', onLoad);
 
 <div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #666; border-left: 4px solid #0078d4;">
   <strong>使用说明：</strong><br>
-  1. 点击文本以跳转下一页<br>
-  2. 点击文件（如iso）弹出下载确定页面<br>
-  3. 点击下载跳转至第三方网盘<br>
+  1. 点击超链接文本以跳转下一页<br>
+  2. 点击文件名称（如iso）弹出下载确定页面<br>
+  3. 点击 下载 跳转至第三方网盘<br>
   <strong>警告：</strong><br>
   安装测试版存在风险，本站提供系统镜像是为尝鲜。请勿将系统安装到实体机上，若您尝试这样做导致的数据损失，本站不承担任何后果！<br>
 </div>
-<p>本页面由 栖渊Kaelen 提供 | Copyright 2012 The Chromium</p>
+<p>本页面由 栖渊Kaelen 提供 | Chromium 内置的文件管理器</p>
 <script>
 // 兼容性处理
 if (!window.history.pushState) {
