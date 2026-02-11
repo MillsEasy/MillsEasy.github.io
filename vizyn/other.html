@@ -13,141 +13,97 @@ var currentPath = "/";
 var directoryData = {}; // 存储所有目录数据
 var historyStack = [];  // 历史记录栈
 
-// 网盘链接配置 - 每个系统对应不同的网盘链接
-var diskLinks = {
-  "WindowsLonghorn": {
-    "base": "https://cloud.189.cn/",
-    "description": "天翼云盘",
-    "requireCode": true,
-    "defaultCodes": {
-      "WindowsLonghorn_Build_4074.iso": "4074",
-      "WindowsLonghorn_Build_4083.iso": "4083",
-      "WindowsLonghorn_Build_4093.iso": "4093"
-    }
-  },
-  "Windows7Beta": {
-    "base": "https://cloud.189.cn/t/",
-    "description": "天翼云盘",
-    "requireCode": false
-  },
-  "Windows8Beta": {
-    "base": "https://www.123865.com/s/",
-    "description": "123云盘",
-    "requireCode": false
-  },
-  "Windows10Beta": {
-    "base": "https://www.123865.com/s/",
-    "description": "123云盘",
-    "requireCode": false
-  },
-  "Windows11Beta": {
-    "base": "https://www.123865.com/s/",
-    "description": "123云盘",
-    "requireCode": false
-  },
-  "WindowsVistaBeta": {
-    "base": "https://pan.baidu.com/s/",
-    "description": "百度网盘",
-    "requireCode": true
-  },
-  "WindowsXPBeta": {
-    "base": "https://cloud.189.cn/t/",
-    "description": "天翼云盘",
-    "requireCode": false
-  }
-};
-
 // 具体的文件网盘链接和提取码
 var fileLinks = {
   "WindowsLonghorn_Build_4074.iso": {
-    "link": "1XyZ2ABC",
+    "url": "https://cloud.189.cn/1XyZ2ABC",
     "code": "abcd",     
-    "source": "百度网盘"
+    "source": "百度网盘",
+    "requireCode": true
   },
   "WindowsLonghorn_Build_4083.iso": {
-    "link": "2AbC3DEF",
+    "url": "https://cloud.189.cn/2AbC3DEF",
     "code": "efgh",
-    "source": "百度网盘"
+    "source": "百度网盘",
+    "requireCode": true
   },
   "WindowsLonghorn_Build_4093.iso": {
-    "link": "3GhI4JKL",
+    "url": "https://cloud.189.cn/3GhI4JKL",
     "code": "ijkl",
-    "source": "百度网盘"
+    "source": "百度网盘",
+    "requireCode": true
   },
   "Windows7_Build_6801.iso": {
-    "link": "5Mno6PQR",
+    "url": "https://cloud.189.cn/t/5Mno6PQR",
     "code": "",
-    "source": "天翼云盘"
+    "source": "天翼云盘",
+    "requireCode": false
   },
   "Windows7_Build_6956.iso": {
-    "link": "7StU8VWX",
+    "url": "https://cloud.189.cn/t/7StU8VWX",
     "code": "",
-    "source": "天翼云盘"
+    "source": "天翼云盘",
+    "requireCode": false
   },
   "Windows8_Consumer_Preview.iso": {
-    "link": "dwB1vd-SZPWv?pwd=RJc5#",
+    "url": "https://www.123865.com/s/dwB1vd-SZPWv",
     "code": "RJc5",
-    "source": "123云盘"
+    "source": "123云盘",
+    "requireCode": true
   },
   "Windows8_Build_7850.iso": {
-	"link": "dwB1vd-30PWv?pwd=vLIN#",
-	"code": "vLIN",
-    "source": "123云盘"
+    "url": "https://www.123865.com/s/dwB1vd-30PWv",
+    "code": "vLIN",
+    "source": "123云盘",
+    "requireCode": true
   },
   "Windows10_Build_9833.iso": {
-    "link": "dwB1vd-ADPWv?pwd=oY5Y#",
+    "url": "https://www.123865.com/s/dwB1vd-ADPWv",
     "code": "oY5Y",
-    "source": "123云盘"
+    "source": "123云盘",
+    "requireCode": true
   },
   "Windows10_Build_14316.iso": {
-    "link": "5Qrs6TUV",
+    "url": "https://www.123865.com/s/5Qrs6TUV",
     "code": "",
-    "source": "123云盘"
+    "source": "",
+    "requireCode": false
   },
   "Windows11_Insider_Preview_Dev.iso": {
-    "link": "7Wxy8Zab",
+    "url": "https://www.123865.com/s/7Wxy8Zab",
     "code": "",
-    "source": "123云盘"
+    "source": "123云盘",
+    "requireCode": false
   },
   "Windows11_Insider_Preview_Beta.iso": {
-    "link": "9Cde0Fgh",
+    "url": "https://www.123865.com/s/9Cde0Fgh",
     "code": "",
-    "source": "123云盘"
+    "source": "123云盘",
+    "requireCode": false
   },
   "WindowsVista_Beta_1.iso": {
-    "link": "2Ijk3Lmn",
+    "url": "https://pan.baidu.com/s/2Ijk3Lmn",
     "code": "mnop",
-    "source": "百度网盘"
+    "source": "百度网盘",
+    "requireCode": true
   },
   "WindowsVista_Beta_2.iso": {
-    "link": "4Opq5Rst",
+    "url": "https://pan.baidu.com/s/4Opq5Rst",
     "code": "qrst",
-    "source": "百度网盘"
+    "source": "百度网盘",
+    "requireCode": true
   },
   "WindowsXP_Beta_1.iso": {
-    "link": "6Uvw7Xyz",
+    "url": "https://cloud.189.cn/t/6Uvw7Xyz",
     "code": "",
-    "source": "天翼云盘"
+    "source": "天翼云盘",
+    "requireCode": false
   },
   "WindowsXP_Beta_2.iso": {
-    "link": "8Abc9Def",
+    "url": "https://cloud.189.cn/t/8Abc9Def",
     "code": "",
-    "source": "天翼云盘"
-  },
-  "WindowsServer_2025_Beta.iso": {
-    "link": "0Ghi1Jkl",
-    "code": "",
-    "source": "阿里云盘"
-  },
-  "WindowsMobile_10_Beta.7z": {
-    "link": "2Mno3Pqr",
-    "code": "",
-    "source": "夸克网盘"
-  },
-  "Windows365_Enterprise_Beta_Client.exe": {
-    "link": "4Stu5Vwx",
-    "code": "",
-    "source": "123云盘"
+    "source": "天翼云盘",
+    "requireCode": false
   }
 };
 
@@ -155,32 +111,41 @@ var fileLinks = {
 var fileSystemData = {
   "/": [
     {"name": "WindowsLonghorn", "type": "dir", "size": 0, "modified": 1770120814, "modified_str": "2026/2/3 20:13:34"},
-    {"name": "Windows7Beta", "type": "dir", "size": 0, "modified": 1769139141, "modified_str": "2026/1/23 11:32:21}"},
+    {"name": "Windows7Beta", "type": "dir", "size": 0, "modified": 1769139141, "modified_str": "2026/1/23 11:32:21"},
     {"name": "Windows8Beta", "type": "dir", "size": 0, "modified": 1737946670, "modified_str": "2025/1/27 10:57:50"},
     {"name": "Windows10Beta", "type": "dir", "size": 0, "modified": 1761140571, "modified_str": "2025/10/22 21:42:51"},
     {"name": "Windows11Beta", "type": "dir", "size": 0, "modified": 1770692202, "modified_str": "2026/2/10 10:56:42"},
     {"name": "WindowsVistaBeta", "type": "dir", "size": 0, "modified": 1757817068, "modified_str": "2025/9/14 10:31:08"},
-    {"name": "WindowsXPBeta", "type": "dir", "size": 0, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39"},
+    {"name": "WindowsXPBeta", "type": "dir", "size": 0, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39"}
   ],
   "/WindowsLonghorn/": [
+    {"name": "WindowsLonghorn_Build_4074.iso", "type": "file", "size": 3650722201, "modified": 1761140571, "modified_str": "2025-08-17 13:39:03", "description": "Windows Longhorn Build 4074"},
+    {"name": "WindowsLonghorn_Build_4083.iso", "type": "file", "size": 2641404887, "modified": 1761140571, "modified_str": "2025-08-04 11:13:01", "description": "Windows Longhorn Build 4083"},
+    {"name": "WindowsLonghorn_Build_4093.iso", "type": "file", "size": 4273492459, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows Longhorn Build 4093"}
   ],
   "/Windows7Beta/": [
+    {"name": "Windows7_Build_6801.iso", "type": "file", "size": 3650722201, "modified": 1761140571, "modified_str": "2025-08-17 13:39:03", "description": "Windows 7 Build 6801"},
+    {"name": "Windows7_Build_6956.iso", "type": "file", "size": 2641404887, "modified": 1761140571, "modified_str": "2025-08-04 11:13:01", "description": "Windows 7 Build 6956"}
   ],
   "/Windows8Beta/": [
-    {"name": "Windows8_Consumer_Preview.iso", "type": "file", "size": 3650722201, "modified": 1761140571, "modified_str": "2025-08-17 13:39:03", "description": "Windows 8消费者预览版"},
-	{"name": "Windows8_Build_7850.iso", "type": "file", "size": 2641404887, "modified": 1761140571, "modified_str": "2025-08-04 11:13:01", "description": "Windows 8 Build 7850"}
+    {"name": "Windows8_Consumer_Preview.iso", "type": "file", "size": 3650722201, "modified": 1761140571, "modified_str": "2025-08-17 13:39:03", "description": "Windows 8 消费者预览版"},
+    {"name": "Windows8_Build_7850.iso", "type": "file", "size": 2641404887, "modified": 1761140571, "modified_str": "2025-08-04 11:13:01", "description": "Windows 8 Build 7850"}
   ],
   "/Windows10Beta/": [
-    {"name": "Windows10_Build_9833.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10技术预览版"},
-	{"name": "Windows10_Build_14316.iso", "type": "file", "size": 4273492459.52, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10 Build 14366"},
+    {"name": "Windows10_Build_9833.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10 Build 9833 技术预览版"},
+    {"name": "Windows10_Build_14316.iso", "type": "file", "size": 4273492459, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows 10 Build 14316"}
   ],
   "/Windows11Beta/": [
+    {"name": "Windows11_Insider_Preview_Dev.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows 11 开发预览版"},
+    {"name": "Windows11_Insider_Preview_Beta.iso", "type": "file", "size": 4273492459, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows 11 Beta 预览版"}
   ],
   "/WindowsVistaBeta/": [
+    {"name": "WindowsVista_Beta_1.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows Vista Beta 1"},
+    {"name": "WindowsVista_Beta_2.iso", "type": "file", "size": 4273492459, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows Vista Beta 2"}
   ],
   "/WindowsXPBeta/": [
-  ],
-  "/WindowsServerBeta/": [
+    {"name": "WindowsXP_Beta_1.iso", "type": "file", "size": 3446711255, "modified": 1763259459, "modified_str": "2025/11/16 10:17:39", "description": "Windows XP Beta 1"},
+    {"name": "WindowsXP_Beta_2.iso", "type": "file", "size": 4273492459, "modified": 1663259269, "modified_str": "2025/11/16 10:17:39", "description": "Windows XP Beta 2"}
   ]
 };
 
@@ -198,38 +163,20 @@ function formatFileSize(bytes) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
 }
 
-// 获取网盘类型
-function getDiskType(path) {
-  var parts = path.split('/').filter(part => part.length > 0);
-  if (parts.length > 0) {
-    var dirName = parts[0];
-    if (diskLinks[dirName]) {
-      return diskLinks[dirName].description;
-    }
-  }
-  return "未知网盘";
-}
-
-// 生成网盘链接
-function generateDiskLink(filename, path) {
+// 生成网盘链接 - 直接返回文件的完整链接配置
+function generateDiskLink(filename) {
   var fileLink = fileLinks[filename];
   if (!fileLink) {
-    return null;
-  }
-  
-  var parts = path.split('/').filter(part => part.length > 0);
-  var dirName = parts[0];
-  var diskConfig = diskLinks[dirName];
-  
-  if (!diskConfig) {
+    console.log("未找到文件链接:", filename);
+    console.log("可用链接:", Object.keys(fileLinks));
     return null;
   }
   
   return {
-    url: diskConfig.base + fileLink.link,
-    code: fileLink.code,
-    source: fileLink.source || diskConfig.description,
-    requireCode: diskConfig.requireCode
+    url: fileLink.url || "",
+    code: fileLink.code || "",
+    source: fileLink.source || "未知网盘",
+    requireCode: fileLink.requireCode || false
   };
 }
 
@@ -362,14 +309,7 @@ function showDiskLinkDialog(filename, fileSize, fileDesc, linkInfo) {
   // 添加按钮事件
   dialog.querySelector('.btn-open-disk').addEventListener('click', function() {
     openDiskLink(linkInfo);
-    
-    // 自动复制提取码到剪贴板
-    if (linkInfo.requireCode && linkInfo.code) {
-      copyToClipboard(linkInfo.code);
-      setTimeout(function() {
-        alert("提取码已自动复制到剪贴板: " + linkInfo.code);
-      }, 300);
-    }
+
     
     document.body.removeChild(dialog);
   });
@@ -401,15 +341,7 @@ function showDiskLinkDialog(filename, fileSize, fileDesc, linkInfo) {
   dialog.querySelector('.btn-close-dialog').addEventListener('click', function() {
     document.body.removeChild(dialog);
   });
-  
-  // 点击背景关闭
-  dialog.addEventListener('click', function(e) {
-    if (e.target === dialog) {
-      document.body.removeChild(dialog);
-    }
-  });
-  
-  document.body.appendChild(dialog);
+document.body.appendChild(dialog);
 }
 
 // 添加文件行到表格
@@ -444,21 +376,23 @@ function addRow(name, isdir, size, size_string, date_modified_string, descriptio
     
     // 文件点击事件：显示网盘链接对话框
     link.href = "#";
-    link.addEventListener("click", function(e) {
-      e.preventDefault();
-      
-      var linkInfo = generateDiskLink(name, path);
-      
-      if (!linkInfo || !linkInfo.url) {
-        alert("未找到此文件的下载链接，请联系管理员添加。");
-        return;
-      }
-      
-      showDiskLinkDialog(name, size, description, linkInfo);
-      
-      // 记录下载统计
-      recordDownloadStat(name, path, linkInfo.source);
-    });
+	link.addEventListener("click", function(e) {
+	  e.preventDefault();
+	  
+	  var linkInfo = generateDiskLink(name);
+	  console.log('点击事件触发', name);
+	  
+	  if (!linkInfo || !linkInfo.url) {
+		alert("未找到此文件的下载链接，请联系管理员添加。文件名: " + name);
+		return;
+	  }
+	  
+	  showDiskLinkDialog(name, size, description, linkInfo);
+	  console.log('点击事件触发', name);
+	  
+	  // 记录下载统计
+	  recordDownloadStat(name, path, linkInfo.source);
+	});
   }
   
   link.innerText = name;
@@ -466,13 +400,6 @@ function addRow(name, isdir, size, size_string, date_modified_string, descriptio
   
   // 添加描述信息（如果有）
   var fullDescription = description || "";
-  if (isdir && directoryData[currentPath]) {
-    var item = directoryData[currentPath].find(item => item.name === name.slice(0, -1));
-    if (item && item.diskType) {
-      fullDescription += (fullDescription ? " | " : "") + "网盘: " + item.diskType;
-    }
-  }
-  
   if (fullDescription) {
     link.title = fullDescription;
   }
@@ -661,208 +588,13 @@ function addHandlers(element, column) {
   };
 }
 
-// 显示链接管理面板
-function showLinkManager() {
-  var manager = document.createElement('div');
-  manager.className = 'link-manager';
-  
-  var contentHtml = `
-    <div class="link-manager-content">
-      <h3><i class="icon-settings"></i> 网盘链接管理</h3>
-      <div class="manager-instructions">
-        <p><strong>使用说明:</strong></p>
-        <ol>
-          <li>每个文件都需要单独配置网盘链接</li>
-          <li>链接格式: 网盘基础URL + 文件唯一ID</li>
-          <li>部分网盘需要提取码</li>
-          <li>配置保存在本地浏览器中</li>
-        </ol>
-      </div>
-      <div class="link-editor">
-        <h4>编辑文件链接</h4>
-        <div class="form-group">
-          <label>文件名:</label>
-          <select id="link-file-select">
-            <option value="">选择文件...</option>
-  `;
-  
-  // 添加所有文件选项
-  for (var filename in fileLinks) {
-    contentHtml += `<option value="${filename}">${filename}</option>`;
-  }
-  
-  contentHtml += `
-          </select>
-        </div>
-        <div class="form-group">
-          <label>网盘链接ID:</label>
-          <input type="text" id="link-id-input" placeholder="例如: 1XyZ2ABC">
-          <small>只需要填写网盘链接的最后部分（唯一ID）</small>
-        </div>
-        <div class="form-group">
-          <label>提取码 (可选):</label>
-          <input type="text" id="link-code-input" placeholder="例如: abcd">
-        </div>
-        <div class="form-group">
-          <label>网盘来源:</label>
-          <select id="link-source-select">
-            <option value="百度网盘">百度网盘</option>
-            <option value="天翼云盘">天翼云盘</option>
-            <option value="阿里云盘">阿里云盘</option>
-            <option value="夸克网盘">夸克网盘</option>
-            <option value="123云盘">123云盘</option>
-          </select>
-        </div>
-        <div class="form-buttons">
-          <button id="btn-save-link">保存链接</button>
-          <button id="btn-test-link">测试链接</button>
-          <button id="btn-close-manager">关闭</button>
-        </div>
-      </div>
-      <div class="current-links">
-        <h4>当前已配置链接</h4>
-        <div class="links-list">
-  `;
-  
-  // 显示当前配置的链接
-  var count = 0;
-  for (var filename in fileLinks) {
-    if (count < 10) { // 只显示前10个
-      var link = fileLinks[filename];
-      contentHtml += `<div class="link-item">${filename} - ${link.source} ${link.code ? '(有提取码)' : ''}</div>`;
-      count++;
-    }
-  }
-  
-  if (Object.keys(fileLinks).length > 10) {
-    contentHtml += `<div class="link-item">... 还有 ${Object.keys(fileLinks).length - 10} 个文件</div>`;
-  }
-  
-  contentHtml += `
-        </div>
-      </div>
-    </div>
-  `;
-  
-  manager.innerHTML = contentHtml;
-  
-  manager.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001;
-  `;
-  
-  var content = manager.querySelector('.link-manager-content');
-  content.style.cssText = `
-    background-color: white;
-    padding: 25px;
-    border-radius: 10px;
-    max-width: 700px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-  `;
-  
-  // 文件选择事件
-  manager.querySelector('#link-file-select').addEventListener('change', function() {
-    var filename = this.value;
-    if (filename && fileLinks[filename]) {
-      var link = fileLinks[filename];
-      document.getElementById('link-id-input').value = link.link || '';
-      document.getElementById('link-code-input').value = link.code || '';
-      document.getElementById('link-source-select').value = link.source || '百度网盘';
-    } else {
-      document.getElementById('link-id-input').value = '';
-      document.getElementById('link-code-input').value = '';
-      document.getElementById('link-source-select').value = '百度网盘';
-    }
-  });
-  
-  // 保存链接
-  manager.querySelector('#btn-save-link').addEventListener('click', function() {
-    var filename = document.getElementById('link-file-select').value;
-    var linkId = document.getElementById('link-id-input').value.trim();
-    var code = document.getElementById('link-code-input').value.trim();
-    var source = document.getElementById('link-source-select').value;
-    
-    if (!filename) {
-      alert('请选择文件');
-      return;
-    }
-    
-    if (!linkId) {
-      alert('请输入网盘链接ID');
-      return;
-    }
-    
-    // 更新链接
-    fileLinks[filename] = {
-      link: linkId,
-      code: code,
-      source: source
-    };
-    
-    // 保存到localStorage
-    localStorage.setItem('fileLinks', JSON.stringify(fileLinks));
-    
-    alert('链接保存成功！');
-  });
-  
-  // 测试链接
-  manager.querySelector('#btn-test-link').addEventListener('click', function() {
-    var filename = document.getElementById('link-file-select').value;
-    var linkId = document.getElementById('link-id-input').value.trim();
-    var source = document.getElementById('link-source-select').value;
-    
-    if (!filename || !linkId) {
-      alert('请先选择文件并输入链接ID');
-      return;
-    }
-    
-    // 根据网盘来源生成测试链接
-    var baseUrl = '';
-    switch(source) {
-      case '百度网盘': baseUrl = 'https://pan.baidu.com/s/'; break;
-      case '天翼云盘': baseUrl = 'https://cloud.189.cn/t/'; break;
-      case '阿里云盘': baseUrl = 'https://www.aliyundrive.com/s/'; break;
-      case '夸克网盘': baseUrl = 'https://pan.quark.cn/s/'; break;
-      case '123云盘': baseUrl = 'https://www.123pan.com/s/'; break;
-    }
-    
-    var testUrl = baseUrl + linkId;
-    window.open(testUrl, '_blank');
-  });
-  
-  manager.querySelector('#btn-close-manager').addEventListener('click', function() {
-    document.body.removeChild(manager);
-  });
-  
-  // 点击背景关闭
-  manager.addEventListener('click', function(e) {
-    if (e.target === manager) {
-      document.body.removeChild(manager);
-    }
-  });
-  
-  document.body.appendChild(manager);
-}
-
 // 初始化链接管理
 function initLinkManager() {
-  // 从localStorage加载保存的链接
+  // 从localStorage加载保存的链接（可选，如果还需要这个功能）
   var savedLinks = localStorage.getItem('fileLinks');
   if (savedLinks) {
     try {
       var parsedLinks = JSON.parse(savedLinks);
-      // 合并保存的链接，但保留默认链接中没有的
       Object.assign(fileLinks, parsedLinks);
     } catch (e) {
       console.error('加载保存的链接失败:', e);
@@ -875,7 +607,7 @@ function onLoad() {
   // 初始化目录数据
   initDirectoryData();
   
-  // 初始化链接管理
+  // 初始化链接管理（可选）
   initLinkManager();
   
   // 检查URL中的路径参数
@@ -915,6 +647,7 @@ function goToHome() {
 </script>
 
 <style>
+  /* 样式保持不变 */
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
@@ -1153,151 +886,6 @@ function goToHome() {
     background-color: #5a6268;
   }
   
-  .link-manager-content h3 {
-    margin-top: 0;
-    color: #6f42c1;
-    display: flex;
-    align-items: center;
-  }
-  
-  .icon-settings::before {
-    content: "⚙️";
-    margin-right: 10px;
-    font-size: 1.2em;
-  }
-  
-  .manager-instructions {
-    background-color: #e9ecef;
-    padding: 15px;
-    border-radius: 5px;
-    margin: 15px 0;
-  }
-  
-  .link-editor {
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    margin: 20px 0;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  
-  .form-group select, .form-group input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-group small {
-    display: block;
-    margin-top: 5px;
-    color: #6c757d;
-    font-size: 0.85em;
-  }
-  
-  .form-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .form-buttons button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  #btn-save-link {
-    background-color: #28a745;
-    color: white;
-  }
-  
-  #btn-save-link:hover {
-    background-color: #218838;
-  }
-  
-  #btn-test-link {
-    background-color: #17a2b8;
-    color: white;
-  }
-  
-  #btn-test-link:hover {
-    background-color: #138496;
-  }
-  
-  #btn-close-manager {
-    background-color: #6c757d;
-    color: white;
-  }
-  
-  #btn-close-manager:hover {
-    background-color: #5a6268;
-  }
-  
-  .current-links {
-    margin-top: 20px;
-  }
-  
-  .links-list {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 10px;
-  }
-  
-  .link-item {
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
-    font-family: monospace;
-    font-size: 0.9em;
-  }
-  
-  .link-item:last-child {
-    border-bottom: none;
-  }
-  
-  @media (max-width: 768px) {
-    body {
-      margin: 10px;
-    }
-    
-    h1 {
-      font-size: 1.4em;
-    }
-    
-    th, td {
-      padding: 10px 12px;
-    }
-    
-    .detailsColumn {
-      font-size: 0.9em;
-    }
-    
-    .link-box, .code-box {
-      flex-direction: column;
-    }
-    
-    #link-manager-btn {
-      bottom: 10px;
-      right: 10px;
-      padding: 8px 12px;
-      font-size: 0.9em;
-    }
-  }
-  
   .link-box input, .code-box input {
 	  flex: 1;
 	  padding: 10px;
@@ -1357,40 +945,6 @@ function goToHome() {
 	.instructions p, .instructions li {
 	  color: #333 !important;
 	}
-
-	.link-manager-content {
-	  background-color: white;
-	  padding: 25px;
-	  border-radius: 10px;
-	  max-width: 700px;
-	  width: 90%;
-	  max-height: 90vh;
-	  overflow-y: auto;
-	  box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-	  color: #333 !important;
-	}
-
-	.form-group select, .form-group input {
-	  width: 100%;
-	  padding: 8px 10px;
-	  border: 1px solid #ced4da;
-	  border-radius: 4px;
-	  box-sizing: border-box;
-	  color: #333 !important;
-	  background-color: #fff !important;
-	}
-
-	.form-group label {
-	  display: block;
-	  margin-bottom: 5px;
-	  font-weight: 500;
-	  color: #333 !important;
-	}
-
-	.form-group select option {
-	  color: #333 !important;
-	  background-color: #fff !important;
-	}
 	
 	  #homeButton {
 		position: fixed;
@@ -1420,6 +974,28 @@ function goToHome() {
 	  #homeButton:active {
 		transform: translateY(0);
 	  }
+
+  @media (max-width: 768px) {
+    body {
+      margin: 10px;
+    }
+    
+    h1 {
+      font-size: 1.4em;
+    }
+    
+    th, td {
+      padding: 10px 12px;
+    }
+    
+    .detailsColumn {
+      font-size: 0.9em;
+    }
+    
+    .link-box, .code-box {
+      flex-direction: column;
+    }
+  }
 </style>
 
 <title id="title">Vizyn | WinBeta下载</title>
@@ -1455,9 +1031,10 @@ function goToHome() {
 
 <div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #666; border-left: 4px solid #0078d4;">
   <strong>使用说明：</strong><br>
-  1. 点击超链接文本以跳转下一页<br>
-  2. 点击文件名称（如iso）弹出下载确定页面<br>
-  3. 点击 下载 跳转至第三方网盘<br>
+  1. 点击目录进入子目录<br>
+  2. 点击文件名称弹出下载对话框<br>
+  3. 在对话框中点击"打开网盘"跳转至第三方网盘<br>
+  4. 每个文件都有独立的网盘链接和配置<br>
   <strong>警告：</strong><br>
   安装测试版存在风险，本站提供系统镜像是为尝鲜。请勿将系统安装到实体机上，若您尝试这样做导致的数据损失，本站不承担任何后果！<br>
 </div>
@@ -1484,13 +1061,7 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   
   if (unconfiguredFiles.length > 0) {
-    setTimeout(function() {
-      var setupPrompt = confirm("检测到 " + unconfiguredFiles.length + " 个文件未配置网盘链接。\n\n是否现在进行配置？");
-      if (setupPrompt) {
-        // 触发管理链接面板
-        document.getElementById('link-manager-btn').click();
-      }
-    }, 3000);
+    console.log("未配置链接的文件:", unconfiguredFiles);
   }
 });
 </script>
