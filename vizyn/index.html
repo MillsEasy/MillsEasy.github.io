@@ -3673,6 +3673,138 @@
 				display: none !important;
 			}
 		}
+		
+		/* 打赏弹窗样式 */
+		.donation-modal {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.7);
+			z-index: 1000;
+			overflow-y: auto;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+		.donation-modal.show {
+			opacity: 1;
+		}
+		.donation-modal-content {
+			background-color: white;
+			margin: 100px auto;
+			padding: 30px;
+			border-radius: 8px;
+			width: 95%;
+			max-width: 500px;
+			position: relative;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			transform: translateY(-30px);
+			opacity: 0;
+			transition: all 0.3s ease;
+		}
+		.donation-modal.show .donation-modal-content {
+			transform: translateY(0);
+			opacity: 1;
+		}
+		.donation-close-modal {
+			position: absolute;
+			top: 15px;
+			right: 20px;
+			font-size: 28px;
+			font-weight: bold;
+			cursor: pointer;
+			color: var(--gray-color);
+			transition: color 0.3s;
+		}
+		.donation-close-modal:hover {
+			color: var(--primary-color);
+		}
+		.donation-modal-title {
+			text-align: center;
+			margin-bottom: 20px;
+			color: var(--dark-color);
+		}
+		.donation-modal-title h3 {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+		.donation-body {
+			text-align: center;
+		}
+		.donation-body button {
+			margin: 20px 0;
+		}
+		.donation-body label {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			color: var(--gray-color);
+			cursor: pointer;
+		}
+		/* 深色模式适配 */
+		.dark-mode .donation-modal-content {
+			background-color: #1e1e1e;
+			color: #e0e0e0;
+		}
+		.dark-mode .donation-modal-title h3 {
+			color: #e0e0e0;
+		}
+		.dark-mode .donation-body label {
+			color: #b0b0b0;
+		}
+		/* 移动端适配 */
+		@media (max-width: 768px) {
+			.donation-modal-content {
+				margin: 50px auto;
+				width: 90%;
+				padding: 20px;
+			}
+		}
+		
+		/* 打赏弹窗按钮增强样式 */
+		.donation-body button.cta-button {
+			width: 100%;
+			max-width: 280px;
+			margin: 20px auto;
+			display: block;
+			box-sizing: border-box;
+		}
+
+		/* 复选框区域样式优化 */
+		.donation-body label {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			margin-top: 15px;
+			padding: 8px;
+			border-radius: 4px;
+			background-color: rgba(0, 0, 0, 0.02);
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.donation-body label:hover {
+			background-color: rgba(0, 120, 212, 0.05);
+		}
+
+		.donation-body input[type="checkbox"] {
+			width: 16px;
+			height: 16px;
+			cursor: pointer;
+		}
+
+		/* 深色模式适配 */
+		.dark-mode .donation-body label {
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+
+		.dark-mode .donation-body label:hover {
+			background-color: rgba(0, 120, 212, 0.2);
+		}
     </style>
 </head>
 <body>
@@ -3886,6 +4018,22 @@
         </div>
     </section>
 	
+	<!-- 打赏支持 -->
+	<section class="system-requirements" id="donation-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>—— 打赏支持 ——</h2>
+				<p>如果您喜欢我们的资源，欢迎打赏支持，让我们做得更好！</p>
+				<p><i class="fas fa-heart"></i> 您的支持是我们持续更新的动力！</p>
+				<div class="community-buttons" style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 40px;">
+					<button class="cta-button" onclick="showDonationModal()">
+						<i class="fas fa-coffee"></i> 打开打赏弹窗
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	
 	<!-- 测试版系统跳转区域 -->
 	<section class="system-requirements" id="beta-download">
 		<div class="container">
@@ -3924,6 +4072,23 @@
                 </p>
             </div>
         </div>
+	</section>
+	
+	<!-- 跳转论坛 -->
+	<section class="system-requirements" id="donation-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>—— 永远酱论坛 ——</h2>
+				<p>欢迎前往永远酱论坛~这是一个二次元论坛</p>
+				<p><i class="fas fa-heart"></i> 网站还在建设中，欢迎前往喵~</p>
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 40px;">
+					<button class="cta-button" style="background-color: #7289DA;" 
+								onclick="window.open('https://xn--5rw637ez8a.cc.cd/', '_blank')">
+							 <i class="fas fa-ellipsis-h"></i> 前往论坛
+					 </button>
+				</div>
+			</div>
+		</div>
 	</section>
 
     <!-- 关于区域 -->
@@ -4301,6 +4466,28 @@
         </div>
     </div>
     
+	<!-- 打赏弹窗 -->
+	<div class="donation-modal" id="donationModal">
+		<div class="donation-modal-content">
+			<span class="donation-close-modal">&times;</span>
+			<div class="donation-modal-title">
+				<h3><i class="fas fa-coffee"></i> 支持开发者</h3>
+				<p>如果我们的资源对你有帮助，欢迎打赏支持！</p>
+			</div>
+			<div class="donation-body">
+				<p>你的支持是我们持续更新的动力！</p>
+				<button class="cta-button" id="donateButton"><i class="fas fa-heart"></i> 前往打赏页面</button>
+				<div style="margin-top: 25px;">
+					<label>
+						<input type="checkbox" id="disableDonationPopup"> *不再显示此弹窗
+					</label>
+				</div>
+				<p style="font-size: 12px; color: var(--red-color); margin-top: 20px;">*:如果您切换了浏览器或清除了记录，弹窗可能会再次出现</p>
+				<p style="font-size: 12px; color: var(--gray-color); margin-top: 20px;">你可以随时在页脚找到打赏入口</p>
+			</div>
+		</div>
+	</div>
+	
     <script>
 		// 获取移动端主题切换按钮
 		const mobileThemeToggle = document.getElementById('mobileThemeToggle');
@@ -7995,6 +8182,82 @@ const componentsData = [
                 cacheManager.clearOldCache();
             }, 10 * 60 * 1000);
         });
+		
+		// ========== 打赏弹窗逻辑 ==========
+		(function() {
+			const donationModal = document.getElementById('donationModal');
+			const donationCloseBtn = document.querySelector('.donation-close-modal');
+			const donateButton = document.getElementById('donateButton');
+			const disableCheckbox = document.getElementById('disableDonationPopup');
+			
+			const DONATION_URL = 'https://www.bilibili.com/opus/1170011179492311060';  // ⚠️ 修改为真实链接
+			
+			if (!donationModal) return;
+			
+			// 显示
+			function showDonationModal() {
+				donationModal.style.display = 'block';
+				setTimeout(() => {
+					donationModal.classList.add('show');
+				}, 10);
+				document.body.style.overflow = 'hidden';
+			}
+			
+			// 隐藏弹窗，并根据复选框状态存储偏好
+			function hideDonationModal(savePreference = true) {
+				donationModal.classList.remove('show');
+				setTimeout(() => {
+					donationModal.style.display = 'none';
+					document.body.style.overflow = 'auto';
+				}, 300);
+				
+				if (savePreference) {
+					if (disableCheckbox.checked) {
+						localStorage.setItem('donationDisabled', 'true');
+					} else {
+						localStorage.removeItem('donationDisabled');
+					}
+				}
+			}
+			
+			// 检查
+			function shouldShowDonation() {
+				return localStorage.getItem('donationDisabled') !== 'true';
+			}
+			donationCloseBtn.addEventListener('click', function() {
+				hideDonationModal(true);
+			});
+			
+			// 打赏按钮：跳转并关闭
+			donateButton.addEventListener('click', function() {
+				window.open(DONATION_URL, '_blank');
+				hideDonationModal(true);
+			});
+			
+			// 点击背景关闭
+			donationModal.addEventListener('click', function(e) {
+				if (e.target === donationModal) {
+					hideDonationModal(true);
+				}
+			});
+			
+			// ESC 键关闭
+			document.addEventListener('keydown', function(e) {
+				if (e.key === 'Escape' && donationModal.classList.contains('show')) {
+					hideDonationModal(true);
+				}
+			});
+			
+			// 页面完全加载后延迟 2 秒弹出（若未被禁用）
+			window.addEventListener('load', function() {
+				setTimeout(() => {
+					if (shouldShowDonation()) {
+						showDonationModal();
+					}
+				}, 2000); // 可根据需要调整延迟时间
+			});
+			window.showDonationModal = showDonationModal;
+		})();
     </script>
 <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a81adb37b5d74e56a0a823374f1101cd"}'></script><!-- Cloudflare Pages Analytics --></body>
 </html>
